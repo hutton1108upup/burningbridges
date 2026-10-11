@@ -1,0 +1,20 @@
+/* Local interaction layer. The original stylesheet remains the visual baseline. */
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+.local-upload{position:relative;flex-shrink:0;width:138px;height:138px;border:1px dashed var(--border);border-radius:12px;background:var(--muted)}
+#upload-button{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:12px;cursor:pointer}
+#upload-button small{color:var(--primary)}
+#photo-preview{width:100%;height:100%;object-fit:cover;border-radius:12px}
+#remove-photo{position:absolute;right:4px;top:4px;border-radius:50%;background:var(--background);width:24px;height:24px;cursor:pointer}
+.local-select{height:44px;padding:0 14px;border:1px solid var(--border);border-radius:999px;background:var(--background);font:inherit;font-size:14px;max-width:100%;color:var(--foreground)}
+.local-account,.local-theme{height:36px;border-radius:999px;padding:0 16px;cursor:pointer;font-size:14px}
+.local-account{background:var(--primary);color:var(--primary-foreground)}
+.local-theme{padding:0;width:36px}
+.local-dialog{max-width:440px;width:calc(100% - 32px);border:1px solid var(--border);border-radius:24px;padding:28px;background:var(--background);color:var(--foreground);box-shadow:0 20px 70px #0003;position:fixed;inset:0;margin:auto}
+.local-dialog::backdrop{background:#0006}
+.local-dialog h2{font-size:24px;font-weight:600;margin-bottom:12px}
+.local-dialog p{font-size:14px;line-height:1.7;color:var(--muted-foreground)}
+.local-dialog button{margin-top:20px;background:var(--primary);color:var(--primary-foreground);padding:10px 20px;border-radius:999px;cursor:pointer}
+.local-mobile-nav{position:absolute;top:64px;left:16px;right:16px;border:1px solid var(--border);padding:16px;background:var(--background);border-radius:16px;display:flex;flex-direction:column;gap:16px;box-shadow:0 12px 30px #0001}
+.local-mobile-nav a{font-size:14px}
+button,[role=tab]{cursor:pointer}

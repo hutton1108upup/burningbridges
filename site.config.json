@@ -1,0 +1,40 @@
+{
+  "origin": "https://burningbridgesaivideo.pro",
+  "routes": [
+    "/",
+    "/pricing",
+    "/burning-bridges-video-ai",
+    "/burning-bridges-music-video-ai",
+    "/burning-bridges-ai-prompt",
+    "/blog",
+    "/blog/burning-bridges-trend-explained",
+    "/blog/how-to-make-burning-bridges-video",
+    "/privacy-policy",
+    "/terms-of-service",
+    "/refund-policy"
+  ],
+  "assets": [
+    "/_next/static/chunks/0ev4y1zkv8xbi.css",
+    "/_next/static/chunks/174q0y99fv7sw.css",
+    "/_next/static/chunks/0r82_rofaimc5.css",
+    "/_next/static/chunks/10ury8vs4j30l.css",
+    "/favicon.svg",
+    "/favicon.ico",
+    "/logo.svg",
+    "/assets/7deb9d22ede5-burning-bridges-template-16x9-crop.mp4",
+    "/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp",
+    "/assets/6d6c14be4081-burning-bridges-example-1.mp4",
+    "/assets/b0ba7e709b52-burning-bridges-example-1-poster.webp",
+    "/assets/12e415f3692e-burning-bridges-example-2-poster.webp",
+    "/assets/50c20617423c-burning-bridges-template-16x9-graded-poster.webp",
+    "/_next/static/media/b2ea385cb5ae8625-s.0kjod.kaq1k69.woff2",
+    "/_next/static/media/1b99372b3eaef0c8-s.p.0gx2haw2tmll8.woff2",
+    "/_next/static/media/13bf9871fe164e7f-s.0s19wthhh_6~m.woff2",
+    "/_next/static/media/cc545e633e20c56d-s.0dza.stei.9v7.woff2",
+    "/_next/static/media/71b036adf157cdcf-s.03nf~dfjdkf~..woff2",
+    "/_next/static/media/89b21bb081cb7469-s.0gfhww.tctz1o.woff2",
+    "/_next/static/media/3fe682a82f50d426-s.09q3q1i5159bl.woff2",
+    "/_next/static/media/70bc3e132a0a741e-s.1409xf.ylxg8g.woff2",
+    "/assets/395f7931679b-burning-bridges-example-2.mp4"
+  ]
+}
