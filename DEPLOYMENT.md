@@ -45,3 +45,13 @@ GitHub Actions 自动验证，不自动部署。Cloudflare 如使用 Git 集成�
    ```
 
 HTTPS 主域名应返回 200，其他入口应返回重定向，路径和 `test=1` 不丢失。再验证 public DNS、有效 TLS、首页、价格页、博客、视频和 404。域名 DNS 或证书尚未生效时，不把部署日志当作上线成功。
+
+## 本站 DNS 与签名配置
+
+- 注册商：Spaceship，域名 `burningbridgesaivideo.pro`。
+- Cloudflare 名称服务器：`hope.ns.cloudflare.com`、`joel.ns.cloudflare.com`。
+- Spaceship 原有 DNSSEC 保护已通过预先配置 Cloudflare DS 的方式迁移，没有关闭保护。后续更换 DNS 提供商时，应重新核对签名密钥与 DS，不能只修改名称服务器。
+- `www` 使用代理开启的 `A → 192.0.2.0`，由 `WWW to HTTPS apex` 规则执行 301；主域名绑定 `burningbridges` Worker。
+- `Always Use HTTPS` 已启用；Universal SSL 负责根域名和 www 的边缘证书。
+
+Wrangler 的本机 OAuth 使用已确认的 `duckweed` 账号配置。它是电脑上的登录会话，不随仓库上传。其他电脑先登录同一目标账户，再运行部署命令。
