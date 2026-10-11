@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "burningbridges",
+  "account_id": "7fd7ed1128ca3d125feaa279f4d4c547",
   "compatibility_date": "2026-10-11",
   "workers_dev": true,
   "preview_urls": false,

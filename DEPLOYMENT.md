@@ -2,6 +2,8 @@
 
 架构：Cloudflare Workers Static Assets。Worker 名称 `burningbridges`，静态目录 `dist`，主域名 `burningbridgesaivideo.pro`。
 
+目标账户已确认：`Duckweed1014@gmail.com's Account`。账户 ID 已写入 `wrangler.jsonc`，它是公开资源标识，不是登录凭据。GitHub 仓库为 `hutton1108upup/burningbridges`。
+
 登录、支付和真实 AI 生成仍未接入；部署的是当前静态前端版本。
 
 ## 本地检查
@@ -19,7 +21,7 @@ npm.cmd run deploy:dry-run
 ## 正式部署
 
 1. 用 `npx.cmd wrangler whoami` 检查已登录账户。仅使用得到确认的目标账户，不能使用另一项目或另一账号的令牌。
-2. 确认 `burningbridgesaivideo.pro` Zone 在该账户下且为 `Active`。在 `wrangler.jsonc` 中填入该账户的 `account_id`，不要填 API Token。
+2. 确认 `burningbridgesaivideo.pro` Zone 在上述账户下且为 `Active`，`wrangler.jsonc` 的 `account_id` 已固定。不要把 API Token 写进项目文件。
 3. 本地提交并推送修改后，运行 `npm.cmd run deploy`。
 4. 看到上传成功、版本 ID 和域名后，再检查 `/release.json` 的 `revision` 与本次 Git 提交一致。
 
