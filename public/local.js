@@ -9,13 +9,14 @@ document.body.append(dialog);
 $('button',dialog).onclick = () => dialog.close();
 dialog.addEventListener('click', event => {if (event.target === dialog) dialog.close();});
 const showAccount = () => dialog.showModal();
+const accountLabel = $('#preview-status') ? 'Preview Info' : 'Sign In';
 
 const header = $('header');
 if (header) {
   const loader = $('.lucide-loader-circle', header);
   if (loader) {
     const account = document.createElement('button');
-    account.className = 'local-account'; account.textContent = 'Sign In'; account.onclick = showAccount;
+    account.className = 'local-account'; account.textContent = accountLabel; account.onclick = showAccount;
     loader.parentElement.replaceChildren(account);
   }
   const blank = $('span[aria-hidden="true"]', header);
@@ -28,7 +29,7 @@ if (header) {
   if (toggle) {
     const nav=document.createElement('nav');nav.className='local-mobile-nav';nav.hidden=true;nav.setAttribute('aria-label','Mobile navigation');
     const links=$$('nav a',header);for(const link of links) nav.append(link.cloneNode(true));
-    const signIn=document.createElement('button');signIn.className='local-account';signIn.textContent='Sign In';signIn.onclick=showAccount;nav.append(signIn);
+    const signIn=document.createElement('button');signIn.className='local-account';signIn.textContent=accountLabel;signIn.onclick=showAccount;nav.append(signIn);
     header.append(nav);
     toggle.onclick=()=>{nav.hidden=!nav.hidden;toggle.setAttribute('aria-expanded',String(!nav.hidden));};
     $$('a',nav).forEach(a=>a.onclick=()=>{nav.hidden=true;toggle.setAttribute('aria-expanded','false');});
@@ -110,7 +111,7 @@ if(examples){
 
 $$('button').forEach(button=>{
   if(button.hasAttribute('data-local-account') || /^(Buy this pack|Subscribe Monthly|Subscribe Annually|Subscribe Annual|Sign In to Generate)$/.test(button.textContent.trim()))button.onclick=showAccount;
-  if(button.textContent.trim()==='Make yours')button.onclick=()=>location.assign('/#burning-bridges-ai-generator');
+  if(button.hasAttribute('data-local-preview') || button.textContent.trim()==='Make yours')button.onclick=()=>location.assign('/#burning-bridges-ai-generator');
 });
 $$('[role="tab"]').forEach(button=>{
   button.tabIndex=button.getAttribute('aria-selected')==='true'?0:-1;
