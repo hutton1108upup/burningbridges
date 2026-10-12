@@ -1,12 +1,13 @@
 # GitHub 提交范围自查
 
-目标仓库：`hutton1108upup/burningbridges`。当前项目是公开静态前端，不包含原站私有后台。
+目标仓库：`hutton1108upup/burningbridges`。包含公开前端及本项目的 Worker 支付/账号/积分后台源码，不包含原站私有后台或任何商户密钥。
 
 ## 适合提交
 
 - `public/` 内的可编辑页面、交互代码、样式、字体、图标、海报、三段公开视频、sitemap、robots 与 404 页。
 - `site.config.json`、`wrangler.jsonc`、`package.json`、`package-lock.json`：可复现的检查、构建和部署配置；不包含凭据。
 - `scripts/server.mjs`、`scripts/check.mjs`、`scripts/build.mjs`、`scripts/audit-staged.mjs`：维护与自查脚本。
+- `src/`、`migrations/`、`tests/`、`docs/`、`scripts/dev-commerce.mjs`、`scripts/sqlite-db.mjs`：后台实现、D1 表结构、支付/权限测试、运行说明及本地数据库适配器。
 - `.github/workflows/check.yml`：在 GitHub 自动运行检查、构建与部署打包模拟，不进行生产部署。
 - `.gitignore`、`.gitattributes`、项目说明和验收记录。
 
@@ -17,7 +18,7 @@
 | 文件类别 | 原因 |
 | --- | --- |
 | `reference/` | 原始抓取 HTML、原站配置和浏览器截图，仅用于研究对照 |
-| `.local/` | 本次发布取证、临时输出和操作记录 |
+| `.local/` | 发布截图、Waffo 操作记录、测试账号凭据、SQLite 数据库与操作脚本 |
 | `dist/` | 根据源码生成的部署产物，避免重复和陈旧文件 |
 | `node_modules/`、`.wrangler/` | 依赖、缓存与本地运行状态 |
 | `.env*`、`.dev.vars*`、凭据和私钥 | 不得进入公开仓库或静态资源 |

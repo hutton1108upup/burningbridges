@@ -8,44 +8,48 @@
 2. 打开“终端 → 新建终端”，执行：
 
    ```powershell
+   npm.cmd ci
    npm.cmd run dev
    ```
 
-3. 看到 `Local website: http://localhost:3000` 后，在浏览器打开该地址。终端保持运行；停止时按 `Ctrl+C`。
+3. 看到 `Local commerce website: http://localhost:3001` 后，在浏览器打开该地址。终端保持运行；停止时按 `Ctrl+C`。
 4. 如果端口已被占用，使用另一个端口：
 
    ```powershell
-   $env:PORT=3001
+   $env:PORT=3002
    npm.cmd run dev
    ```
 
-   然后打开 `http://localhost:3001`。本地预览不需要第三方依赖，运行只需要 Node.js 20 或更高版本。部署及 CI 首先执行 `npm.cmd ci`，安装锁定版本的 Wrangler。
+   然后打开 `http://localhost:3002`。完整本地流程需要 Node.js 24；测试数据库保存在忽略提交的 `.local/commerce.sqlite`。本地服务器绑定 127.0.0.1，默认关闭真实 checkout，不读取或借用支付私钥。纯静态浏览可运行 `npm.cmd run dev:static`（3000 端口）。
 
 ## 修改位置
 
 | 要改什么 | 文件或目录 | 操作 |
 | --- | --- | --- |
 | 首页文案与结构 | `public/index.html` | 搜索页面上现有英文文案，局部替换并保存 |
-| 价格页 | `public/pricing/index.html` | 分别修改月付、年付和一次性套餐区块 |
+| 价格页 | `public/pricing/index.html` | 月付和一次性套餐；同步修改服务器套餐和 Waffo 产品 |
 | 博客首页 | `public/blog/index.html` | 修改文章卡片与链接 |
 | 两篇博客 | `public/blog/文章路径/index.html` | 修改正文 |
 | 三个 SEO 落地页 | `public/burning-bridges-*/index.html` | 修改对应页面正文 |
 | 政策页 | `public/privacy-policy/index.html`、`public/terms-of-service/index.html`、`public/refund-policy/index.html` | 修改对应条款 |
 | 新增或覆盖样式 | `public/local.css` | 在文件末尾添加样式，避免直接编辑原站压缩 CSS |
-| 本地交互 | `public/local.js` | 修改上传预览、积分、FAQ、视频、导航和价格切换 |
+| 页面交互 | `public/local.js`、`public/commerce.js` | 照片草稿、账号、付款返回、任务状态和下载 |
+| 订单与积分 | `src/catalog.mjs`、`src/commerce.mjs`、`src/worker.mjs` | 服务器价格、回调核验、积分账本与 API |
+| 账号及数据库 | `src/auth.mjs`、`migrations/` | 会话、密码、恢复码与 D1 表结构 |
 | 原站样式与字体 | `public/_next/static/` | 原始编译后的资源，仅供保真复刻使用 |
 | 图片与视频 | `public/assets/` | 替换同名文件，或在 HTML 中修改路径 |
 | 站点页面及资源清单 | `site.config.json` | 自查脚本使用的清单；新增页面时同步更新 |
 | 示例视频映射 | `public/media.json` | 三段示例视频的本地路径 |
 
-保存文件后刷新浏览器即可看到变化。HTML 已整理为缩进文本，方便搜索和局部编辑。当前版本是可修改的静态前端复刻，并非原站 Next.js/React 源码工程。
+保存前端文件后刷新浏览器即可看到变化；修改服务器代码后重启本地服务。HTML 已整理为缩进文本，后台为本项目的 Cloudflare Worker 与 D1 实现。
 
 ## 已实现与边界
 
 - 11 个公开页面，资源全部本地化；没有依赖原站运行时的 JS。
-- FAQ 展开、照片选择与本地预览、8MB 校验、照片移除、格式与分辨率选择、积分展示、视频选择与音频开关、手机导航、主题切换、价格页三组选项。
-- 照片仅用于浏览器本地预览，不会上传。登录、购买、生成按钮会显示本地预览说明，不发起账号、付款或 AI 服务请求。
-- 登录弹窗、真实支付、账号积分、任务队列、生成与下载需要原站源码及后台配置才能恢复；公开网站无法提供这些私有实现。
+- FAQ、照片预览与 8MB 校验、格式和分辨率选择、两组价格选项、导航、主题及示例音频。
+- 账号注册/登录、一次性恢复码、HttpOnly 会话、Waffo 托管支付、签名回调、幂等积分发放、账期/有效期、原子扣积分、失败退积分、模拟结果和受保护下载。
+- 照片与设置保存在浏览器 IndexedDB，付款返回及刷新可以恢复；移除或退出账号清除，七天以上的草稿在下一次访问时清除。模拟流程不上传照片到服务器或 AI 服务。
+- Waffo 当前仅 Test 环境，未创建 Production 产品或密钥；真实收款还需要商户资质审核。模拟结果明确标为参考视频，不能消耗正式积分。AI provider 尚待另行接入。
 - canonical、OG URL、文章结构化数据、sitemap 和 robots 已配置为 `https://burningbridgesaivideo.pro`。客服邮箱已统一为 `support@burningbridgesaivideo.pro`；邮箱收信能力尚未验证。
 
 ## 检查与构建
@@ -57,7 +61,7 @@ npm.cmd run check
 npm.cmd run build
 ```
 
-看到 `PASS: 11 pages` 和 `Build complete: dist/` 即成功。`dist` 是静态构建产物，不包含后台服务。修改后重新运行构建。
+看到页面/统计/文案检查及支付测试全部通过、`Build complete: dist/` 即成功。`dist` 是前端资源；Wrangler 同时打包 `src/worker.mjs` 后台。修改后重新运行构建。
 
 ## 研究证据
 
@@ -78,15 +82,18 @@ npm.cmd run build
 
 ## 产品规格与业务规则
 
-本节是页面与下一轮支付实现共用的规则。公开页面采用正式产品文案；当前源代码仍是静态前端，套餐详情不是付款成功，文案提交不表示账号、支付、积分账本或 AI 服务已接通。
+本节是页面与支付实现共用的规则；服务器套餐是 `src/catalog.mjs`，Waffo 产品和页面金额必须同步。
 
 - 单张照片，最大 8MB；格式 Auto、16:9、1:1、9:16。480P / 720P Standard / 1080P Pro 分别显示 50 / 100 / 200 积分估算。
-- 月付 Starter $19 / 400 credits，Creator $39 / 900 credits，Studio $79 / 2,000 credits。每月续费；取消停止后续续费。
+- 月付 Starter $19 / 400 credits，Creator $39 / 900 credits，Studio $79 / 2,000 credits。每月续费；取消停止后续续费；当期积分按实际付费账期有效，不滚存。
 - 一次性 100 credits / $9.90 / 30 天，200 credits / $14.90 / 30 天，500 credits / $29.90 / 90 天。有效期从积分发放起算。没有年付及 1,500 credits 套餐。
 - 选图、看示例不扣生成积分。付款成功、积分到账、任务提交和生成完成是不同状态。确认失败且无交付的任务退回所扣积分；现金退款按退款政策审核。
-- 核心生成入口去定价页；套餐选择显示该套餐明细和条款，不模拟扣款或到账。下一轮 Waffo 需实现订单核验、幂等积分发放、余额与权限后再替换支付入口。
+- 未登录或余额不足的生成入口去定价页；选择套餐后先登录，再打开 Waffo hosted checkout。只在核验签名、环境、店铺、订单、账号、套餐、金额和付款状态后发积分；月付须同时收到当期付款与账期信息。付款返回参数不发积分。
+- 积分足够时用户主动提交任务才扣积分；任务重试不重复扣费。模拟结果使用现有参考视频，选定的分辨率及格式记录在任务中，不伪装成真实 AI 渲染。
 - 不承诺固定完成时间、完美相似度、自动人工审核、无限存储或未经授权的商业使用权。模拟视频结果必须与真实生成区分。
-- 隐私说明保留真实 GA4 / Clarity / Cloudflare 处理，按条件描述用户主动提供的信息，不虚构账号数据库、支付服务商或照片的服务器保留期限。接入支付或生成后必须更新实际处理方和上传流程。
+- 隐私说明披露 Waffo、D1 账号/订单/积分记录、浏览器草稿及 GA4/Clarity。账号、素材、恢复码和支付界面屏蔽录屏；不新增打断式统计弹窗。
 - 退款条款不把使用积分自动当作放弃法定撤回权，参考欧盟官方消费者说明：https://europa.eu/youreurope/citizens/consumers/shopping/returns/index_en.htm 。上线 checkout 时按适用要求实现实际确认流程。
 
 运行 npm run check 验证页面、统计保护、FAQ/结构化数据、套餐数字、资源和锚点。
+
+支付配置与验收状态见 `docs/payments.md`。私钥、测试账号凭据、数据库、抓包和截图只留本地；`npm run audit:staged` 检查提交白名单与凭据模式。

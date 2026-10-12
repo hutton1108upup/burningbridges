@@ -16,5 +16,5 @@ await cp(path.join(root, 'public'), output, {
 });
 let revision = process.env.GITHUB_SHA || 'uncommitted';
 try {revision = execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim();} catch { /* First local build before Git initialization. */ }
-await writeFile(path.join(output,'release.json'),JSON.stringify({revision,builtAt:new Date().toISOString(),site:'https://burningbridgesaivideo.pro',mode:'static-frontend'},null,2)+'\n');
-console.log(`Build complete: dist/ (static frontend, revision ${revision})`);
+await writeFile(path.join(output,'release.json'),JSON.stringify({revision,builtAt:new Date().toISOString(),site:'https://burningbridgesaivideo.pro',mode:'commerce-worker'},null,2)+'\n');
+console.log(`Build complete: dist/ (commerce Worker assets, revision ${revision})`);

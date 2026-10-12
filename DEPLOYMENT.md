@@ -1,10 +1,10 @@
 # Cloudflare 发布
 
-架构：Cloudflare Workers Static Assets。Worker 名称 `burningbridges`，静态目录 `dist`，主域名 `burningbridgesaivideo.pro`。
+架构：Cloudflare Worker + D1 + Static Assets。Worker 名称 `burningbridges`，入口 `src/worker.mjs`，静态目录 `dist`，主域名 `burningbridgesaivideo.pro`。
 
 目标账户已确认：`Duckweed1014@gmail.com's Account`。账户 ID 已写入 `wrangler.jsonc`，它是公开资源标识，不是登录凭据。GitHub 仓库为 `hutton1108upup/burningbridges`。
 
-登录、支付和真实 AI 生成仍未接入；部署的是当前静态前端版本。
+账号、Waffo Test 支付、积分与模拟任务使用本项目后台；真实 AI provider 另行接入。正式收费尚未启用，不能把 sandbox 验收当作正式收款开通。详见 `docs/payments.md`。
 
 ## 本地检查
 
@@ -22,8 +22,9 @@ npm.cmd run deploy:dry-run
 
 1. 用 `npx.cmd wrangler whoami` 检查已登录账户。仅使用得到确认的目标账户，不能使用另一项目或另一账号的令牌。
 2. 确认 `burningbridgesaivideo.pro` Zone 在上述账户下且为 `Active`，`wrangler.jsonc` 的 `account_id` 已固定。不要把 API Token 写进项目文件。
-3. 本地提交并推送修改后，运行 `npm.cmd run deploy`。
-4. 看到上传成功、版本 ID 和域名后，再检查 `/release.json` 的 `revision` 与本次 Git 提交一致。
+3. 首次接入时，在独立的 `burningbridges-commerce-test` 数据库执行 `npx.cmd wrangler d1 migrations apply burningbridges-commerce-test --remote`。将专用 Test 私钥通过 Wrangler Secret 标准输入配置，不提交私钥。
+4. 本地提交并推送修改后，运行 `npm.cmd run deploy`。
+5. 看到上传成功、版本 ID 和域名后，再检查 `/release.json` 的 `revision` 与本次 Git 提交一致；同时验证账号、Test checkout、签名到账和模拟任务，静态页面 HTTP 200 不能证明支付可用。
 
 `release.json` 在构建时生成，不加入 Git。它用来区分本地构建、GitHub 提交和真正上线的版本。
 

@@ -1,4 +1,4 @@
-name: Validate static website
+name: Validate website and commerce
 on:
   push:
     branches: [main]

@@ -157,9 +157,9 @@
 <p>This Privacy Policy explains how Burning Bridges AI Video handles information when you visit burningbridgesaivideo.pro, contact us and use our services.</p>
 <h2 id="information-we-collect">Information You Provide</h2>
 <h3 id="account-information">Account, order and support information</h3>
-<p>If you provide account details, place an order or contact support, relevant information may include your email, order reference, transaction status and correspondence. It is used for the purpose for which you provide it, including service access, billing questions and support.</p>
+<p>When you create an account, we store your email, a salted password hash and a hashed recovery code. Session cookies keep you signed in. Order references, payment status, credit grants and video-task records connect your purchases to your account and support billing questions. Keep your recovery code private; password recovery uses that code rather than email resets.</p>
 <h3>Photo references</h3>
-<p>A photo selected for the image preview is displayed locally in your browser. Selecting it does not itself upload its contents to a server. Use the remove control to clear it; reloading or closing the page clears the selected image.</p>
+<p>Selected photos and video settings are saved in your browser so you can return from checkout without selecting the photo again. Drafts older than seven days are cleared on your next visit; removing a photo or signing out clears the saved draft. During a flow test, the photo stays in your browser and the server receives only the draft reference and selected settings. A simulated result is a reference video and is identified as such.</p>
 <h3>Website analytics</h3>
 <p>Google Analytics 4 helps us understand visits, traffic sources, devices and engagement. Microsoft Clarity provides heatmaps and masked interaction recordings. These providers receive browser and device information and may use analytics cookies. Our GA4 configuration removes query strings and fragments from supplied URLs and disables Google signals and advertising personalization.</p>
 <p>Clarity uses strict masking, with additional masking on the photo area and input fields. We do not send photo contents, filenames, email addresses, prompts or payment details as custom analytics events. Clarity is not loaded on URLs containing query parameters.</p>
@@ -168,7 +168,9 @@
 <h2 id="data-storage-and-security">Retention and Security</h2>
 <p>Local photo previews remain in your browser. Correspondence and applicable business records are retained for their purpose and required recordkeeping. Analytics data is processed under the relevant provider's retention practices. Website and analytics connections use HTTPS; no system promises absolute security.</p>
 <h2 id="information-sharing">Service Providers</h2>
-<p>Cloudflare delivers and protects the website and processes network and performance information. Google processes visit analytics and Microsoft processes masked behavior analytics. If you use a hosted payment service, that provider processes the details you enter under its privacy notice. Do not enter full card details in support messages.</p>
+<h3>Payments</h3>
+<p>Waffo Pancake provides hosted checkout, receipts and subscription management. Billing details and card information are entered on Waffo’s checkout, not stored by this website. We receive signed order, payment, subscription and refund events to maintain your credit balance. Test payments and test credits are separate from production payments. See <a href="https://www.waffo.ai/en/privacy">Waffo’s privacy policy</a>.</p>
+<p>Cloudflare delivers and protects the website, processes network and performance information, and hosts account, order, credit and task records in D1. Google processes visit analytics and Microsoft processes masked behavior analytics. Do not enter full card details in support messages.</p>
 <p>Read the <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer noopener">Google Privacy Policy</a>, <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noreferrer noopener">Microsoft Privacy Statement</a> and <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noreferrer noopener">Cloudflare Privacy Policy</a>. Providers may process information in countries other than yours.</p>
 <h2 id="your-rights">Privacy Requests</h2>
 <p>Contact us to ask about information we control, request correction or deletion, or raise a concern. We may need to verify a request or retain information for required recordkeeping and dispute resolution.</p>
@@ -285,5 +287,6 @@ Prepare a Burning Bridges party-video idea with one portrait, a reference perfor
   </div>
   <script defer="" src="/local.js">
   </script>
- </body>
+ <script src="/commerce.js" type="module"></script>
+</body>
 </html>

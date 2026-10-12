@@ -4,18 +4,23 @@
   "private": true,
   "description": "Editable local replica of the public Burning Bridges website",
   "scripts": {
-    "dev": "node scripts/server.mjs",
-    "start": "node scripts/server.mjs",
+    "dev": "node scripts/dev-commerce.mjs",
+    "start": "node scripts/dev-commerce.mjs",
+    "dev:static": "node scripts/server.mjs",
+    "test": "node --test tests/*.test.mjs",
     "build": "node scripts/build.mjs",
-    "check": "node scripts/check.mjs && node scripts/check-analytics.mjs && node scripts/check-copy.mjs",
+    "check": "node scripts/check.mjs && node scripts/check-analytics.mjs && node scripts/check-copy.mjs && npm run test",
     "deploy:dry-run": "npm run build && wrangler deploy --dry-run",
     "deploy": "npm run check && npm run build && wrangler deploy",
     "audit:staged": "node scripts/audit-staged.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "devDependencies": {
     "wrangler": "4.149.0"
+  },
+  "dependencies": {
+    "@waffo/pancake-ts": "0.26.0"
   }
 }

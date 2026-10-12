@@ -8,7 +8,10 @@ dialog.innerHTML = '<h2>Plan Details</h2><p class="plan-summary"></p><p>Review t
 document.body.append(dialog);
 $('button',dialog).onclick = () => dialog.close();
 dialog.addEventListener('click', event => {if (event.target === dialog) dialog.close();});
-const goToPricing = () => location.assign('/pricing');
+const goToPricing = async () => {
+  try { await window.BBCommerce?.saveDraft(); location.assign('/pricing'); }
+  catch { alert('Your photo could not be saved. Please keep this page open and try again.'); }
+};
 const showPlanDetails = button => {
   const card = button.closest('[data-slot="card"],article');
   const title = $('[data-slot="card-title"],h3',card)?.textContent.trim() || 'Credit Plan';
