@@ -4,7 +4,7 @@ const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
 const dialog = document.createElement('dialog');
 dialog.className = 'local-dialog';
-dialog.innerHTML = '<h2>Plan Details</h2><p class="plan-summary"></p><p>Review the credits, billing period and validity for your chosen plan.</p><p><a href="/terms-of-service">Service terms</a> · <a href="/refund-policy">Refund policy</a> · <a href="mailto:support@burningbridgesaivideo.com">Billing support</a></p><button type="button">Close</button>';
+dialog.innerHTML = '<h2>Plan Details</h2><p class="plan-summary"></p><p>Review the credits, billing period and validity for your chosen plan.</p><p><a href="/terms-of-service">Service terms</a> · <a href="/refund-policy">Refund policy</a> · <a href="mailto:support@burningbridgesaivideo.pro">Billing support</a></p><button type="button">Close</button>';
 document.body.append(dialog);
 $('button',dialog).onclick = () => dialog.close();
 dialog.addEventListener('click', event => {if (event.target === dialog) dialog.close();});
