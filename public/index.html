@@ -32,6 +32,7 @@
   <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
   <link href="/favicon.ico" rel="alternate icon"/>
   <link href="/local.css" rel="stylesheet"/>
+  <script defer src="/analytics.js"></script>
  </head>
  <body class="overflow-x-hidden">
   <div hidden="">
@@ -224,7 +225,7 @@
       </div>
      </section>
      <div class="container">
-      <section class="scroll-mt-24" id="burning-bridges-ai-generator">
+      <section class="scroll-mt-24" data-clarity-mask="true" id="burning-bridges-ai-generator">
        <div class="">
         <div class="text-card-foreground border-border/80 flex flex-col gap-6 bg-card/70 ring-border/60 overflow-hidden rounded-[32px] border-0 py-0 shadow-2xl ring-1 shadow-black/10 backdrop-blur-xl" data-slot="card">
          <div class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6 border-border/60 bg-background/25 border-b px-5 py-5 md:px-8" data-slot="card-header">
@@ -267,7 +268,7 @@
               </label>
               <div class="border-border/60 bg-background/60 flex items-start gap-4 rounded-3xl border p-3">
                <div class="local-upload">
-                <input accept="image/*" hidden="" id="photo-upload" type="file"/>
+                <input data-clarity-mask="true" accept="image/*" hidden="" id="photo-upload" type="file"/>
                 <button id="upload-button" type="button">
                  <span style="font-size:24px">
                   ↥
@@ -279,7 +280,7 @@
                   Max 8MB
                  </small>
                 </button>
-                <img alt="Your photo preview" hidden="" id="photo-preview"/>
+                <img alt="Your photo preview" hidden="" data-clarity-mask="true" id="photo-preview"/>
                 <button aria-label="Remove photo" hidden="" id="remove-photo" type="button">
                  ×
                 </button>

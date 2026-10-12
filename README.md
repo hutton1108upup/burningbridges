@@ -67,3 +67,11 @@ npm.cmd run build
 - 原始 HTML、截图、抓取脚本、原始价格研究数据只留在制作机器，已加入 `.gitignore`，不随仓库发布。
 
 日常改站编辑 `public`，执行检查与构建即可。GitHub Actions 只负责验证，绿色验证不代表已经部署。
+
+## 网站统计
+
+全站共用 public/analytics.js。GA4 衡量 ID：G-LSG4H51443；Clarity 项目 ID：ywbipqd0b5。这些是公开标识，可以提交；登录凭据、OAuth Token、API Secret 不提交。GSC 使用 DNS 网域验证，无需网站脚本，验证 TXT 记录必须保留。
+
+统计仅在 https://burningbridgesaivideo.pro 运行；localhost 和 workers.dev 不采集。GA4 关闭增强型衡量、Google signals 和广告个性化，页面和来源 URL 去掉 query/hash。Clarity 使用严格文本屏蔽，HTML 明确屏蔽照片/生成器和输入框；带 query 的访问不加载 Clarity。不要移除遮罩或新增传送文件名、照片、邮箱、prompt 的事件。
+
+修改 ID 后执行 npm run check，再按 DEPLOYMENT.md 发布。脚本存在或本地检查通过不等于平台收到数据，发布后检查 GA4 实时报告及 Clarity 数据接收状态。
