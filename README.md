@@ -1,6 +1,6 @@
 # Burning Bridges 本地复刻
 
-根据 https://burningbridgesaivideo.com/ 在 2026-10-11 的公开页面制作。保留原站 HTML、CSS、字体、图片、视频、页面链接与 SEO 信息，提供本地交互层。
+根据 https://burningbridgesaivideo.pro/ 在 2026-10-11 的公开页面制作。保留原站 HTML、CSS、字体、图片、视频、页面链接与 SEO 信息，提供本地交互层。
 
 ## 打开本地网站
 
@@ -46,7 +46,7 @@
 - FAQ 展开、照片选择与本地预览、8MB 校验、照片移除、格式与分辨率选择、积分展示、视频选择与音频开关、手机导航、主题切换、价格页三组选项。
 - 照片仅用于浏览器本地预览，不会上传。登录、购买、生成按钮会显示本地预览说明，不发起账号、付款或 AI 服务请求。
 - 登录弹窗、真实支付、账号积分、任务队列、生成与下载需要原站源码及后台配置才能恢复；公开网站无法提供这些私有实现。
-- canonical、OG URL、文章结构化数据、sitemap 和 robots 已配置为 `https://burningbridgesaivideo.pro`。客服邮箱保留原站已有地址，未编造新域名邮箱。
+- canonical、OG URL、文章结构化数据、sitemap 和 robots 已配置为 `https://burningbridgesaivideo.pro`。客服邮箱已统一为 `support@burningbridgesaivideo.pro`；邮箱收信能力尚未验证。
 
 ## 检查与构建
 
