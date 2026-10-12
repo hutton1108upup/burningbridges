@@ -75,3 +75,18 @@ npm.cmd run build
 统计仅在 https://burningbridgesaivideo.pro 运行；localhost 和 workers.dev 不采集。GA4 关闭增强型衡量、Google signals 和广告个性化，页面和来源 URL 去掉 query/hash。Clarity 使用严格文本屏蔽，HTML 明确屏蔽照片/生成器和输入框；带 query 的访问不加载 Clarity。不要移除遮罩或新增传送文件名、照片、邮箱、prompt 的事件。
 
 修改 ID 后执行 npm run check，再按 DEPLOYMENT.md 发布。脚本存在或本地检查通过不等于平台收到数据，发布后检查 GA4 实时报告及 Clarity 数据接收状态。
+
+## 产品规格与业务规则
+
+本节是页面与下一轮支付实现共用的规则。公开页面采用正式产品文案；当前源代码仍是静态前端，套餐详情不是付款成功，文案提交不表示账号、支付、积分账本或 AI 服务已接通。
+
+- 单张照片，最大 8MB；格式 Auto、16:9、1:1、9:16。480P / 720P Standard / 1080P Pro 分别显示 50 / 100 / 200 积分估算。
+- 月付 Starter $19 / 400 credits，Creator $39 / 900 credits，Studio $79 / 2,000 credits。每月续费；取消停止后续续费。
+- 一次性 100 credits / $9.90 / 30 天，200 credits / $14.90 / 30 天，500 credits / $29.90 / 90 天。有效期从积分发放起算。没有年付及 1,500 credits 套餐。
+- 选图、看示例不扣生成积分。付款成功、积分到账、任务提交和生成完成是不同状态。确认失败且无交付的任务退回所扣积分；现金退款按退款政策审核。
+- 核心生成入口去定价页；套餐选择显示该套餐明细和条款，不模拟扣款或到账。下一轮 Waffo 需实现订单核验、幂等积分发放、余额与权限后再替换支付入口。
+- 不承诺固定完成时间、完美相似度、自动人工审核、无限存储或未经授权的商业使用权。模拟视频结果必须与真实生成区分。
+- 隐私说明保留真实 GA4 / Clarity / Cloudflare 处理，按条件描述用户主动提供的信息，不虚构账号数据库、支付服务商或照片的服务器保留期限。接入支付或生成后必须更新实际处理方和上传流程。
+- 退款条款不把使用积分自动当作放弃法定撤回权，参考欧盟官方消费者说明：https://europa.eu/youreurope/citizens/consumers/shopping/returns/index_en.htm 。上线 checkout 时按适用要求实现实际确认流程。
+
+运行 npm run check 验证页面、统计保护、FAQ/结构化数据、套餐数字、资源和锚点。

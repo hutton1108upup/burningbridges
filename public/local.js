@@ -1,22 +1,29 @@
-// Local-only interactions. No authentication, payment or generation requests.
+// Photo preparation, reference playback and plan selection.
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
 const dialog = document.createElement('dialog');
 dialog.className = 'local-dialog';
-dialog.innerHTML = '<h2>Preview version</h2><p>Account access, checkout and AI generation are not connected on this version yet. You can explore the template and preview a photo, but no purchase or generation has been started.</p><button type="button">Close</button>';
+dialog.innerHTML = '<h2>Plan Details</h2><p class="plan-summary"></p><p>Review the credits, billing period and validity for your chosen plan.</p><p><a href="/terms-of-service">Service terms</a> · <a href="/refund-policy">Refund policy</a> · <a href="mailto:support@burningbridgesaivideo.com">Billing support</a></p><button type="button">Close</button>';
 document.body.append(dialog);
 $('button',dialog).onclick = () => dialog.close();
 dialog.addEventListener('click', event => {if (event.target === dialog) dialog.close();});
-const showAccount = () => dialog.showModal();
-const accountLabel = $('#preview-status') ? 'Preview Info' : 'Sign In';
+const goToPricing = () => location.assign('/pricing');
+const showPlanDetails = button => {
+  const card = button.closest('[data-slot="card"],article');
+  const title = $('[data-slot="card-title"],h3',card)?.textContent.trim() || 'Credit Plan';
+  const description = $('[data-slot="card-description"]',card)?.textContent.trim() || '';
+  const price = $('.text-primary',card)?.textContent.trim() || '';
+  $('.plan-summary',dialog).textContent = `${title} — ${price}. ${description}`;
+  dialog.showModal();
+};
 
 const header = $('header');
 if (header) {
   const loader = $('.lucide-loader-circle', header);
   if (loader) {
     const account = document.createElement('button');
-    account.className = 'local-account'; account.textContent = accountLabel; account.onclick = showAccount;
+    account.className = 'local-account'; account.textContent = 'View Pricing'; account.onclick = goToPricing;
     loader.parentElement.replaceChildren(account);
   }
   const blank = $('span[aria-hidden="true"]', header);
@@ -29,7 +36,7 @@ if (header) {
   if (toggle) {
     const nav=document.createElement('nav');nav.className='local-mobile-nav';nav.hidden=true;nav.setAttribute('aria-label','Mobile navigation');
     const links=$$('nav a',header);for(const link of links) nav.append(link.cloneNode(true));
-    const signIn=document.createElement('button');signIn.className='local-account';signIn.textContent=accountLabel;signIn.onclick=showAccount;nav.append(signIn);
+    const pricing=document.createElement('button');pricing.className='local-account';pricing.textContent='View Pricing';pricing.onclick=goToPricing;nav.append(pricing);
     header.append(nav);
     toggle.onclick=()=>{nav.hidden=!nav.hidden;toggle.setAttribute('aria-expanded',String(!nav.hidden));};
     $$('a',nav).forEach(a=>a.onclick=()=>{nav.hidden=true;toggle.setAttribute('aria-expanded','false');});
@@ -110,7 +117,8 @@ if(examples){
 }
 
 $$('button').forEach(button=>{
-  if(button.hasAttribute('data-local-account') || /^(Buy this pack|Subscribe Monthly|Subscribe Annually|Subscribe Annual|Sign In to Generate)$/.test(button.textContent.trim()))button.onclick=showAccount;
+  if(button.hasAttribute('data-local-account'))button.onclick=goToPricing;
+  if(/^(Buy \d+ credits|Subscribe Monthly|Choose Plan)$/.test(button.textContent.trim()))button.onclick=()=>showPlanDetails(button);
   if(button.hasAttribute('data-local-preview') || button.textContent.trim()==='Make yours')button.onclick=()=>location.assign('/#burning-bridges-ai-generator');
 });
 $$('[role="tab"]').forEach(button=>{

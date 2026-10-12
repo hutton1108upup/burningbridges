@@ -7,7 +7,7 @@
     "dev": "node scripts/server.mjs",
     "start": "node scripts/server.mjs",
     "build": "node scripts/build.mjs",
-    "check": "node scripts/check.mjs && node scripts/check-analytics.mjs",
+    "check": "node scripts/check.mjs && node scripts/check-analytics.mjs && node scripts/check-copy.mjs",
     "deploy:dry-run": "npm run build && wrangler deploy --dry-run",
     "deploy": "npm run check && npm run build && wrangler deploy",
     "audit:staged": "node scripts/audit-staged.mjs"
