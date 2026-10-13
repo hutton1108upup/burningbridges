@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 
 const config = JSON.parse(await readFile('site.config.json', 'utf8'));
-const developmentCopy = /preview version|not connected|not yet available|unavailable|unverified|illustrative|demo balance|sample credit|preview info|this preview|before paid generation launches|before checkout becomes available/i;
+const developmentCopy = /preview version|not connected|not yet available|unavailable|unverified|illustrative|demo balance|sample credit|preview info|this preview|before paid generation launches|before checkout becomes available|currently paused|being connected|future generation service|flow test result|simulated flow tests|current test workflow|before (?:real )?generation is enabled|before enabling real AI generation|Test checkout/i;
 const retiredPlans = /annual plans|subscribe annually|\$74\.90|1,500 credits|up to 30 videos/i;
 let faqAnswers = 0;
 for (const route of config.routes) {
@@ -44,6 +44,10 @@ for (const route of ['/terms-of-service','/refund-policy']) {
   for (const phrase of ['$19','$39','$79','$9.90','$14.90','$29.90','30 days','90 days']) assert.ok(html.includes(phrase), `Policy/plan mismatch: ${route} ${phrase}`);
 }
 const script = await readFile('public/local.js', 'utf8');
+const commerce = await readFile('public/commerce.js', 'utf8');
+// Internal error identifiers are not user-facing copy.
+assert.ok(!developmentCopy.test(commerce.replace(/\b[A-Z][A-Z0-9_]+\b/g,'')), 'Development progress leaked into commerce copy');
+assert.ok(!commerce.includes('commerce-mode'), 'Retired public environment banner');
 assert.ok(!developmentCopy.test(script), 'Development dialog copy');
 assert.ok(!script.includes('showAccount'), 'Retired placeholder account handler');
 assert.ok(script.includes("location.assign('/pricing')"), 'Missing pricing entry');
