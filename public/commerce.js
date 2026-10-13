@@ -145,7 +145,7 @@ function updateGenerator() {
   const button=$('[data-generator]'),balance=$('#credit-balance');
   $('#commerce-account-label').textContent=session?.user?`${session.user.email} · ${session.balance} ${session.mode==='test'?'test ':''}credits`:'Your account';
   $('#commerce-account-summary').textContent=session?.user?'Account':'Sign in';
-  if(balance)balance.textContent=session?.user?String(session.balance):'—';const providerReady=Boolean(session?.generationMode==='provider'&&session?.generationReady);if(providerReady){$('#resolution').value='720';$('#format').value='16:9';if($('#required-credits'))$('#required-credits').textContent='100';$('#resolution').disabled=true;$('#format').disabled=true;}
+  if(balance)balance.textContent=session?.user?String(session.balance):'—';const providerReady=Boolean(session?.generationMode==='provider'&&session?.generationReady);if(providerReady&&$('#burning-bridges-ai-generator')&&$('#resolution')&&$('#format') ){$('#resolution').value='720';$('#format').value='16:9';if($('#required-credits'))$('#required-credits').textContent='100';$('#resolution').disabled=true;$('#format').disabled=true;}
   if(button)button.textContent=session?.user && session.balance>=(costFor[$('#resolution').value]||100)?'Generate Video':'Continue to Pricing';
   document.querySelectorAll('a').forEach(link=>{
     if(['Create Video','Burning Bridges Generator'].includes(link.textContent.trim()))link.href=session?.user && session.balance>=50?'/#burning-bridges-ai-generator':'/pricing';
