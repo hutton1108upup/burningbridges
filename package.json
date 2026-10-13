@@ -21,6 +21,8 @@
     "wrangler": "4.149.0"
   },
   "dependencies": {
-    "@waffo/pancake-ts": "0.26.0"
+    "@waffo/pancake-ts": "0.26.0",
+    "better-auth": "1.6.25",
+    "drizzle-orm": "0.45.2"
   }
 }

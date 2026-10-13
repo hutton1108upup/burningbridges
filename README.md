@@ -97,3 +97,5 @@ npm.cmd run build
 运行 npm run check 验证页面、统计保护、FAQ/结构化数据、套餐数字、资源和锚点。
 
 支付配置与验收状态见 `docs/payments.md`。私钥、测试账号凭据、数据库、抓包和截图只留本地；`npm run audit:staged` 检查提交白名单与凭据模式。
+
+Google 登录已按模板的 Better Auth / Drizzle / D1 方案局部适配，配置及验证记录见 `docs/google-login.md`。缺少必要配置时禁用 Google 按钮，原邮箱登录保留。已有邮箱账号先用密码登录，再主动绑定同邮箱 Google 身份，以保留原订单和积分。

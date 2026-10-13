@@ -2,6 +2,7 @@ import {WaffoPancake,verifyWebhook} from '@waffo/pancake-ts';
 import {PLANS,COSTS,FORMATS} from './catalog.mjs';
 import {HttpError,sql,balance,applyEvent,createJob,failJob} from './commerce.mjs';
 import {userFrom,requireUser,authenticate,recover,logout,rateLimit} from './auth.mjs';
+import {googleEnabled,googleAuth,startGoogle,completeGoogle} from './google-auth.mjs';
 const json=(body,status=200,extra={})=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow',...extra}});
 const mode=env=>['test','prod'].includes(env.PAYMENT_MODE)?env.PAYMENT_MODE:'test';
 const paymentKey=env=>mode(env)==='prod'?env.WAFFO_PRODUCTION_PRIVATE_KEY:env.WAFFO_PRIVATE_KEY;
@@ -40,6 +41,11 @@ async function api(request,env) {
   }
   const db=env.DB;
   if(!db) throw new HttpError(503,'SERVICE_PAUSED');
+  if(path.startsWith('/api/oauth/')) {
+    if(url.origin!==env.SITE_ORIGIN)throw new HttpError(403,'ORIGIN_REJECTED');
+    if(path!=='/api/oauth/callback/google' || request.method!=='GET')throw new HttpError(404,'API_NOT_FOUND');
+    return googleAuth(env).handler(request);
+  }
   if(['/api/waffo/webhook','/api/waffo/webhook/production'].includes(path) && request.method==='POST') {
     const raw=await limitedText(request,65536);
     let event;
@@ -54,7 +60,13 @@ async function api(request,env) {
   }
   if(path==='/api/session' && request.method==='GET') {
     const user=await userFrom(request,db);
-    return json({user,mode:mode(env),generationMode:env.GENERATION_MODE||'mock',checkoutEnabled:checkoutReady(env),balance:user?await balance(db,user.id,mode(env)):0,plans:PLANS});
+    const googleLinked=Boolean(user && googleEnabled(env) && await sql(db,'SELECT auth_user_id FROM google_identities WHERE user_id=?',user.id).first());
+    return json({user,googleLoginEnabled:googleEnabled(env),googleLinked,mode:mode(env),generationMode:env.GENERATION_MODE||'mock',checkoutEnabled:checkoutReady(env),balance:user?await balance(db,user.id,mode(env)):0,plans:PLANS});
+  }
+  if(path==='/api/auth/google/start' && request.method==='POST')return startGoogle(request,env,await bodyJSON(request));
+  if(path==='/api/auth/google/complete' && request.method==='GET') {
+    if(url.origin!==env.SITE_ORIGIN)throw new HttpError(403,'ORIGIN_REJECTED');
+    return completeGoogle(request,env);
   }
   if(['/api/auth/signup','/api/auth/signin','/api/auth/recover'].includes(path) && request.method==='POST') {
     const body=await bodyJSON(request),result=path.endsWith('recover')?await recover(request,db,body):await authenticate(request,db,body,path.split('/').pop());

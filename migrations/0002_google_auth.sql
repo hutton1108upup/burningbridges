@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS google_auth_user (id TEXT PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL UNIQUE, email_verified INTEGER NOT NULL DEFAULT 0, image TEXT, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS google_auth_session (id TEXT PRIMARY KEY, token TEXT NOT NULL UNIQUE, expires_at INTEGER NOT NULL, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, ip_address TEXT, user_agent TEXT, user_id TEXT NOT NULL REFERENCES google_auth_user(id) ON DELETE CASCADE);
+CREATE INDEX IF NOT EXISTS google_auth_session_user ON google_auth_session(user_id);
+CREATE TABLE IF NOT EXISTS google_auth_account (id TEXT PRIMARY KEY, account_id TEXT NOT NULL, provider_id TEXT NOT NULL, user_id TEXT NOT NULL REFERENCES google_auth_user(id) ON DELETE CASCADE, access_token TEXT, refresh_token TEXT, id_token TEXT, access_token_expires_at INTEGER, refresh_token_expires_at INTEGER, scope TEXT, password TEXT, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, UNIQUE(provider_id,account_id));
+CREATE TABLE IF NOT EXISTS google_auth_verification (id TEXT PRIMARY KEY, identifier TEXT NOT NULL, value TEXT NOT NULL, expires_at INTEGER NOT NULL, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL);
+CREATE INDEX IF NOT EXISTS google_auth_verification_identifier ON google_auth_verification(identifier);
+CREATE TABLE IF NOT EXISTS google_identities (auth_user_id TEXT PRIMARY KEY REFERENCES google_auth_user(id) ON DELETE CASCADE, user_id TEXT NOT NULL UNIQUE REFERENCES users(id), created_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS google_login_attempts (token_hash TEXT PRIMARY KEY, user_id TEXT REFERENCES users(id), return_path TEXT NOT NULL, expires_at INTEGER NOT NULL);
