@@ -2,7 +2,7 @@ const $=selector=>document.querySelector(selector);
 const costFor={'480':50,'720':100,'1080':200};
 let session=null,draft=null,photoBlob=null,pollController=null,activeUser=null,photoReady=Promise.resolve();
 const messages={
-  CHECKOUT_PAUSED:'Checkout is temporarily paused. Your photo is saved; please try again later.',
+  CHECKOUT_PAUSED:'Checkout could not be opened. Your photo is saved; please try again.',
   CHECKOUT_FAILED:'We could not open checkout. No credits were issued. Please try again.',
   SIGN_IN_REQUIRED:'Sign in to purchase credits or view your videos.',
   SIGN_IN_FAILED:'Check your email and password and try again.',
@@ -12,7 +12,7 @@ const messages={
   INSUFFICIENT_CREDITS:'You need more credits for this resolution. Choose a plan to continue.',
   SUBSCRIPTION_EXISTS:'You already have a monthly subscription. Manage billing or choose a one-time pack.',
   TRY_LATER:'Too many attempts. Please wait a few minutes before trying again.',
-  GENERATION_PAUSED:'Video submissions are temporarily paused. Your credits remain in your account.',
+  GENERATION_PAUSED:'Your video could not be submitted. No credits were deducted. Please try again.',
   GOOGLE_LOGIN_UNAVAILABLE:'Google sign-in is not configured yet. You can use email and password.',
   GOOGLE_LOGIN_FAILED:'Google sign-in did not finish. Please try again.',
   GOOGLE_LOGIN_EXPIRED:'This Google sign-in request expired. Please start again.',
@@ -52,7 +52,7 @@ async function saveDraft() {
 }
 window.BBCommerce={saveDraft};
 const panel=document.createElement('section');panel.className='commerce-panel';panel.setAttribute('data-clarity-mask','true');
-panel.innerHTML=`<div class="commerce-bar"><strong id="commerce-account-label">Your account</strong><button type="button" id="commerce-account">Sign in / Create account</button><button type="button" id="commerce-billing" hidden>Manage billing</button><button type="button" id="commerce-logout" hidden>Sign out</button></div><p id="commerce-mode" hidden></p><p id="commerce-status" role="status" aria-live="polite"></p><div id="saved-draft" hidden></div><div id="payment-return" hidden><button type="button" id="check-payment">Check payment status</button><a href="/#burning-bridges-ai-generator">Return to your photo</a></div><div id="commerce-orders" hidden></div><button type="button" id="commerce-history" hidden>View last video</button>`;
+panel.innerHTML=`<div class="commerce-bar"><strong id="commerce-account-label">Your account</strong><button type="button" id="commerce-account">Sign in / Create account</button><button type="button" id="commerce-billing" hidden>Manage billing</button><button type="button" id="commerce-logout" hidden>Sign out</button></div><p id="commerce-status" role="status" aria-live="polite"></p><div id="saved-draft" hidden></div><div id="payment-return" hidden><button type="button" id="check-payment">Check payment status</button><a href="/#burning-bridges-ai-generator">Return to your photo</a></div><div id="commerce-orders" hidden></div><button type="button" id="commerce-history" hidden>View last video</button>`;
 const main=$('main')||document.body;
 const generator=$('#burning-bridges-ai-generator');
 const pricing=$('#pricing');
@@ -159,8 +159,6 @@ async function refresh() {
   activeUser=session.user?.id||null;
   $('#commerce-account-label').textContent=session.user?`${session.user.email} · ${session.balance} ${session.mode==='test'?'test ':''}credits`:'Your account';
   $('#commerce-account').hidden=Boolean(session.user);$('#commerce-logout').hidden=!session.user;$('#commerce-billing').hidden=!session.user;
-  $('#commerce-mode').hidden=(session.mode!=='test' && session.generationMode==='provider') || (!generator && !pricing);
-  $('#commerce-mode').textContent=session.mode==='test'?'Test checkout · no real charges. Video results are simulated using a reference clip; your photo is not sent to an AI service.':'Live payments: purchases add credits to your account. Video submissions are currently paused while the generation service is being connected. Credits cannot be used for simulated videos.';
   if(session.user && $('[data-generator]')) {const {jobs}=await api('/api/jobs');latestJob=jobs[0]||null;$('#commerce-history').hidden=!latestJob;}
   else {latestJob=null;$('#commerce-history').hidden=true;}
   updateGenerator();
@@ -195,7 +193,7 @@ async function paymentStatus(keepPolling=false) {
       if(error.code==='ORDER_NOT_FOUND') {clearPaymentReturn();status('This order is no longer available for this account. Check your account or choose a plan.',true);return;}
       throw error;
     }
-    if(data.credited) {clearPaymentReturn();session.balance=data.balance;updateGenerator();status(`Payment confirmed. ${data.balance} ${data.mode==='test'?'test ':''}credits are ready. ${data.mode==='prod' && session.generationMode!=='provider'?'Video submissions are currently paused; your credits remain in your account.':'Return to your photo to generate.'}`);await refresh();return;}
+    if(data.credited) {clearPaymentReturn();session.balance=data.balance;updateGenerator();status(`Payment confirmed. ${data.balance} ${data.mode==='test'?'test ':''}credits are ready. Return to your photo to continue.`);await refresh();return;}
     if(['checkout_failed','failed','canceled','cancelled','expired','refunded'].includes(data.order?.status)) {clearPaymentReturn();status('This checkout has ended. Check your account or choose a plan to continue.');return;}
     status('Payment has not been confirmed yet. Credits are issued only after confirmation. You can return to your photo or check again.');
     if(i<19 && keepPolling)await pause(1500);
@@ -210,12 +208,12 @@ function renderResult(job) {
   const result=$('#commerce-result');result.replaceChildren();result.hidden=false;
   const close=document.createElement('button');close.type='button';close.className='commerce-result-close';close.textContent='Close result';close.onclick=()=>{pollController?.abort();result.hidden=true;};result.append(close);
   latestJob=job;$('#commerce-history').hidden=false;
-  const title=document.createElement('h2');title.textContent=job.status==='succeeded'?'Simulated video ready':job.status==='failed'?'Generation failed':'Preparing your test video…';result.append(title);
-  const details=document.createElement('p');details.textContent=`Test job ${job.id} · ${job.resolution}P · ${job.format} · ${job.credits} credits`;result.append(details);
+  const title=document.createElement('h2');title.textContent=job.status==='succeeded'?(job.mock?'Reference video ready':'Your video is ready'):job.status==='failed'?'Generation failed':'Preparing your video…';result.append(title);
+  const details=document.createElement('p');details.textContent=`Video ${job.id} · ${job.resolution}P · ${job.format} · ${job.credits} credits`;result.append(details);
   if(job.status==='succeeded') {
-    const note=document.createElement('p');note.textContent='Flow test result: this is a reference video, not an AI render of your photo. Format and resolution selections are recorded for the future generation service.';
+    const note=document.createElement('p');note.textContent='Review the video and audio before downloading or sharing.';
     const video=document.createElement('video');video.src=job.resultUrl;video.controls=true;video.playsInline=true;video.preload='metadata';
-    const download=document.createElement('a');download.href=job.resultUrl;download.download='burning-bridges-test.mp4';download.textContent='Download test video';
+    const download=document.createElement('a');download.href=job.resultUrl;download.download='burning-bridges-video.mp4';download.textContent='Download video';
     result.append(note,video,download);
   } else if(job.status==='failed') {const note=document.createElement('p');note.textContent='The job did not deliver a result. Its credits have been returned.';result.append(note);}
 }
@@ -237,7 +235,7 @@ if(generateButton)generateButton.onclick=()=>busy(generateButton,async()=>{
   await saveDraft();
   if(!session?.user || session.balance<costFor[$('#resolution').value]) {location.assign('/pricing');return;}
   if(!photoBlob) {status('Choose a photo before generating a video.',true);$('#upload-button').focus();return;}
-  $('#commerce-result').hidden=true;status('Submitting your test video…');
+  $('#commerce-result').hidden=true;status('Submitting your video…');
   draft.requestKey=draft.requestKey||crypto.randomUUID();await storage('put',draft);
   const data=await api('/api/jobs',{draftId:draft.id,requestKey:draft.requestKey,resolution:draft.resolution,format:draft.format});
   session.balance=data.balance;updateGenerator();renderResult(data.job);$('#commerce-result').scrollIntoView({behavior:'smooth',block:'center'});await pollJob(data.job.id);
