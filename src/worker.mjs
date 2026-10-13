@@ -4,11 +4,13 @@ import {HttpError,sql,balance,applyEvent,createJob,failJob} from './commerce.mjs
 import {userFrom,requireUser,authenticate,recover,logout,rateLimit} from './auth.mjs';
 const json=(body,status=200,extra={})=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow',...extra}});
 const mode=env=>['test','prod'].includes(env.PAYMENT_MODE)?env.PAYMENT_MODE:'test';
+const paymentKey=env=>mode(env)==='prod'?env.WAFFO_PRODUCTION_PRIVATE_KEY:env.WAFFO_PRIVATE_KEY;
+const checkoutReady=env=>env.CHECKOUT_ENABLED==='true' && Boolean(paymentKey(env)) && Boolean(env.WAFFO_MERCHANT_ID && env.WAFFO_STORE_ID) && (mode(env)!=='prod' || env.GENERATION_MODE==='provider');
 function waffo(env) {
-  if(!env.WAFFO_PRIVATE_KEY || !env.WAFFO_MERCHANT_ID || !env.WAFFO_STORE_ID || env.CHECKOUT_ENABLED!=='true') throw new HttpError(503,'CHECKOUT_PAUSED');
+  if(!checkoutReady(env)) throw new HttpError(503,'CHECKOUT_PAUSED');
   // No real payments while generation uses a reference clip.
   if(mode(env)==='prod' && env.GENERATION_MODE!=='provider') throw new HttpError(503,'CHECKOUT_PAUSED');
-  return new WaffoPancake({merchantId:env.WAFFO_MERCHANT_ID,privateKey:env.WAFFO_PRIVATE_KEY.replace(/\\n/g,'\n'),environment:mode(env)});
+  return new WaffoPancake({merchantId:env.WAFFO_MERCHANT_ID,privateKey:paymentKey(env).replace(/\\n/g,'\n'),environment:mode(env)});
 }
 async function limitedText(request,limit) {
   if(Number(request.headers.get('content-length'))>limit)throw new HttpError(413,'REQUEST_TOO_LARGE');
@@ -27,9 +29,15 @@ function summary(job) {
     resultUrl:job.status==='succeeded'?`/api/jobs/${job.id}/result`:null};
 }
 async function api(request,env) {
-  const url=new URL(request.url),path=url.pathname,db=env.DB;
+  const url=new URL(request.url),path=url.pathname;
+  // A separate production receiver never writes live events into the Test ledger.
+  if(path==='/api/waffo/webhook/production') {
+    if(!env.PRODUCTION_DB) throw new HttpError(503,'SERVICE_PAUSED');
+    env={...env,DB:env.PRODUCTION_DB,PAYMENT_MODE:'prod',WAFFO_WEBHOOK_PUBLIC_KEY:env.WAFFO_PRODUCTION_WEBHOOK_PUBLIC_KEY};
+  }
+  const db=env.DB;
   if(!db) throw new HttpError(503,'SERVICE_PAUSED');
-  if(path==='/api/waffo/webhook' && request.method==='POST') {
+  if(['/api/waffo/webhook','/api/waffo/webhook/production'].includes(path) && request.method==='POST') {
     const raw=await limitedText(request,65536);
     let event;
     try {event=verifyWebhook(raw,request.headers.get('x-waffo-signature')||'',{environment:mode(env),...(env.WAFFO_WEBHOOK_PUBLIC_KEY?{publicKey:env.WAFFO_WEBHOOK_PUBLIC_KEY.replace(/\\n/g,'\n')}:{})});}
@@ -43,7 +51,7 @@ async function api(request,env) {
   }
   if(path==='/api/session' && request.method==='GET') {
     const user=await userFrom(request,db);
-    return json({user,mode:mode(env),generationMode:env.GENERATION_MODE||'mock',checkoutEnabled:env.CHECKOUT_ENABLED==='true' && Boolean(env.WAFFO_PRIVATE_KEY),balance:user?await balance(db,user.id,mode(env)):0,plans:PLANS});
+    return json({user,mode:mode(env),generationMode:env.GENERATION_MODE||'mock',checkoutEnabled:checkoutReady(env),balance:user?await balance(db,user.id,mode(env)):0,plans:PLANS});
   }
   if(['/api/auth/signup','/api/auth/signin','/api/auth/recover'].includes(path) && request.method==='POST') {
     const body=await bodyJSON(request),result=path.endsWith('recover')?await recover(request,db,body):await authenticate(request,db,body,path.split('/').pop());

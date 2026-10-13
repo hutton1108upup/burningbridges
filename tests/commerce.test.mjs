@@ -101,3 +101,39 @@ test('mock generation refuses production credits even with a logged-in user',asy
   const db=setup();await applyEvent(db,event(),env,now);await sql(db,'INSERT INTO sessions VALUES(?,?,?)',(await import('../src/auth.mjs')).digest('a'.repeat(43)),userId,now+86400000).run();
   const response=await worker.fetch(new Request('https://site.example/api/jobs',{method:'POST',headers:{origin:'https://site.example','content-type':'application/json',cookie:`__Host-bb_session=${'a'.repeat(43)}`},body:JSON.stringify(job())}),{DB:db,SITE_ORIGIN:'https://site.example',PAYMENT_MODE:'prod',GENERATION_MODE:'mock'});assert.equal(response.status,503);db.close();
 });
+
+test('production webhook writes only to its own ledger and rejects Test events',async()=>{
+  const db=setup(),production=setup();
+  await sql(production,"UPDATE orders SET mode='prod' WHERE id=?",orderId).run();
+  const keys=generateKeyPairSync('rsa',{modulusLength:2048});
+  const publicKey=keys.publicKey.export({type:'spki',format:'pem'});
+  const settings={DB:db,PRODUCTION_DB:production,...env,WAFFO_PRODUCTION_WEBHOOK_PUBLIC_KEY:publicKey};
+  const send=async payload=>{
+    const raw=JSON.stringify(payload),stamp=String(Date.now());
+    const signature=`t=${stamp},v1=${sign('sha256',Buffer.from(`${stamp}.${raw}`),keys.privateKey).toString('base64')}`;
+    return worker.fetch(new Request('https://site.example/api/waffo/webhook/production',{method:'POST',headers:{'x-waffo-signature':signature},body:raw}),settings);
+  };
+  assert.equal((await send(event())).status,400);
+  const payload={...event(),mode:'prod'};
+  assert.equal((await send(payload)).status,200);
+  assert.equal((await send(payload)).status,200);
+  assert.equal(await balance(production,userId,'prod'),100);
+  assert.equal(await balance(db,userId,'test'),0);
+  assert.equal(await balance(db,userId,'prod'),0);
+  const bad=await worker.fetch(new Request('https://site.example/api/waffo/webhook/production',{method:'POST',body:'{}'}),settings);
+  assert.equal(bad.status,401);
+  const absent=await worker.fetch(new Request('https://site.example/api/waffo/webhook/production',{method:'POST',body:'{}'}),{DB:db,...env});
+  assert.equal(absent.status,503);
+  db.close();production.close();
+});
+
+test('production checkout readiness cannot use a Test key or simulated generation',async()=>{
+  const db=setup();
+  const settings={DB:db,PAYMENT_MODE:'prod',GENERATION_MODE:'provider',CHECKOUT_ENABLED:'true',WAFFO_PRIVATE_KEY:'test-only',WAFFO_MERCHANT_ID:'MER_test',WAFFO_STORE_ID:'STO_test'};
+  const ready=async env=>(await (await worker.fetch(new Request('https://site.example/api/session'),env)).json()).checkoutEnabled;
+  assert.equal(await ready(settings),false);
+  assert.equal(await ready({...settings,WAFFO_PRODUCTION_PRIVATE_KEY:'production-only',GENERATION_MODE:'mock'}),false);
+  assert.equal(await ready({...settings,WAFFO_PRODUCTION_PRIVATE_KEY:'production-only',CHECKOUT_ENABLED:'false'}),false);
+  assert.equal(await ready({...settings,WAFFO_PRODUCTION_PRIVATE_KEY:'production-only'}),true);
+  db.close();
+});
