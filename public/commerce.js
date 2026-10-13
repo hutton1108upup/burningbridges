@@ -21,7 +21,7 @@ async function api(path,body) {
   return data;
 }
 function status(text,error=false) {
-  const node=$('#commerce-status');node.textContent=text;node.classList.toggle('commerce-error',error);
+  if(text)accountDetails.open=true;const node=$('#commerce-status');node.textContent=text;node.classList.toggle('commerce-error',error);
 }
 const dbPromise=new Promise((resolve,reject)=>{
   const request=indexedDB.open('burning-bridges-drafts',1);
@@ -45,9 +45,17 @@ async function saveDraft() {
 }
 window.BBCommerce={saveDraft};
 const panel=document.createElement('section');panel.className='commerce-panel';panel.setAttribute('data-clarity-mask','true');
-panel.innerHTML=`<div class="commerce-bar"><strong id="commerce-account-label">Your account</strong><button type="button" id="commerce-account">Sign in / Create account</button><button type="button" id="commerce-billing" hidden>Manage billing</button><button type="button" id="commerce-logout" hidden>Sign out</button></div><p id="commerce-mode" hidden></p><p id="commerce-status" role="status" aria-live="polite"></p><div id="saved-draft" hidden></div><div id="payment-return" hidden><button type="button" id="check-payment">Check payment status</button><a href="/#burning-bridges-ai-generator">Return to your photo</a></div><div id="commerce-orders" hidden></div><div id="commerce-result" hidden></div>`;
+panel.innerHTML=`<div class="commerce-bar"><strong id="commerce-account-label">Your account</strong><button type="button" id="commerce-account">Sign in / Create account</button><button type="button" id="commerce-billing" hidden>Manage billing</button><button type="button" id="commerce-logout" hidden>Sign out</button></div><p id="commerce-mode" hidden></p><p id="commerce-status" role="status" aria-live="polite"></p><div id="saved-draft" hidden></div><div id="payment-return" hidden><button type="button" id="check-payment">Check payment status</button><a href="/#burning-bridges-ai-generator">Return to your photo</a></div><div id="commerce-orders" hidden></div><button type="button" id="commerce-history" hidden>View last video</button>`;
 const main=$('main')||document.body;
-main.insertBefore(panel,main.firstChild);
+const generator=$('#burning-bridges-ai-generator');
+const accountDetails=document.createElement('details');accountDetails.className='commerce-account-details';
+const accountSummary=document.createElement('summary');accountSummary.textContent='Account & credits';
+accountDetails.append(accountSummary,panel);
+if(generator)generator.append(accountDetails);else main.append(accountDetails);
+const resultPanel=document.createElement('section');resultPanel.id='commerce-result';resultPanel.hidden=true;resultPanel.setAttribute('aria-label','Video result');resultPanel.setAttribute('data-clarity-mask','true');
+(generator||panel).append(resultPanel);
+let latestJob=null;
+$('#commerce-history').onclick=()=>{if(latestJob){accountDetails.open=false;pollJob(latestJob.id).then(()=>resultPanel.scrollIntoView({behavior:'smooth',block:'center'})).catch(error=>status(error.message,true));}};
 const authDialog=document.createElement('dialog');authDialog.className='local-dialog commerce-auth';authDialog.setAttribute('data-clarity-mask','true');
 authDialog.innerHTML=`<form id="commerce-auth-form"><h2 id="auth-heading">Sign in</h2><p>Use the same account to keep your credits and videos across devices.</p><label id="auth-email-label">Email<input id="auth-email" type="email" autocomplete="email" maxlength="254" required data-clarity-mask="true"></label><label id="auth-code-label" hidden>Recovery code<input id="auth-code" autocomplete="off" data-clarity-mask="true"></label><label>Password (12–128 characters)<input id="auth-password" type="password" autocomplete="current-password" minlength="12" maxlength="128" required data-clarity-mask="true"></label><p id="auth-error" role="alert"></p><button type="submit" id="auth-submit">Sign in</button><button type="button" id="auth-switch">Create an account</button><button type="button" id="auth-recover">Use recovery code</button><button type="button" id="auth-close">Close</button></form><section id="recovery-save" hidden><h2>Save your recovery code</h2><p>Keep this code somewhere private. It restores access if you forget your password. We do not send password-reset emails.</p><code id="recovery-value"></code><button type="button" id="recovery-download">Download recovery code</button><button type="button" id="recovery-done">I have saved it</button></section>`;
 document.body.append(authDialog);
@@ -93,6 +101,7 @@ $('#commerce-billing').onclick=async()=>{
   try {const {portalUrl}=await api('/api/billing/portal',{});location.assign(portalUrl);}catch(error){status(error.message,true);}
 };
 function updateGenerator() {
+  accountSummary.textContent=session?.user?`Account · ${session.balance} ${session.mode==='test'?'test ':''}credits`:'Sign in / Account';
   const button=$('[data-generator]'),balance=$('#credit-balance');
   $('#commerce-account-label').textContent=session?.user?`${session.user.email} · ${session.balance} ${session.mode==='test'?'test ':''}credits`:'Your account';
   if(balance)balance.textContent=session?.user?String(session.balance):'—';
@@ -108,6 +117,8 @@ async function refresh() {
   $('#commerce-account-label').textContent=session.user?`${session.user.email} · ${session.balance} ${session.mode==='test'?'test ':''}credits`:'Your account';
   $('#commerce-account').hidden=Boolean(session.user);$('#commerce-logout').hidden=!session.user;$('#commerce-billing').hidden=!session.user;
   $('#commerce-mode').hidden=session.mode!=='test';$('#commerce-mode').textContent='Test checkout · no real charges. Video results are simulated using a reference clip; your photo is not sent to an AI service.';
+  if(session.user && $('[data-generator]')) {const {jobs}=await api('/api/jobs');latestJob=jobs[0]||null;$('#commerce-history').hidden=!latestJob;}
+  else {latestJob=null;$('#commerce-history').hidden=true;}
   updateGenerator();
   if(session.user && location.pathname==='/pricing') {
     const {orders}=await api('/api/orders');const list=$('#commerce-orders');list.replaceChildren();list.hidden=!orders.length;
@@ -144,6 +155,8 @@ async function paymentStatus(keepPolling=false) {
 $('#check-payment').onclick=()=>busy($('#check-payment'),()=>paymentStatus());
 function renderResult(job) {
   const result=$('#commerce-result');result.replaceChildren();result.hidden=false;
+  const close=document.createElement('button');close.type='button';close.className='commerce-result-close';close.textContent='Close result';close.onclick=()=>{pollController?.abort();result.hidden=true;};result.append(close);
+  latestJob=job;$('#commerce-history').hidden=false;
   const title=document.createElement('h2');title.textContent=job.status==='succeeded'?'Simulated video ready':job.status==='failed'?'Generation failed':'Preparing your test video…';result.append(title);
   const details=document.createElement('p');details.textContent=`Test job ${job.id} · ${job.resolution}P · ${job.format} · ${job.credits} credits`;result.append(details);
   if(job.status==='succeeded') {
@@ -206,7 +219,6 @@ async function restoreDraft() {
 }
 async function start() {
   try {await sessionReady;await restoreDraft();await paymentStatus(Boolean(new URL(location.href).searchParams.has('checkout')));
-    if(session.user && generateButton) {const {jobs}=await api('/api/jobs');if(jobs[0] && jobs[0].draftId===draft?.id)await pollJob(jobs[0].id);}
   } catch(error) {status(error.message,true);}
 }
 const sessionReady=refresh();
