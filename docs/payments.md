@@ -7,7 +7,8 @@
 - 专用生产回调：`https://burningbridgesaivideo.pro/api/waffo/webhook/production`。只接受 SDK 生产签名校验通过、店铺及订单匹配的生产事件；写入正式账本，拒绝 Test 事件。未匹配到本站创建的订单不会发放积分。
 - 现有 Test 回调、Test checkout 与模拟视频流程继续使用 Test 数据库。本次准备不代表真实扣款或生产订单到账已经验证。
 - 已注册本店铺生产 Raw Webhook，监听全部 14 类官方事件。验签使用 SDK 内置生产公钥；服务器拒绝未签名请求。
-- 生产 API 私钥仍须新建本项目专用密钥后保存在本地私有配置和 Worker Secret `WAFFO_PRODUCTION_PRIVATE_KEY`；不能复用其他项目的商户密钥，也不能覆盖现有 Test 私钥。代码按支付环境选择不同私钥，缺少生产私钥时保持关闭。
+- 本项目专用生产密钥 `Burning Bridges Production 2026-10-13 v2` 已由用户创建并保存，关闭再次下载。已保存到 Git 忽略的本地私有配置与 Worker Secret `WAFFO_PRODUCTION_PRIVATE_KEY`，本地文件限定当前用户、SYSTEM 和管理员访问。没有复用其他项目密钥，原 Test 私钥保留。代码按支付环境选择不同私钥，缺少生产私钥时保持关闭。
+- 初次创建的生产密钥未配置到应用，已由用户撤销。替代密钥仅经本地读取和标准输入上传，未打印到日志；临时导入文件在完成保存和核验后清理。
 - 实际启用生产 checkout 前，还需真实生成服务及输入、输出审核；当前保持 `PAYMENT_MODE=test`、`GENERATION_MODE=mock`。正式账本与回调准备完成不等于开启正式收款。
 
 ## 配置范围
