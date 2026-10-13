@@ -65,7 +65,7 @@ export async function applyEvent(db, event, env, now=Date.now()) {
   await db.batch(statements);
   return {accepted:true};
 }
-export async function createJob(db,{userId,mode,key,draftId,cost,resolution,format},now=Date.now()) {
+export async function createJob(db,{userId,mode,key,draftId,cost,resolution,format,mock=1},now=Date.now()) {
   const previous=await sql(db,'SELECT * FROM jobs WHERE user_id=? AND mode=? AND request_key=?',userId,mode,key).first();
   if(previous) {
     if(previous.draft_id!==draftId || previous.resolution!==resolution || previous.format!==format) throw new HttpError(409,'REQUEST_KEY_REUSED');
@@ -74,7 +74,7 @@ export async function createJob(db,{userId,mode,key,draftId,cost,resolution,form
   const id=crypto.randomUUID();
   try {
     await db.batch([
-      sql(db,'INSERT INTO jobs(id,user_id,mode,request_key,draft_id,cost,resolution,format,status,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)',id,userId,mode,key,draftId,cost,resolution,format,'pending',now),
+      sql(db,'INSERT INTO jobs(id,user_id,mode,request_key,draft_id,cost,resolution,format,status,mock,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?)',id,userId,mode,key,draftId,cost,resolution,format,'pending',mock,now),
       sql(db,`INSERT INTO allocations(job_id,lot_id,cost)
         SELECT ?,id,MIN(remaining,? - spent) FROM (
           SELECT id,remaining,COALESCE(SUM(remaining) OVER (ORDER BY expires_at,id ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING),0) AS spent

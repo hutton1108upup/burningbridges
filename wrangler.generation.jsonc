@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "burningbridges-generation-candidate",
+  "main": "src/worker.mjs",
+  "compatibility_date": "2026-10-11",
+  "compatibility_flags": ["nodejs_compat"],
+  "limits": {"cpu_ms":30000},
+  "workers_dev": true,
+  "assets": {"binding":"ASSETS","directory":"./dist","run_worker_first":["/api/*"]},
+  "d1_databases": [{"binding":"DB","database_name":"burningbridges-generation-local","database_id":"00000000-0000-0000-0000-000000000001"}],
+  "r2_buckets": [{"binding":"GENERATION_INPUTS","bucket_name":"burningbridges-generation-inputs-local"},{"binding":"GENERATION_OUTPUTS","bucket_name":"burningbridges-generation-outputs-local"}],
+  "queues": {"producers":[{"binding":"GENERATION_QUEUE","queue":"burningbridges-generation-local"}],"consumers":[{"queue":"burningbridges-generation-local","max_batch_size":1,"max_retries":3}]},
+  "vars": {"GENERATION_MODE":"mock","PAYMENT_MODE":"test","SITE_ORIGIN":"http://127.0.0.1:18087"}
+}

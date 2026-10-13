@@ -50,5 +50,13 @@
       "database_name": "burningbridges-commerce-prod",
       "database_id": "f8f75279-2daf-40fd-bdd6-dd437e6788a4"
     }
-  ]
+  ],
+  "r2_buckets": [
+    {"binding":"GENERATION_INPUTS","bucket_name":"burningbridges-generation-inputs"},
+    {"binding":"GENERATION_OUTPUTS","bucket_name":"burningbridges-generation-outputs"}
+  ],
+  "queues": {
+    "producers": [{"binding":"GENERATION_QUEUE","queue":"burningbridges-generation"}],
+    "consumers": [{"queue":"burningbridges-generation","max_batch_size":1,"max_retries":5}]
+  }
 }
