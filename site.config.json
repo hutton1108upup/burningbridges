@@ -11,7 +11,12 @@
     "/blog/how-to-make-burning-bridges-video",
     "/privacy-policy",
     "/terms-of-service",
-    "/refund-policy"
+    "/refund-policy",
+    "/guides/photo-guide",
+    "/blog/burning-bridges-ai-tools-compared",
+    "/examples",
+    "/guides/troubleshooting",
+    "/blog/burning-bridges-ai-free"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -36,6 +41,10 @@
     "/_next/static/media/3fe682a82f50d426-s.09q3q1i5159bl.woff2",
     "/_next/static/media/70bc3e132a0a741e-s.1409xf.ylxg8g.woff2",
     "/assets/395f7931679b-burning-bridges-example-2.mp4",
-    "/commerce.js"
+    "/commerce.js",
+    "/guides.js",
+    "/assets/guide-photo-clear.svg",
+    "/assets/guide-photo-crowded.svg",
+    "/assets/guide-photo-form.png"
   ]
 }
