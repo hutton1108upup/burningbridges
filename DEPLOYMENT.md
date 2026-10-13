@@ -4,7 +4,7 @@
 
 目标账户已确认：`Duckweed1014@gmail.com's Account`。账户 ID 已写入 `wrangler.jsonc`，它是公开资源标识，不是登录凭据。GitHub 仓库为 `hutton1108upup/burningbridges`。
 
-账号、Google 登录、Waffo production payment 和积分账本按当前生产配置运行；generation provider 仍保持 mock，不能把 mock 验收当作真实视频开通。真实 generation 需要单独完成 R2、Queue、APIMart Secret 和真人充值到账验证。详见 `docs/generation.md`。
+账号、Google 登录、Waffo production payment、积分账本和 generation provider 已按当前生产配置上线。真实 paid generation 本轮按用户要求跳过，不能把自动化 stub 或历史样片当作本轮 paid E2E 充值证明。详见 `docs/generation.md`。
 
 ## 本地检查
 
@@ -20,10 +20,10 @@ npm.cmd run deploy:dry-run
 
 ## 正式部署
 
-1. 用 `npx.cmd wrangler whoami --profile duckweed` 检查已登录账户。仅使用得到确认的目标账户，不能使用另一项目或另一账号的令牌。
+1. 使用已确认的 `duckweed` profile；Wrangler 当前 CLI 不提供可用的 `whoami --profile` 校验，因此用 `npx.cmd wrangler auth list` 和 `npx.cmd wrangler deployments list --name burningbridges --profile duckweed` 核对登录会话、部署记录和 account ID。
 2. 确认 `burningbridgesaivideo.pro` Zone 在上述账户下且为 `Active`，`wrangler.jsonc` 的 `account_id` 已固定。不要把 API Token 写进项目文件。
-3. 首次接入时，在独立的 `burningbridges-commerce-test` 数据库执行 `npx.cmd wrangler d1 migrations apply burningbridges-commerce-test --remote --profile duckweed`。将专用 Test 私钥通过 Wrangler Secret 标准输入配置，不提交私钥。
-4. 本地提交并推送修改后，运行 `npm.cmd run deploy`。
+3. 已确认 production D1 的 `0003_provider_jobs.sql` 已应用；后续 migration 使用 `npx.cmd wrangler d1 migrations apply burningbridges-commerce-prod --remote --profile duckweed`，不要把 Test DB 命令当作正式上线步骤。Secret 只通过 Wrangler Secret 配置，不写入仓库。
+4. 由主线程在账号、资源和变更确认后，使用 `npm.cmd run build` 与显式 `npx.cmd wrangler deploy --profile duckweed` 发布；不要使用默认账号，也不要把 `npm run deploy` 当作已确认的目标 profile。
 5. 看到上传成功、版本 ID 和域名后，再检查 `/release.json` 的 `revision` 与本次 Git 提交一致；同时验证账号、Test checkout、签名到账和模拟任务，静态页面 HTTP 200 不能证明支付可用。
 
 `release.json` 在构建时生成，不加入 Git。它用来区分本地构建、GitHub 提交和真正上线的版本。
@@ -57,18 +57,15 @@ HTTPS 主域名应返回 200，其他入口应返回重定向，路径和 `test=
 
 Wrangler 的本机 OAuth 使用已确认的 `duckweed` 账号配置。它是电脑上的登录会话，不随仓库上传。其他电脑先登录同一目标账户，再运行部署命令。
 
-## Generation provider 上线前置
+## Generation provider 发布记录
 
-当前生产 `GENERATION_MODE=mock`，Google 登录、production payment 和双 D1 保持不变。provider 配置只在以下条件全部满足后由用户确认开启：
+- 线上地址：`https://burningbridgesaivideo.pro`。
+- 当前线上代码：`08cd68ebe54b08f71a44ef6dce8108be7b84fd01`。
+- Cloudflare Version：`18282db9-139f-4cdc-9d76-b4bb8981044b`。
+- 当前 readiness：`generationReady=true`；Google login、production payment、provider mode 已配置。
+- R2：`GENERATION_INPUTS=burningbridges-generation-inputs`、`GENERATION_OUTPUTS=burningbridges-generation-outputs`。
+- Queue：`GENERATION_QUEUE=burningbridges-generation`，consumer 单批次、最多 5 次重试；D1 `0003_provider_jobs.sql` 已应用。
+- Required secrets：`APIMART_API_KEY`、`GENERATION_SIGNING_SECRET`；值不写入仓库。
+- Provider 单 job guard 为 50 APIMart credits，网站 720p 继续使用 100 积分。
 
-- R2：`GENERATION_INPUTS`=`burningbridges-generation-inputs`，`GENERATION_OUTPUTS`=`burningbridges-generation-outputs`；
-- Queue：`GENERATION_QUEUE`=`burningbridges-generation`，consumer `max_batch_size=1`、`max_retries=5`、每阶段可延迟 30 秒；
-- Secret：`APIMART_API_KEY`、`GENERATION_SIGNING_SECRET`；
-- 网站 HTTPS `SITE_ORIGIN` 和 provider 可访问的签名素材路径；
-- D1 migration `0003_provider_jobs.sql`，不会修改 Google auth、payment 或积分表；
-- provider 单 job guard 为 50 APIMart credits，网站 720p 继续扣 100 积分。
-
-R2 尚未开通，当前专用 APIMart key 权限不足，不能宣称真实 provider 已上线。正式操作前先在项目根目录执行 `npm.cmd run build`，再用已确认的 `duckweed` profile 做 `npx.cmd wrangler deploy --dry-run --profile duckweed`；不要使用默认 Cloudflare profile。真实开通还必须由用户确认账号、R2/Queue 资源和真人充值到账。
-
-
-Provider 开启前，确认 `GENERATION_INPUTS`、`GENERATION_OUTPUTS`、`GENERATION_QUEUE` 已由管理员创建并绑定，Worker Secret 名称为 `APIMART_API_KEY` 和 `GENERATION_SIGNING_SECRET`。用户页面只有 `/api/session` readiness 完整时才会上传照片和扣 100 网站积分。
+本轮已验证：55 个自动化测试、主页和 pricing browser stub checkout、build 和 provider HTTP stub chain。用户明确跳过本轮新的充值与真实 paid generation，因此不能声称本轮完成真人充值到账后的 APIMart E2E。
