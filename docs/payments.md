@@ -1,5 +1,14 @@
 # Waffo 支付与模拟生成
 
+## 2026-10-13 正式支付启用
+
+- 用户明确要求独立接通正式支付，视频 API 由其他 worktree 接入；跳过真实小额扣款与退款验收，不把沙盒证据写成真实扣款证据。
+- 当前公开应用 `PAYMENT_MODE=prod`，`DB` 指向正式账本。生产私钥使用 `WAFFO_PRODUCTION_PRIVATE_KEY`；支付不再依赖生成服务开关。
+- `GENERATION_MODE=mock` 仍保留，但服务器禁止生产积分提交模拟任务。页面在付款前显示视频提交暂停；完成支付后只承诺积分到账，不承诺即时生成。
+- 生产回调使用 `PRODUCTION_DB`；旧 `/api/waffo/webhook` 在正式应用中使用 `TEST_DB` 和 Test 验签。Test 用户及积分不迁移到正式环境，用户须在正式环境注册或登录对应正式账户。
+- 视频 API worktree 合并时应保留生产支付、两套回调隔离和生产私钥选择逻辑；实现真实任务、审核和授权下载后再启用真实生成。
+- 上线未付款验收已通过：生产账户创建、$9.90 正式结账会话、官方收银台显示本店铺及正确金额；未付款订单保持 pending、0 积分。没有真实扣款，生产支付成功回调和退款尚未实单验证。
+
 ## 2026-10-13 生产支付准备
 
 - 已在 Waffo 生产模式核对本店铺“已准备好接收正式付款”、客服邮箱和域名已验证；六档产品销售中，价格和产品 ID 与现有套餐映射一致。
@@ -7,8 +16,9 @@
 - 专用生产回调：`https://burningbridgesaivideo.pro/api/waffo/webhook/production`。只接受 SDK 生产签名校验通过、店铺及订单匹配的生产事件；写入正式账本，拒绝 Test 事件。未匹配到本站创建的订单不会发放积分。
 - 现有 Test 回调、Test checkout 与模拟视频流程继续使用 Test 数据库。本次准备不代表真实扣款或生产订单到账已经验证。
 - 已注册本店铺生产 Raw Webhook，监听全部 14 类官方事件。验签使用 SDK 内置生产公钥；服务器拒绝未签名请求。
-- 生产 API 私钥仍须新建本项目专用密钥后保存在本地私有配置和 Worker Secret `WAFFO_PRODUCTION_PRIVATE_KEY`；不能复用其他项目的商户密钥，也不能覆盖现有 Test 私钥。代码按支付环境选择不同私钥，缺少生产私钥时保持关闭。
-- 实际启用生产 checkout 前，还需真实生成服务及输入、输出审核；当前保持 `PAYMENT_MODE=test`、`GENERATION_MODE=mock`。正式账本与回调准备完成不等于开启正式收款。
+- 本项目专用生产密钥 `Burning Bridges Production 2026-10-13 v2` 已由用户创建并保存，关闭再次下载。已保存到 Git 忽略的本地私有配置与 Worker Secret `WAFFO_PRODUCTION_PRIVATE_KEY`，本地文件限定当前用户、SYSTEM 和管理员访问。没有复用其他项目密钥，原 Test 私钥保留。代码按支付环境选择不同私钥，缺少生产私钥时保持关闭。
+- 初次创建的生产密钥未配置到应用，已由用户撤销。替代密钥仅经本地读取和标准输入上传，未打印到日志；临时导入文件在完成保存和核验后清理。
+- 上述准备阶段原为 Test 支付；正式支付已按用户后续指令独立启用，当前状态以本文“正式支付启用”章节为准。
 
 ## 配置范围
 
@@ -61,7 +71,7 @@ npm.cmd run deploy
 
 ## 后续接入真实视频 API
 
-保留订单核验及积分账本，新增经过认证的照片上传、私有对象存储、provider job 与可靠队列、回调或轮询、授权下载和失败确认。只有完整真实生成流程通过后，才启用 `GENERATION_MODE=provider` 的实现与 Production 收款。当前 Worker 没有 provider 分支，修改开关本身不会接通 AI。
+保留订单核验及积分账本，新增经过认证的照片上传、私有对象存储、provider job 与可靠队列、回调或轮询、授权下载和失败确认。只有完整真实生成流程通过后，才启用 `GENERATION_MODE=provider` 的实现；Production 收款按用户后续指令独立启用。当前 Worker 没有 provider 分支，修改开关本身不会接通 AI。
 
 ## 官方依据
 
@@ -69,3 +79,4 @@ npm.cmd run deploy
 - [Checkout session](https://docs.waffo.ai/api-reference/endpoints/orders/create-checkout-session)
 - [签名及事件字段](https://docs.waffo.ai/api-reference/webhooks)
 - [Test checkout 与测试卡](https://docs.waffo.ai/merchant-guide/checkout)
+

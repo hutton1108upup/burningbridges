@@ -26,7 +26,7 @@
   },
   "vars": {
     "SITE_ORIGIN": "https://burningbridgesaivideo.pro",
-    "PAYMENT_MODE": "test",
+    "PAYMENT_MODE": "prod",
     "GENERATION_MODE": "mock",
     "CHECKOUT_ENABLED": "true",
     "WAFFO_PRODUCTS": "{\"starter\":\"PROD_3BflwxqcmhKZOWCbEwHsB0\",\"creator\":\"PROD_1Xty8ZjFuchhmpfgFllMNY\",\"studio\":\"PROD_799kLosclEOCY5qgJhweKK\",\"pack100\":\"PROD_6riZHxKVIVNMdoPr1j5bC0\",\"pack200\":\"PROD_4YwQGoGgLOITM0MK9HIlVu\",\"pack500\":\"PROD_3Hjcv5gxfOF94UL3CHAogc\"}",
@@ -36,6 +36,11 @@
   "d1_databases": [
     {
       "binding": "DB",
+      "database_name": "burningbridges-commerce-prod",
+      "database_id": "f8f75279-2daf-40fd-bdd6-dd437e6788a4"
+    },
+    {
+      "binding": "TEST_DB",
       "database_name": "burningbridges-commerce-test",
       "database_id": "b0e765e3-c9ba-4adf-9755-29c329a343e9"
     },

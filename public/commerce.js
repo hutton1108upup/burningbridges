@@ -116,7 +116,8 @@ async function refresh() {
   activeUser=session.user?.id||null;
   $('#commerce-account-label').textContent=session.user?`${session.user.email} · ${session.balance} ${session.mode==='test'?'test ':''}credits`:'Your account';
   $('#commerce-account').hidden=Boolean(session.user);$('#commerce-logout').hidden=!session.user;$('#commerce-billing').hidden=!session.user;
-  $('#commerce-mode').hidden=session.mode!=='test';$('#commerce-mode').textContent='Test checkout · no real charges. Video results are simulated using a reference clip; your photo is not sent to an AI service.';
+  $('#commerce-mode').hidden=session.mode!=='test' && session.generationMode==='provider';
+  $('#commerce-mode').textContent=session.mode==='test'?'Test checkout · no real charges. Video results are simulated using a reference clip; your photo is not sent to an AI service.':'Live payments: purchases add credits to your account. Video submissions are currently paused while the generation service is being connected. Credits cannot be used for simulated videos.';
   if(session.user && $('[data-generator]')) {const {jobs}=await api('/api/jobs');latestJob=jobs[0]||null;$('#commerce-history').hidden=!latestJob;}
   else {latestJob=null;$('#commerce-history').hidden=true;}
   updateGenerator();
@@ -147,7 +148,7 @@ async function paymentStatus(keepPolling=false) {
   if(!session?.user) {status('Sign in to check your payment and return to your photo.');return;}
   for(let i=0;i<(keepPolling?20:1);i++) {
     const data=await api(`/api/orders/${order}`);
-    if(data.credited) {sessionStorage.removeItem('bb-pending-order');session.balance=data.balance;updateGenerator();status(`Payment confirmed. ${data.balance} ${data.mode==='test'?'test ':''}credits are ready. Return to your photo to generate.`);await refresh();return;}
+    if(data.credited) {sessionStorage.removeItem('bb-pending-order');session.balance=data.balance;updateGenerator();status(`Payment confirmed. ${data.balance} ${data.mode==='test'?'test ':''}credits are ready. ${data.mode==='prod' && session.generationMode!=='provider'?'Video submissions are currently paused; your credits remain in your account.':'Return to your photo to generate.'}`);await refresh();return;}
     status('Payment has not been confirmed yet. Credits are issued only after confirmation. You can return to your photo or check again.');
     if(i<19 && keepPolling)await pause(1500);
   }

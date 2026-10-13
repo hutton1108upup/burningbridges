@@ -127,13 +127,31 @@ test('production webhook writes only to its own ledger and rejects Test events',
   db.close();production.close();
 });
 
-test('production checkout readiness cannot use a Test key or simulated generation',async()=>{
+test('production checkout uses only a production key independently of generation',async()=>{
   const db=setup();
   const settings={DB:db,PAYMENT_MODE:'prod',GENERATION_MODE:'provider',CHECKOUT_ENABLED:'true',WAFFO_PRIVATE_KEY:'test-only',WAFFO_MERCHANT_ID:'MER_test',WAFFO_STORE_ID:'STO_test'};
   const ready=async env=>(await (await worker.fetch(new Request('https://site.example/api/session'),env)).json()).checkoutEnabled;
   assert.equal(await ready(settings),false);
-  assert.equal(await ready({...settings,WAFFO_PRODUCTION_PRIVATE_KEY:'production-only',GENERATION_MODE:'mock'}),false);
+  assert.equal(await ready({...settings,WAFFO_PRODUCTION_PRIVATE_KEY:'production-only',GENERATION_MODE:'mock'}),true);
   assert.equal(await ready({...settings,WAFFO_PRODUCTION_PRIVATE_KEY:'production-only',CHECKOUT_ENABLED:'false'}),false);
   assert.equal(await ready({...settings,WAFFO_PRODUCTION_PRIVATE_KEY:'production-only'}),true);
   db.close();
+});
+
+test('existing sandbox webhook remains on Test ledger while public app uses production',async()=>{
+  const testDB=setup(),production=setup();
+  await sql(production,"UPDATE orders SET mode='prod' WHERE id=?",orderId).run();
+  const keys=generateKeyPairSync('rsa',{modulusLength:2048}),publicKey=keys.publicKey.export({type:'spki',format:'pem'});
+  const settings={DB:production,TEST_DB:testDB,...env,PAYMENT_MODE:'prod',WAFFO_WEBHOOK_PUBLIC_KEY:publicKey};
+  const send=async payload=>{
+    const raw=JSON.stringify(payload),stamp=String(Date.now());
+    const signature=`t=${stamp},v1=${sign('sha256',Buffer.from(`${stamp}.${raw}`),keys.privateKey).toString('base64')}`;
+    return worker.fetch(new Request('https://site.example/api/waffo/webhook',{method:'POST',headers:{'x-waffo-signature':signature},body:raw}),settings);
+  };
+  assert.equal((await send(event())).status,200);
+  assert.equal(await balance(testDB,userId,'test'),100);
+  assert.equal(await balance(production,userId,'prod'),0);
+  assert.equal((await send({...event(),mode:'prod'})).status,400);
+  assert.equal(await balance(production,userId,'prod'),0);
+  production.close();testDB.close();
 });
