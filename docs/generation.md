@@ -12,11 +12,11 @@ npm.cmd run dev:generation
 
 `.env.generation` 默认包含空的 `APIMART_API_KEY`、`GENERATION_SUBMIT=false` 和 `GENERATION_INPUT_BASE=`。照片只写入被 Git 忽略的 `.local/generation`。没有受控 HTTPS 输入入口、server key 和显式提交开关时，页面只显示准确的 dry-run payload，不会发送照片。
 
-provider 无法访问 localhost。真实提交还需要由你确认并提供可访问的 HTTPS `GENERATION_INPUT_BASE`；API key 只由服务端读取。这个 legacy lab 不接正式 provider 流程；正式页面和生产账号支付保持独立。legacy dry-run 结果不代表新的 Fast provider 已上线。
+provider 无法访问 localhost。`GENERATION_INPUT_BASE` 只属于 legacy local lab；正式页面使用 Worker `SITE_ORIGIN` 下的短期签名 URL。这个 legacy lab 不接正式 provider 流程，legacy dry-run 结果不代表新的 Fast provider paid E2E。
 
 直接使用蓝底证件照可能保留蓝底、缺少上半身和身体动作；照片身份与参考视频动作不是同构图场景。要复刻宴会厅构图，后续需要先制作符合参考首帧的角色场景图，不能把一次 motion-control 调用承诺为完整复刻。
 
-已完成一次经 APIMart 在线测试的 5 秒样片：Task ID `task_01M4SWM9JZ2D4T6RR9X84RHBPF`，结果为 5.000 秒、784×1152、30fps、H.264 + AAC，消耗 5.144 credits。该在线样片证明 provider 可返回结果；项目本地 adapter 尚未使用真实 key 调用，也未生产上线。当前蓝底正面照会导致竖屏、blue-to-hall transition 和主体偏出画面；要复刻宴会厅，应先制作 16:9 同构图角色场景图，再用 reference 驱动。
+历史 5 秒样片记录：Task ID `task_01M4SWM9JZ2D4T6RR9X84RHBPF`，5.000 秒、784×1152、30fps、H.264 + AAC，消耗 5.144 credits。它只作为历史 provider 证据，不代表本轮 paid E2E。当前蓝底正面照会导致竖屏、blue-to-hall transition 和主体偏出画面；要复刻宴会厅，应先制作 16:9 同构图角色场景图，再用 reference 驱动。
 
 
 ## 正式 Worker provider 流程
@@ -25,11 +25,11 @@ provider 无法访问 localhost。真实提交还需要由你确认并提供可�
 
 默认候选是 Seedance 2.0 Fast 720p/15 秒。APIMart 单次 provider 估价上限为 50 credits；当前产品 720p 仍按网站 100 积分契约，二者不是同一计价单位。输出必须通过尺寸、时长和音轨校验，原声是复用参考片音轨，不保证逐字嘴型同步，也不承诺 100% 身份一致。
 
-真实 provider 需要服务端 `APIMART_API_KEY`、`GENERATION_SIGNING_SECRET`、HTTPS `SITE_ORIGIN`、R2 输入/输出绑定和 Queue。当前生产配置将使用 `GENERATION_MODE=provider`；Google 登录和 production payment 已在线，但 R2 尚未开通、APIMart key 模型权限不足，provider 尚未开启。`wrangler.generation.jsonc` 只是本地候选配置，不能替代正式生产配置。
+真实 provider 需要服务端 `APIMART_API_KEY`、`GENERATION_SIGNING_SECRET`、HTTPS `SITE_ORIGIN`、R2 输入/输出绑定和 Queue。当前生产 `GENERATION_MODE=provider`；Google 登录、production payment、R2、Queue 和 D1 provider schema 已配置，`generationReady=true`。`wrangler.generation.jsonc` 只是本地候选配置，不能替代正式生产配置。
 
 `/generation-lab` 是历史 5 秒 Kling motion-control dry-run 实验入口。服务端默认拒绝 legacy submit；即使本地专项测试打开显式 legacy 开关，也不代表正式页面或生产 provider。正式页面使用新的 Fast 两阶段流程。
 
-候选配置只用于本地预览；生产拟用 R2/Queue binding 已写入 wrangler，但资源尚未开通，正式启用前必须由管理员确认资源和 secret。
+生产 binding 和 secrets 已由主线程配置；值不写入仓库。正式 paid E2E 仍需真人充值到账与 provider 结果复核。
 
 本地候选 Worker 预览使用 http://127.0.0.1:18087，避免与其他项目的 8787 进程混用；这只是本地地址。
 
@@ -46,6 +46,6 @@ npx wrangler d1 migrations apply DB --local --config wrangler.generation.jsonc
 npx wrangler dev --config wrangler.generation.jsonc --local --port 18087
 ```
 
-成功标志是本地 Worker 在 `http://127.0.0.1:18087` 启动，`/api/session` 返回 `generationMode: "mock"` 且 `generationReady: false`；不会向 APIMart 发请求，也不会产生外部付费。以上命令只操作本地候选配置，不执行远程 migration 或部署。当前 provider key 的 `/v1/models` advertised model 为 `seedream-4-5`，代码按该实际 model 名发送；官方静态 Seedream 4.5 文档示例写作 `seedream-4.5`，两者是 provider metadata alias 差异，不能用文档样例盲目付费试错。视频使用 `seedance-2.0-fast`。
+本地候选成功标志是本地 Worker 在 `http://127.0.0.1:18087` 启动，`/api/session` 返回 `generationMode: "mock"` 且 `generationReady: false`；不会向 APIMart 发请求，也不会产生外部付费。以上命令只操作本地候选配置，不执行远程 migration 或部署。当前 provider key 的 `/v1/models` advertised model 为 `seedream-4-5`，代码按该实际 model 名发送；官方静态 Seedream 4.5 文档示例写作 `seedream-4.5`，两者是 provider metadata alias 差异，不能用文档样例盲目付费试错。视频使用 `seedance-2.0-fast`。
 
 生产正式流程不要求用户填写 `GENERATION_INPUT_BASE`；provider 输入使用 Worker `SITE_ORIGIN` 下的短期签名素材 URL。`GENERATION_INPUT_BASE` 仅属于 legacy local lab。
