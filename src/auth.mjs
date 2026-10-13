@@ -21,7 +21,7 @@ export async function userFrom(request,db) {
 export async function requireUser(request,db) {
   const user=await userFrom(request,db); if(!user) throw new HttpError(401,'SIGN_IN_REQUIRED'); return user;
 }
-async function loginSession(db,userId,request) {
+export async function loginSession(db,userId,request) {
   const token=secret();
   await sql(db,'INSERT INTO sessions(token_hash,user_id,expires_at) VALUES(?,?,?)',digest(token),userId,Date.now()+2592000000).run();
   return sessionCookie(request,token);

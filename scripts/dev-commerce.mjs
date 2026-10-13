@@ -21,13 +21,17 @@ const ASSETS={async fetch(request) {
 }};
 // Local development never loads or borrows payment keys. Hosted Waffo tests use
 // a separately configured HTTPS Worker and an approved store.
-const env={DB,ASSETS,SITE_ORIGIN:origin,PAYMENT_MODE:'test',GENERATION_MODE:'mock',CHECKOUT_ENABLED:'false'};
+const env={DB,ASSETS,SITE_ORIGIN:origin,PAYMENT_MODE:'test',GENERATION_MODE:'mock',CHECKOUT_ENABLED:'false',
+  GOOGLE_LOGIN_ENABLED:process.env.GOOGLE_LOGIN_ENABLED,GOOGLE_CLIENT_ID:process.env.GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET:process.env.GOOGLE_CLIENT_SECRET,BETTER_AUTH_SECRET:process.env.BETTER_AUTH_SECRET};
 const server=http.createServer(async(req,res)=>{
   try {
     const chunks=[];for await(const chunk of req)chunks.push(chunk);
-    const request=new Request(new URL(req.url,origin),{method:req.method,headers:req.headers,...(!['GET','HEAD'].includes(req.method)?{body:Buffer.concat(chunks)}:{})});
-    const response=await worker.fetch(request,env);
-    res.writeHead(response.status,Object.fromEntries(response.headers));
+    if(![`localhost:${port}`,`127.0.0.1:${port}`].includes(req.headers.host)){res.writeHead(403).end('Local host not allowed');return;}
+    const requestOrigin=`http://${req.headers.host}`;
+    const request=new Request(new URL(req.url,requestOrigin),{method:req.method,headers:req.headers,...(!['GET','HEAD'].includes(req.method)?{body:Buffer.concat(chunks)}:{})});
+    const response=await worker.fetch(request,{...env,SITE_ORIGIN:requestOrigin});
+    const responseHeaders=Object.fromEntries(response.headers);if(response.headers.getSetCookie().length)responseHeaders['set-cookie']=response.headers.getSetCookie();
+    res.writeHead(response.status,responseHeaders);
     if(response.body)Readable.fromWeb(response.body).pipe(res);else res.end();
   } catch {res.writeHead(500).end('Local service error');}
 });
