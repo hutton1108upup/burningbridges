@@ -145,7 +145,7 @@ function updateGenerator() {
   const button=$('[data-generator]'),balance=$('#credit-balance');
   $('#commerce-account-label').textContent=session?.user?`${session.user.email} · ${session.balance} ${session.mode==='test'?'test ':''}credits`:'Your account';
   $('#commerce-account-summary').textContent=session?.user?'Account':'Sign in';
-  if(balance)balance.textContent=session?.user?String(session.balance):'—';
+  if(balance)balance.textContent=session?.user?String(session.balance):'—';const providerReady=Boolean(session?.generationMode==='provider'&&session?.generationReady);if(providerReady){$('#resolution').value='720';$('#format').value='16:9';if($('#required-credits'))$('#required-credits').textContent='100';$('#resolution').disabled=true;$('#format').disabled=true;}
   if(button)button.textContent=session?.user && session.balance>=(costFor[$('#resolution').value]||100)?'Generate Video':'Continue to Pricing';
   document.querySelectorAll('a').forEach(link=>{
     if(['Create Video','Burning Bridges Generator'].includes(link.textContent.trim()))link.href=session?.user && session.balance>=50?'/#burning-bridges-ai-generator':'/pricing';
@@ -208,37 +208,39 @@ function renderResult(job) {
   const result=$('#commerce-result');result.replaceChildren();result.hidden=false;
   const close=document.createElement('button');close.type='button';close.className='commerce-result-close';close.textContent='Close result';close.onclick=()=>{pollController?.abort();result.hidden=true;};result.append(close);
   latestJob=job;$('#commerce-history').hidden=false;
-  const title=document.createElement('h2');title.textContent=job.status==='succeeded'?(job.mock?'Reference video ready':'Your video is ready'):job.status==='failed'?'Generation failed':'Preparing your video…';result.append(title);
+  const provider=!job.mock;const title=document.createElement('h2');title.textContent=provider?(job.status==='succeeded'?'Video ready':job.status==='failed'?'Generation failed':job.status==='unknown'?'Generation needs review':'Preparing your video…'):(job.status==='succeeded'?'Reference video ready':job.status==='failed'?'Generation failed':'Preparing your video…');result.append(title);
   const details=document.createElement('p');details.textContent=`Video ${job.id} · ${job.resolution}P · ${job.format} · ${job.credits} credits`;result.append(details);
   if(job.status==='succeeded') {
     const note=document.createElement('p');note.textContent='Review the video and audio before downloading or sharing.';
     const video=document.createElement('video');video.src=job.resultUrl;video.controls=true;video.playsInline=true;video.preload='metadata';
-    const download=document.createElement('a');download.href=job.resultUrl;download.download='burning-bridges-video.mp4';download.textContent='Download video';
+    const download=document.createElement('a');download.href=job.resultUrl;download.download=provider?'burning-bridges-video.mp4':'burning-bridges-test.mp4';download.textContent=provider?'Download video with sound':'Download test video';
     result.append(note,video,download);
   } else if(job.status==='failed') {const note=document.createElement('p');note.textContent='The job did not deliver a result. Its credits have been returned.';result.append(note);}
 }
 async function pollJob(id) {
   pollController?.abort();const controller=new AbortController();pollController=controller;
-  for(let attempt=0;attempt<25 && !controller.signal.aborted;attempt++) {
+  for(let attempt=0;attempt<360 && !controller.signal.aborted;attempt++) {
     const data=await api(`/api/jobs/${id}`);if(controller.signal.aborted)return;
-    session.balance=data.balance;updateGenerator();renderResult(data.job);
-    if(['succeeded','failed'].includes(data.job.status)) {
-      if(draft) {delete draft.requestKey;await storage('put',draft);}return;
+    session.balance=data.balance;if(draft){draft.jobId=data.job.id;await storage('put',draft);}updateGenerator();renderResult(data.job);
+    if(['succeeded','failed','unknown'].includes(data.job.status)) {
+      if(draft && data.job.status!=='unknown') {delete draft.requestKey;delete draft.jobId;delete draft.photoAssetId;await storage('put',draft);}return;
     }
-    await pause(1200);
+    await pause(data.job.mock?1200:5000);
   }
   status('Your job is still being processed. Refresh this page to check its status.');
 }
+async function uploadProviderPhoto(){if(draft?.photoAssetId)return draft.photoAssetId;if(!photoBlob||!session?.generationReady)throw Error('Real generation is not ready. Your photo was not uploaded and no credits were used.');const response=await fetch('/api/generation/uploads',{method:'POST',credentials:'same-origin',headers:{'Content-Type':photoBlob.type},body:photoBlob,signal:AbortSignal.timeout(30000)});const data=await response.json();if(!response.ok)throw Error(messages[data.error]||'Secure photo upload failed.');draft.photoAssetId=data.assetId;await storage('put',draft);return data.assetId;}
 const generateButton=$('[data-generator]');
 if(generateButton)generateButton.onclick=()=>busy(generateButton,async()=>{
   await sessionReady;
+  if(session?.user&&draft?.jobId&&['running','pending','unknown'].includes(latestJob?.status||'running')){await pollJob(draft.jobId);return;}
   await saveDraft();
   if(!session?.user || session.balance<costFor[$('#resolution').value]) {location.assign('/pricing');return;}
   if(!photoBlob) {status('Choose a photo before generating a video.',true);$('#upload-button').focus();return;}
-  $('#commerce-result').hidden=true;status('Submitting your video…');
+  $('#commerce-result').hidden=true;const provider=session.generationMode==='provider';status(provider?'Uploading your private photo…':'Submitting your video…');
   draft.requestKey=draft.requestKey||crypto.randomUUID();await storage('put',draft);
-  const data=await api('/api/jobs',{draftId:draft.id,requestKey:draft.requestKey,resolution:draft.resolution,format:draft.format});
-  session.balance=data.balance;updateGenerator();renderResult(data.job);$('#commerce-result').scrollIntoView({behavior:'smooth',block:'center'});await pollJob(data.job.id);
+  const data=provider?await api('/api/jobs',{photoAssetId:await uploadProviderPhoto(),templateId:'burning-bridges-template-15s',requestKey:draft.requestKey,resolution:'720',format:'16:9'}):await api('/api/jobs',{draftId:draft.id,requestKey:draft.requestKey,resolution:draft.resolution,format:draft.format});
+  session.balance=data.balance;if(draft){draft.jobId=data.job.id;await storage('put',draft);}updateGenerator();renderResult(data.job);$('#commerce-result').scrollIntoView({behavior:'smooth',block:'center'});await pollJob(data.job.id);
 });
 $('#photo-upload')?.addEventListener('change',event=>{
   const file=event.target.files[0];if(!file || !file.type.startsWith('image/') || file.size>8*1024*1024)return;
@@ -276,7 +278,7 @@ async function start() {
       if(authError){openAuth();$('#auth-error').textContent=messages[authError]||messages.GOOGLE_LOGIN_FAILED;}
       else status(authSuccess==='linked'?'Google has been linked to your account. Your credits and orders are unchanged.':'Signed in with Google. Your account is ready.');
     }
-    await restoreDraft();await paymentStatus(Boolean(new URL(location.href).searchParams.has('checkout')));
+    await restoreDraft();if(session?.user&&latestJob&&['running','pending','unknown'].includes(latestJob.status))await pollJob(latestJob.id);await paymentStatus(Boolean(new URL(location.href).searchParams.has('checkout')));
   } catch(error) {status(error.message,true);}
 }
 const sessionReady=refresh();

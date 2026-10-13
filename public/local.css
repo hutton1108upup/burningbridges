@@ -57,6 +57,7 @@ main>.commerce-panel{margin:24px auto}
 .commerce-auth .commerce-google{display:block;width:100%;padding:12px 16px;margin:16px 0 0;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--foreground);font-weight:600;cursor:pointer}
 .commerce-auth .commerce-auth-divider{text-align:center;margin:16px 0;color:var(--muted-foreground);font-size:12px}
 
+#commerce-result video{object-fit:contain;}
 /* Shared reading layout for the preparation resources. */
 .guide-main{padding:112px 24px 64px}.guide-article{max-width:960px;margin:auto;line-height:1.8;overflow-wrap:anywhere}
 .guide-heading{margin-bottom:32px}.guide-heading nav,.guide-date{font-size:13px;color:var(--muted-foreground)}

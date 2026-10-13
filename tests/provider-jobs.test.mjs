@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {PROVIDER_CAP_CREDITS,assertProviderTransition,validateProviderEstimate} from '../src/provider-jobs.mjs';
+test('provider estimate has independent 50 credit cap',()=>{assert.equal(validateProviderEstimate(15.384),15.384);assert.equal(PROVIDER_CAP_CREDITS,50);assert.throws(()=>validateProviderEstimate(50.001),/PROVIDER_COST_CAP_EXCEEDED/);});
+test('provider state machine rejects retry after terminal state',()=>{assert.equal(assertProviderTransition('reserved','submitting'),'submitting');assert.equal(assertProviderTransition('unknown','processing'),'processing');assert.throws(()=>assertProviderTransition('succeeded','processing'),/PROVIDER_STATUS_TRANSITION_INVALID/);});

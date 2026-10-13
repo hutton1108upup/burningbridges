@@ -1,0 +1,11 @@
+import {createHash,createHmac,timingSafeEqual,randomUUID} from 'node:crypto';
+const TYPES={'image/jpeg':['.jpg',b=>b[0]===255&&b[1]===216&&b[2]===255],'image/png':['.png',b=>Buffer.from(b.subarray(0,8)).equals(Buffer.from([137,80,78,71,13,10,26,10]))],'image/webp':['.webp',b=>Buffer.from(b.subarray(0,4)).toString()==='RIFF'&&Buffer.from(b.subarray(8,12)).toString()==='WEBP']};
+export const MAX_IMAGE_BYTES=8*1024*1024;
+export function imageType(contentType,bytes){const x=TYPES[contentType];return x&&bytes.length>0&&x[1](bytes)?x[0]:null;}
+export function imageDimensions(type,b){if(type==='.png'&&b.length>=24)return {width:b.readUInt32BE(16),height:b.readUInt32BE(20)};if(type==='.webp'&&b.length>=30&&b.subarray(12,16).toString()==='VP8X')return {width:1+b[24]+(b[25]<<8)+(b[26]<<16),height:1+b[27]+(b[28]<<8)+(b[29]<<16)};if(type==='.jpg'){let i=2;while(i+9<b.length){if(b[i]!==255){i++;continue;}const marker=b[i+1];const len=b.readUInt16BE(i+2);if([192,193,194,195,216,217].includes(marker)){if([216,217].includes(marker)){i+=2;continue;}return {height:b.readUInt16BE(i+5),width:b.readUInt16BE(i+7)};}if(len<2)break;i+=2+len;}}return null;}
+export const sha256=bytes=>createHash('sha256').update(bytes).digest('hex');
+export function generationReady(env){return Boolean(env.GENERATION_MODE==='provider'&&env.GENERATION_INPUTS&&env.GENERATION_OUTPUTS&&env.GENERATION_QUEUE&&env.APIMART_API_KEY&&env.GENERATION_SIGNING_SECRET&&String(env.SITE_ORIGIN||'').startsWith('https://'));}
+export function assetKey(userId,id,ext){return `generation/${userId}/${id}${ext}`;}
+export function signAsset(secret,assetId,ownerId,expires){const p=`${assetId}:${ownerId}:${expires}`,sig=createHmac('sha256',secret).update(p).digest('hex');return `${p}:${sig}`;}
+export function verifyAsset(secret,token,assetId,ownerId,now=Date.now()){const parts=String(token||'').split(':');if(parts.length!==4)return false;const [id,owner,exp,sig]=parts;if(id!==assetId||owner!==ownerId||!Number.isFinite(+exp)||+exp<now||+exp>now+3600000||!/^[a-f0-9]{64}$/.test(sig))return false;const want=Buffer.from(createHmac('sha256',secret).update(`${id}:${owner}:${exp}`).digest('hex')),got=Buffer.from(sig);return got.length===want.length&&timingSafeEqual(got,want);}
+export const newAssetId=()=>randomUUID();
