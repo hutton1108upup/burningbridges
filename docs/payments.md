@@ -7,6 +7,7 @@
 - `GENERATION_MODE=mock` 仍保留，但服务器禁止生产积分提交模拟任务。页面在付款前显示视频提交暂停；完成支付后只承诺积分到账，不承诺即时生成。
 - 生产回调使用 `PRODUCTION_DB`；旧 `/api/waffo/webhook` 在正式应用中使用 `TEST_DB` 和 Test 验签。Test 用户及积分不迁移到正式环境，用户须在正式环境注册或登录对应正式账户。
 - 视频 API worktree 合并时应保留生产支付、两套回调隔离和生产私钥选择逻辑；实现真实任务、审核和授权下载后再启用真实生成。
+- 上线未付款验收已通过：生产账户创建、$9.90 正式结账会话、官方收银台显示本店铺及正确金额；未付款订单保持 pending、0 积分。没有真实扣款，生产支付成功回调和退款尚未实单验证。
 
 ## 2026-10-13 生产支付准备
 
@@ -70,7 +71,7 @@ npm.cmd run deploy
 
 ## 后续接入真实视频 API
 
-保留订单核验及积分账本，新增经过认证的照片上传、私有对象存储、provider job 与可靠队列、回调或轮询、授权下载和失败确认。只有完整真实生成流程通过后，才启用 `GENERATION_MODE=provider` 的实现与 Production 收款。当前 Worker 没有 provider 分支，修改开关本身不会接通 AI。
+保留订单核验及积分账本，新增经过认证的照片上传、私有对象存储、provider job 与可靠队列、回调或轮询、授权下载和失败确认。只有完整真实生成流程通过后，才启用 `GENERATION_MODE=provider` 的实现；Production 收款按用户后续指令独立启用。当前 Worker 没有 provider 分支，修改开关本身不会接通 AI。
 
 ## 官方依据
 
@@ -78,3 +79,4 @@ npm.cmd run deploy
 - [Checkout session](https://docs.waffo.ai/api-reference/endpoints/orders/create-checkout-session)
 - [签名及事件字段](https://docs.waffo.ai/api-reference/webhooks)
 - [Test checkout 与测试卡](https://docs.waffo.ai/merchant-guide/checkout)
+
