@@ -61,7 +61,7 @@ $$('[data-slot="accordion-trigger"]').forEach(button => {
   };
 });
 
-$$('video').forEach(video=>{
+$$('video:not([data-reference-player])').forEach(video=>{
   video.muted=true;video.loop=true;video.playsInline=true;
   video.play().catch(()=>{}); // Autoplay may be blocked by browser preferences.
 });
