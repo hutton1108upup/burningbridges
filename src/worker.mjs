@@ -5,11 +5,9 @@ import {userFrom,requireUser,authenticate,recover,logout,rateLimit} from './auth
 const json=(body,status=200,extra={})=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow',...extra}});
 const mode=env=>['test','prod'].includes(env.PAYMENT_MODE)?env.PAYMENT_MODE:'test';
 const paymentKey=env=>mode(env)==='prod'?env.WAFFO_PRODUCTION_PRIVATE_KEY:env.WAFFO_PRIVATE_KEY;
-const checkoutReady=env=>env.CHECKOUT_ENABLED==='true' && Boolean(paymentKey(env)) && Boolean(env.WAFFO_MERCHANT_ID && env.WAFFO_STORE_ID) && (mode(env)!=='prod' || env.GENERATION_MODE==='provider');
+const checkoutReady=env=>env.CHECKOUT_ENABLED==='true' && Boolean(paymentKey(env)) && Boolean(env.WAFFO_MERCHANT_ID && env.WAFFO_STORE_ID);
 function waffo(env) {
   if(!checkoutReady(env)) throw new HttpError(503,'CHECKOUT_PAUSED');
-  // No real payments while generation uses a reference clip.
-  if(mode(env)==='prod' && env.GENERATION_MODE!=='provider') throw new HttpError(503,'CHECKOUT_PAUSED');
   return new WaffoPancake({merchantId:env.WAFFO_MERCHANT_ID,privateKey:paymentKey(env).replace(/\\n/g,'\n'),environment:mode(env)});
 }
 async function limitedText(request,limit) {
@@ -30,6 +28,11 @@ function summary(job) {
 }
 async function api(request,env) {
   const url=new URL(request.url),path=url.pathname;
+  // Keep the existing sandbox receiver isolated after the public app goes live.
+  if(path==='/api/waffo/webhook' && mode(env)==='prod') {
+    if(!env.TEST_DB) throw new HttpError(503,'SERVICE_PAUSED');
+    env={...env,DB:env.TEST_DB,PAYMENT_MODE:'test'};
+  }
   // A separate production receiver never writes live events into the Test ledger.
   if(path==='/api/waffo/webhook/production') {
     if(!env.PRODUCTION_DB) throw new HttpError(503,'SERVICE_PAUSED');
