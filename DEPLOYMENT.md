@@ -69,3 +69,6 @@ Wrangler 的本机 OAuth 使用已确认的 `duckweed` 账号配置。它是电�
 - provider 单 job guard 为 50 APIMart credits，网站 720p 继续扣 100 积分。
 
 R2 尚未开通，当前专用 APIMart key 权限不足，不能宣称真实 provider 已上线。正式操作前先在项目根目录执行 `npm.cmd run build`，再用已确认的 `duckweed` profile 做 `npx.cmd wrangler deploy --dry-run --profile duckweed`；不要使用默认 Cloudflare profile。真实开通还必须由用户确认账号、R2/Queue 资源和真人充值到账。
+
+
+Provider 开启前，确认 `GENERATION_INPUTS`、`GENERATION_OUTPUTS`、`GENERATION_QUEUE` 已由管理员创建并绑定，Worker Secret 名称为 `APIMART_API_KEY` 和 `GENERATION_SIGNING_SECRET`。用户页面只有 `/api/session` readiness 完整时才会上传照片和扣 100 网站积分。

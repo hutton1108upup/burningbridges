@@ -25,7 +25,7 @@ provider 无法访问 localhost。真实提交还需要由你确认并提供可�
 
 默认候选是 Seedance 2.0 Fast 720p/15 秒。APIMart 单次 provider 估价上限为 50 credits；当前产品 720p 仍按网站 100 积分契约，二者不是同一计价单位。输出必须通过尺寸、时长和音轨校验，原声是复用参考片音轨，不保证逐字嘴型同步，也不承诺 100% 身份一致。
 
-真实 provider 需要服务端 `APIMART_API_KEY`、`GENERATION_SIGNING_SECRET`、HTTPS `SITE_ORIGIN`、R2 输入/输出绑定和 Queue。当前生产 `GENERATION_MODE=mock`；Google 登录和 production payment 已在线，但 R2 尚未开通、APIMart key 模型权限不足，provider 尚未开启。`wrangler.generation.jsonc` 只是本地候选配置，不能替代正式生产配置。
+真实 provider 需要服务端 `APIMART_API_KEY`、`GENERATION_SIGNING_SECRET`、HTTPS `SITE_ORIGIN`、R2 输入/输出绑定和 Queue。当前生产配置将使用 `GENERATION_MODE=provider`；Google 登录和 production payment 已在线，但 R2 尚未开通、APIMart key 模型权限不足，provider 尚未开启。`wrangler.generation.jsonc` 只是本地候选配置，不能替代正式生产配置。
 
 `/generation-lab` 是历史 5 秒 Kling motion-control dry-run 实验入口。服务端默认拒绝 legacy submit；即使本地专项测试打开显式 legacy 开关，也不代表正式页面或生产 provider。正式页面使用新的 Fast 两阶段流程。
 
@@ -46,4 +46,6 @@ npx wrangler d1 migrations apply DB --local --config wrangler.generation.jsonc
 npx wrangler dev --config wrangler.generation.jsonc --local --port 18087
 ```
 
-成功标志是本地 Worker 在 `http://127.0.0.1:18087` 启动，`/api/session` 返回 `generationMode: "mock"` 且 `generationReady: false`；不会向 APIMart 发请求，也不会产生外部付费。以上命令只操作本地候选配置，不执行远程 migration 或部署。Seedream 图片模型名按官方 [APIMart Seedream 4.5 generation API](https://docs.apimart.ai/en/api-reference/images/seedream-4.5/generation) 使用 `seedream-4.5`。
+成功标志是本地 Worker 在 `http://127.0.0.1:18087` 启动，`/api/session` 返回 `generationMode: "mock"` 且 `generationReady: false`；不会向 APIMart 发请求，也不会产生外部付费。以上命令只操作本地候选配置，不执行远程 migration 或部署。当前 provider key 的 `/v1/models` advertised model 为 `seedream-4-5`，代码按该实际 model 名发送；官方静态 Seedream 4.5 文档示例写作 `seedream-4.5`，两者是 provider metadata alias 差异，不能用文档样例盲目付费试错。视频使用 `seedance-2.0-fast`。
+
+生产正式流程不要求用户填写 `GENERATION_INPUT_BASE`；provider 输入使用 Worker `SITE_ORIGIN` 下的短期签名素材 URL。`GENERATION_INPUT_BASE` 仅属于 legacy local lab。

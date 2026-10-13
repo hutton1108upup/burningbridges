@@ -28,7 +28,7 @@
     "SITE_ORIGIN": "https://burningbridgesaivideo.pro",
     "GOOGLE_LOGIN_ENABLED": "true",
     "PAYMENT_MODE": "prod",
-    "GENERATION_MODE": "mock",
+    "GENERATION_MODE": "provider",
     "CHECKOUT_ENABLED": "true",
     "WAFFO_PRODUCTS": "{\"starter\":\"PROD_3BflwxqcmhKZOWCbEwHsB0\",\"creator\":\"PROD_1Xty8ZjFuchhmpfgFllMNY\",\"studio\":\"PROD_799kLosclEOCY5qgJhweKK\",\"pack100\":\"PROD_6riZHxKVIVNMdoPr1j5bC0\",\"pack200\":\"PROD_4YwQGoGgLOITM0MK9HIlVu\",\"pack500\":\"PROD_3Hjcv5gxfOF94UL3CHAogc\"}",
     "WAFFO_MERCHANT_ID": "MER_0Ca1DBngIQV3s35pRE1wcg",
