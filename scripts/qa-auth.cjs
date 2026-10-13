@@ -1,0 +1,113 @@
+// Optional browser regression check. Supply a Playwright installation via
+// PLAYWRIGHT_MODULE when it is provided by a separate tool runtime.
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const origin=process.env.AUTH_QA_ORIGIN||'http://127.0.0.1:4187';
+if(!/^http:\/\/(127\.0\.0\.1|localhost):\d+$/.test(origin))throw Error('Use a local preview origin only');
+fs.mkdirSync('.local',{recursive:true});
+(async()=>{
+ const browser=await chromium.launch({headless:true});const evidence=[];
+ try {
+  for(const google of [false,true])for(const width of [1280,390]){
+   const context=await browser.newContext({viewport:{width,height:850},permissions:['clipboard-read','clipboard-write']});
+   const page=await context.newPage();const errors=[];page.on('pageerror',error=>errors.push(error.message));
+   let user=null,request=null;
+   await page.route('**/api/session',route=>route.fulfill({json:{user,balance:0,mode:'test',generationMode:'mock',googleLoginEnabled:google,googleLinked:false,checkoutEnabled:false,plans:[]}}));
+   await page.route('**/api/jobs',route=>route.fulfill({json:{jobs:[]}}));
+   await page.goto(origin+'/');await page.waitForLoadState('networkidle');
+   await page.locator('#commerce-account-summary').click();
+   const dialog=page.locator('.commerce-auth');
+   assert.equal(await page.locator('#auth-heading').textContent(),'Welcome back');
+   assert.equal(await page.locator('#auth-social').isVisible(),google);
+   assert.equal(await page.locator('#auth-email').evaluate(node=>node===document.activeElement),true);
+   assert.equal(await page.locator('#auth-password-help').isVisible(),false);
+   await page.locator('#auth-email').fill('retained@example.test');
+   await page.locator('#auth-password').fill('A-test-password-123');
+   await page.locator('#auth-password-toggle').click();assert.equal(await page.locator('#auth-password').getAttribute('type'),'text');
+   await page.locator('#auth-switch').click();
+   assert.equal(await page.locator('#auth-heading').textContent(),'Create your account');
+   assert.equal(await page.locator('#auth-email').inputValue(),'retained@example.test');
+   assert.equal(await page.locator('#auth-password').inputValue(),'');
+   assert.equal(await page.locator('#auth-password').getAttribute('type'),'password');
+   assert.equal(await page.locator('#auth-password-help').isVisible(),true);
+   assert.equal(await page.locator('#auth-recover').isVisible(),false);
+   await page.locator('#auth-switch').click();await page.locator('#auth-recover').click();
+   assert.equal(await page.locator('#auth-heading').textContent(),'Reset your password');
+   assert.equal(await page.locator('#auth-social').isVisible(),false);
+   assert.equal(await page.locator('#auth-email-label').isVisible(),false);
+   assert.equal(await page.locator('#auth-email').evaluate(node=>node.required),false);
+   assert.equal(await page.locator('#auth-code').evaluate(node=>node.required),true);
+   assert.equal(await page.locator('#auth-password-label').textContent(),'New password');
+   assert.equal(await page.locator('#auth-code').evaluate(node=>node===document.activeElement),true);
+   assert.equal(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth),true);
+   if(google&&width===390)await dialog.screenshot({path:'.local/auth-recovery-mobile.png'});
+   // Recovery success carries the server's account email, not a stale form email.
+   await page.route('**/api/auth/recover',async route=>{
+    request=route.request().postDataJSON();
+    await new Promise(resolve=>setTimeout(resolve,350));
+    user={id:'fixture-user',email:'owner@example.test'};
+    await route.fulfill({json:{user,recovery:'N'.repeat(43)}});
+   });
+   await page.locator('#auth-code').fill('O'.repeat(43));await page.locator('#auth-password').fill('New-test-password-123');
+   await page.locator('#auth-submit').click();
+   await page.waitForFunction(()=>document.querySelector('.commerce-auth').getAttribute('aria-busy')==='true');
+   assert.equal(await page.locator('#auth-switch').isDisabled(),true);
+   await page.keyboard.press('Escape');assert.equal(await dialog.evaluate(node=>node.open),true);
+   await page.locator('#recovery-save').waitFor({state:'visible'});
+   assert.equal(request.code,'O'.repeat(43));
+   assert.equal(await page.locator('#auth-email').inputValue(),'owner@example.test');
+   assert.equal(await page.locator('#auth-password').inputValue(),'');
+   assert.equal(await dialog.getAttribute('aria-labelledby'),'recovery-heading');
+   await page.locator('#recovery-copy').click();
+   await page.locator('#recovery-copy-status').filter({hasText:'Copied.'}).waitFor();
+   assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),'N'.repeat(43));
+   const downloadPromise=page.waitForEvent('download');await page.locator('#recovery-download').click();const download=await downloadPromise;
+   assert.equal(download.suggestedFilename(),'burning-bridges-recovery.txt');
+   const stream=await download.createReadStream();const chunks=[];for await(const chunk of stream)chunks.push(chunk);
+   const downloaded=Buffer.concat(chunks).toString();assert(downloaded.includes('Email: owner@example.test'));assert(!downloaded.includes('retained@example.test'));
+   await page.locator('#recovery-done').click();await page.waitForFunction(()=>!document.querySelector('.commerce-auth').open);
+   await page.waitForFunction(()=>document.querySelector('#commerce-account-summary').textContent==='Account');
+   assert.equal(await page.locator('#recovery-value').textContent(),'');
+   assert.deepEqual(errors,[]);
+   evidence.push({google,width,checks:['mode transitions','email retention','secret clearing','password toggle','Google visibility','recovery validation','busy/Escape protection','copy/download','account restoration','no overflow or runtime errors']});
+   await context.close();
+  }
+  const context=await browser.newContext({viewport:{width:1280,height:850}});const page=await context.newPage();
+  await page.route('**/api/session',route=>route.fulfill({json:{user:null,balance:0,mode:'test',googleLoginEnabled:true,plans:[]}}));
+  await page.goto(origin+'/');await page.waitForLoadState('networkidle');await page.locator('#commerce-account-summary').click();
+  await page.locator('.commerce-auth').screenshot({path:'.local/auth-signin-desktop.png'});
+  await page.locator('#auth-switch').click();await page.locator('.commerce-auth').screenshot({path:'.local/auth-signup-desktop.png'});
+  await page.locator('#auth-close').click();await page.getByRole('button',{name:'Toggle theme'}).click();await page.locator('#commerce-account-summary').click();
+  await page.locator('#auth-switch').click();assert.equal(await page.locator('.commerce-auth').evaluate(node=>node.scrollWidth<=node.clientWidth),true);
+  await page.locator('#auth-email').fill('signup@example.test');await page.locator('#auth-password').fill('Another-test-password-123');
+  await page.route('**/api/auth/signup',route=>route.fulfill({json:{user:{id:'new-user',email:'signup@example.test'},recovery:'S'.repeat(43)}}));
+  await page.locator('#auth-submit').click();await page.locator('#recovery-save').waitFor({state:'visible'});
+  await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{value:{writeText:async()=>{throw Error('denied');}}}));
+  await page.locator('#recovery-copy').click();assert.equal(await page.evaluate(()=>getSelection().toString()),'S'.repeat(43));
+  assert.match(await page.locator('#recovery-copy-status').textContent(),/manually/);
+  await page.locator('#auth-close').click();await page.waitForFunction(()=>!document.querySelector('.commerce-auth').open);
+  assert.equal(await page.locator('#recovery-value').textContent(),'');
+  await page.locator('#commerce-account-summary').click();
+  await page.route('**/api/auth/signin',route=>route.fulfill({status:401,json:{error:'SIGN_IN_FAILED'}}));
+  await page.locator('#auth-email').fill('signup@example.test');await page.locator('#auth-password').fill('Invalid-test-password-123');await page.locator('#auth-submit').click();
+  await page.locator('#auth-error').filter({hasText:'Check your email'}).waitFor();
+  assert.equal(await page.locator('#auth-submit').isEnabled(),true);
+  await page.locator('#auth-switch').click();assert.equal(await page.locator('#auth-error').textContent(),'');assert.equal(await page.locator('#auth-password').inputValue(),'');
+  await context.close();
+  // Completing sign-in must resume the selected pricing action exactly once.
+  const checkoutContext=await browser.newContext();const checkoutPage=await checkoutContext.newPage();
+  let signedIn=false,checkouts=0,selectedPlan;
+  await checkoutPage.route('**/api/session',route=>route.fulfill({json:{user:signedIn?{id:'checkout-user',email:'checkout@example.test'}:null,balance:0,mode:'test',checkoutEnabled:true,googleLoginEnabled:false,plans:{}}}));
+  await checkoutPage.route('**/api/orders',route=>route.fulfill({json:{orders:[]}}));
+  await checkoutPage.route('**/api/auth/signin',route=>{signedIn=true;return route.fulfill({json:{user:{id:'checkout-user',email:'checkout@example.test'}}});});
+  await checkoutPage.route('**/api/checkout',route=>{checkouts++;assert.equal(route.request().postDataJSON().planId,selectedPlan);return route.fulfill({json:{orderId:'fixture-order',checkoutUrl:origin+'/?auth-qa-complete=1'}});});
+  await checkoutPage.goto(origin+'/pricing');await checkoutPage.waitForLoadState('networkidle');
+  const plan=checkoutPage.locator('[data-plan]:visible').first();selectedPlan=await plan.getAttribute('data-plan');await plan.click();
+  await checkoutPage.locator('#auth-email').fill('checkout@example.test');await checkoutPage.locator('#auth-password').fill('Checkout-test-password-123');await checkoutPage.locator('#auth-submit').click();
+  await checkoutPage.waitForURL('**/?auth-qa-complete=1');assert.equal(checkouts,1);
+  await checkoutContext.close();
+  fs.writeFileSync('.local/auth-qa.json',JSON.stringify({evidence,additional:['signup success','clipboard rejection fallback','close clears recovery','login error retry','switch clears error','dark appearance','selected checkout resumes once']},null,2));
+  console.log('PASS: sign-in/signup/recovery at 1280/390px; Google on/off; copies, download identity, pending requests and account restoration; signup and failure paths.');
+ }finally{await browser.close();}
+})().catch(error=>{console.error(error);process.exitCode=1;});

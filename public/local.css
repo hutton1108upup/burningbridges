@@ -58,6 +58,37 @@ main>.commerce-panel{margin:24px auto}
 .commerce-auth .commerce-auth-divider{text-align:center;margin:16px 0;color:var(--muted-foreground);font-size:12px}
 
 #commerce-result video{object-fit:contain;}
+/* A single main action for sign-in, registration and password recovery. */
+.commerce-auth{padding:32px;max-height:calc(100dvh - 32px);max-width:440px;overscroll-behavior:contain}
+.commerce-auth h2{padding-right:24px;font-size:26px;line-height:1.25;margin:0 0 10px;letter-spacing:-.02em}
+.commerce-auth #auth-intro,.commerce-auth #recovery-intro{margin:0 0 24px}
+.commerce-auth label{margin:18px 0 6px;font-weight:500;font-size:14px}
+.commerce-auth input{margin:6px 0 0;min-height:46px;padding:11px 13px;color:var(--foreground);background:var(--background);font:inherit;font-size:16px;border:1px solid var(--border);border-radius:10px}
+.commerce-auth button{margin:0;font:inherit;font-size:14px}
+.commerce-auth :focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.commerce-auth .auth-close{position:absolute;top:12px;right:12px;display:grid;place-items:center;width:36px;height:36px;padding:0;background:transparent;color:var(--muted-foreground);border-radius:50%;font-size:25px;line-height:1}
+.commerce-auth .auth-close:hover{background:var(--muted);color:var(--foreground)}
+.commerce-auth .auth-primary{display:block;width:100%;min-height:46px;margin:18px 0 0;padding:12px 16px;background:var(--primary);color:var(--primary-foreground);font-weight:600;border-radius:999px}
+.commerce-auth .auth-text{display:inline;padding:0;min-height:32px;background:transparent;color:var(--primary);text-decoration:underline;text-underline-offset:3px;border-radius:4px;font-weight:500}
+.commerce-auth .auth-text:hover{text-decoration-thickness:2px}
+.commerce-auth .auth-forgot{text-align:right;margin:10px 0 0}.commerce-auth .auth-forgot:has(button[hidden]){display:none}
+.commerce-auth .auth-switch-row{text-align:center;margin:18px 0 0}.commerce-auth .auth-switch-row button{margin-left:4px}
+.commerce-auth .auth-terms{font-size:12px;text-align:center;margin:16px 0 0}
+.commerce-auth .auth-password-field{position:relative}
+.commerce-auth .auth-password-field input{padding-right:72px;margin:0}
+.commerce-auth .auth-password-field button{position:absolute;right:7px;top:7px;min-height:32px;padding:4px 8px;border-radius:6px;background:transparent;color:var(--muted-foreground);font-size:13px}
+.commerce-auth .auth-password-help{font-size:12px;margin:6px 0 0}
+.commerce-auth .commerce-google{display:flex;align-items:center;justify-content:center;gap:12px;min-height:44px;margin:0;padding:11px 16px;border:1px solid #747775;border-radius:20px;background:#fff;color:#1f1f1f;font-family:Arial,sans-serif;font-weight:500}
+.commerce-auth .commerce-google svg{flex:none}.commerce-auth .commerce-google:hover{background:#f8fafd}
+.commerce-auth .commerce-auth-divider{display:flex;align-items:center;gap:14px;margin:20px 0;color:var(--muted-foreground);font-size:12px}
+.commerce-auth .commerce-auth-divider::before,.commerce-auth .commerce-auth-divider::after{content:"";flex:1;height:1px;background:var(--border)}
+.commerce-auth #auth-error{margin:12px 0 0;font-size:13px}.commerce-auth #auth-error:empty{display:none}
+.commerce-auth #recovery-value{padding:16px;border:1px solid var(--border);border-radius:10px;background:var(--muted);font-size:14px;line-height:1.7;white-space:pre-wrap}
+.commerce-auth .auth-recovery-tools{display:flex;flex-wrap:wrap;gap:20px;margin:12px 0 0}
+.commerce-auth #recovery-copy-status{margin:8px 0;font-size:12px}.commerce-auth #recovery-copy-status:empty{display:none}
+.commerce-auth .auth-recovery-note{font-size:12px;margin:16px 0}
+@media(max-width:480px){.commerce-auth{padding:28px 22px;width:calc(100% - 24px);max-height:calc(100dvh - 24px)}.commerce-auth h2{font-size:24px}}
+
 /* Shared reading layout for the preparation resources. */
 .guide-main{padding:112px 24px 64px}.guide-article{max-width:960px;margin:auto;line-height:1.8;overflow-wrap:anywhere}
 .guide-heading{margin-bottom:32px}.guide-heading nav,.guide-date{font-size:13px;color:var(--muted-foreground)}
