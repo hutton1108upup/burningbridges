@@ -58,7 +58,17 @@ node --env-file=.env.google.local scripts/dev-commerce.mjs
 - 主站与回调必须使用同一个 origin；登录返回仅允许本站首页、生成器或 pricing。
 - 部署成功后必须以真实 Google 账号复测；自动化测试通过不等于上线登录成功。
 
-## 验证命令
+## 2026-10-13 正式站验证结果
+
+- 使用本站独立 Wrangler 配置核对 `duckweed1014@gmail.com` 与账号 `7fd7ed1128ca3d125feaa279f4d4c547`，补充已授权的 `workers_scripts:write` 后发布成功。
+- Worker 版本 `941abb57-d9aa-4e8e-b422-f82093092f62`；线上 `/release.json` 对应代码 `33800b7e1ae73bcb41a9dd85714d2e2014fcf189`。
+- 正式域名真实 Google 登录成功：`duckweed1014@gmail.com`，显示 `Signed in with Google. Your account is ready.`。
+- 刷新保持登录、退出回到 Sign in、第二次 Google 登录均已实测通过；正式 D1 中该邮箱仍为 1 个用户、1 条 Google 身份映射。
+- 本地检查 31 项测试与构建通过；既有邮箱账号绑定由自动化测试覆盖，本次未拿真实旧账号做生产绑定。
+- 视频生成仍暂停，`GENERATION_MODE=mock`；本次未执行购买或付费视频请求。
+- 成功截图保存在忽略目录 `.local/google-login-production-success.png`，不包含凭据。
+
+## 验证命令（本地）
 
 ```powershell
 npm.cmd run check
