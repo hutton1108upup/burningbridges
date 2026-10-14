@@ -116,3 +116,13 @@ npm.cmd run build
 Google 登录已按模板的 Better Auth / Drizzle / D1 方案局部适配，配置及验证记录见 `docs/google-login.md`。缺少必要配置时禁用 Google 按钮，原邮箱登录保留。已有邮箱账号先用密码登录，再主动绑定同邮箱 Google 身份，以保留原订单和积分。
 
 - Generation architecture and local provider candidate: [docs/generation.md](docs/generation.md).
+
+## Gas Station Dance AI 内页
+
+- 路径：`/gas-station-dance-ai`；页面文件：`public/gas-station-dance-ai/index.html`。
+- 独立样式和交互：`public/gas-station.css`、`public/gas-station.js`。
+- 三张原创 SVG 分镜素材：`public/assets/gas-station-{dance,selfie,exit}.svg`，用于场景说明，不是生成结果。
+- 单人/三人照片预览，仅使用当前标签页临时 URL；无上传、持久化、任务提交或扣积分。切换单人模式清除另外两张照片。
+- 支持 JPG/PNG/WebP、8MB 上限和 512 × 512 最小尺寸；刷新或关闭清除照片。
+- 页面包含 canonical、OG、面包屑、与可见内容一致的 FAQ schema，并加入 sitemap 和全站页脚。
+- 本地复查依次运行 `npm.cmd run check`、`npm.cmd run build`；静态开发预览使用 `npm.cmd run dev:static`，访问 `http://localhost:3000/gas-station-dance-ai`。
