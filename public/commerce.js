@@ -78,7 +78,7 @@ new MutationObserver(updatePanelVisibility).observe(panel,{subtree:true,childLis
 updatePanelVisibility();
 const resultPanel=document.createElement('section');resultPanel.id='commerce-result';resultPanel.hidden=true;resultPanel.setAttribute('aria-label','Video result');resultPanel.setAttribute('data-clarity-mask','true');
 (generator||panel).append(resultPanel);
-let latestJob=null;
+let latestJob=null,generationSubmitting=false,currentResultJobId=null;
 $('#commerce-history').onclick=()=>{if(latestJob){accountMenu.open=false;pollJob(latestJob.id).then(()=>resultPanel.scrollIntoView({behavior:'smooth',block:'center'})).catch(error=>status(error.message,true));}};
 const authDialog=document.createElement('dialog');authDialog.className='local-dialog commerce-auth';authDialog.setAttribute('data-clarity-mask','true');authDialog.setAttribute('aria-labelledby','auth-heading');authDialog.setAttribute('aria-describedby','auth-intro');
 authDialog.innerHTML=`
@@ -225,7 +225,14 @@ function updateGenerator() {
   $('#commerce-account-label').textContent=session?.user?`${session.user.email} · ${session.balance} ${session.mode==='test'?'test ':''}credits`:'Your account';
   $('#commerce-account-summary').textContent=session?.user?'Account':'Sign in';
   if(balance)balance.textContent=session?.user?String(session.balance):'—';const providerReady=Boolean(session?.generationMode==='provider'&&session?.generationReady);if(providerReady&&$('#burning-bridges-ai-generator')&&$('#resolution')&&$('#format') ){$('#resolution').value='720';$('#format').value='16:9';if($('#required-credits'))$('#required-credits').textContent='100';$('#resolution').disabled=true;$('#format').disabled=true;}
-  if(button)button.textContent=session?.user && session.balance>=(costFor[$('#resolution').value]||100)?'Generate Video':'Continue to Pricing';
+  if(button){
+    const currentJob=latestJob?.id===currentResultJobId;
+    const running=currentJob&&['pending','running'].includes(latestJob.status);
+    const unresolved=running||(currentJob&&latestJob.status==='unknown');
+    button.disabled=generationSubmitting||Boolean(running&&pollController&&!pollController.signal.aborted);
+    for(const id of ['photo-upload','upload-button','remove-photo']){const control=$(`#${id}`);if(control)control.disabled=button.disabled||unresolved;}
+    button.textContent=button.disabled?'Generating…':!photoBlob?'Upload photo':!session?.user?'Sign in to generate':currentJob&&latestJob.status==='succeeded'?'Download video':unresolved?'Check video status':session.balance<100?'Get credits':'Generate video · 100 credits';
+  }
   document.querySelectorAll('a').forEach(link=>{
     if(['Create Video','Burning Bridges Generator'].includes(link.textContent.trim()))link.href=session?.user && session.balance>=50?'/#burning-bridges-ai-generator':'/pricing';
   });
@@ -286,7 +293,7 @@ $('#check-payment').onclick=()=>busy($('#check-payment'),()=>paymentStatus());
 function renderResult(job) {
   const result=$('#commerce-result');result.replaceChildren();result.hidden=false;
   const close=document.createElement('button');close.type='button';close.className='commerce-result-close';close.textContent='Close result';close.onclick=()=>{pollController?.abort();result.hidden=true;};result.append(close);
-  latestJob=job;$('#commerce-history').hidden=false;
+  latestJob=job;currentResultJobId=job.id;$('#commerce-history').hidden=false;
   const provider=!job.mock;const title=document.createElement('h2');title.textContent=provider?(job.status==='succeeded'?'Video ready':job.status==='failed'?'Generation failed':job.status==='unknown'?'Generation needs review':'Preparing your video…'):(job.status==='succeeded'?'Reference video ready':job.status==='failed'?'Generation failed':'Preparing your video…');result.append(title);
   const details=document.createElement('p');details.textContent=`Video ${job.id} · ${job.resolution}P · ${job.format} · ${job.credits} credits`;result.append(details);
   if(job.status==='succeeded') {
@@ -295,9 +302,12 @@ function renderResult(job) {
     const download=document.createElement('a');download.href=job.resultUrl;download.download=provider?'burning-bridges-video.mp4':'burning-bridges-test.mp4';download.textContent=provider?'Download video with sound':'Download test video';
     result.append(note,video,download);
   } else if(job.status==='failed') {const note=document.createElement('p');note.textContent='The job did not deliver a result. Its credits have been returned.';result.append(note);}
+  updateGenerator();
 }
 async function pollJob(id) {
   pollController?.abort();const controller=new AbortController();pollController=controller;
+  updateGenerator();
+  try {
   for(let attempt=0;attempt<360 && !controller.signal.aborted;attempt++) {
     const data=await api(`/api/jobs/${id}`);if(controller.signal.aborted)return;
     session.balance=data.balance;if(draft){draft.jobId=data.job.id;await storage('put',draft);}updateGenerator();renderResult(data.job);
@@ -306,31 +316,44 @@ async function pollJob(id) {
     }
     await pause(data.job.mock?1200:5000);
   }
-  status('Your job is still being processed. Refresh this page to check its status.');
+  if(!controller.signal.aborted)status('Your video is still processing. Select Check video status to check again.');
+  } finally {controller.abort();if(pollController===controller)updateGenerator();}
 }
 async function uploadProviderPhoto(){if(draft?.photoAssetId)return draft.photoAssetId;if(!photoBlob||!session?.generationReady)throw Error('Real generation is not ready. Your photo was not uploaded and no credits were used.');const response=await fetch('/api/generation/uploads',{method:'POST',credentials:'same-origin',headers:{'Content-Type':photoBlob.type},body:photoBlob,signal:AbortSignal.timeout(30000)});const data=await response.json();if(!response.ok)throw Error(messages[data.error]||'Secure photo upload failed.');draft.photoAssetId=data.assetId;await storage('put',draft);return data.assetId;}
 const generateButton=$('[data-generator]');
-if(generateButton)generateButton.onclick=()=>busy(generateButton,async()=>{
+if(generateButton)generateButton.onclick=async()=>{
+  if(generationSubmitting||generateButton.disabled)return;
+  if(!photoBlob&&!$('#photo-upload').files?.length){$('#photo-upload').click();return;}
+  let ownsSubmission=false;
+  try {
   await sessionReady;
-  if(session?.user&&draft?.jobId&&['running','pending','unknown'].includes(latestJob?.status||'running')){await pollJob(draft.jobId);return;}
-  await saveDraft();
-  if(!session?.user || session.balance<costFor[$('#resolution').value]) {location.assign('/pricing');return;}
+  await photoReady;
+  if(generationSubmitting||generateButton.disabled)return;
+  if(!photoBlob){$('#photo-upload').click();return;}
+  if(!session?.user){await saveDraft();openAuth();return;}
+  if(currentResultJobId===latestJob?.id&&latestJob?.status==='succeeded'){$('#commerce-result a[download]')?.click();return;}
+  if(session?.user&&draft?.jobId&&['running','pending','unknown'].includes(latestJob?.status||'running')){ownsSubmission=true;generationSubmitting=true;updateGenerator();await pollJob(draft.jobId);return;}
+  if(session.balance<100) {await saveDraft();location.assign('/pricing');return;}
   if(!photoBlob) {status('Choose a photo before generating a video.',true);$('#upload-button').focus();return;}
+  if(generationSubmitting)return;
+  ownsSubmission=true;generationSubmitting=true;updateGenerator();
+  await saveDraft();
   $('#commerce-result').hidden=true;const provider=session.generationMode==='provider';status(provider?'Uploading your private photo…':'Submitting your video…');
   draft.requestKey=draft.requestKey||crypto.randomUUID();await storage('put',draft);
   const data=provider?await api('/api/jobs',{photoAssetId:await uploadProviderPhoto(),templateId:'burning-bridges-template-15s',requestKey:draft.requestKey,resolution:'720',format:'16:9'}):await api('/api/jobs',{draftId:draft.id,requestKey:draft.requestKey,resolution:draft.resolution,format:draft.format});
   session.balance=data.balance;if(draft){draft.jobId=data.job.id;await storage('put',draft);}updateGenerator();renderResult(data.job);$('#commerce-result').scrollIntoView({behavior:'smooth',block:'center'});await pollJob(data.job.id);
-});
+  }catch(error){status(error.message,true);}finally{if(ownsSubmission)generationSubmitting=false;updateGenerator();}
+};
 $('#photo-upload')?.addEventListener('change',event=>{
   const file=event.target.files[0];if(!file || !file.type.startsWith('image/') || file.size>8*1024*1024)return;
   photoReady=(async()=>{
-    try {const image=await createImageBitmap(file);image.close();pollController?.abort();$('#commerce-result').hidden=true;photoBlob=file;draft={id:crypto.randomUUID(),blob:file,resolution:$('#resolution').value,format:$('#format').value,updatedAt:Date.now(),userId:session?.user?.id||null};await storage('put',draft);status('Photo saved in this browser. It will be here when you return from checkout.');}
+    try {const image=await createImageBitmap(file);image.close();pollController?.abort();currentResultJobId=null;$('#commerce-result').hidden=true;photoBlob=file;draft={id:crypto.randomUUID(),blob:file,resolution:$('#resolution').value,format:$('#format').value,updatedAt:Date.now(),userId:session?.user?.id||null};await storage('put',draft);status('');updateGenerator();}
     catch {photoBlob=null;draft=null;$('#remove-photo').click();status('Choose a valid image that your browser can display.',true);throw Error('Choose a valid image before continuing.');}
   })();
   photoReady.catch(()=>{});
 });
 $('#remove-photo')?.addEventListener('click',()=>{
-  pollController?.abort();$('#commerce-result').hidden=true;photoBlob=null;draft=null;storage('delete').catch(()=>status('We could not clear the saved photo. Try again.',true));
+  pollController?.abort();currentResultJobId=null;$('#commerce-result').hidden=true;photoBlob=null;draft=null;updateGenerator();storage('delete').catch(()=>status('We could not clear the saved photo. Try again.',true));
 });
 for(const id of ['resolution','format'])$(`#${id}`)?.addEventListener('change',()=>{
   if(draft)delete draft.requestKey;updateGenerator();saveDraft().catch(()=>status('Your settings could not be saved. Try again.',true));
