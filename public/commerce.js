@@ -80,13 +80,38 @@ const resultPanel=document.createElement('section');resultPanel.id='commerce-res
 (generator||panel).append(resultPanel);
 let latestJob=null;
 $('#commerce-history').onclick=()=>{if(latestJob){accountMenu.open=false;pollJob(latestJob.id).then(()=>resultPanel.scrollIntoView({behavior:'smooth',block:'center'})).catch(error=>status(error.message,true));}};
-const authDialog=document.createElement('dialog');authDialog.className='local-dialog commerce-auth';authDialog.setAttribute('data-clarity-mask','true');
-authDialog.innerHTML=`<form id="commerce-auth-form"><h2 id="auth-heading">Sign in</h2><p>Use the same account to keep your credits and videos across devices.</p><label id="auth-email-label">Email<input id="auth-email" type="email" autocomplete="email" maxlength="254" required data-clarity-mask="true"></label><label id="auth-code-label" hidden>Recovery code<input id="auth-code" autocomplete="off" data-clarity-mask="true"></label><label>Password (12–128 characters)<input id="auth-password" type="password" autocomplete="current-password" minlength="12" maxlength="128" required data-clarity-mask="true"></label><p id="auth-error" role="alert"></p><button type="submit" id="auth-submit">Sign in</button><button type="button" id="auth-switch">Create an account</button><button type="button" id="auth-recover">Use recovery code</button><button type="button" id="auth-close">Close</button></form><section id="recovery-save" hidden><h2>Save your recovery code</h2><p>Keep this code somewhere private. It restores access if you forget your password. We do not send password-reset emails.</p><code id="recovery-value"></code><button type="button" id="recovery-download">Download recovery code</button><button type="button" id="recovery-done">I have saved it</button></section>`;
+const authDialog=document.createElement('dialog');authDialog.className='local-dialog commerce-auth';authDialog.setAttribute('data-clarity-mask','true');authDialog.setAttribute('aria-labelledby','auth-heading');authDialog.setAttribute('aria-describedby','auth-intro');
+authDialog.innerHTML=`
+  <button type="button" id="auth-close" class="auth-close" aria-label="Close sign-in dialog">×</button>
+  <form id="commerce-auth-form">
+    <h2 id="auth-heading">Welcome back</h2>
+    <p id="auth-intro">Sign in to access your credits and videos.</p>
+    <div id="auth-social" hidden></div>
+    <label id="auth-email-label" for="auth-email">Email<input id="auth-email" type="email" autocomplete="email" maxlength="254" required data-clarity-mask="true" placeholder="Enter your email"></label>
+    <label id="auth-code-label" for="auth-code" hidden>Recovery code<input id="auth-code" autocomplete="off" spellcheck="false" data-clarity-mask="true" placeholder="Paste your saved recovery code"></label>
+    <label for="auth-password"><span id="auth-password-label">Password</span></label>
+    <div class="auth-password-field"><input id="auth-password" type="password" autocomplete="current-password" minlength="12" maxlength="128" required data-clarity-mask="true" placeholder="Enter your password"><button type="button" id="auth-password-toggle" aria-label="Show password" aria-pressed="false" aria-controls="auth-password">Show</button></div>
+    <p id="auth-password-help" class="auth-password-help" hidden>Use 12–128 characters.</p>
+    <div class="auth-forgot"><button type="button" id="auth-recover" class="auth-text">Forgot password?</button></div>
+    <p id="auth-error" role="alert"></p>
+    <button type="submit" id="auth-submit" class="auth-primary">Sign in</button>
+    <p class="auth-switch-row"><span id="auth-switch-intro">New here?</span> <button type="button" id="auth-switch" class="auth-text">Create an account</button></p>
+    <p id="auth-terms" class="auth-terms" hidden>Review our <a href="/terms-of-service">Terms of Service</a> and <a href="/privacy-policy">Privacy Policy</a> before creating an account.</p>
+  </form>
+  <section id="recovery-save" hidden>
+    <h2 id="recovery-heading">Save your recovery code</h2>
+    <p id="recovery-intro">Keep this code somewhere private. Use it to reset your password if you forget it. We do not send password-reset emails.</p>
+    <code id="recovery-value" tabindex="0" data-clarity-mask="true"></code>
+    <div class="auth-recovery-tools"><button type="button" id="recovery-copy" class="auth-text">Copy code</button><button type="button" id="recovery-download" class="auth-text">Download code</button></div>
+    <p id="recovery-copy-status" role="status" aria-live="polite"></p>
+    <p class="auth-recovery-note">After a password reset, save the new code. The previous recovery code no longer works.</p>
+    <button type="button" id="recovery-done" class="auth-primary">I’ve saved my recovery code</button>
+  </section>`;
 document.body.append(authDialog);
-const googleButton=document.createElement('button');googleButton.type='button';googleButton.id='auth-google';googleButton.className='commerce-google';googleButton.textContent='Continue with Google';googleButton.disabled=true;
-const googleNote=document.createElement('p');googleNote.id='auth-google-note';googleNote.textContent='Checking Google sign-in availability…';
-const emailDivider=document.createElement('p');emailDivider.className='commerce-auth-divider';emailDivider.textContent='or continue with email';
-$('#auth-heading').after(googleButton,googleNote,emailDivider);
+const googleButton=document.createElement('button');googleButton.type='button';googleButton.id='auth-google';googleButton.className='commerce-google';
+googleButton.innerHTML='<svg aria-hidden="true" width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6C44.4 38.02 46.98 31.87 46.98 24.55z"/><path fill="#FBBC05" d="M10.53 28.59A14.41 14.41 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.87 23.87 0 0 0 0 24c0 3.87.93 7.53 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6C30.03 37.65 27.26 38.5 24 38.5c-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span>Continue with Google</span>';
+const emailDivider=document.createElement('p');emailDivider.className='commerce-auth-divider';emailDivider.textContent='or';
+$('#auth-social').append(googleButton,emailDivider);
 const linkGoogleButton=document.createElement('button');linkGoogleButton.type='button';linkGoogleButton.id='commerce-link-google';linkGoogleButton.textContent='Link Google';linkGoogleButton.hidden=true;
 accountMenu.querySelector('.commerce-bar').append(linkGoogleButton);
 async function googleSignIn(link=false) {
@@ -96,43 +121,97 @@ async function googleSignIn(link=false) {
   if(target.protocol!=='https:' || target.hostname!=='accounts.google.com')throw Error(messages.GOOGLE_LOGIN_FAILED);
   location.assign(target.href);
 }
-googleButton.onclick=async()=>{googleButton.disabled=true;try{await googleSignIn();}catch(error){$('#auth-error').textContent=error.message;googleButton.disabled=!session?.googleLoginEnabled;}};
+googleButton.onclick=async()=>{setAuthBusy(true);try{await googleSignIn();}catch(error){$('#auth-error').textContent=error.message;setAuthBusy(false);}};
 linkGoogleButton.onclick=()=>busy(linkGoogleButton,()=>googleSignIn(true));
-let authAction='signin',afterAuth=null,recoveryValue='';
+let authAction='signin',afterAuth=null,recoveryValue='',authBusy=false;
+function updateAuthSocial() {
+  $('#auth-social').hidden=authAction==='recover' || !session?.googleLoginEnabled;
+  googleButton.disabled=authBusy || !session?.googleLoginEnabled;
+}
+function setAuthBusy(value) {
+  authBusy=value;
+  authDialog.setAttribute('aria-busy',String(value));
+  authDialog.querySelectorAll('button,input').forEach(control=>control.disabled=value);
+  updateAuthSocial();
+}
+function clearAuthSecrets() {
+  $('#auth-password').value='';$('#auth-code').value='';$('#auth-password').type='password';
+  $('#auth-password-toggle').textContent='Show';$('#auth-password-toggle').setAttribute('aria-label','Show password');$('#auth-password-toggle').setAttribute('aria-pressed','false');
+  recoveryValue='';$('#recovery-value').textContent='';$('#recovery-copy-status').textContent='';
+}
 function authMode(action) {
-  authAction=action;$('#auth-heading').textContent=action==='signup'?'Create account':action==='recover'?'Recover account':'Sign in';
-  $('#auth-submit').textContent=$('#auth-heading').textContent;
-  $('#auth-switch').textContent=action==='signin'?'Create an account':'Sign in instead';
+  if(authBusy)return;
+  clearAuthSecrets();authAction=action;
+  $('#auth-heading').textContent=action==='signup'?'Create your account':action==='recover'?'Reset your password':'Welcome back';
+  $('#auth-intro').textContent=action==='recover'?'Use the recovery code you saved when creating your account to set a new password.':action==='signup'?'Keep your credits and videos together in one account.':'Sign in to access your credits and videos.';
+  $('#auth-submit').textContent=action==='signup'?'Create account':action==='recover'?'Reset password':'Sign in';
+  $('#auth-switch').textContent=action==='signin'?'Create an account':action==='recover'?'Back to sign in':'Sign in';
+  $('#auth-switch-intro').textContent=action==='signin'?'New here?':action==='signup'?'Already have an account?':'';
+  $('#auth-password-label').textContent=action==='signup'?'Create password':action==='recover'?'New password':'Password';
+  $('#auth-password').placeholder=action==='signin'?'Enter your password':'Choose a new password';
   $('#auth-password').autocomplete=action==='signin'?'current-password':'new-password';
+  $('#auth-password-help').hidden=action==='signin';
+  if(action==='signin')$('#auth-password').removeAttribute('aria-describedby');else $('#auth-password').setAttribute('aria-describedby','auth-password-help');
   $('#auth-email-label').hidden=action==='recover';$('#auth-email').required=action!=='recover';
   $('#auth-code-label').hidden=action!=='recover';$('#auth-code').required=action==='recover';
+  $('#auth-recover').hidden=action!=='signin';$('#auth-terms').hidden=action!=='signup';
+  authDialog.setAttribute('aria-labelledby','auth-heading');authDialog.setAttribute('aria-describedby','auth-intro');
+  updateAuthSocial();
   $('#auth-error').textContent='';
+  if(authDialog.open)$(action==='recover'?'#auth-code':'#auth-email').focus();
 }
 function openAuth(callback=null) {
   accountMenu.open=false;
-  afterAuth=callback;authMode('signin');$('#commerce-auth-form').hidden=false;$('#recovery-save').hidden=true;authDialog.showModal();
+  afterAuth=callback;authMode('signin');$('#commerce-auth-form').hidden=false;$('#recovery-save').hidden=true;authDialog.showModal();$('#auth-email').focus();
 }
 $('#commerce-account').onclick=()=>openAuth();
 $('#commerce-account-summary').onclick=event=>{if(!session?.user){event.preventDefault();openAuth();}};
 $('#auth-switch').onclick=()=>authMode(authAction==='signin'?'signup':'signin');
 $('#auth-recover').onclick=()=>authMode('recover');
-$('#auth-close').onclick=()=>authDialog.close();
+$('#auth-password-toggle').onclick=()=>{
+  const input=$('#auth-password'),show=input.type==='password';input.type=show?'text':'password';
+  $('#auth-password-toggle').textContent=show?'Hide':'Show';$('#auth-password-toggle').setAttribute('aria-label',show?'Hide password':'Show password');$('#auth-password-toggle').setAttribute('aria-pressed',String(show));
+};
+$('#auth-close').onclick=()=>{if(!authBusy)authDialog.close();};
+authDialog.addEventListener('cancel',event=>{if(authBusy)event.preventDefault();});
+authDialog.addEventListener('close',()=>{
+  const hadRecovery=!$('#recovery-save').hidden;
+  clearAuthSecrets();$('#auth-error').textContent='';afterAuth=null;
+  if(hadRecovery)refresh().catch(error=>status(error.message,true));
+});
+window.addEventListener('pageshow',event=>{
+  if(event.persisted){setAuthBusy(false);clearAuthSecrets();refresh().catch(error=>status(error.message,true));}
+});
 async function authDone() {
-  authDialog.close();$('#auth-password').value='';$('#auth-code').value='';recoveryValue='';$('#recovery-value').textContent='';
-  await refresh();const action=afterAuth;afterAuth=null;if(action) await action();
+  const action=afterAuth;afterAuth=null;$('#recovery-save').hidden=true;authDialog.close();clearAuthSecrets();
+  await refresh();if(action) await action();
 }
 $('#recovery-done').onclick=()=>authDone().catch(error=>status(error.message,true));
+$('#recovery-copy').onclick=async()=>{
+  if(!recoveryValue)return;
+  try {await navigator.clipboard.writeText(recoveryValue);$('#recovery-copy-status').textContent='Copied. Store it somewhere private.';}
+  catch {const range=document.createRange();range.selectNodeContents($('#recovery-value'));const selection=getSelection();selection.removeAllRanges();selection.addRange(range);$('#recovery-value').focus();$('#recovery-copy-status').textContent='Copy access was blocked. Copy the selected code manually or download it.';}
+};
 $('#recovery-download').onclick=()=>{
   const blob=new Blob([`Burning Bridges account recovery\nEmail: ${$('#auth-email').value}\nRecovery code: ${recoveryValue}\nKeep private. This code gives access to your account.\n`],{type:'text/plain'}),url=URL.createObjectURL(blob),a=document.createElement('a');
   a.href=url;a.download='burning-bridges-recovery.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
 $('#commerce-auth-form').onsubmit=async event=>{
-  event.preventDefault();$('#auth-submit').disabled=true;
+  event.preventDefault();if(authBusy)return;
+  const action=authAction;
+  const payload={email:$('#auth-email').value,password:$('#auth-password').value,code:$('#auth-code').value};
+  setAuthBusy(true);
   try {
-    const data=await api(`/api/auth/${authAction}`,{email:$('#auth-email').value,password:$('#auth-password').value,code:$('#auth-code').value});
-    if(data.recovery) {recoveryValue=data.recovery;$('#recovery-value').textContent=data.recovery;$('#commerce-auth-form').hidden=true;$('#recovery-save').hidden=false;}
+    const data=await api(`/api/auth/${action}`,payload);
+    clearAuthSecrets();
+    if(data.recovery) {
+      if(data.user?.email)$('#auth-email').value=data.user.email;
+      recoveryValue=data.recovery;$('#recovery-value').textContent=data.recovery;$('#commerce-auth-form').hidden=true;$('#recovery-save').hidden=false;
+      authDialog.setAttribute('aria-labelledby','recovery-heading');authDialog.setAttribute('aria-describedby','recovery-intro');
+      setAuthBusy(false);$('#recovery-done').focus();
+    }
     else await authDone();
-  } catch(error) {$('#auth-error').textContent=error.message;} finally {$('#auth-submit').disabled=false;}
+  } catch(error) {$('#auth-error').textContent=error.message;} finally {setAuthBusy(false);}
 };
 $('#commerce-logout').onclick=async()=>{
   try {await api('/api/auth/logout',{});accountMenu.open=false;clearPaymentReturn();pollController?.abort();await storage('delete');photoBlob=null;draft=null;$('#remove-photo')?.click();$('#commerce-result').hidden=true;await refresh();status('Signed out. Your saved photo has been cleared from this browser.');}
@@ -153,7 +232,7 @@ function updateGenerator() {
 }
 async function refresh() {
   session=await api('/api/session');
-  googleButton.disabled=!session.googleLoginEnabled;googleNote.hidden=Boolean(session.googleLoginEnabled);googleNote.textContent=messages.GOOGLE_LOGIN_UNAVAILABLE;
+  updateAuthSocial();
   linkGoogleButton.hidden=!session.user || !session.googleLoginEnabled || session.googleLinked;
   if(activeUser && session.user && activeUser!==session.user.id) {await storage('delete');draft=null;photoBlob=null;$('#remove-photo')?.click();$('#commerce-result').hidden=true;}
   activeUser=session.user?.id||null;
