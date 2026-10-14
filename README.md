@@ -126,3 +126,9 @@ Google 登录已按模板的 Better Auth / Drizzle / D1 方案局部适配，配
 - 支持 JPG/PNG/WebP、8MB 上限和 512 × 512 最小尺寸；刷新或关闭清除照片。
 - 页面包含 canonical、OG、面包屑、与可见内容一致的 FAQ schema，并加入 sitemap 和全站页脚。
 - 本地复查依次运行 `npm.cmd run check`、`npm.cmd run build`；静态开发预览使用 `npm.cmd run dev:static`，访问 `http://localhost:3000/gas-station-dance-ai`。
+
+## 视频项目分类导航
+
+`/examples` 是分类目录；Drake 的三段参考视频移至 `/burning-bridges-video-ai`。全站 Examples 下拉菜单与目录卡片来自 `public/video-projects.json`。新增项目时填写 categories/projects，确保 url 已加入 site.config.json 的 routes、素材存在，再运行 `npm.cmd run sync:video-projects`。check 和 build 会自动同步导航；不要手工修改 VIDEO NAV / VIDEO CATALOG 标记内的生成内容。
+
+下拉菜单支持点击展开、外部点击关闭、Esc 关闭并归还焦点、键盘 Tab 导航；目录分类按钮会更新可见项目及数量。
