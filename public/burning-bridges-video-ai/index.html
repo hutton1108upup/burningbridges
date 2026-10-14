@@ -32,7 +32,8 @@
   <link href="/favicon.ico" rel="alternate icon"/>
   <link href="/local.css" rel="stylesheet"/>
   <script defer src="/analytics.js"></script>
- </head>
+ <link rel="stylesheet" href="/video-navigation.css">
+</head>
  <body class="overflow-x-hidden">
   <div hidden="">
   </div>
@@ -49,17 +50,7 @@
       </span>
      </a>
      <nav aria-label="Primary navigation" class="hidden items-center gap-1 md:flex">
-      <a class="flex h-9 items-center gap-2 rounded-full px-3.5 text-sm font-medium transition-colors text-muted-foreground hover:bg-secondary/45 hover:text-foreground" href="/examples" target="_self">
-       <svg aria-hidden="true" class="lucide lucide-circle-question-mark size-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="10">
-        </circle>
-        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3">
-        </path>
-        <path d="M12 17h.01">
-        </path>
-       </svg>
-       Examples
-      </a>
+      <!-- VIDEO NAV START --><div class="video-project-nav"><a href="/examples">Examples</a><button type="button" class="video-project-toggle" aria-label="Show video categories" aria-expanded="false"><svg class="video-project-chevron" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="video-project-menu" hidden><a class="video-project-all" href="/examples">Explore all videos →</a><div class="video-project-group"><strong>Music &amp; Performance</strong><a href="/burning-bridges-video-ai">Drake Burning Bridges AI Video</a></div><div class="video-project-group"><strong>Dance &amp; Memes</strong><a href="/gas-station-dance-ai">Gas Station Dance AI</a></div><div class="video-project-group"><strong>Sports &amp; Football</strong><a href="/ozil-goal-ai-video">Ozil Goal AI Video</a></div></div></div><!-- VIDEO NAV END -->
       <a class="flex h-9 items-center gap-2 rounded-full px-3.5 text-sm font-medium transition-colors text-muted-foreground hover:bg-secondary/45 hover:text-foreground" href="/#how-it-works" target="_self">
        <svg aria-hidden="true" class="lucide lucide-workflow size-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
         <rect height="8" rx="2" width="8" x="3" y="3">
@@ -181,6 +172,74 @@
        </a>
       </div>
      </div>
+<div class="guide-article" style="padding:24px"><section id="reference-library">
+<h2>Recognize the party scene and gestures</h2><p>These references show the kind of party performance associated with the Drake Burning Bridges AI video trend. Watch the lead, hand gestures, props and camera sequence to decide which details matter for your idea. The theme does not identify who generated a clip or grant permission to reuse its footage.</p>
+<aside class="guide-note">
+<strong>Know what you are using:</strong> Reference playback helps you inspect the party performance; it does not animate your selected photo. These existing clips are creative references, not proof of a new render from your portrait.</aside>
+<p>These files were retained with the site's public-page replica. They are presented for inspecting creative direction; their originating model, source portrait and generation settings are not documented here. No before-and-after comparison or customer-result claim is made.</p>
+<div class="guide-reference-grid">
+<figure>
+<video data-reference-player controls playsinline preload="metadata" poster="/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp" aria-label="Party performance reference">
+<source src="/assets/7deb9d22ede5-burning-bridges-template-16x9-crop.mp4" type="video/mp4"/>Your browser cannot play this reference. <a href="/assets/7deb9d22ede5-burning-bridges-template-16x9-crop.mp4">Open the reference file</a>.</video>
+<figcaption>
+<h3>Party performance reference</h3>
+<p>Existing landscape reference · not a result generated from your upload. Press play; use the player’s sound controls to inspect audio.</p>
+</figcaption>
+</figure>
+<figure>
+<video data-reference-player controls playsinline preload="metadata" poster="/assets/b0ba7e709b52-burning-bridges-example-1-poster.webp" aria-label="Party reference A">
+<source src="/assets/6d6c14be4081-burning-bridges-example-1.mp4" type="video/mp4"/>Your browser cannot play this reference. <a href="/assets/6d6c14be4081-burning-bridges-example-1.mp4">Open the reference file</a>.</video>
+<figcaption>
+<h3>Party reference A</h3>
+<p>Existing landscape reference · not a result generated from your upload. Press play; use the player’s sound controls to inspect audio.</p>
+</figcaption>
+</figure>
+<figure>
+<video data-reference-player controls playsinline preload="metadata" poster="/assets/12e415f3692e-burning-bridges-example-2-poster.webp" aria-label="Party reference B">
+<source src="/assets/395f7931679b-burning-bridges-example-2.mp4" type="video/mp4"/>Your browser cannot play this reference. <a href="/assets/395f7931679b-burning-bridges-example-2.mp4">Open the reference file</a>.</video>
+<figcaption>
+<h3>Party reference B</h3>
+<p>Existing landscape reference · not a result generated from your upload. Press play; use the player’s sound controls to inspect audio.</p>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="inspect">
+<h2>What to inspect</h2>
+<div class="guide-table-wrap" tabindex="0" role="region" aria-label="Part of the clip, Question to ask">
+<table>
+<thead>
+<tr>
+<th scope="col">Part of the clip</th>
+<th scope="col">Question to ask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Opening</th>
+<td>Can you identify one clear lead and the frame shape?</td>
+</tr>
+<tr>
+<th scope="row">Gesture</th>
+<td>Do hands and props stay plausible during the movement?</td>
+</tr>
+<tr>
+<th scope="row">Turn or overlap</th>
+<td>Does the face change when the head turns or a hand passes?</td>
+</tr>
+<tr>
+<th scope="row">Background</th>
+<td>Do the guests stay distinct from the lead?</td>
+</tr>
+<tr>
+<th scope="row">Audio</th>
+<td>Is a track present, and does its timing match the action?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
     </article>
    </main>
    <footer class="py-8 sm:py-8 overflow-x-hidden" id="footer">
@@ -268,5 +327,6 @@ Prepare a Burning Bridges party-video idea with one portrait, a reference perfor
   <script defer="" src="/local.js">
   </script>
  <script src="/commerce.js" type="module"></script>
+<script defer src="/video-navigation.js"></script>
 </body>
 </html>

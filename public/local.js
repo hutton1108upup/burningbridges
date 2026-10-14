@@ -38,7 +38,7 @@ if (header) {
   const toggle = $('button[aria-label="Open navigation"]', header);
   if (toggle) {
     const nav=document.createElement('nav');nav.className='local-mobile-nav';nav.hidden=true;nav.setAttribute('aria-label','Mobile navigation');
-    const links=$$('nav a',header);for(const link of links) nav.append(link.cloneNode(true));
+    const links=[...($('nav',header)?.children || [])];for(const link of links) nav.append(link.cloneNode(true));
     const pricing=document.createElement('button');pricing.className='local-account';pricing.textContent='View Pricing';pricing.onclick=goToPricing;nav.append(pricing);
     header.append(nav);
     toggle.onclick=()=>{nav.hidden=!nav.hidden;toggle.setAttribute('aria-expanded',String(!nav.hidden));};

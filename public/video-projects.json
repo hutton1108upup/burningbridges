@@ -1,0 +1,48 @@
+{
+  "categories": [
+    {
+      "id": "music",
+      "name": "Music & Performance"
+    },
+    {
+      "id": "dance",
+      "name": "Dance & Memes"
+    },
+    {
+      "id": "sports",
+      "name": "Sports & Football"
+    }
+  ],
+  "projects": [
+    {
+      "id": "drake-burning-bridges",
+      "name": "Drake Burning Bridges AI Video",
+      "category": "music",
+      "url": "/burning-bridges-video-ai",
+      "image": "/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp",
+      "imageAlt": "Burning Bridges party performance reference",
+      "description": "Explore the party performance, inspect three reference clips and prepare your portrait.",
+      "label": "Party performance"
+    },
+    {
+      "id": "gas-station-dance",
+      "name": "Gas Station Dance AI",
+      "category": "dance",
+      "url": "/gas-station-dance-ai",
+      "image": "/assets/gas-station-dance.svg",
+      "imageAlt": "Original illustration of a dancer at a gas station",
+      "description": "Plan a dance, selfie and car-exit sequence with solo or trio casting and local photo previews.",
+      "label": "Photo preparation"
+    },
+    {
+      "id": "ozil-goal",
+      "name": "Ozil Goal AI Video",
+      "category": "sports",
+      "url": "/ozil-goal-ai-video",
+      "image": "/assets/ozil-goal-card.svg",
+      "imageAlt": "Original football scene illustration of a player approaching the goal",
+      "description": "Explore the goalkeeper flick, a pause past the defenders and the finish. Prepare a full-body photo for your football video idea.",
+      "label": "Football scene"
+    }
+  ]
+}

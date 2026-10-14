@@ -17,7 +17,8 @@
     "/examples",
     "/guides/troubleshooting",
     "/blog/burning-bridges-ai-free",
-    "/gas-station-dance-ai"
+    "/gas-station-dance-ai",
+    "/ozil-goal-ai-video"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -51,6 +52,11 @@
     "/gas-station.js",
     "/assets/gas-station-dance.svg",
     "/assets/gas-station-selfie.svg",
-    "/assets/gas-station-exit.svg"
+    "/assets/gas-station-exit.svg",
+    "/video-projects.json",
+    "/video-navigation.js",
+    "/video-navigation.css",
+    "/ozil-goal.css",
+    "/assets/ozil-goal-card.svg"
   ]
 }

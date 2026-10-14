@@ -10,11 +10,12 @@
     "dev:generation": "node --env-file-if-exists=.env.generation scripts/dev-generation-lab.mjs",
     "generation:prepare-reference": "node scripts/prepare-generation-reference.mjs",
     "test": "node --test tests/*.test.mjs",
-    "build": "node scripts/build.mjs",
-    "check": "node scripts/check.mjs && node scripts/check-analytics.mjs && node scripts/check-copy.mjs && npm run test",
+    "build": "node scripts/sync-video-projects.mjs && node scripts/build.mjs",
+    "check": "node scripts/sync-video-projects.mjs && node scripts/check.mjs && node scripts/check-analytics.mjs && node scripts/check-copy.mjs && npm run test",
     "deploy:dry-run": "npm run build && wrangler deploy --dry-run",
     "deploy": "npm run check && npm run build && wrangler deploy",
-    "audit:staged": "node scripts/audit-staged.mjs"
+    "audit:staged": "node scripts/audit-staged.mjs",
+    "sync:video-projects": "node scripts/sync-video-projects.mjs"
   },
   "engines": {
     "node": ">=24"
