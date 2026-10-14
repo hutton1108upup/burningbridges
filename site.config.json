@@ -16,7 +16,8 @@
     "/blog/burning-bridges-ai-tools-compared",
     "/examples",
     "/guides/troubleshooting",
-    "/blog/burning-bridges-ai-free"
+    "/blog/burning-bridges-ai-free",
+    "/gas-station-dance-ai"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -45,6 +46,11 @@
     "/guides.js",
     "/assets/guide-photo-clear.svg",
     "/assets/guide-photo-crowded.svg",
-    "/assets/guide-photo-form.png"
+    "/assets/guide-photo-form.png",
+    "/gas-station.css",
+    "/gas-station.js",
+    "/assets/gas-station-dance.svg",
+    "/assets/gas-station-selfie.svg",
+    "/assets/gas-station-exit.svg"
   ]
 }
