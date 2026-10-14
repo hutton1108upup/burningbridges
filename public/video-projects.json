@@ -29,8 +29,8 @@
       "name": "Gas Station Dance AI",
       "category": "dance",
       "url": "/gas-station-dance-ai",
-      "image": "/assets/gas-station-dance.svg",
-      "imageAlt": "Original illustration of a dancer at a gas station",
+      "image": "/assets/gas-station/hero-template-poster.webp",
+      "imageAlt": "Gas Station Dance video preview",
       "description": "Plan a dance, selfie and car-exit sequence with solo or trio casting and local photo previews.",
       "label": "Photo preparation"
     },

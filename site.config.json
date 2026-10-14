@@ -57,6 +57,15 @@
     "/video-navigation.js",
     "/video-navigation.css",
     "/ozil-goal.css",
-    "/assets/ozil-goal-card.svg"
+    "/assets/ozil-goal-card.svg",
+    "/assets/gas-station/hero-template.mp4",
+    "/assets/gas-station/example-1.mp4",
+    "/assets/gas-station/example-2.mp4",
+    "/assets/gas-station/hero-template-poster.webp",
+    "/assets/gas-station/example-1-poster.webp",
+    "/assets/gas-station/example-2-poster.webp",
+    "/assets/gas-station/shot-dance.webp",
+    "/assets/gas-station/shot-selfie.webp",
+    "/assets/gas-station/shot-car.webp"
   ]
 }
