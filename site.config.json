@@ -16,7 +16,8 @@
     "/blog/burning-bridges-ai-tools-compared",
     "/examples",
     "/guides/troubleshooting",
-    "/blog/burning-bridges-ai-free"
+    "/blog/burning-bridges-ai-free",
+    "/ozil-goal-ai-video"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -45,6 +46,7 @@
     "/guides.js",
     "/assets/guide-photo-clear.svg",
     "/assets/guide-photo-crowded.svg",
-    "/assets/guide-photo-form.png"
+    "/assets/guide-photo-form.png",
+    "/ozil-goal.css"
   ]
 }
