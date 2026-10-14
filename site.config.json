@@ -17,6 +17,7 @@
     "/examples",
     "/guides/troubleshooting",
     "/blog/burning-bridges-ai-free",
+    "/gas-station-dance-ai",
     "/ozil-goal-ai-video"
   ],
   "assets": [
@@ -47,6 +48,11 @@
     "/assets/guide-photo-clear.svg",
     "/assets/guide-photo-crowded.svg",
     "/assets/guide-photo-form.png",
+    "/gas-station.css",
+    "/gas-station.js",
+    "/assets/gas-station-dance.svg",
+    "/assets/gas-station-selfie.svg",
+    "/assets/gas-station-exit.svg",
     "/ozil-goal.css"
   ]
 }
