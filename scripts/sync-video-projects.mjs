@@ -25,7 +25,7 @@ for (const route of config.routes) {
   });
   if(route==='/examples') {
     html=html.replace(/<!-- VIDEO CATALOG START -->[\s\S]*?<!-- VIDEO CATALOG END -->/,'<!-- VIDEO CATALOG START -->'+filters+cards+'<!-- VIDEO CATALOG END -->');
-    const schema={'@context':'https://schema.org','@type':'CollectionPage',headline:'Popular AI Video Projects',description:'Browse music, performance, dance, meme and football video projects.',mainEntityOfPage:config.origin+'/examples',mainEntity:{'@type':'ItemList',itemListElement:catalog.projects.map((p,i)=>({'@type':'ListItem',position:i+1,name:p.name,url:config.origin+p.url}))}};
+    const schema={'@context':'https://schema.org','@type':'CollectionPage',headline:'Popular AI Video Projects',description:'Browse music, performance, dance, meme, football and romance video projects.',mainEntityOfPage:config.origin+'/examples',mainEntity:{'@type':'ItemList',itemListElement:catalog.projects.map((p,i)=>({'@type':'ListItem',position:i+1,name:p.name,url:config.origin+p.url}))}};
     html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/,`<script type="application/ld+json">${JSON.stringify(schema)}</script>`);
   }
   await writeFile(file,html);

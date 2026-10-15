@@ -18,7 +18,8 @@
     "/guides/troubleshooting",
     "/blog/burning-bridges-ai-free",
     "/gas-station-dance-ai",
-    "/ozil-goal-ai-video"
+    "/ozil-goal-ai-video",
+    "/zombie-love-story-ai"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -57,6 +58,14 @@
     "/video-navigation.js",
     "/video-navigation.css",
     "/ozil-goal.css",
-    "/assets/ozil-goal-card.svg"
+    "/assets/ozil-goal-card.svg",
+    "/zombie-love-story.css",
+    "/zombie-love-story.js",
+    "/assets/zombie-love-story-cabin.svg",
+    "/assets/zombie-love-story-leap.svg",
+    "/assets/zombie-love-story-card.svg",
+    "/assets/zombie-love-story-social.png",
+    "/assets/zombie-love-story-reference.mp4",
+    "/assets/zombie-love-story-reference-poster.jpg"
   ]
 }
