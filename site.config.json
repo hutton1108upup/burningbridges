@@ -79,6 +79,10 @@
     "/assets/zombie-love-story-card.svg",
     "/assets/zombie-love-story-social.png",
     "/assets/zombie-love-story-reference.mp4",
-    "/assets/zombie-love-story-reference-poster.jpg"
+    "/assets/zombie-love-story-reference-poster.jpg",
+    "/offer-popup.css",
+    "/offer-popup.js",
+    "/assets/fonts/nunito-latin.woff2",
+    "/assets/fonts/nunito-OFL.txt"
   ]
 }
