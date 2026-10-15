@@ -231,7 +231,7 @@ function updateGenerator() {
     const unresolved=running||(currentJob&&latestJob.status==='unknown');
     button.disabled=generationSubmitting||Boolean(running&&pollController&&!pollController.signal.aborted);
     for(const id of ['photo-upload','upload-button','remove-photo']){const control=$(`#${id}`);if(control)control.disabled=button.disabled||unresolved;}
-    button.textContent=button.disabled?'Generating…':!photoBlob?'Upload photo':!session?.user?'Get credits':currentJob&&latestJob.status==='succeeded'?'Download video':unresolved?'Check video status':session.balance<100?'Get credits':'Generate video · 100 credits';
+    button.textContent=button.disabled?'Generating…':!photoBlob?'Upload photo':!session?.user?'Generate Video':currentJob&&latestJob.status==='succeeded'?'Download video':unresolved?'Check video status':session.balance<100?'Generate Video':'Generate video · 100 credits';
   }
   document.querySelectorAll('a').forEach(link=>{
     if(['Create Video','Burning Bridges Generator'].includes(link.textContent.trim()))link.href=session?.user && session.balance>=50?'/#burning-bridges-ai-generator':'/pricing';
