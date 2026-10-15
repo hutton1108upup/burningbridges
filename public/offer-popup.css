@@ -1,0 +1,176 @@
+@font-face {
+  font-family: "BB Offer Nunito";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("/assets/fonts/nunito-latin.woff2") format("woff2");
+}
+
+.bb-offer-dialog,
+.bb-offer-dialog * { box-sizing: border-box; }
+.bb-offer-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 16px;
+  border: 0;
+  background: transparent;
+  color: var(--card-foreground, #211a16);
+  font-family: "BB Offer Nunito", ui-rounded, system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color-scheme: light;
+  z-index: 60;
+}
+.bb-offer-dialog:not([open]) { display: none; }
+.bb-offer-dialog[open] { display: grid; place-items: center; }
+.bb-offer-dialog::backdrop {
+  background: rgba(20, 14, 11, .55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.bb-offer-card {
+  position: relative;
+  width: 100%;
+  max-width: 448px;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 24px;
+  border: 1px solid color-mix(in srgb, var(--primary, #d35023) 20%, var(--border, #e5ddd7));
+  border-radius: 22px;
+  background: var(--card, #fffdfc);
+  text-align: center;
+  box-shadow: 0 24px 64px color-mix(in srgb, var(--foreground, #211a16) 14%, transparent),
+    0 8px 24px color-mix(in srgb, var(--primary, #d35023) 12%, transparent);
+}
+.dark .bb-offer-dialog { color-scheme: dark; }
+.bb-offer-card:focus { outline: none; }
+.bb-offer-dialog button,
+.bb-offer-dialog a {
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.bb-offer-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted-foreground, #6a5d56);
+  cursor: pointer;
+}
+.bb-offer-gift {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  border-radius: 9999px;
+  background: var(--accent, #fde7d9);
+  color: var(--primary, #d35023);
+}
+.bb-offer-title {
+  margin: 16px 0 0;
+  color: var(--card-foreground, #211a16);
+  font: inherit;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 32px;
+  letter-spacing: normal;
+}
+.bb-offer-description {
+  margin: 8px 0 0;
+  color: var(--muted-foreground, #6a5d56);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.bb-offer-description strong { color: var(--primary, #d35023); font-weight: 700; }
+.bb-offer-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 24px; }
+.bb-offer-dialog .bb-offer-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--primary, #d35023), color-mix(in srgb, var(--primary, #d35023) 90%, #000));
+  color: var(--primary-foreground, #fffbf6);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--primary, #d35023) 22%, transparent);
+  transition: filter .15s, box-shadow .15s, transform .15s;
+  cursor: pointer;
+}
+.bb-offer-cta:hover { filter: brightness(1.06); box-shadow: 0 10px 24px color-mix(in srgb, var(--primary, #d35023) 28%, transparent); }
+.bb-offer-cta:active { transform: scale(.98); }
+.bb-offer-cta[aria-disabled="true"] { cursor: wait; }
+.bb-offer-dialog .bb-offer-dismiss {
+  margin: 4px 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted-foreground, #6a5d56);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  cursor: pointer;
+}
+.bb-offer-dismiss:hover, .bb-offer-close:hover { color: var(--card-foreground, #211a16); }
+.bb-offer-dialog :is(a, button):focus-visible { outline: 2px solid var(--ring, #d35023); outline-offset: 3px; }
+.bb-offer-error { margin: 12px 0 0; color: var(--destructive, #cc2a2c); font-size: 13px; line-height: 20px; }
+.bb-offer-error[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) { .bb-offer-dialog .bb-offer-cta { transition: none; } }
+
+.bb-offer-teaser {
+  position: fixed;
+  z-index: 50;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  left: 12px;
+  max-width: 448px;
+  margin-inline: auto;
+  padding: 14px 34px 14px 14px;
+  border: 1px solid color-mix(in srgb, var(--primary, #d35023) 20%, var(--border, #e5ddd7));
+  border-radius: 16px;
+  background: var(--card, #fffdfc);
+  color: var(--card-foreground, #211a16);
+  font-family: "BB Offer Nunito", ui-rounded, system-ui, sans-serif;
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--foreground, #211a16) 15%, transparent);
+}
+.bb-offer-teaser, .bb-offer-teaser * { box-sizing: border-box; }
+.bb-offer-teaser button { margin: 0; border: 0; background: transparent; font: inherit; cursor: pointer; }
+.bb-offer-teaser-open {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  width: 100%;
+  padding: 0;
+  color: inherit;
+  text-align: left;
+}
+.bb-offer-teaser-open strong { display: block; font-size: 14px; font-weight: 800; line-height: 20px; }
+.bb-offer-teaser-open strong + span { display: block; margin-top: 2px; color: var(--muted-foreground, #6a5d56); font-size: 12px; line-height: 18px; }
+.bb-offer-teaser-action { color: var(--primary, #d35023); font-size: 13px; font-weight: 800; line-height: 20px; }
+.bb-offer-teaser .bb-offer-teaser-close { position: absolute; top: 7px; right: 5px; width: 30px; height: 30px; padding: 0; color: var(--muted-foreground, #6a5d56); font-size: 24px; line-height: 30px; }
+.bb-offer-teaser :focus-visible { outline: 2px solid var(--ring, #d35023); outline-offset: 3px; }

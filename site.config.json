@@ -85,6 +85,10 @@
     "/assets/flying-entrance/result.jpg",
     "/assets/flying-entrance/reference.mp4",
     "/assets/flying-entrance/person.jpg",
-    "/assets/flying-entrance/car.jpg"
+    "/assets/flying-entrance/car.jpg",
+    "/offer-popup.css",
+    "/offer-popup.js",
+    "/assets/fonts/nunito-latin.woff2",
+    "/assets/fonts/nunito-OFL.txt"
   ]
 }
