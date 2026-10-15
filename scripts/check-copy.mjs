@@ -10,6 +10,7 @@ for (const route of config.routes) {
   const file = path.join('public', route, 'index.html');
   const html = await readFile(file, 'utf8');
   assert.ok(!developmentCopy.test(html), `Development copy: ${route}`);
+  assert.ok(!/\bnot yet\b|\bcoming soon\b/i.test(html), `Staged rollout copy: ${route}`);
   assert.ok(!retiredPlans.test(html), `Removed plan reappeared: ${route}`);
   assert.ok(html.includes('Prepare a Burning Bridges party-video idea with one portrait, a reference performance and a credit plan.'), `Brand copy mismatch: ${route}`);
   const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '');
