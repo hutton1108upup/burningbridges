@@ -1,6 +1,7 @@
 const $=selector=>document.querySelector(selector);
 const costFor={'480':50,'720':100,'1080':200};
 let session=null,draft=null,photoBlob=null,pollController=null,activeUser=null,photoReady=Promise.resolve();
+let savedDraft=null,pendingDraftSave=null,photoPreparing=false;
 const messages={
   CHECKOUT_PAUSED:'Checkout could not be opened. Your photo is saved; please try again.',
   CHECKOUT_FAILED:'We could not open checkout. No credits were issued. Please try again.',
@@ -36,21 +37,40 @@ const dbPromise=new Promise((resolve,reject)=>{
   request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);
 });
 async function storage(action,value) {
+  const snapshot=action==='put'?{...value}:null;
   const db=await dbPromise;
   return new Promise((resolve,reject)=>{
     const tx=db.transaction('drafts',action==='get'?'readonly':'readwrite'),store=tx.objectStore('drafts');
-    const request=action==='get'?store.get('current'):action==='delete'?store.delete('current'):store.put(value,'current');
-    tx.oncomplete=()=>resolve(request.result);tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);
+    const request=action==='get'?store.get('current'):action==='delete'?store.delete('current'):store.put(snapshot,'current');
+    tx.oncomplete=()=>{if(action==='put')savedDraft=snapshot;else if(action==='delete')savedDraft=null;resolve(request.result);};tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);
   });
 }
 async function saveDraft() {
   await photoReady;
   if(!$('#photo-upload')) return;
   if(!photoBlob) return;
-  draft={...draft,id:draft?.id||crypto.randomUUID(),blob:photoBlob,resolution:$('#resolution').value,format:$('#format').value,updatedAt:Date.now(),userId:session?.user?.id||draft?.userId||null};
-  await storage('put',draft);
+  const next=currentDraft();
+  if(sameDraft(next,savedDraft))return;
+  if(pendingDraftSave&&sameDraft(next,pendingDraftSave.snapshot))return pendingDraftSave.promise;
+  draft={...next,updatedAt:Date.now()};
+  const pending={snapshot:{...draft},promise:storage('put',draft)};
+  pendingDraftSave=pending;
+  try {await pending.promise;}finally{if(pendingDraftSave===pending)pendingDraftSave=null;}
 }
-window.BBCommerce={saveDraft};
+function currentDraft() {
+  return {...draft,id:draft?.id||crypto.randomUUID(),blob:photoBlob,resolution:$('#resolution').value,format:$('#format').value,userId:session?.user?.id||draft?.userId||null};
+}
+function sameDraft(left,right) {
+  if(!left||!right)return false;
+  const keys=new Set([...Object.keys(left),...Object.keys(right)]);keys.delete('updatedAt');
+  return [...keys].every(key=>left[key]===right[key]);
+}
+function preparePricingNavigation() {
+  if(photoPreparing)return saveDraft();
+  if(!$('#photo-upload')||!photoBlob||sameDraft(currentDraft(),savedDraft))return null;
+  return saveDraft();
+}
+window.BBCommerce={saveDraft,preparePricingNavigation};
 const panel=document.createElement('section');panel.className='commerce-panel';panel.setAttribute('data-clarity-mask','true');
 panel.innerHTML=`<div class="commerce-bar"><strong id="commerce-account-label">Your account</strong><button type="button" id="commerce-account">Sign in / Create account</button><button type="button" id="commerce-billing" hidden>Manage billing</button><button type="button" id="commerce-logout" hidden>Sign out</button></div><p id="commerce-status" role="status" aria-live="polite"></p><div id="saved-draft" hidden></div><div id="payment-return" hidden><button type="button" id="check-payment">Check payment status</button><a href="/#burning-bridges-ai-generator">Return to your photo</a></div><div id="commerce-orders" hidden></div><button type="button" id="commerce-history" hidden>View last video</button>`;
 const main=$('main')||document.body;
@@ -265,6 +285,7 @@ document.querySelectorAll('[data-plan]').forEach(button=>{
 async function checkout(button) {
   await saveDraft();status('Opening secure checkout…');
   const data=await api('/api/checkout',{planId:button.dataset.plan,draftId:draft?.id||''});
+  window.BBAnalytics?.beginCheckout(data);
   sessionStorage.setItem('bb-pending-order',data.orderId);location.assign(data.checkoutUrl);
 }
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -279,7 +300,7 @@ async function paymentStatus(keepPolling=false) {
       if(error.code==='ORDER_NOT_FOUND') {clearPaymentReturn();status('This order is no longer available for this account. Check your account or choose a plan.',true);return;}
       throw error;
     }
-    if(data.credited) {clearPaymentReturn();session.balance=data.balance;updateGenerator();status(`Payment confirmed. ${data.balance} ${data.mode==='test'?'test ':''}credits are ready. Return to your photo to continue.`);await refresh();return;}
+    if(data.credited) {window.BBAnalytics?.purchase(data);clearPaymentReturn();session.balance=data.balance;updateGenerator();status(`Payment confirmed. ${data.balance} ${data.mode==='test'?'test ':''}credits are ready. Return to your photo to continue.`);await refresh();return;}
     if(['checkout_failed','failed','canceled','cancelled','expired','refunded'].includes(data.order?.status)) {clearPaymentReturn();status('This checkout has ended. Check your account or choose a plan to continue.');return;}
     status('Payment has not been confirmed yet. Credits are issued only after confirmation. You can return to your photo or check again.');
     if(i<19 && keepPolling)await pause(1500);
@@ -346,9 +367,11 @@ if(generateButton)generateButton.onclick=async()=>{
 };
 $('#photo-upload')?.addEventListener('change',event=>{
   const file=event.target.files[0];if(!file || !file.type.startsWith('image/') || file.size>8*1024*1024)return;
+  photoPreparing=true;
   photoReady=(async()=>{
     try {const image=await createImageBitmap(file);image.close();pollController?.abort();currentResultJobId=null;$('#commerce-result').hidden=true;photoBlob=file;draft={id:crypto.randomUUID(),blob:file,resolution:$('#resolution').value,format:$('#format').value,updatedAt:Date.now(),userId:session?.user?.id||null};await storage('put',draft);status('');updateGenerator();}
     catch {photoBlob=null;draft=null;$('#remove-photo').click();status('Choose a valid image that your browser can display.',true);throw Error('Choose a valid image before continuing.');}
+    finally {photoPreparing=false;}
   })();
   photoReady.catch(()=>{});
 });
@@ -360,6 +383,7 @@ for(const id of ['resolution','format'])$(`#${id}`)?.addEventListener('change',(
 });
 async function restoreDraft() {
   draft=await storage('get');
+  savedDraft=draft?{...draft}:null;
   if(draft && (Date.now()-draft.updatedAt>7*86400000 || (draft.userId && session?.user && draft.userId!==session.user.id))) {await storage('delete');draft=null;}
   if(!draft?.blob)return;
   photoBlob=draft.blob;

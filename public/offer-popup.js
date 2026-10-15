@@ -69,7 +69,7 @@ function setupOffer() {
     try { sessionStorage.setItem(shownKey, '1'); }
     catch { /* The in-memory displayed guard still prevents repeated offers. */ }
     if (mobile) createTeaser();
-    else createOffer();
+    else createOffer('exit_top');
   }
   updateForeground();
   document.addEventListener('visibilitychange', updateForeground);
@@ -92,13 +92,31 @@ function createTeaser() {
   teaser.querySelector('.bb-offer-teaser-open').addEventListener('click', () => {
     if (document.querySelector('dialog[open], [aria-modal="true"]')) return;
     // Keep the teaser in place so closing the dialog restores focus to its button.
-    createOffer();
+    trackOffer('open', {surface:'teaser', trigger:'scroll_up'});
+    createOffer('teaser_click');
   });
-  teaser.querySelector('.bb-offer-teaser-close').addEventListener('click', () => teaser.remove());
+  teaser.querySelector('.bb-offer-teaser-close').addEventListener('click', () => {
+    trackOffer('close', {surface:'teaser', trigger:'scroll_up', reason:'close_button'});
+    teaser.remove();
+  });
   document.body.append(teaser);
+  trackOffer('view', {surface:'teaser', trigger:'scroll_up'});
+  prefetchPricing();
 }
 
-function createOffer() {
+function trackOffer(action, details) {
+  try { window.BBAnalytics?.offer(action, details); } catch { /* Tracking must never delay or break the offer. */ }
+}
+
+function prefetchPricing() {
+  if (navigator.connection?.saveData || /(^|-)2g$/.test(navigator.connection?.effectiveType || '') || document.querySelector('link[data-bb-pricing-prefetch]')) return;
+  const link = document.createElement('link');
+  link.rel = 'prefetch';link.href = '/pricing';link.as = 'document';link.dataset.bbPricingPrefetch = '';
+  document.head.append(link);
+}
+
+function createOffer(trigger = 'exit_top') {
+  const analyticsDetails = {surface:'modal', trigger};
   const previousFocus = document.activeElement;
   const previousOverflow = document.body.style.overflow;
   const dialog = document.createElement('dialog');
@@ -121,12 +139,15 @@ function createOffer() {
       </div>
       <p class="bb-offer-error" role="alert" hidden></p>
     </div>`;
-  const close = () => dialog.close();
+  let closeReason = 'escape';
+  const close = reason => { closeReason = reason; dialog.close(); };
   const cta = dialog.querySelector('.bb-offer-cta');
-  dialog.querySelector('.bb-offer-close').addEventListener('click', close);
-  dialog.querySelector('.bb-offer-dismiss').addEventListener('click', close);
-  dialog.addEventListener('click', event => { if (event.target === dialog) close(); });
+  dialog.querySelector('.bb-offer-close').addEventListener('click', () => close('close_button'));
+  dialog.querySelector('.bb-offer-dismiss').addEventListener('click', () => close('dismiss_button'));
+  dialog.addEventListener('click', event => { if (event.target === dialog) close('backdrop'); });
+  dialog.addEventListener('cancel', () => { closeReason = 'escape'; });
   dialog.addEventListener('close', () => {
+    trackOffer('close', {...analyticsDetails, reason:closeReason});
     document.body.style.overflow = previousOverflow;
     dialog.remove();
     if (previousFocus instanceof HTMLElement && previousFocus.isConnected) previousFocus.focus({preventScroll: true});
@@ -139,26 +160,42 @@ function createOffer() {
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   });
   let navigating = false;
-  cta.addEventListener('click', async event => {
-    // Preserve ordinary new-tab and modified-link behavior.
+  cta.addEventListener('click', event => {
+    if (navigating) { event.preventDefault(); return; }
+    trackOffer('click', analyticsDetails);
+    // Ordinary and modified links stay native when there is no unsaved photo.
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    let pending;
+    try {
+      const commerce = window.BBCommerce;
+      pending = commerce?.preparePricingNavigation ? commerce.preparePricingNavigation() : commerce?.saveDraft?.();
+    } catch (error) { pending = Promise.reject(error); }
+    if (!pending) return;
     event.preventDefault();
-    if (navigating) return;
     navigating = true;
     cta.setAttribute('aria-disabled', 'true');
+    cta.setAttribute('aria-busy', 'true');
     const error = dialog.querySelector('.bb-offer-error');
     error.hidden = true;
-    try {
-      await window.BBCommerce?.saveDraft();
+    const originalLabel = cta.textContent;
+    cta.textContent = 'Saving photo…';
+    let timer;
+    const timeout = new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Draft save timed out')), 1500); });
+    Promise.race([pending, timeout]).then(() => {
       location.assign('/pricing');
-    } catch {
+    }).catch(() => {
       navigating = false;
       cta.removeAttribute('aria-disabled');
-      error.textContent = 'Your photo could not be saved. Keep this page open and try again.';
+      cta.removeAttribute('aria-busy');
+      cta.textContent = originalLabel;
+      error.textContent = 'Your photo could not be saved yet. Keep this page open and try again.';
       error.hidden = false;
-    }
+    }).finally(() => clearTimeout(timer));
   });
+  cta.addEventListener('auxclick', event => { if (event.button === 1) trackOffer('click', analyticsDetails); });
   document.body.append(dialog);
   dialog.showModal();
   document.body.style.overflow = 'hidden';
+  trackOffer('view', analyticsDetails);
+  prefetchPricing();
 }
