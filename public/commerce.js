@@ -231,7 +231,7 @@ function updateGenerator() {
     const unresolved=running||(currentJob&&latestJob.status==='unknown');
     button.disabled=generationSubmitting||Boolean(running&&pollController&&!pollController.signal.aborted);
     for(const id of ['photo-upload','upload-button','remove-photo']){const control=$(`#${id}`);if(control)control.disabled=button.disabled||unresolved;}
-    button.textContent=button.disabled?'Generating…':!photoBlob?'Upload photo':!session?.user?'Sign in to generate':currentJob&&latestJob.status==='succeeded'?'Download video':unresolved?'Check video status':session.balance<100?'Get credits':'Generate video · 100 credits';
+    button.textContent=button.disabled?'Generating…':!photoBlob?'Upload photo':!session?.user?'Get credits':currentJob&&latestJob.status==='succeeded'?'Download video':unresolved?'Check video status':session.balance<100?'Get credits':'Generate video · 100 credits';
   }
   document.querySelectorAll('a').forEach(link=>{
     if(['Create Video','Burning Bridges Generator'].includes(link.textContent.trim()))link.href=session?.user && session.balance>=50?'/#burning-bridges-ai-generator':'/pricing';
@@ -330,7 +330,7 @@ if(generateButton)generateButton.onclick=async()=>{
   await photoReady;
   if(generationSubmitting||generateButton.disabled)return;
   if(!photoBlob){$('#photo-upload').click();return;}
-  if(!session?.user){await saveDraft();openAuth();return;}
+  if(!session?.user){await saveDraft();location.assign('/pricing');return;}
   if(currentResultJobId===latestJob?.id&&latestJob?.status==='succeeded'){$('#commerce-result a[download]')?.click();return;}
   if(session?.user&&draft?.jobId&&['running','pending','unknown'].includes(latestJob?.status||'running')){ownsSubmission=true;generationSubmitting=true;updateGenerator();await pollJob(draft.jobId);return;}
   if(session.balance<100) {await saveDraft();location.assign('/pricing');return;}
