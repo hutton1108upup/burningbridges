@@ -13,6 +13,10 @@
       "name": "Sports & Football"
     },
     {
+      "id": "pets",
+      "name": "Pets & Stories"
+    },
+    {
       "id": "stories",
       "name": "Stories & Romance"
     }
@@ -33,8 +37,8 @@
       "name": "Gas Station Dance AI",
       "category": "dance",
       "url": "/gas-station-dance-ai",
-      "image": "/assets/gas-station-dance.svg",
-      "imageAlt": "Original illustration of a dancer at a gas station",
+      "image": "/assets/gas-station/hero-template-poster.webp",
+      "imageAlt": "Gas Station Dance video preview",
       "description": "Plan a dance, selfie and car-exit sequence with solo or trio casting and local photo previews.",
       "label": "Photo preparation"
     },
@@ -47,6 +51,16 @@
       "imageAlt": "Original football scene illustration of a player approaching the goal",
       "description": "Explore the goalkeeper flick, a pause past the defenders and the finish. Prepare a full-body photo for your football video idea.",
       "label": "Football scene"
+    },
+    {
+      "id": "zombie-pet",
+      "name": "Zombie Pet AI Video",
+      "category": "pets",
+      "url": "/zombie-pet-ai-video",
+      "image": "/assets/zombie-pet-card.svg",
+      "imageAlt": "Original illustration of a person holding a dog in a sunset field",
+      "description": "A pet in a dark cabin, a leap into open arms and a memory in a golden field. Choose photos for both characters.",
+      "label": "Pet story"
     },
     {
       "id": "zombie-love-story",

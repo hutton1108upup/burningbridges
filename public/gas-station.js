@@ -12,8 +12,8 @@
   function updateStatus() {
     const count = solo ? Number(selected.has(0)) : selected.size;
     status.textContent = count === (solo ? 1 : 3)
-      ? 'Your cast is ready to preview. Video generation is coming soon; no credits have been charged.'
-      : `${count} of ${solo ? 1 : 3} photos selected. Choose photos to preview your cast.`;
+      ? 'All photos selected. You can change or remove them here.'
+      : `${count} of ${solo ? 1 : 3} photos selected. ${count === 0 ? "Choose photos to see your selections here." : "Choose another photo to fill the remaining slots."}`;
   }
   function clearSlot(index) {
     versions.set(index, (versions.get(index) || 0) + 1);
