@@ -32,6 +32,7 @@
   <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
   <link href="/favicon.ico" rel="alternate icon"/>
   <link href="/local.css" rel="stylesheet"/>
+  <link href="/home-gallery.css" rel="stylesheet"/>
   <script defer src="/analytics.js"></script>
  <link rel="stylesheet" href="/video-navigation.css">
 </head>
@@ -111,7 +112,7 @@
          </path>
         </svg>
         <span>
-         Create Video
+         Create my video
         </span>
        </a>
       </div>
@@ -150,13 +151,13 @@
          Video Generator
         </h1>
         <p class="text-muted-foreground mx-auto mt-5 max-w-2xl text-base leading-7 text-pretty md:text-lg">
-         Make your own version of the Drake Burning Bridges AI video trend: select a permitted portrait, sign in and use credits, generate with the fixed party template, then review and download your result.
+         Bring your portrait into the Burning Bridges party scene. Start with one clear photo and a prepared performance.
         </p>
 
         <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
          <a class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground hover:bg-primary/92 hover:shadow-md has-[&gt;svg]:px-4 shadow-primary/25 h-12 rounded-full px-6 shadow-lg" href="#burning-bridges-ai-generator" target="_self">
           <span>
-         Create Video
+         Create my video
         </span>
           <svg aria-hidden="true" class="lucide lucide-arrow-right size-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
            <path d="M5 12h14">
@@ -189,7 +190,7 @@
            15 seconds
           </dt>
           <dd class="text-muted-foreground mt-0.5 text-[11px] leading-4">
-           Length of the reference template clip.
+           720P landscape · 16:9.
           </dd>
          </div>
          <div class="border-border/70 bg-card/50 rounded-2xl border px-4 py-3 text-left backdrop-blur">
@@ -221,10 +222,27 @@
    <button class="compact-generate-button" data-generator type="button">Upload photo</button>
    <p class="compact-permission">Use only photos you have permission to use.<br/><a href="/terms-of-service">Terms</a> · <a href="/privacy-policy">Privacy</a></p>
   </div>
-  <div class="compact-template"><h3>Template preview</h3><div class="compact-template-player"><video data-reference-player controls muted playsinline preload="metadata" poster="/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp"><source src="/assets/7deb9d22ede5-burning-bridges-template-16x9-crop.mp4" type="video/mp4"/>Your browser cannot play this template.</video></div></div>
+  <div class="compact-template"><h3>Template preview</h3><div class="compact-template-player"><video data-reference-player controls muted playsinline preload="none" poster="/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp"><source src="/assets/7deb9d22ede5-burning-bridges-template-16x9-crop.mp4" type="video/mp4"/>Your browser cannot play this template.</video></div></div>
  </div>
 </section>
      </div>
+     <section class="home-showcase container" id="examples" data-home-gallery aria-labelledby="home-gallery-heading">
+ <div class="home-section-heading"><span class="home-eyebrow">ONE PARTY. DIFFERENT POSSIBILITIES.</span><h2 id="home-gallery-heading">Find your Burning Bridges inspiration</h2><p>Explore personal and character versions of the trend. These reference clips show creative ideas; your result will vary.</p></div>
+ <div class="home-screen"><video id="home-inspiration-player" data-home-media controls muted playsinline preload="none" poster="/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp" aria-label="Burning Bridges Party reference video"><source src="/assets/7deb9d22ede5-burning-bridges-template-16x9-crop.mp4" type="video/mp4"/>Your browser cannot play this video. <a href="/assets/7deb9d22ede5-burning-bridges-template-16x9-crop.mp4">Open the reference video</a>.</video>
+ <div class="home-screen-caption"><div><span class="home-eyebrow" data-home-kind>Template preview</span><h3 data-home-title>Burning Bridges Party</h3><p data-home-description>The prepared party performance: follow the lead, the metal cup and the moving camera.</p></div><a class="home-action" href="#burning-bridges-ai-generator">Create my video <span aria-hidden="true">↗</span></a></div></div>
+ <p class="home-player-status" data-home-status role="status" aria-live="polite">Choose a reference below, or press play to watch the template. Sound starts muted; the Lounge reference has no audio track.</p>
+ <div class="home-clips" aria-label="Choose a video reference"><button type="button" class="home-clip" data-home-clip="template" data-src="/assets/7deb9d22ede5-burning-bridges-template-16x9-crop.mp4" data-title="Burning Bridges Party" data-kind="Template preview" data-description="The prepared party performance: follow the lead, the metal cup and the moving camera." aria-pressed="true" aria-controls="home-inspiration-player"><span class="home-clip-image"><img src="/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp" alt="Burning Bridges Party Burning Bridges video reference" loading="lazy" width="480" height="270"/><span class="home-play" aria-hidden="true">▶</span></span><span class="home-clip-kind">Template preview</span><strong>Burning Bridges Party</strong></button>
+<button type="button" class="home-clip" data-home-clip="blue-tracksuit" data-src="/assets/home-inspiration/blue-tracksuit.mp4" data-title="Blue tracksuit" data-kind="Trend inspiration" data-description="A sportswear lead in the warm party scene. Watch how the face reads as the camera moves closer." aria-pressed="false" aria-controls="home-inspiration-player"><span class="home-clip-image"><img src="/assets/home-inspiration/blue-tracksuit.jpg" alt="Blue tracksuit Burning Bridges video reference" loading="lazy" width="480" height="270"/><span class="home-play" aria-hidden="true">▶</span></span><span class="home-clip-kind">Trend inspiration</span><strong>Blue tracksuit</strong></button>
+<button type="button" class="home-clip" data-home-clip="lounge" data-src="/assets/home-inspiration/lounge.mp4" data-title="Lounge performance" data-kind="Trend inspiration" data-description="A silent reference with expressive gestures. Watch the hands and cup as they cross the body." aria-pressed="false" aria-controls="home-inspiration-player"><span class="home-clip-image"><img src="/assets/home-inspiration/lounge.jpg" alt="Lounge performance Burning Bridges video reference" loading="lazy" width="480" height="270"/><span class="home-play" aria-hidden="true">▶</span></span><span class="home-clip-kind">Trend inspiration</span><strong>Lounge performance</strong></button>
+<button type="button" class="home-clip" data-home-clip="green-blazer" data-src="/assets/home-inspiration/green-blazer.mp4" data-title="Green blazer" data-kind="Trend inspiration" data-description="A bold character look in the familiar room. Clothing and accessories make this reference distinctive." aria-pressed="false" aria-controls="home-inspiration-player"><span class="home-clip-image"><img src="/assets/home-inspiration/green-blazer.jpg" alt="Green blazer Burning Bridges video reference" loading="lazy" width="480" height="270"/><span class="home-play" aria-hidden="true">▶</span></span><span class="home-clip-kind">Trend inspiration</span><strong>Green blazer</strong></button>
+<button type="button" class="home-clip" data-home-clip="example-1" data-src="/assets/6d6c14be4081-burning-bridges-example-1.mp4" data-title="Hero and villain" data-kind="Trend inspiration" data-description="Recognizable character silhouettes give the party a different mood. Complex features can change during motion." aria-pressed="false" aria-controls="home-inspiration-player"><span class="home-clip-image"><img src="/assets/b0ba7e709b52-burning-bridges-example-1-poster.webp" alt="Hero and villain Burning Bridges video reference" loading="lazy" width="480" height="270"/><span class="home-play" aria-hidden="true">▶</span></span><span class="home-clip-kind">Trend inspiration</span><strong>Hero and villain</strong></button>
+<button type="button" class="home-clip" data-home-clip="example-2" data-src="/assets/395f7931679b-burning-bridges-example-2.mp4" data-title="Ogre couple" data-kind="Trend inspiration" data-description="An exaggerated character take on the party trend. Use it as creative inspiration rather than a likeness guarantee." aria-pressed="false" aria-controls="home-inspiration-player"><span class="home-clip-image"><img src="/assets/12e415f3692e-burning-bridges-example-2-poster.webp" alt="Ogre couple Burning Bridges video reference" loading="lazy" width="480" height="270"/><span class="home-play" aria-hidden="true">▶</span></span><span class="home-clip-kind">Trend inspiration</span><strong>Ogre couple</strong></button></div>
+ <p class="home-gallery-note">Trend references include third-party clips and are not videos generated by this website. Their outfits, background casts and lengths can differ from our single-photo template. Current generation: 15s · 720P · 16:9 · 100 credits.</p>
+ </section>
+<section class="home-insights container" id="deep-dive" aria-labelledby="home-insights-heading"><div class="home-section-heading"><span class="home-eyebrow">FROM PHOTO TO PERFORMANCE</span><h2 id="home-insights-heading">A face, a scene, a moment to share</h2><p>See what your photo brings to the video and what the prepared template provides.</p></div>
+<article class="home-story"><button type="button" class="home-story-image" data-home-jump="blue-tracksuit" aria-label="Watch the Blue tracksuit reference"><img src="/assets/home-inspiration/blue-tracksuit.jpg" alt="A sportswear lead in a warm party room" loading="lazy" width="854" height="480"/><span class="home-image-label">Watch the reference ↗</span></button><div><span class="home-eyebrow">01 / THE PERSON</span><h3>Your portrait, center stage</h3><p>Choose one clear face with even lighting. Your photo provides the identity reference for the lead performer.</p><p class="home-story-detail">Our current template supplies a black hat, dark jacket and olive green shirt. A reference clip’s outfit is inspiration, not a selectable wardrobe.</p><a href="/guides/photo-guide">Choose a useful portrait →</a></div></article>
+<article class="home-story"><button type="button" class="home-story-image" data-home-jump="template" aria-label="Watch the party template"><img src="/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp" alt="The party template with its metal cup and background guests" loading="lazy" width="1280" height="720"/><span class="home-image-label">Explore the performance ↗</span></button><div><span class="home-eyebrow">02 / THE PERFORMANCE</span><h3>The party is already set</h3><p>The prepared template guides the room, gestures and camera movement. No written prompt is needed.</p><p class="home-story-detail">This is a single-photo workflow. The people behind the lead are part of the scene; there are no separate background casting controls.</p><a href="#how-it-works">See the four steps →</a></div></article>
+<article class="home-story"><button type="button" class="home-story-image" data-home-jump="green-blazer" aria-label="Watch and listen to the Green blazer reference"><img src="/assets/home-inspiration/green-blazer.jpg" alt="A green-blazer lead in a Burning Bridges party performance" loading="lazy" width="1280" height="720"/><span class="home-image-label">Play, then turn sound on ↗</span></button><div><span class="home-eyebrow">03 / THE SOUND</span><h3>Watch it with sound</h3><p>Preview the reference soundtrack, then check both picture and sound in your completed video.</p><p class="home-story-detail">Use the player’s sound control when you are ready to listen. Check close-ups, hands and mouth movement before downloading.</p><a href="#result-checklist">What to check in the result →</a></div></article></section>
      <section class="scroll-mt-24 py-20 md:py-28" id="how-it-works">
       <div class="container">
        <div class="mx-auto max-w-2xl text-center">
@@ -289,345 +307,6 @@ Click Generate Video and follow the task status while the prepared template is r
          </h3>
          <p class="text-muted-foreground mt-2 text-sm leading-6">
 When it is ready, check the picture and sound, then download your video.
-</p>
-        </article>
-       </div>
-      </div>
-     </section>
-     <section class="py-20 md:py-28">
-      <div class="container">
-       <div class="glass-panel rounded-[32px] p-6 md:p-10">
-        <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
-         <div class="max-w-xl">
-          <h2 class="text-3xl font-semibold tracking-[-0.035em] text-balance md:text-5xl md:leading-[1.05]">
-           Your Photo and the Reference Performance
-          </h2>
-          <p class="text-muted-foreground mt-5 text-base leading-7">
-           A prepared party sequence provides the performance, guests and soundtrack. A portrait communicates appearance. AI interpretation can change details, so review the whole result.
-          </p>
-         </div>
-         <div class="ring-border/60 mx-auto w-full max-w-xl overflow-hidden rounded-3xl bg-black ring-1">
-          <div class="relative h-full w-full">
-           <video class="h-full bg-black aspect-video w-full object-contain" loop="" muted="" playsinline="" poster="/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp" preload="metadata" src="/assets/7deb9d22ede5-burning-bridges-template-16x9-crop.mp4">
-           </video>
-           <button aria-label="Unmute video" class="absolute inset-0 z-10 cursor-pointer bg-transparent" type="button">
-           </button>
-           <span class="pointer-events-none absolute right-3 bottom-3 z-20 inline-flex size-9 items-center justify-center rounded-full bg-black/55 text-white shadow-md backdrop-blur-sm">
-            <svg aria-hidden="true" class="lucide lucide-volume-x size-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-             <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z">
-             </path>
-             <line x1="22" x2="16" y1="9" y2="15">
-             </line>
-             <line x1="16" x2="22" y1="9" y2="15">
-             </line>
-            </svg>
-           </span>
-          </div>
-          <div class="border-border/60 bg-card/70 flex items-center justify-between gap-4 border-t px-5 py-3 text-xs">
-           <span class="font-medium">
-            Burning Bridges Party
-           </span>
-           <span class="text-muted-foreground inline-flex items-center gap-1.5">
-            <svg aria-hidden="true" class="lucide lucide-move-right size-3.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-             <path d="M18 8L22 12L18 16">
-             </path>
-             <path d="M2 12H22">
-             </path>
-            </svg>
-            Hero And Villain
-           </span>
-          </div>
-         </div>
-        </div>
-        <div class="mt-10 grid gap-4 sm:grid-cols-2">
-         <div class="border-border/60 bg-background/50 rounded-2xl border p-5">
-          <svg aria-hidden="true" class="lucide lucide-users text-primary size-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2">
-           </path>
-           <path d="M16 3.128a4 4 0 0 1 0 7.744">
-           </path>
-           <path d="M22 21v-2a4 4 0 0 0-3-3.87">
-           </path>
-           <circle cx="9" cy="7" r="4">
-           </circle>
-          </svg>
-          <h3 class="mt-4 font-semibold">
-           One photo, the whole performance
-          </h3>
-          <p class="text-muted-foreground mt-2 text-sm leading-6">
-           A reference photo can describe a face, hairstyle and visible outfit. The template describes the action and setting. Review identity, motion and clothing throughout a result; an appearance reference does not guarantee exact reproduction.
-          </p>
-         </div>
-         <div class="border-border/60 bg-background/50 rounded-2xl border p-5">
-          <svg aria-hidden="true" class="lucide lucide-music4 lucide-music-4 text-primary size-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-           <path d="M9 18V5l12-2v13">
-           </path>
-           <path d="m9 9 12-2">
-           </path>
-           <circle cx="6" cy="18" r="3">
-           </circle>
-           <circle cx="18" cy="16" r="3">
-           </circle>
-          </svg>
-          <h3 class="mt-4 font-semibold">
-           Listen to the Reference Audio
-          </h3>
-          <p class="text-muted-foreground mt-2 text-sm leading-6">
-           Use the sound button to hear the reference. Listen to a completed result and check picture, sound and mouth movement before sharing.
-          </p>
-         </div>
-        </div>
-       </div>
-      </div>
-     </section>
-     <section class="container copy-review-section" id="output-specification"><h2>One fixed landscape output</h2><p>The current party template produces a 720P, 16:9 video using 100 credits per generation. The prepared scene and movement follow the template; there is no square, vertical or alternate-resolution generation option in this workflow.</p><p>For a vertical post, inspect the completed landscape video before cropping in an editor. A crop can remove hands, the cup or background guests. Review the complete picture and sound before downloading or sharing.</p></section>
-     <section class="scroll-mt-24 py-20 md:py-28" id="examples">
-      <div class="container">
-       <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-3xl font-semibold tracking-[-0.035em] text-balance md:text-5xl md:leading-[1.05]">
-         See the Template and Finished Renders
-        </h2>
-        <p class="text-muted-foreground mx-auto mt-4 max-w-2xl text-base leading-7 md:text-lg">
-         Watch one reference template and two existing example clips. They are examples of the trend, not results generated from the photo you select on this page.
-        </p>
-       </div>
-       <div class="mt-14">
-        <div class="bg-card/55 ring-border/60 mx-auto w-full max-w-5xl overflow-hidden rounded-[32px] ring-1">
-         <div class="relative flex aspect-video w-full items-center justify-center bg-black">
-          <div class="relative h-full w-full">
-           <video class="h-full w-full bg-black object-contain" loop="" muted="" playsinline="" poster="/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp" preload="metadata" src="/assets/7deb9d22ede5-burning-bridges-template-16x9-crop.mp4">
-           </video>
-           <button aria-label="Unmute video" class="absolute inset-0 z-10 cursor-pointer bg-transparent" type="button">
-           </button>
-           <span class="pointer-events-none absolute right-3 bottom-3 z-20 inline-flex size-9 items-center justify-center rounded-full bg-black/55 text-white shadow-md backdrop-blur-sm">
-            <svg aria-hidden="true" class="lucide lucide-volume-x size-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-             <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z">
-             </path>
-             <line x1="22" x2="16" y1="9" y2="15">
-             </line>
-             <line x1="16" x2="22" y1="9" y2="15">
-             </line>
-            </svg>
-           </span>
-          </div>
-         </div>
-         <div class="border-border/60 flex items-center justify-between gap-3 border-t px-5 py-4">
-          <div class="min-w-0">
-           <div class="truncate text-sm font-semibold">
-            Burning Bridges Party
-           </div>
-           <div class="text-muted-foreground mt-0.5 flex items-center gap-1.5 text-xs">
-            <svg aria-hidden="true" class="lucide lucide-users size-3.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2">
-             </path>
-             <path d="M16 3.128a4 4 0 0 1 0 7.744">
-             </path>
-             <path d="M22 21v-2a4 4 0 0 0-3-3.87">
-             </path>
-             <circle cx="9" cy="7" r="4">
-             </circle>
-            </svg>
-            <span class="truncate">
-             Source template
-            </span>
-           </div>
-          </div>
-          <button data-local-preview="" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-sm hover:bg-primary/92 hover:shadow-md gap-1.5 has-[&gt;svg]:px-2.5 h-9 shrink-0 rounded-full px-4" data-slot="button" type="button">
-           Choose your photo
-          </button>
-         </div>
-        </div>
-        <div class="mx-auto mt-4 grid max-w-5xl grid-cols-3 gap-3">
-         <button class="group bg-card/55 relative overflow-hidden rounded-2xl p-1.5 text-left transition ring-primary ring-2" type="button">
-          <span class="relative block aspect-video overflow-hidden rounded-xl bg-black">
-           <img alt="Burning Bridges Party Burning Bridges AI video example" class="h-full w-full object-cover opacity-80 transition group-hover:opacity-100" loading="lazy" src="/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp"/>
-           <span class="absolute inset-0 flex items-center justify-center">
-            <span class="bg-background/85 flex size-8 items-center justify-center rounded-full shadow-md backdrop-blur">
-             <svg aria-hidden="true" class="lucide lucide-play ml-0.5 size-3.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z">
-              </path>
-             </svg>
-            </span>
-           </span>
-          </span>
-          <span class="mt-2 block truncate px-1 text-xs font-semibold">
-           Burning Bridges Party
-          </span>
-         </button>
-         <button class="group bg-card/55 ring-border/60 relative overflow-hidden rounded-2xl p-1.5 text-left ring-1 transition hover:ring-primary/50" type="button">
-          <span class="relative block aspect-video overflow-hidden rounded-xl bg-black">
-           <img alt="Hero And Villain Burning Bridges AI video example" class="h-full w-full object-cover opacity-80 transition group-hover:opacity-100" loading="lazy" src="/assets/b0ba7e709b52-burning-bridges-example-1-poster.webp"/>
-           <span class="absolute inset-0 flex items-center justify-center">
-            <span class="bg-background/85 flex size-8 items-center justify-center rounded-full shadow-md backdrop-blur">
-             <svg aria-hidden="true" class="lucide lucide-play ml-0.5 size-3.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z">
-              </path>
-             </svg>
-            </span>
-           </span>
-          </span>
-          <span class="mt-2 block truncate px-1 text-xs font-semibold">
-           Hero And Villain
-          </span>
-         </button>
-         <button class="group bg-card/55 ring-border/60 relative overflow-hidden rounded-2xl p-1.5 text-left ring-1 transition hover:ring-primary/50" type="button">
-          <span class="relative block aspect-video overflow-hidden rounded-xl bg-black">
-           <img alt="Ogre Couple Burning Bridges AI video example" class="h-full w-full object-cover opacity-80 transition group-hover:opacity-100" loading="lazy" src="/assets/12e415f3692e-burning-bridges-example-2-poster.webp"/>
-           <span class="absolute inset-0 flex items-center justify-center">
-            <span class="bg-background/85 flex size-8 items-center justify-center rounded-full shadow-md backdrop-blur">
-             <svg aria-hidden="true" class="lucide lucide-play ml-0.5 size-3.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z">
-              </path>
-             </svg>
-            </span>
-           </span>
-          </span>
-          <span class="mt-2 block truncate px-1 text-xs font-semibold">
-           Ogre Couple
-          </span>
-         </button>
-        </div>
-       </div>
-      </div>
-     </section>
-     <section class="scroll-mt-24 py-20 md:py-28" id="deep-dive">
-      <div class="container">
-       <div class="mx-auto max-w-2xl text-center">
-        <h2 class="mt-4 text-3xl font-semibold tracking-[-0.035em] text-balance md:text-5xl md:leading-[1.05]">
-         What Makes a Clean Result
-        </h2>
-        <p class="text-muted-foreground mt-4 text-base leading-7 md:text-lg mx-auto max-w-2xl">
-A clear portrait and a prepared performance serve different roles. Use both to plan the scene you want.
-</p>
-       </div>
-       <div class="mt-14 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
-        <div class="max-w-[65ch] space-y-6">
-         <p class="text-muted-foreground text-base leading-8">
-The portrait describes face, hair and visible clothing. The reference video describes the room, gestures, camera sequence and sound. Keep these roles in mind when choosing a photo.
-</p>
-         <p class="text-muted-foreground text-base leading-8">
-A template gives a focused creative direction. It does not guarantee an exact likeness or flawless motion. Review close-ups, hands and overlapping people throughout a result.
-</p>
-         <p class="text-muted-foreground text-base leading-8">
-Explore personal and character portrait ideas using the examples. This single-photo workflow uses one appearance reference rather than a supporting cast.
-</p>
-        </div>
-        <div class="grid gap-4 self-start">
-         <article class="glass-panel grid gap-4 rounded-2xl p-5 sm:grid-cols-[2.75rem_1fr]">
-          <div class="bg-primary/12 text-primary flex size-11 items-center justify-center rounded-xl">
-           <svg aria-hidden="true" class="lucide lucide-camera size-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z">
-            </path>
-            <circle cx="12" cy="13" r="3">
-            </circle>
-           </svg>
-          </div>
-          <div>
-           <h3 class="font-semibold">
-            Start with one clear portrait
-           </h3>
-           <p class="text-muted-foreground mt-2 text-sm leading-7">
-Look for one visible face, even lighting and a sharp image. Avoid heavy filters and objects covering the face.
-</p>
-          </div>
-         </article>
-         <article class="glass-panel grid gap-4 rounded-2xl p-5 sm:grid-cols-[2.75rem_1fr]">
-          <div class="bg-primary/12 text-primary flex size-11 items-center justify-center rounded-xl">
-           <svg aria-hidden="true" class="lucide lucide-clapperboard size-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z">
-            </path>
-            <path d="m6.2 5.3 3.1 3.9">
-            </path>
-            <path d="m12.4 3.4 3.1 4">
-            </path>
-            <path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z">
-            </path>
-           </svg>
-          </div>
-          <div>
-           <h3 class="font-semibold">
-            Let the template carry the scene
-           </h3>
-           <p class="text-muted-foreground mt-2 text-sm leading-7">
-The reference shows the scene, movement and camera sequence. The photo form does not require a written prompt.
-</p>
-          </div>
-         </article>
-         <article class="glass-panel grid gap-4 rounded-2xl p-5 sm:grid-cols-[2.75rem_1fr]">
-          <div class="bg-primary/12 text-primary flex size-11 items-center justify-center rounded-xl">
-           <svg aria-hidden="true" class="lucide lucide-layers size-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z">
-            </path>
-            <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12">
-            </path>
-            <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17">
-            </path>
-           </svg>
-          </div>
-          <div>
-           <h3 class="font-semibold">
-            Pick the ratio for the destination
-           </h3>
-           <p class="text-muted-foreground mt-2 text-sm leading-7">
-Match the frame to its destination. A narrow crop can leave people outside the image, so check the composition before sharing.
-</p>
-          </div>
-         </article>
-         <article class="glass-panel grid gap-4 rounded-2xl p-5 sm:grid-cols-[2.75rem_1fr]">
-          <div class="bg-primary/12 text-primary flex size-11 items-center justify-center rounded-xl">
-           <svg aria-hidden="true" class="lucide lucide-shield-check size-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
-            </path>
-            <path d="m9 12 2 2 4-4">
-            </path>
-           </svg>
-          </div>
-          <div>
-           <h3 class="font-semibold">
-            Review the Credit Estimate
-           </h3>
-           <p class="text-muted-foreground mt-2 text-sm leading-7">
-Compare the job estimate with the credits included in a plan. Pack prices buy credits; resolution determines the estimate for a video job.
-</p>
-          </div>
-         </article>
-        </div>
-       </div>
-      </div>
-     </section>
-     <section class="py-20 md:py-28">
-      <div class="container">
-       <div class="mx-auto max-w-2xl text-center">
-        <h2 class="mt-4 text-3xl font-semibold tracking-[-0.035em] text-balance md:text-5xl md:leading-[1.05]">
-         Choose a Useful Reference Photo
-        </h2>
-        <p class="text-muted-foreground mt-4 text-base leading-7 md:text-lg mx-auto max-w-2xl">
-         Prepare a photo that clearly shows the appearance you have in mind. You can inspect it locally here without starting a generation or paying.
-        </p>
-       </div>
-       <div class="mt-14 grid gap-4 sm:grid-cols-3">
-        <article class="glass-panel rounded-2xl p-6">
-         <h3 class="text-lg font-semibold">
-          Photo quality
-         </h3>
-         <p class="text-muted-foreground mt-3 text-sm leading-7">
-          Choose: a sharp, well-lit photo with one unobstructed face. Avoid: blur, sunglasses, heavy filters and several people in the same image.
-         </p>
-        </article>
-        <article class="glass-panel rounded-2xl p-6">
-         <h3 class="text-lg font-semibold">
-          What to upload
-         </h3>
-         <p class="text-muted-foreground mt-3 text-sm leading-7">
-          If an outfit matters to your idea, include the upper body and visible clothing rather than a face-only crop. Small logos, jewelry and fabric patterns can change in an AI edit. Check these details throughout a result.
-         </p>
-        </article>
-        <article class="glass-panel rounded-2xl p-6">
-         <h3 class="text-lg font-semibold">
-          Resolution
-         </h3>
-         <p class="text-muted-foreground mt-3 text-sm leading-7">
-The current template uses 100 credits for a 720P, 16:9 video. Resolution does not guarantee a closer likeness or more natural movement.
 </p>
         </article>
        </div>
@@ -856,7 +535,7 @@ Compare monthly plans and one-time credit packs. Check the credits included, val
 The Burning Bridges party performance gives a portrait-based video idea a recognizable setting, movement and soundtrack.
 </p>
          <p>
-Use a clear personal portrait or a permitted character image. Visible clothing and an unobstructed face give the idea useful appearance references.
+Use a clear personal portrait or a permitted character image with one unobstructed face. The prepared template supplies the outfit, room and performance.
 </p>
          <p>
 Upload your permitted photo, sign in and generate with the fixed template. Follow the task status, then watch the complete result with sound before downloading; outcomes can vary between portraits.
@@ -970,7 +649,7 @@ Upload your permitted photo, sign in and generate with the fixed template. Follo
        </div>
       </div>
      </section>
-     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a Burning Bridges AI video?","acceptedAnswer":{"@type":"Answer","text":"A Burning Bridges AI video is a character edit based on a prepared party performance. A portrait provides an appearance reference; the template describes the scene, movement and sound. AI interpretation can change details, so review a result before sharing it."}},{"@type":"Question","name":"How do I put myself in the party clip?","acceptedAnswer":{"@type":"Answer","text":"Choose one clear portrait, select a format and resolution, then review the required credits. Use the pricing page to choose a plan. Check identity, framing and sound when reviewing a completed video."}},{"@type":"Question","name":"Do I need to write a prompt?","acceptedAnswer":{"@type":"Answer","text":"The template provides a prepared creative direction, so the photo form does not ask for a written prompt. Concentrate on a clear portrait, visible clothing and the format you need."}},{"@type":"Question","name":"Which AI app puts you in a music video like this?","acceptedAnswer":{"@type":"Answer","text":"Burning Bridges AI Video focuses on one prepared party performance. Explore the reference and examples, choose a portrait, and compare the available formats and credit options."}},{"@type":"Question","name":"Is there a free generation tier?","acceptedAnswer":{"@type":"Answer","text":"Browsing examples and selecting a photo is free. The current party template uses 100 credits per 720P, 16:9 video. One-time packs start at $9.90 and monthly plans at $19. A generation cost is separate from the price of a credit pack."}},{"@type":"Question","name":"What photo works best?","acceptedAnswer":{"@type":"Answer","text":"Choose one person with a sharp, unobstructed face and even lighting. Include the upper body if clothing matters. Avoid blur, heavy filters and multiple people. Fine patterns, jewelry and small accessories can change in an AI edit."}},{"@type":"Question","name":"Does the finished clip keep the audio?","acceptedAnswer":{"@type":"Answer","text":"The reference performance includes a soundtrack. Use the player controls to listen to examples, and check a completed video with sound before sharing. Sound availability and mouth synchronization are part of the result review."}},{"@type":"Question","name":"Can I make the Shrek or Thanos version of the trend?","acceptedAnswer":{"@type":"Answer","text":"Character portraits can provide creative references for the same party-video idea. Use images you are permitted to transform. Complex costumes and unusual proportions may change during motion; examples do not guarantee an identical result."}},{"@type":"Question","name":"How long does generation take?","acceptedAnswer":{"@type":"Answer","text":"Processing time depends on settings and service demand. Follow the task status associated with a submission rather than assuming a fixed completion time. Review picture and sound before using a result."}},{"@type":"Question","name":"Is this an official Drake website?","acceptedAnswer":{"@type":"Answer","text":"No. This is an independent AI video website. It is not affiliated with or endorsed by Drake. The artist and song names identify the creative theme."}},{"@type":"Question","name":"How can I make a Drake Burning Bridges AI video?","acceptedAnswer":{"@type":"Answer","text":"Select one clear portrait you have permission to use, sign in and use credits, then generate with the fixed party template. Current output is 720P, 16:9 at 100 credits per generation. Review the picture and sound before downloading."}}]}</script>
+     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a Burning Bridges AI video?","acceptedAnswer":{"@type":"Answer","text":"A Burning Bridges AI video is a character edit based on a prepared party performance. A portrait provides an appearance reference; the template describes the scene, movement and sound. AI interpretation can change details, so review a result before sharing it."}},{"@type":"Question","name":"How do I put myself in the party clip?","acceptedAnswer":{"@type":"Answer","text":"Choose one clear portrait, then review the fixed 15-second, 720P, 16:9 output and 100-credit cost. Sign in, generate and check picture and sound before downloading."}},{"@type":"Question","name":"Do I need to write a prompt?","acceptedAnswer":{"@type":"Answer","text":"The template provides the scene, outfit and performance, so the photo form does not ask for a written prompt. Choose a clear portrait with one unobstructed face."}},{"@type":"Question","name":"Which AI app puts you in a music video like this?","acceptedAnswer":{"@type":"Answer","text":"Burning Bridges AI Video focuses on one prepared party performance. Explore the reference clips, choose a portrait and review the fixed output and credit cost."}},{"@type":"Question","name":"Is there a free generation tier?","acceptedAnswer":{"@type":"Answer","text":"Browsing examples and selecting a photo is free. The current party template uses 100 credits per 720P, 16:9 video. One-time packs start at $9.90 and monthly plans at $19. A generation cost is separate from the price of a credit pack."}},{"@type":"Question","name":"What photo works best?","acceptedAnswer":{"@type":"Answer","text":"Choose one person with a sharp, unobstructed face and even lighting. Keep the head and shoulders visible. Avoid blur, sunglasses, heavy filters and multiple people. The current template supplies the outfit; uploaded clothing is not a wardrobe control."}},{"@type":"Question","name":"Does the finished clip keep the audio?","acceptedAnswer":{"@type":"Answer","text":"The reference performance includes a soundtrack. Use the player controls to listen to examples, and check a completed video with sound before sharing. Sound availability and mouth synchronization are part of the result review."}},{"@type":"Question","name":"Can I make the Shrek or Thanos version of the trend?","acceptedAnswer":{"@type":"Answer","text":"Character portraits can provide creative references for the same party-video idea. Use images you are permitted to transform. Complex costumes and unusual proportions may change during motion; examples do not guarantee an identical result."}},{"@type":"Question","name":"How long does generation take?","acceptedAnswer":{"@type":"Answer","text":"Processing time depends on settings and service demand. Follow the task status associated with a submission rather than assuming a fixed completion time. Review picture and sound before using a result."}},{"@type":"Question","name":"Is this an official Drake website?","acceptedAnswer":{"@type":"Answer","text":"No. This is an independent AI video website. It is not affiliated with or endorsed by Drake. The artist and song names identify the creative theme."}},{"@type":"Question","name":"How can I make a Drake Burning Bridges AI video?","acceptedAnswer":{"@type":"Answer","text":"Select one clear portrait you have permission to use, sign in and use credits, then generate with the fixed party template. Current output is 720P, 16:9 at 100 credits per generation. Review the picture and sound before downloading."}}]}</script>
      <section class="py-20 md:py-28" id="faq">
       <div class="container grid gap-10 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:gap-20">
        <div class="max-w-lg">
@@ -1013,7 +692,7 @@ Upload your permitted photo, sign in and generate with the fixed template. Follo
          </h3>
          <div aria-labelledby="radix-_R_aksluknmiulb_" class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm" data-orientation="vertical" data-slot="accordion-content" data-state="closed" hidden="" id="radix-_R_2aksluknmiulb_" role="region" style="--radix-accordion-content-height:var(--radix-collapsible-content-height);--radix-accordion-content-width:var(--radix-collapsible-content-width)">
           <div class="pt-0 pb-4 max-w-3xl pr-8 text-sm leading-7 md:text-base">
-           Choose one clear portrait, select a format and resolution, then review the required credits. Use the pricing page to choose a plan. Check identity, framing and sound when reviewing a completed video.
+           Choose one clear portrait, then review the fixed 15-second, 720P, 16:9 output and 100-credit cost. Sign in, generate and check picture and sound before downloading.
           </div>
          </div>
         </div>
@@ -1029,7 +708,7 @@ Upload your permitted photo, sign in and generate with the fixed template. Follo
          </h3>
          <div aria-labelledby="radix-_R_eksluknmiulb_" class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm" data-orientation="vertical" data-slot="accordion-content" data-state="closed" hidden="" id="radix-_R_2eksluknmiulb_" role="region" style="--radix-accordion-content-height:var(--radix-collapsible-content-height);--radix-accordion-content-width:var(--radix-collapsible-content-width)">
           <div class="pt-0 pb-4 max-w-3xl pr-8 text-sm leading-7 md:text-base">
-           The template provides a prepared creative direction, so the photo form does not ask for a written prompt. Concentrate on a clear portrait, visible clothing and the format you need.
+           The template provides the scene, outfit and performance, so the photo form does not ask for a written prompt. Choose a clear portrait with one unobstructed face.
           </div>
          </div>
         </div>
@@ -1045,7 +724,7 @@ Upload your permitted photo, sign in and generate with the fixed template. Follo
          </h3>
          <div aria-labelledby="radix-_R_iksluknmiulb_" class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm" data-orientation="vertical" data-slot="accordion-content" data-state="closed" hidden="" id="radix-_R_2iksluknmiulb_" role="region" style="--radix-accordion-content-height:var(--radix-collapsible-content-height);--radix-accordion-content-width:var(--radix-collapsible-content-width)">
           <div class="pt-0 pb-4 max-w-3xl pr-8 text-sm leading-7 md:text-base">
-           Burning Bridges AI Video focuses on one prepared party performance. Explore the reference and examples, choose a portrait, and compare the available formats and credit options.
+           Burning Bridges AI Video focuses on one prepared party performance. Explore the reference clips, choose a portrait and review the fixed output and credit cost.
           </div>
          </div>
         </div>
@@ -1077,7 +756,7 @@ Upload your permitted photo, sign in and generate with the fixed template. Follo
          </h3>
          <div aria-labelledby="radix-_R_qksluknmiulb_" class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm" data-orientation="vertical" data-slot="accordion-content" data-state="closed" hidden="" id="radix-_R_2qksluknmiulb_" role="region" style="--radix-accordion-content-height:var(--radix-collapsible-content-height);--radix-accordion-content-width:var(--radix-collapsible-content-width)">
           <div class="pt-0 pb-4 max-w-3xl pr-8 text-sm leading-7 md:text-base">
-           Choose one person with a sharp, unobstructed face and even lighting. Include the upper body if clothing matters. Avoid blur, heavy filters and multiple people. Fine patterns, jewelry and small accessories can change in an AI edit.
+           Choose one person with a sharp, unobstructed face and even lighting. Keep the head and shoulders visible. Avoid blur, sunglasses, heavy filters and multiple people. The current template supplies the outfit; uploaded clothing is not a wardrobe control.
           </div>
          </div>
         </div>
@@ -1145,7 +824,7 @@ Upload your permitted photo, sign in and generate with the fixed template. Follo
         </div>
         <a class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-sm hover:bg-primary/92 hover:shadow-md has-[&gt;svg]:px-4 mx-auto h-11 w-fit rounded-full px-6" href="#burning-bridges-ai-generator" target="_self">
          <span>
-         Create Video
+         Create my video
         </span>
          <svg aria-hidden="true" class="lucide lucide-arrow-right h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
           <path d="M5 12h14">
@@ -1248,5 +927,6 @@ Prepare a Burning Bridges party-video idea with one portrait, a reference perfor
   </script>
  <script src="/commerce.js" type="module"></script>
 <script defer src="/video-navigation.js"></script>
+<script defer src="/home-gallery.js"></script>
 </body>
 </html>
