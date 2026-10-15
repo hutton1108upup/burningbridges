@@ -285,7 +285,6 @@ document.querySelectorAll('[data-plan]').forEach(button=>{
 async function checkout(button) {
   await saveDraft();status('Opening secure checkout…');
   const data=await api('/api/checkout',{planId:button.dataset.plan,draftId:draft?.id||''});
-  window.BBAnalytics?.beginCheckout(data);
   sessionStorage.setItem('bb-pending-order',data.orderId);location.assign(data.checkoutUrl);
 }
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));

@@ -20,7 +20,6 @@ Use the existing GA4 measurement ID `G-LSG4H51443` through `public/analytics.js`
 | `offer_open` | Mobile teaser is clicked to open the modal | Teaser surface and scroll trigger |
 | `offer_click` | The modal's pricing link is clicked, including modified/middle clicks | Above plus `destination_path=/pricing` |
 | `pricing_view` | Pricing document initializes analytics | `offer_engagement=none/viewed/clicked`, plus offer context when available |
-| `begin_checkout` | Authenticated checkout API successfully returns a checkout URL in production mode | Offer context, server-supplied plan item, currency and checkout value |
 | `purchase` | Order API confirms credit grant and a verified non-revoked receipt in production mode | Offer context, receipt transaction ID, actual charged amount, currency and plan item |
 
 `offer_surface`: `modal` / `teaser`. `offer_trigger`: `exit_top` / `scroll_up` / `teaser_click`.
@@ -28,6 +27,7 @@ Use the existing GA4 measurement ID `G-LSG4H51443` through `public/analytics.js`
 `close_method`: `close_button` / `dismiss_button` / `backdrop` / `escape`. Navigation to pricing is not reported as a close. A mobile visitor may see both a teaser and a modal; use users and surface filters rather than treating their two impressions as two people.
 
 Offer context lasts up to 30 minutes in session storage and does not add query strings to URLs. Purchase duplicates are suppressed in memory and a bounded list of the most recent 100 transaction references in local storage; GA4 also receives a stable `transaction_id`. Blocked storage/tags must not interrupt the product flow.
+
 
 Only explicit safe fields are forwarded. Never send email, user ID, photo content/name, prompts, payment-provider IDs, checkout tokens or credentials. Purchase amount comes from the verified receipt, not a price-label scrape or success query parameter. Test, pending and revoked payments do not produce purchase events.
 
@@ -37,7 +37,7 @@ This repository adds event collection; it does not claim that GA4 Admin custom d
 
 1. Open the GA4 property whose web stream measurement ID is `G-LSG4H51443`.
 2. In **Admin → Data display → Custom definitions → Create custom dimension**, register event-scoped dimensions for `offer_engagement`, `offer_surface`, `offer_trigger`, `offer_source_path`, and `close_method`. Add `offer_id` if multiple offers will be compared. Do not register transaction IDs as custom dimensions.
-3. In **Explore → Funnel exploration**, use indirectly-followed steps: `offer_view` → `offer_click` → `pricing_view` → `begin_checkout` → `purchase`. Separate mobile teaser/modal surfaces where needed. Use a 30-minute window when analyzing the offer-attributed journey.
+3. In **Explore → Funnel exploration**, use indirectly-followed steps: `offer_view` → `offer_click` → `pricing_view` → `purchase`. Separate mobile teaser/modal surfaces where needed. Use a 30-minute window when analyzing the offer-attributed journey.
 4. Compare pricing and purchase users for `offer_engagement=none`, `viewed`, and `clicked`; inspect desktop/mobile separately. Click-through purchase rate is correlation, not proof of incremental lift. A randomized holdout would be needed to measure causal improvement.
 5. Check event names in Realtime after real traffic reaches the released code. Custom definitions and standard reporting may take time to populate. Configure/verify `purchase` as a key event in the intended property if conversion reporting requires it.
 

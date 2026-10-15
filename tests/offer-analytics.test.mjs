@@ -5,7 +5,7 @@ import vm from 'node:vm';
 
 const source=readFileSync(new URL('../public/analytics.js',import.meta.url),'utf8');
 const origin='https://burningbridgesaivideo.pro';
-function storage() {const data=new Map();return {getItem:key=>data.get(key)||null,setItem:(key,value)=>data.set(key,value)};}
+function storage() {const data=new Map();return {getItem:key=>data.get(key)||null,setItem:(key,value)=>data.set(key,value),removeItem:key=>data.delete(key)};}
 function run(path='/',shared={session:storage(),local:storage()}) {
   const window={sessionStorage:shared.session,localStorage:shared.local};
   const context=vm.createContext({window,URL,Date,location:new URL(origin+path),document:{referrer:origin+'/?email=private@example.test',head:{append(){}},createElement:()=>({})}});
@@ -28,17 +28,17 @@ test('offer tracking strips unapproved data and reports real surface, trigger an
   assert.doesNotMatch(JSON.stringify(app.events()),/private@|secret-photo|#secret|email=/);
 });
 
-test('pricing visit and checkout/purchase carry the clicked offer across documents',()=>{
+test('pricing visit and confirmed purchase carry the clicked offer across documents',()=>{
   const landing=run('/examples');landing.api.offer('view',{surface:'teaser',trigger:'scroll_up'});landing.api.offer('open',{surface:'teaser',trigger:'scroll_up'});landing.api.offer('click',{surface:'modal',trigger:'teaser_click'});
   const pricing=run('/pricing',landing.shared);
   assert.equal(pricing.events()[0].name,'pricing_view');
   assert.equal(pricing.events()[0].params.offer_engagement,'clicked');
   assert.equal(pricing.events()[0].params.offer_source_path,'/examples');
-  pricing.api.beginCheckout({mode:'prod',analytics:paid.analytics});pricing.api.purchase(paid);
-  assert.deepEqual(pricing.events().map(e=>e.name),['pricing_view','begin_checkout','purchase']);
-  assert.equal(pricing.events()[2].params.value,9.4);
-  assert.equal(pricing.events()[2].params.offer_engagement,'clicked');
-  assert.equal(pricing.events()[2].params.transaction_id,id+':1');
+  pricing.api.purchase(paid);
+  assert.deepEqual(pricing.events().map(e=>e.name),['pricing_view','purchase']);
+  assert.equal(pricing.events()[1].params.value,9.4);
+  assert.equal(pricing.events()[1].params.offer_engagement,'clicked');
+  assert.equal(pricing.events()[1].params.transaction_id,id+':1');
 });
 
 test('pending/test/refunded or malformed receipt data cannot emit purchase; confirmed receipts deduplicate across reloads',()=>{
@@ -65,5 +65,4 @@ test('blocked storage and analytics errors cannot interrupt navigation or paymen
   assert.doesNotThrow(()=>app.api.offer('click',{surface:'modal',trigger:'exit_top'}));
   app.window.gtag=()=>{throw Error('blocked tag');};
   assert.doesNotThrow(()=>app.api.purchase(paid));
-  assert.doesNotThrow(()=>app.api.beginCheckout({mode:'prod',analytics:paid.analytics}));
 });

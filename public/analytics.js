@@ -63,10 +63,6 @@
   const validCommerce = data => data && plans.has(data.item_id) && data.currency === 'USD' && Number.isFinite(data.value) && data.value > 0;
   window.BBAnalytics = Object.freeze({
     offer,
-    beginCheckout(data) {
-      if (data?.mode !== 'prod' || !validCommerce(data.analytics)) return;
-      emit('begin_checkout', {...context(), currency:'USD', value:data.analytics.value, items:[item(data.analytics)]});
-    },
     purchase(data) {
       const receipt = data?.analytics;
       if (data?.mode !== 'prod' || data.credited !== true || !validCommerce(receipt)

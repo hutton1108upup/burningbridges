@@ -106,7 +106,7 @@ async function api(request,env) {
         metadata:{orderId:id,userId:user.id,planId:body.planId,draftId},orderMerchantExternalId:id},{idempotencyKey:id});
       const redirect=new URL(session.checkoutUrl);
       if(redirect.protocol!=='https:' || redirect.hostname!=='pancake.waffo.ai') throw new HttpError(502,'CHECKOUT_FAILED');
-      return json({orderId:id,checkoutUrl:session.checkoutUrl,mode:mode(env),analytics:{item_id:body.planId,item_name:plan.name,currency:'USD',value:plan.cents/100}});
+      return json({orderId:id,checkoutUrl:session.checkoutUrl,mode:mode(env)});
     } catch(error) {
       await sql(db,"UPDATE orders SET status='checkout_failed' WHERE id=? AND status='pending'",id).run();
       if(error instanceof HttpError) throw error;
