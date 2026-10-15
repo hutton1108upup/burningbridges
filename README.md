@@ -121,7 +121,7 @@ Google 登录已按模板的 Better Auth / Drizzle / D1 方案局部适配，配
 
 - 路径：`/gas-station-dance-ai`；页面文件：`public/gas-station-dance-ai/index.html`。
 - 独立样式和交互：`public/gas-station.css`、`public/gas-station.js`。
-- 三张原创 SVG 分镜素材：`public/assets/gas-station-{dance,selfie,exit}.svg`，用于场景说明，不是生成结果。
+- 页面预览、两个示例视频、对应封面与三张分镜图位于 `public/assets/gas-station/`。播放器手动播放，默认静音；示例播放器按需加载。
 - 单人/三人照片预览，仅使用当前标签页临时 URL；无上传、持久化、任务提交或扣积分。切换单人模式清除另外两张照片。
 - 支持 JPG/PNG/WebP、8MB 上限和 512 × 512 最小尺寸；刷新或关闭清除照片。
 - 页面包含 canonical、OG、面包屑、与可见内容一致的 FAQ schema，并加入 sitemap 和全站页脚。
