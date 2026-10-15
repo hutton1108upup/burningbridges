@@ -1,0 +1,36 @@
+.home-showcase,.home-insights{scroll-margin-top:6rem;padding-top:4.5rem;padding-bottom:3.5rem}
+.home-section-heading{max-width:46rem;margin:0 auto 2.5rem;text-align:center}
+.home-eyebrow{display:block;color:var(--color-primary);font-size:.7rem;font-weight:600;letter-spacing:.13em;line-height:1.7}
+.home-section-heading h2{font-size:clamp(2rem,4vw,3.15rem);font-weight:600;line-height:1.1;letter-spacing:-.035em;margin:.8rem 0 1rem}
+.home-section-heading p,.home-screen-caption p,.home-story p{color:var(--color-muted-foreground);line-height:1.8}
+.home-screen{max-width:64rem;margin:auto;border:1px solid var(--color-border);border-radius:1.5rem;overflow:hidden;background:var(--color-card)}
+.home-screen video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#111;scroll-margin-top:6rem}
+.home-screen-caption{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.4rem 1.75rem}
+.home-screen-caption h3{font-size:1.25rem;font-weight:600;margin:.25rem 0}
+.home-screen-caption p{max-width:40rem;font-size:.9rem}
+.home-action{display:inline-flex;align-items:center;justify-content:center;gap:1.5rem;flex-shrink:0;background:var(--color-primary);color:var(--color-primary-foreground);padding:.8rem 1.1rem;border-radius:99px;font-size:.9rem;font-weight:600;min-height:44px}
+.home-action:hover{filter:brightness(.95)}
+.home-player-status{max-width:64rem;margin:.7rem auto 1.5rem;font-size:.8rem;color:var(--color-muted-foreground);line-height:1.6;min-height:1.6em}
+.home-player-status a{text-decoration:underline}
+.home-clips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;max-width:64rem;margin:auto}
+.home-clip{display:block;min-width:0;text-align:left;cursor:pointer;padding:.5rem .5rem 1rem;border-radius:1rem;border:1px solid var(--color-border);background:var(--color-card);transition:border-color .15s}
+.home-clip:hover,.home-clip[aria-pressed=true]{border-color:var(--color-primary)}
+.home-clip[aria-pressed=true]{box-shadow:0 0 0 1px var(--color-primary)}
+.home-clip-image{display:block;position:relative;aspect-ratio:16/9;border-radius:.6rem;overflow:hidden;background:#111}
+.home-clip img{width:100%;height:100%;object-fit:cover}
+.home-play{position:absolute;bottom:.6rem;right:.6rem;width:2rem;height:2rem;display:grid;place-items:center;border-radius:50%;background:#111b;color:white;font-size:.7rem}
+.home-clip-kind{display:block;margin:.75rem .5rem .15rem;color:var(--color-muted-foreground);font-size:.7rem}
+.home-clip strong{display:block;margin:0 .5rem;font-size:.95rem;font-weight:600}
+.home-gallery-note{max-width:58rem;margin:1.5rem auto 0;text-align:center;color:var(--color-muted-foreground);font-size:.8rem;line-height:1.8}
+.home-story{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:3.5rem;max-width:64rem;margin:0 auto 3rem}
+.home-story:nth-of-type(2) .home-story-image{order:2}
+.home-story-image{position:relative;display:block;width:100%;border-radius:1.25rem;overflow:hidden;cursor:pointer;background:#111;aspect-ratio:16/9}
+.home-story-image img{display:block;width:100%;height:100%;object-fit:cover}
+.home-image-label{position:absolute;left:1rem;bottom:1rem;right:1rem;width:fit-content;max-width:calc(100% - 2rem);border-radius:99px;padding:.5rem .9rem;background:#111c;color:white;font-size:.75rem}
+.home-story h3{font-size:clamp(1.6rem,3vw,2.15rem);line-height:1.2;font-weight:600;letter-spacing:-.025em;margin:.75rem 0 1rem}
+.home-story .home-story-detail{font-size:.85rem;margin:.75rem 0 1.1rem}
+.home-story a{color:var(--color-primary);font-size:.9rem;font-weight:600;text-underline-offset:4px}
+.home-story a:hover{text-decoration:underline}
+.home-clip:focus-visible,.home-story-image:focus-visible,.home-action:focus-visible,.home-screen video:focus-visible{outline:3px solid var(--color-primary);outline-offset:4px}
+@media(max-width:640px){.home-showcase,.home-insights{padding-top:3rem;padding-bottom:2rem}.home-section-heading{margin-bottom:1.75rem}.home-screen{border-radius:1rem}.home-screen-caption{display:block;padding:1rem}.home-action{margin-top:1rem}.home-clips{grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}.home-clip strong{font-size:.85rem}.home-story{grid-template-columns:minmax(0,1fr);gap:1.4rem;margin-bottom:2.5rem}.home-story:nth-of-type(2) .home-story-image{order:0}.home-story h3{margin-top:.5rem}.home-gallery-note{text-align:left}}
+@media(prefers-reduced-motion:reduce){.home-clip{transition:none}}
