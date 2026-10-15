@@ -3,49 +3,99 @@ const shownKey = 'bb:offer-popup-shown:v1';
 const excluded = ['/pricing', '/privacy-policy', '/terms-of-service', '/refund-policy', '/create', '/login', '/auth', '/result', '/account', '/admin'];
 const pathname = location.pathname.replace(/\/+$/, '') || '/';
 const localPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)
-  && new URLSearchParams(location.search).get('offer-preview') === '1';
+  ? new URLSearchParams(location.search).get('offer-preview') : null;
 
 if (!excluded.some(path => pathname === path || pathname.startsWith(`${path}/`))) {
   let shown = false;
   try { shown = sessionStorage.getItem(shownKey) === '1'; }
   catch { /* Storage may be unavailable; still limit this document to one display. */ }
-  if (localPreview) createOffer();
+  if (localPreview === '1') createOffer();
+  else if (localPreview === 'teaser') createTeaser();
   else if (!shown) setupOffer();
 }
 
 function setupOffer() {
-  let armed = false;
   let displayed = false;
-  let previousScroll = window.scrollY;
-  let scrolledDown = false;
-  const timer = window.setTimeout(() => { armed = true; }, 4000);
+  let previousScroll = Math.max(0, window.scrollY);
+  let readEnough = false;
+  let upwardDistance = 0;
+  let upwardStarted = 0;
+  let foregroundMs = 0;
+  let visibleSince = null;
+  const isMobile = () => window.matchMedia('(max-width: 767px), (hover: none)').matches;
+  const active = () => document.visibilityState === 'visible' && document.hasFocus();
+  const elapsed = () => foregroundMs + (visibleSince === null ? 0 : performance.now() - visibleSince);
 
+  function updateForeground() {
+    if (visibleSince !== null) foregroundMs += performance.now() - visibleSince;
+    visibleSince = active() ? performance.now() : null;
+    previousScroll = Math.max(0, window.scrollY);
+    upwardDistance = 0;
+  }
   function stopListening() {
-    window.clearTimeout(timer);
     document.removeEventListener('mouseleave', onMouseLeave);
     window.removeEventListener('scroll', onScroll);
+    document.removeEventListener('visibilitychange', updateForeground);
+    window.removeEventListener('focus', updateForeground);
+    window.removeEventListener('blur', updateForeground);
   }
   function onMouseLeave(event) {
-    if (armed && event.clientY <= 50) showOffer();
+    if (!isMobile() && elapsed() >= 8000 && event.clientY <= 0) showOffer(false);
   }
   function onScroll() {
-    const currentScroll = window.scrollY;
-    if (currentScroll > window.innerHeight * .6) scrolledDown = true;
-    if (armed && scrolledDown && previousScroll - currentScroll > 36 && currentScroll < window.innerHeight * .4) showOffer();
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    const currentScroll = Math.min(maxScroll, Math.max(0, window.scrollY));
+    if (maxScroll > 0 && currentScroll / maxScroll >= .4) readEnough = true;
+    const delta = previousScroll - currentScroll;
     previousScroll = currentScroll;
+    if (!isMobile() || !active() || elapsed() < 10000 || !readEnough || delta <= 0) {
+      upwardDistance = 0;
+      return;
+    }
+    const now = performance.now();
+    if (!upwardDistance || now - upwardStarted > 600) {
+      upwardStarted = now;
+      upwardDistance = 0;
+    }
+    upwardDistance += delta;
+    // Require an intentional upward gesture: at least 120px within 600ms.
+    if (upwardDistance >= 120) showOffer(true);
   }
-  function showOffer() {
-    if (displayed || document.visibilityState !== 'visible') return;
-    // Leave sign-in, plan details and other active dialogs undisturbed.
+  function showOffer(mobile) {
+    if (displayed || !active()) return;
     if (document.querySelector('dialog[open], [aria-modal="true"]')) return;
     displayed = true;
     stopListening();
     try { sessionStorage.setItem(shownKey, '1'); }
     catch { /* The in-memory displayed guard still prevents repeated offers. */ }
-    createOffer();
+    if (mobile) createTeaser();
+    else createOffer();
   }
+  updateForeground();
+  document.addEventListener('visibilitychange', updateForeground);
+  window.addEventListener('focus', updateForeground);
+  window.addEventListener('blur', updateForeground);
   document.addEventListener('mouseleave', onMouseLeave);
   window.addEventListener('scroll', onScroll, {passive: true});
+}
+
+function createTeaser() {
+  const teaser = document.createElement('aside');
+  teaser.className = 'bb-offer-teaser';
+  teaser.setAttribute('aria-label', 'Credit pack offer');
+  teaser.innerHTML = `
+    <button type="button" class="bb-offer-teaser-open" aria-haspopup="dialog">
+      <span><strong>Credit packs from $9.90</strong><span>100 credits · No subscription required</span></span>
+      <span class="bb-offer-teaser-action">View offer <span aria-hidden="true">→</span></span>
+    </button>
+    <button type="button" class="bb-offer-teaser-close" aria-label="Dismiss credit offer">×</button>`;
+  teaser.querySelector('.bb-offer-teaser-open').addEventListener('click', () => {
+    if (document.querySelector('dialog[open], [aria-modal="true"]')) return;
+    // Keep the teaser in place so closing the dialog restores focus to its button.
+    createOffer();
+  });
+  teaser.querySelector('.bb-offer-teaser-close').addEventListener('click', () => teaser.remove());
+  document.body.append(teaser);
 }
 
 function createOffer() {

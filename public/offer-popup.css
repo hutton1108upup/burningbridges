@@ -139,3 +139,38 @@
 .bb-offer-error { margin: 12px 0 0; color: var(--destructive); font-size: 13px; line-height: 20px; }
 .bb-offer-error[hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) { .bb-offer-dialog .bb-offer-cta { transition: none; } }
+
+.bb-offer-teaser {
+  position: fixed;
+  z-index: 50;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  left: 12px;
+  max-width: 448px;
+  margin-inline: auto;
+  padding: 14px 34px 14px 14px;
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, var(--border));
+  border-radius: 16px;
+  background: var(--card);
+  color: var(--card-foreground);
+  font-family: "BB Offer Nunito", ui-rounded, system-ui, sans-serif;
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--foreground) 15%, transparent);
+}
+.bb-offer-teaser, .bb-offer-teaser * { box-sizing: border-box; }
+.bb-offer-teaser button { margin: 0; border: 0; background: transparent; font: inherit; cursor: pointer; }
+.bb-offer-teaser-open {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  width: 100%;
+  padding: 0;
+  color: inherit;
+  text-align: left;
+}
+.bb-offer-teaser-open strong { display: block; font-size: 14px; font-weight: 800; line-height: 20px; }
+.bb-offer-teaser-open strong + span { display: block; margin-top: 2px; color: var(--muted-foreground); font-size: 12px; line-height: 18px; }
+.bb-offer-teaser-action { color: var(--primary); font-size: 13px; font-weight: 800; line-height: 20px; }
+.bb-offer-teaser .bb-offer-teaser-close { position: absolute; top: 7px; right: 5px; width: 30px; height: 30px; padding: 0; color: var(--muted-foreground); font-size: 24px; line-height: 30px; }
+.bb-offer-teaser :focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
