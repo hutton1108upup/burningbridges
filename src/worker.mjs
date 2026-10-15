@@ -122,7 +122,11 @@ async function api(request,env) {
     const order=await sql(db,'SELECT id,status,plan_id FROM orders WHERE id=? AND user_id=? AND mode=?',orderMatch[1],user.id,mode(env)).first();
     if(!order) throw new HttpError(404,'ORDER_NOT_FOUND');
     const grant=await sql(db,'SELECT id FROM lots WHERE order_id=? AND revoked=0 LIMIT 1',order.id).first();
-    return json({order,credited:Boolean(grant),balance:await balance(db,user.id,mode(env)),mode:mode(env)});
+    // Only verified, non-revoked receipts with a corresponding credit grant qualify.
+    const receipt=grant&&mode(env)==='prod'?await sql(db,'SELECT r.id,r.charged_cents FROM receipts r JOIN lots l ON l.receipt_id=r.id WHERE r.order_id=? AND r.revoked=0 AND l.revoked=0 ORDER BY r.period ASC LIMIT 1',order.id).first():null;
+    const plan=PLANS[order.plan_id];
+    const analytics=receipt&&plan?{transaction_id:receipt.id,currency:'USD',value:receipt.charged_cents/100,item_id:order.plan_id,item_name:plan.name}:null;
+    return json({order,credited:Boolean(grant),balance:await balance(db,user.id,mode(env)),mode:mode(env),analytics});
   }
   if(path==='/api/billing/portal' && request.method==='POST') {
     const {portalUrl}=await waffo(env).auth.createCustomerPortalLink({storeId:env.WAFFO_STORE_ID,buyerIdentity:user.id});
