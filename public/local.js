@@ -61,7 +61,7 @@ $$('[data-slot="accordion-trigger"]').forEach(button => {
   };
 });
 
-$$('video:not([data-reference-player])').forEach(video=>{
+$$('video:not([data-reference-player]):not([data-home-media])').forEach(video=>{
   video.muted=true;video.loop=true;video.playsInline=true;
   video.play().catch(()=>{}); // Autoplay may be blocked by browser preferences.
 });
@@ -97,7 +97,7 @@ const resolution=$('#resolution');
 if(resolution)resolution.onchange=()=>{const credits=$('#required-credits');if(credits)credits.textContent=({'480':50,'720':100,'1080':200})[resolution.value];};
 
 const examples=$('#examples');
-if(examples){
+if(examples && !examples.hasAttribute('data-home-gallery')){
   const video=$('video',examples);
   $$('button',examples).filter(button=>$('img',button)).forEach((button,index)=>{
     button.onclick=()=>{
