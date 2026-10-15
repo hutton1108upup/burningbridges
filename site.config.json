@@ -20,7 +20,8 @@
     "/gas-station-dance-ai",
     "/ozil-goal-ai-video",
     "/zombie-pet-ai-video",
-    "/zombie-love-story-ai"
+    "/zombie-love-story-ai",
+    "/flying-entrance"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -79,6 +80,11 @@
     "/assets/zombie-love-story-card.svg",
     "/assets/zombie-love-story-social.png",
     "/assets/zombie-love-story-reference.mp4",
-    "/assets/zombie-love-story-reference-poster.jpg"
+    "/assets/zombie-love-story-reference-poster.jpg",
+    "/flying-entrance.css",
+    "/assets/flying-entrance/result.jpg",
+    "/assets/flying-entrance/reference.mp4",
+    "/assets/flying-entrance/person.jpg",
+    "/assets/flying-entrance/car.jpg"
   ]
 }
