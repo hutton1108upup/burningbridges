@@ -19,6 +19,10 @@
     {
       "id": "stories",
       "name": "Stories & Romance"
+    },
+    {
+      "id": "cinematic",
+      "name": "Cinematic & Cars"
     }
   ],
   "projects": [
@@ -71,6 +75,16 @@
       "imageAlt": "Original storyboard illustration of a couple embracing in a golden field",
       "description": "Follow the cabin-to-hug story, preview two cast photos on your device and check video plans.",
       "label": "Two-person story"
+    },
+    {
+      "id": "flying-entrance",
+      "name": "Flying Entrance · AI Car Jump Video",
+      "category": "cinematic",
+      "url": "/flying-entrance",
+      "image": "/assets/flying-entrance/result.jpg",
+      "imageAlt": "Car airborne behind a seated person in a golden field",
+      "description": "Explore the cinematic car-jump reference, compare two source photos and prepare your Flying Entrance idea.",
+      "label": "Car jump effect"
     }
   ]
 }
