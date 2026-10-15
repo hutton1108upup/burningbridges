@@ -15,6 +15,10 @@
     {
       "id": "pets",
       "name": "Pets & Stories"
+    },
+    {
+      "id": "stories",
+      "name": "Stories & Romance"
     }
   ],
   "projects": [
@@ -57,6 +61,16 @@
       "imageAlt": "Original illustration of a person holding a dog in a sunset field",
       "description": "A pet in a dark cabin, a leap into open arms and a memory in a golden field. Choose photos for both characters.",
       "label": "Pet story"
+    },
+    {
+      "id": "zombie-love-story",
+      "name": "Zombie Love Story AI",
+      "category": "stories",
+      "url": "/zombie-love-story-ai",
+      "image": "/assets/zombie-love-story-card.svg",
+      "imageAlt": "Original storyboard illustration of a couple embracing in a golden field",
+      "description": "Follow the cabin-to-hug story, preview two cast photos on your device and check video plans.",
+      "label": "Two-person story"
     }
   ]
 }
