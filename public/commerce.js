@@ -72,7 +72,7 @@ function preparePricingNavigation() {
 }
 window.BBCommerce={saveDraft,preparePricingNavigation};
 const panel=document.createElement('section');panel.className='commerce-panel';panel.setAttribute('data-clarity-mask','true');
-panel.innerHTML=`<div class="commerce-bar"><strong id="commerce-account-label">Your account</strong><button type="button" id="commerce-account">Sign in / Create account</button><button type="button" id="commerce-billing" hidden>Manage billing</button><button type="button" id="commerce-logout" hidden>Sign out</button></div><p id="commerce-status" role="status" aria-live="polite"></p><div id="saved-draft" hidden></div><div id="payment-return" hidden><button type="button" id="check-payment">Check payment status</button><a href="/#burning-bridges-ai-generator">Return to your photo</a></div><div id="payment-success-cta" hidden><a class="payment-success-cta" href="/#burning-bridges-ai-generator">Return to photo &amp; generate video</a></div><div id="commerce-orders" hidden></div><button type="button" id="commerce-history" hidden>View last video</button>`;
+panel.innerHTML=`<div class="commerce-bar"><strong id="commerce-account-label">Your account</strong><button type="button" id="commerce-account">Sign in / Create account</button><button type="button" id="commerce-billing" hidden>Manage billing</button><button type="button" id="commerce-logout" hidden>Sign out</button></div><p id="commerce-status" role="status" aria-live="polite"></p><div id="saved-draft" hidden></div><div id="payment-return" hidden><button type="button" id="check-payment">Check payment status</button><a href="/#burning-bridges-ai-generator">Return to your photo</a></div><div id="payment-success-cta" hidden><a class="payment-success-cta" href="/pricing">View credit plans</a></div><div id="commerce-orders" hidden></div><button type="button" id="commerce-history" hidden>View last video</button>`;
 const main=$('main')||document.body;
 const generator=$('#burning-bridges-ai-generator');
 const pricing=$('#pricing');
@@ -257,7 +257,7 @@ function updateGenerator() {
     button.textContent=button.disabled?'Generating…':!photoBlob?'Upload photo':!session?.user?'Generate Video':currentJob&&latestJob.status==='succeeded'?'Download video':unresolved?'Check video status':session.balance<100?'Generate Video':'Generate video · 100 credits';
   }
   document.querySelectorAll('a').forEach(link=>{
-    if(['Create Video','Burning Bridges Generator'].includes(link.textContent.trim()))link.href=session?.user && session.balance>=50?'/#burning-bridges-ai-generator':'/pricing';
+    if(['Create Video','Burning Bridges Generator'].includes(link.textContent.trim()))link.href='/pricing';
   });
 }
 async function refresh() {

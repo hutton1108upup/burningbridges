@@ -21,7 +21,8 @@
     "/ozil-goal-ai-video",
     "/zombie-pet-ai-video",
     "/zombie-love-story-ai",
-    "/flying-entrance"
+    "/flying-entrance",
+    "/examples/toc-toc-dance"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -89,6 +90,12 @@
     "/offer-popup.css",
     "/offer-popup.js",
     "/assets/fonts/nunito-latin.woff2",
-    "/assets/fonts/nunito-OFL.txt"
+    "/assets/fonts/nunito-OFL.txt",
+    "/toc-toc.css",
+    "/toc-toc.js",
+    "/assets/toc-toc/toc-toc-dance-example-1-poster.webp",
+    "/assets/toc-toc/toc-toc-dance-example-1.mp4",
+    "/assets/toc-toc/toc-toc-dance-template-poster.webp",
+    "/assets/toc-toc/toc-toc-dance-template.mp4"
   ]
 }
