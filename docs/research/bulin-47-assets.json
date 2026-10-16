@@ -1,0 +1,119 @@
+{
+  "reference": "https://bulin47ai.com/",
+  "checkedAt": "2026-10-16",
+  "purpose": "Reference-page adaptation; video examples credited to their original creators, not claimed as our generated outputs.",
+  "assets": [
+    {
+      "url": "https://media.bulin47ai.com/media/original.jpg",
+      "file": "public/assets/bulin-47/original.jpg",
+      "bytes": 29715,
+      "sha256": "eae462ec2c6e08ed9d522db04f1b1be7bf4a38ec394c351bf4405cacfcd7972b"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/original.mp4",
+      "file": "public/assets/bulin-47/original.mp4",
+      "bytes": 490461,
+      "sha256": "f8dc43b53590c6361617b939b74238a2e9860721de4835f7998f9da51c085c1a"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex1_freddoapxj1.jpg",
+      "file": "public/assets/bulin-47/ex1_freddoapxj1.jpg",
+      "bytes": 25920,
+      "sha256": "6d558f5559e0e63656575c4ce7c9c8fe27fc10a0ac9b8b1bb284abaaa6eea459"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex1_freddoapxj1.mp4",
+      "file": "public/assets/bulin-47/ex1_freddoapxj1.mp4",
+      "bytes": 325278,
+      "sha256": "d7b084affbe80eb603f3b0270ae77f53e48c3f8031f649b421a0335dc7aa861d"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex2_srjimenez_fan.jpg",
+      "file": "public/assets/bulin-47/ex2_srjimenez_fan.jpg",
+      "bytes": 26517,
+      "sha256": "8bb08cf14a7ba98b0be56bbd3b4e684e8f2b35dc0643865d55829ba4d464a7b7"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex2_srjimenez_fan.mp4",
+      "file": "public/assets/bulin-47/ex2_srjimenez_fan.mp4",
+      "bytes": 395723,
+      "sha256": "3e97e9ba802df65f2b9f34b3a5087f0b543b9116d173ec79efedd90f8dd4bd45"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex3_freddoapxj1.jpg",
+      "file": "public/assets/bulin-47/ex3_freddoapxj1.jpg",
+      "bytes": 30264,
+      "sha256": "0bfd4468822fc860fd04ab9cd750bfafd78d9f8ed7a0b2bfdbd3b1eeb8fa5dc0"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex3_freddoapxj1.mp4",
+      "file": "public/assets/bulin-47/ex3_freddoapxj1.mp4",
+      "bytes": 258157,
+      "sha256": "900c8383f71a5c2dd1ad015900c7b1b9f37368092e61a783dc38fc3fc4aa5490"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex4_tokischa.luna.jpg",
+      "file": "public/assets/bulin-47/ex4_tokischa.luna.jpg",
+      "bytes": 21130,
+      "sha256": "9fb1008301e976285e196cfdc8c7190da77d4c324b6ffa2ac748ddd7f5cb87e5"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex4_tokischa.luna.mp4",
+      "file": "public/assets/bulin-47/ex4_tokischa.luna.mp4",
+      "bytes": 320534,
+      "sha256": "60d4d0c5448979ee05f9811360f96b6ea79a51f02572f3423586343ef6312ddb"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex5_yaiseloficial.jpg",
+      "file": "public/assets/bulin-47/ex5_yaiseloficial.jpg",
+      "bytes": 23565,
+      "sha256": "15508771c7e4fd55283fc12f608e5f53a413c2b37e697f750b8041c9914466b5"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex5_yaiseloficial.mp4",
+      "file": "public/assets/bulin-47/ex5_yaiseloficial.mp4",
+      "bytes": 370198,
+      "sha256": "015e0fd7962c43302f4b51d83aea67820bc4f1dbcc5023d31c4fe7804a7ccbeb"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex6_freddoapxj1.jpg",
+      "file": "public/assets/bulin-47/ex6_freddoapxj1.jpg",
+      "bytes": 27614,
+      "sha256": "71b6e0dba083f27152744aea264fad9995d13cb87e927d8b032d555f2cea4477"
+    },
+    {
+      "url": "https://media.bulin47ai.com/media/ex6_freddoapxj1.mp4",
+      "file": "public/assets/bulin-47/ex6_freddoapxj1.mp4",
+      "bytes": 228652,
+      "sha256": "0ad36b14422fd51fd525393632bdbb106f8e071035dbd71216ad9096ce1a593f"
+    },
+    {
+      "url": "https://bulin47ai.com/_next/static/immutable/media/8800dfc60902df36-s.p.36xefmj0vqxkn.woff2",
+      "file": "public/assets/bulin-47/onest-latin.woff2",
+      "bytes": 33808,
+      "sha256": "cc61cbd632bb677cd55f0eec9ebdd3e1525c5f30904cbf0769e2ac50d0fba992"
+    },
+    {
+      "url": "https://bulin47ai.com/_next/static/immutable/media/55cb69ad17a100ed.p.0kxvs4gr291h1.woff2",
+      "file": "public/assets/bulin-47/big-shoulders-latin.woff2",
+      "bytes": 36480,
+      "sha256": "5faff1f81ec23664f3045f18fa3358f8f801b1958b527b08a4fe0adba2c61002"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/onest/OFL.txt",
+      "file": "public/assets/bulin-47/onest-OFL.txt",
+      "bytes": 4383,
+      "sha256": "7805ccc507e6dc0c0796f1afa4f03ad413a9d302a30a24f8dbeb1aeef07a6c17",
+      "upstreamSha256": "071195d8806e226faeee60259c28ca67b458227af5195a73f5cfcab06e3003bc",
+      "transformation": "Removed trailing whitespace; license wording unchanged."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/bigshoulders/OFL.txt",
+      "file": "public/assets/bulin-47/big-shoulders-OFL.txt",
+      "bytes": 4396,
+      "sha256": "3a914b9c36b191af65068ea1ef9d99c7c6e90c838f53c12508463a4ea9330f19",
+      "upstreamSha256": "fbc746aabf0eb1847dfd92e2efc4596d79fa897d60b8e64062a22f585508fb3f",
+      "transformation": "Removed trailing whitespace; license wording unchanged."
+    }
+  ]
+}

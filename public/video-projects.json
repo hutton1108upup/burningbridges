@@ -37,6 +37,16 @@
       "label": "Party performance"
     },
     {
+      "id": "bulin-47",
+      "name": "Bulin 47 AI Video Maker",
+      "category": "music",
+      "url": "/bulin-47-ai-video-maker",
+      "image": "/assets/bulin-47/original.jpg",
+      "imageAlt": "Bulin 47 freestyle performance beside a street-side speaker",
+      "description": "Watch the original and AI freestyle references, check a portrait on your device and explore video plans.",
+      "label": "Freestyle references"
+    },
+    {
       "id": "gas-station-dance",
       "name": "Gas Station Dance AI",
       "category": "dance",

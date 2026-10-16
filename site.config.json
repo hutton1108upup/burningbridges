@@ -23,7 +23,8 @@
     "/zombie-love-story-ai",
     "/flying-entrance",
     "/examples/toc-toc-dance",
-    "/blog/how-to-make-toc-toc-ai-dance-video"
+    "/blog/how-to-make-toc-toc-ai-dance-video",
+    "/bulin-47-ai-video-maker"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -98,6 +99,26 @@
     "/assets/toc-toc/toc-toc-dance-example-1.mp4",
     "/assets/toc-toc/toc-toc-dance-template-poster.webp",
     "/assets/toc-toc/toc-toc-dance-template.mp4",
-    "/toc-toc-guide.css"
+    "/toc-toc-guide.css",
+    "/bulin-47.css",
+    "/bulin-47.js",
+    "/assets/bulin-47/original.jpg",
+    "/assets/bulin-47/original.mp4",
+    "/assets/bulin-47/ex1_freddoapxj1.jpg",
+    "/assets/bulin-47/ex1_freddoapxj1.mp4",
+    "/assets/bulin-47/ex2_srjimenez_fan.jpg",
+    "/assets/bulin-47/ex2_srjimenez_fan.mp4",
+    "/assets/bulin-47/ex3_freddoapxj1.jpg",
+    "/assets/bulin-47/ex3_freddoapxj1.mp4",
+    "/assets/bulin-47/ex4_tokischa.luna.jpg",
+    "/assets/bulin-47/ex4_tokischa.luna.mp4",
+    "/assets/bulin-47/ex5_yaiseloficial.jpg",
+    "/assets/bulin-47/ex5_yaiseloficial.mp4",
+    "/assets/bulin-47/ex6_freddoapxj1.jpg",
+    "/assets/bulin-47/ex6_freddoapxj1.mp4",
+    "/assets/bulin-47/onest-latin.woff2",
+    "/assets/bulin-47/big-shoulders-latin.woff2",
+    "/assets/bulin-47/onest-OFL.txt",
+    "/assets/bulin-47/big-shoulders-OFL.txt"
   ]
 }
