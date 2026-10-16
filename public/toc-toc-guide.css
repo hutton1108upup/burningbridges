@@ -1,0 +1,14 @@
+.toc-howto-reference{display:grid;grid-template-columns:180px 1fr;align-items:center;gap:24px;margin:24px 0;padding:20px;border:1px solid var(--border);border-radius:16px;background:var(--card)}
+.toc-howto-reference img{display:block;width:180px;height:300px;object-fit:contain;border-radius:12px;background:#111}
+.toc-howto-reference figcaption{font-size:14px;color:var(--muted-foreground);line-height:1.8}
+.toc-howto .guide-date{font-size:13px;color:var(--muted-foreground)}
+.toc-howto-steps{padding-left:26px!important}
+.toc-howto-steps>li{padding:8px 0 16px 8px}
+.toc-howto-steps>li::marker{color:var(--primary);font-weight:600}
+.toc-howto-steps h3{margin-top:8px}
+.toc-howto-fixes dt{font-size:16px;font-weight:600;margin-top:22px}
+.toc-howto-fixes dd{margin:8px 0 0;color:var(--muted-foreground)}
+.toc-howto details{padding:18px 0;border-bottom:1px solid var(--border)}
+.toc-howto summary{font-size:16px;font-weight:500;cursor:pointer}
+.toc-howto :is(a,button,summary):focus-visible{outline:2px solid var(--primary);outline-offset:4px}
+@media(max-width:600px){.toc-howto-reference{grid-template-columns:1fr;gap:16px;padding:16px}.toc-howto-reference img{width:100%;max-height:320px;justify-self:center}.toc-howto .guide-toc{padding:18px}.toc-howto-steps>li{padding-left:3px}}
