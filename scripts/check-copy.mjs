@@ -38,11 +38,11 @@ for (const route of config.routes) {
 const pricing = await readFile('public/pricing/index.html', 'utf8');
 assert.equal((pricing.match(/role="tab"/g) || []).length, 2);
 assert.equal((pricing.match(/role="tabpanel"/g) || []).length, 2);
-for (const price of ['$19','$39','$79','$9.90','$14.90','$29.90']) assert.ok(pricing.includes(price), `Missing plan ${price}`);
+for (const price of ['$19','$39','$79','$5.90','$13.90','$29.90']) assert.ok(pricing.includes(price), `Missing plan ${price}`);
 assert.equal((pricing.match(/>\s*Choose Plan\s*</g) || []).length, 6);
 for (const route of ['/terms-of-service','/refund-policy']) {
   const html = await readFile(`public${route}/index.html`, 'utf8');
-  for (const phrase of ['$19','$39','$79','$9.90','$14.90','$29.90','30 days','90 days']) assert.ok(html.includes(phrase), `Policy/plan mismatch: ${route} ${phrase}`);
+  for (const phrase of ['$19','$39','$79','$5.90','$13.90','$29.90','30 days','90 days']) assert.ok(html.includes(phrase), `Policy/plan mismatch: ${route} ${phrase}`);
 }
 const script = await readFile('public/local.js', 'utf8');
 const commerce = await readFile('public/commerce.js', 'utf8');

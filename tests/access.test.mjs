@@ -26,9 +26,9 @@ test('API rejects malformed or oversized bodies before account or credit writes'
   assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM jobs').get().n,0);db.close();
 });
 test('payment mismatch does not mark event processed so corrected signed delivery can retry',async()=>{
-  const {db,owner,order,env}=setup();const e={eventType:'order.completed',eventId:'PAY_test',timestamp:new Date().toISOString(),mode:'test',storeId:'STO_test',data:{orderId:'ORD_test',orderMerchantExternalId:order,merchantProvidedBuyerIdentity:owner,orderMetadata:{orderId:order,userId:owner,planId:'pack100',draftId:''},productMetadata:{planId:'pack100'},orderStatus:'completed',paymentStatus:'succeeded',paymentId:'PAY_test',currency:'USD',chargedAmount:'9.90',listPrice:{subtotal:'0.01'}}};
+  const {db,owner,order,env}=setup();const e={eventType:'order.completed',eventId:'PAY_test',timestamp:new Date().toISOString(),mode:'test',storeId:'STO_test',data:{orderId:'ORD_test',orderMerchantExternalId:order,merchantProvidedBuyerIdentity:owner,orderMetadata:{orderId:order,userId:owner,planId:'pack100',draftId:''},productMetadata:{planId:'pack100'},orderStatus:'completed',paymentStatus:'succeeded',paymentId:'PAY_test',currency:'USD',chargedAmount:'5.90',listPrice:{subtotal:'0.01'}}};
   await assert.rejects(()=>applyEvent(db,e,env));assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM events').get().n,0);
-  e.data.listPrice.subtotal='9.90';await applyEvent(db,e,env);assert.equal(await balance(db,owner,'test'),100);db.close();
+  e.data.listPrice.subtotal='5.90';await applyEvent(db,e,env);assert.equal(await balance(db,owner,'test'),100);db.close();
 });
 test('FIFO allocation spans multiple lots and two competing jobs cannot overspend',async()=>{
   const {db,owner,order,now}=setup();
