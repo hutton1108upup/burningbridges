@@ -59,7 +59,7 @@ main>.commerce-panel{margin:24px auto}
 #commerce-mode{padding:10px;border-radius:8px;background:#fff3db;color:#713f12}
 #saved-draft{display:flex;align-items:center;gap:16px;margin-top:12px}#saved-draft img{width:64px;height:64px;object-fit:cover;border-radius:8px}
 #commerce-result video{display:block;width:100%;max-width:640px;max-height:400px;margin:12px 0;border-radius:12px}
-#commerce-result{scroll-margin-top:96px}#commerce-result h2{font-size:20px;font-weight:600;margin-top:16px}#payment-return{display:flex;gap:20px;flex-wrap:wrap;margin-top:12px}
+#commerce-result{scroll-margin-top:96px}#commerce-result h2{font-size:20px;font-weight:600;margin-top:16px}#payment-return{display:flex;gap:20px;flex-wrap:wrap;margin-top:12px}#payment-success-cta{margin-top:12px}.payment-success-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;padding:10px 18px;border-radius:999px;background:var(--primary);color:var(--primary-foreground)!important;font-weight:600;text-align:center}.payment-success-cta:focus-visible{outline:2px solid var(--primary);outline-offset:4px}
 .commerce-auth{max-height:85vh;overflow:auto}.commerce-auth label{display:block;margin-top:12px;font-size:14px}.commerce-auth input{display:block;width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--background)}
 .commerce-auth button{margin:12px 8px 0 0}.commerce-auth code{display:block;overflow-wrap:anywhere;user-select:all;margin-top:16px}button:disabled{opacity:.6;cursor:wait}
 @media(max-width:640px){.commerce-panel{margin:12px 0;padding:14px}.commerce-bar strong{flex-basis:100%}.commerce-auth{width:calc(100% - 32px)}}
