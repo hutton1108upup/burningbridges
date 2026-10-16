@@ -64,11 +64,11 @@ test('failed job returns credits exactly once; successful job is not refunded',a
 });
 test('partial and full refunds remove unused credits proportionately and idempotently',async()=>{
   const db=setup();await applyEvent(db,event(),env,now);
-  const partial=event('pack100','refund.succeeded');partial.eventId='RFD_partial';partial.data.refundStatus='succeeded';partial.data.refundedAmount='4.95';partial.data.originalChargedAmount='9.90';await applyEvent(db,partial,env,now);await applyEvent(db,partial,env,now);assert.equal(await balance(db,userId,'test',now),50);
+  const partial=event('pack100','refund.succeeded');partial.eventId='RFD_partial';partial.data.refundStatus='succeeded';partial.data.refundedAmount='2.95';partial.data.originalChargedAmount='5.90';await applyEvent(db,partial,env,now);await applyEvent(db,partial,env,now);assert.equal(await balance(db,userId,'test',now),50);
   const full=structuredClone(partial);full.eventId='RFD_remaining';await applyEvent(db,full,env,now);assert.equal(await balance(db,userId,'test',now),0);db.close();
 });
 test('refund of used credits cannot mint funds when a job later fails',async()=>{
-  const db=setup();await applyEvent(db,event(),env,now);const first=await createJob(db,job(),now);const refund=event('pack100','refund.succeeded');refund.data.refundStatus='succeeded';refund.data.refundedAmount='9.90';refund.data.originalChargedAmount='9.90';await applyEvent(db,refund,env,now);await failJob(db,first.id);assert.equal(await balance(db,userId,'test',now),0);db.close();
+  const db=setup();await applyEvent(db,event(),env,now);const first=await createJob(db,job(),now);const refund=event('pack100','refund.succeeded');refund.data.refundStatus='succeeded';refund.data.refundedAmount='5.90';refund.data.originalChargedAmount='5.90';await applyEvent(db,refund,env,now);await failJob(db,first.id);assert.equal(await balance(db,userId,'test',now),0);db.close();
 });
 test('partial refund delivered before monthly period cannot grant full credits later',async()=>{
   const db=setup('starter');await applyEvent(db,event('starter','subscription.payment_succeeded'),env,now);
