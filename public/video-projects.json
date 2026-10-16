@@ -47,6 +47,16 @@
       "label": "Photo preparation"
     },
     {
+      "id": "toc-toc-dance",
+      "name": "Toc Toc Trend · Toc Toc Dance",
+      "category": "dance",
+      "url": "/examples/toc-toc-dance",
+      "image": "/assets/toc-toc/toc-toc-dance-example-1-poster.webp",
+      "imageAlt": "Toc Toc Dance living-room dance reference",
+      "description": "Explore the toc toc trend, watch the dance references and prepare one portrait for the living-room scene.",
+      "label": "Toc Toc Dance"
+    },
+    {
       "id": "ozil-goal",
       "name": "Ozil Goal AI Video",
       "category": "sports",

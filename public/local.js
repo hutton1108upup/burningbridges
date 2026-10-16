@@ -122,7 +122,7 @@ if(examples && !examples.hasAttribute('data-home-gallery')){
 $$('button').forEach(button=>{
   if(button.hasAttribute('data-local-account'))button.onclick=goToPricing;
   if(/^(Buy \d+ credits|Subscribe Monthly|Choose Plan)$/.test(button.textContent.trim()))button.onclick=()=>showPlanDetails(button);
-  if(button.hasAttribute('data-local-preview') || button.textContent.trim()==='Make yours')button.onclick=()=>location.assign('/#burning-bridges-ai-generator');
+  if(button.hasAttribute('data-local-preview') || button.textContent.trim()==='Make yours')button.onclick=()=>location.assign('/pricing');
 });
 $$('[role="tab"]').forEach(button=>{
   button.tabIndex=button.getAttribute('aria-selected')==='true'?0:-1;
