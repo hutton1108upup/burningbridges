@@ -72,7 +72,7 @@ function preparePricingNavigation() {
 }
 window.BBCommerce={saveDraft,preparePricingNavigation};
 const panel=document.createElement('section');panel.className='commerce-panel';panel.setAttribute('data-clarity-mask','true');
-panel.innerHTML=`<div class="commerce-bar"><strong id="commerce-account-label">Your account</strong><button type="button" id="commerce-account">Sign in / Create account</button><button type="button" id="commerce-billing" hidden>Manage billing</button><button type="button" id="commerce-logout" hidden>Sign out</button></div><p id="commerce-status" role="status" aria-live="polite"></p><div id="saved-draft" hidden></div><div id="payment-return" hidden><button type="button" id="check-payment">Check payment status</button><a href="/#burning-bridges-ai-generator">Return to your photo</a></div><div id="commerce-orders" hidden></div><button type="button" id="commerce-history" hidden>View last video</button>`;
+panel.innerHTML=`<div class="commerce-bar"><strong id="commerce-account-label">Your account</strong><button type="button" id="commerce-account">Sign in / Create account</button><button type="button" id="commerce-billing" hidden>Manage billing</button><button type="button" id="commerce-logout" hidden>Sign out</button></div><p id="commerce-status" role="status" aria-live="polite"></p><div id="saved-draft" hidden></div><div id="payment-return" hidden><button type="button" id="check-payment">Check payment status</button><a href="/#burning-bridges-ai-generator">Return to your photo</a></div><div id="payment-success-cta" hidden><a class="payment-success-cta" href="/#burning-bridges-ai-generator">Return to photo &amp; generate video</a></div><div id="commerce-orders" hidden></div><button type="button" id="commerce-history" hidden>View last video</button>`;
 const main=$('main')||document.body;
 const generator=$('#burning-bridges-ai-generator');
 const pricing=$('#pricing');
@@ -134,14 +134,17 @@ const emailDivider=document.createElement('p');emailDivider.className='commerce-
 $('#auth-social').append(googleButton,emailDivider);
 const linkGoogleButton=document.createElement('button');linkGoogleButton.type='button';linkGoogleButton.id='commerce-link-google';linkGoogleButton.textContent='Link Google';linkGoogleButton.hidden=true;
 accountMenu.querySelector('.commerce-bar').append(linkGoogleButton);
+let pendingCheckoutPlan=null;
 async function googleSignIn(link=false) {
   await sessionReady;await saveDraft();
+  if(!link&&pendingCheckoutPlan)sessionStorage.setItem('bb-pending-checkout',JSON.stringify({planId:pendingCheckoutPlan.dataset.plan,draftId:draft?.id||'',returnPath:'/pricing',createdAt:Date.now()}));
+  else sessionStorage.removeItem('bb-pending-checkout');
   const data=await api('/api/auth/google/start',{link,returnPath:location.pathname==='/pricing'?'/pricing':'/#burning-bridges-ai-generator'});
   const target=new URL(data.url);
   if(target.protocol!=='https:' || target.hostname!=='accounts.google.com')throw Error(messages.GOOGLE_LOGIN_FAILED);
   location.assign(target.href);
 }
-googleButton.onclick=async()=>{setAuthBusy(true);try{await googleSignIn();}catch(error){$('#auth-error').textContent=error.message;setAuthBusy(false);}};
+googleButton.onclick=async()=>{setAuthBusy(true);try{await googleSignIn();}catch(error){sessionStorage.removeItem('bb-pending-checkout');$('#auth-error').textContent=error.message;setAuthBusy(false);}};
 linkGoogleButton.onclick=()=>busy(linkGoogleButton,()=>googleSignIn(true));
 let authAction='signin',afterAuth=null,recoveryValue='',authBusy=false;
 function updateAuthSocial() {
@@ -180,9 +183,9 @@ function authMode(action) {
   $('#auth-error').textContent='';
   if(authDialog.open)$(action==='recover'?'#auth-code':'#auth-email').focus();
 }
-function openAuth(callback=null) {
+function openAuth(callback=null,planButton=null) {
   accountMenu.open=false;
-  afterAuth=callback;authMode('signin');$('#commerce-auth-form').hidden=false;$('#recovery-save').hidden=true;authDialog.showModal();$('#auth-email').focus();
+  afterAuth=callback;pendingCheckoutPlan=planButton;authMode('signin');$('#commerce-auth-form').hidden=false;$('#recovery-save').hidden=true;authDialog.showModal();$('#auth-email').focus();
 }
 $('#commerce-account').onclick=()=>openAuth();
 $('#commerce-account-summary').onclick=event=>{if(!session?.user){event.preventDefault();openAuth();}};
@@ -196,7 +199,7 @@ $('#auth-close').onclick=()=>{if(!authBusy)authDialog.close();};
 authDialog.addEventListener('cancel',event=>{if(authBusy)event.preventDefault();});
 authDialog.addEventListener('close',()=>{
   const hadRecovery=!$('#recovery-save').hidden;
-  clearAuthSecrets();$('#auth-error').textContent='';afterAuth=null;
+  clearAuthSecrets();$('#auth-error').textContent='';afterAuth=null;pendingCheckoutPlan=null;
   if(hadRecovery)refresh().catch(error=>status(error.message,true));
 });
 window.addEventListener('pageshow',event=>{
@@ -234,7 +237,7 @@ $('#commerce-auth-form').onsubmit=async event=>{
   } catch(error) {$('#auth-error').textContent=error.message;} finally {setAuthBusy(false);}
 };
 $('#commerce-logout').onclick=async()=>{
-  try {await api('/api/auth/logout',{});accountMenu.open=false;clearPaymentReturn();pollController?.abort();await storage('delete');photoBlob=null;draft=null;$('#remove-photo')?.click();$('#commerce-result').hidden=true;await refresh();status('Signed out. Your saved photo has been cleared from this browser.');}
+  try {await api('/api/auth/logout',{});accountMenu.open=false;clearPaymentReturn();$('#payment-success-cta').hidden=true;pollController?.abort();await storage('delete');photoBlob=null;draft=null;$('#remove-photo')?.click();$('#commerce-result').hidden=true;await refresh();status('Signed out. Your saved photo has been cleared from this browser.');}
   catch(error){status(error.message,true);}
 };
 $('#commerce-billing').onclick=async()=>{
@@ -259,9 +262,10 @@ function updateGenerator() {
 }
 async function refresh() {
   session=await api('/api/session');
+  if(!session.user)$('#payment-success-cta').hidden=true;
   updateAuthSocial();
   linkGoogleButton.hidden=!session.user || !session.googleLoginEnabled || session.googleLinked;
-  if(activeUser && session.user && activeUser!==session.user.id) {await storage('delete');draft=null;photoBlob=null;$('#remove-photo')?.click();$('#commerce-result').hidden=true;}
+  if(activeUser && session.user && activeUser!==session.user.id) {await storage('delete');draft=null;photoBlob=null;$('#remove-photo')?.click();$('#commerce-result').hidden=true;$('#payment-success-cta').hidden=true;}
   activeUser=session.user?.id||null;
   $('#commerce-account-label').textContent=session.user?`${session.user.email} · ${session.balance} ${session.mode==='test'?'test ':''}credits`:'Your account';
   $('#commerce-account').hidden=Boolean(session.user);$('#commerce-logout').hidden=!session.user;$('#commerce-billing').hidden=!session.user;
@@ -279,10 +283,11 @@ function busy(button,task) {
 }
 document.querySelectorAll('[data-plan]').forEach(button=>{
   button.onclick=()=>busy(button,async()=>{
-    await sessionReady;if(!session?.user) {openAuth(()=>checkout(button));return;}await checkout(button);
+    await sessionReady;if(!session?.user) {openAuth(()=>checkout(button),button);return;}await checkout(button);
   });
 });
 async function checkout(button) {
+  pendingCheckoutPlan=null;
   await saveDraft();status('Opening secure checkout…');
   const data=await api('/api/checkout',{planId:button.dataset.plan,draftId:draft?.id||''});
   sessionStorage.setItem('bb-pending-order',data.orderId);location.assign(data.checkoutUrl);
@@ -299,7 +304,7 @@ async function paymentStatus(keepPolling=false) {
       if(error.code==='ORDER_NOT_FOUND') {clearPaymentReturn();status('This order is no longer available for this account. Check your account or choose a plan.',true);return;}
       throw error;
     }
-    if(data.credited) {window.BBAnalytics?.purchase(data);clearPaymentReturn();session.balance=data.balance;updateGenerator();status(`Payment confirmed. ${data.balance} ${data.mode==='test'?'test ':''}credits are ready. Return to your photo to continue.`);await refresh();return;}
+    if(data.credited) {window.BBAnalytics?.purchase(data);clearPaymentReturn();session.balance=data.balance;updateGenerator();const cta=$('#payment-success-cta');if(cta){cta.hidden=false;const link=cta.querySelector('a');link.textContent=draft?.blob?'Return to photo & generate video':'Upload photo to generate video';cta.scrollIntoView({behavior:'smooth',block:'center'});link.focus({preventScroll:true});}status(`Payment confirmed. ${data.balance} ${data.mode==='test'?'test ':''}credits are ready.`);await refresh();return;}
     if(['checkout_failed','failed','canceled','cancelled','expired','refunded'].includes(data.order?.status)) {clearPaymentReturn();status('This checkout has ended. Check your account or choose a plan to continue.');return;}
     status('Payment has not been confirmed yet. Credits are issued only after confirmation. You can return to your photo or check again.');
     if(i<19 && keepPolling)await pause(1500);
@@ -395,15 +400,27 @@ async function restoreDraft() {
   }
   updateGenerator();
 }
+async function continuePendingGoogleCheckout(authSuccess) {
+  if(authSuccess!=='google'||!session?.user)return;
+  let intent;try{intent=JSON.parse(sessionStorage.getItem('bb-pending-checkout')||'null');}catch{sessionStorage.removeItem('bb-pending-checkout');return;}
+  const age=Date.now()-Number(intent?.createdAt);
+  if(!intent||!Number.isFinite(age)||age<0||age>15*60*1000||!session.plans?.[intent.planId]){sessionStorage.removeItem('bb-pending-checkout');return;}
+  if(intent.draftId&&intent.draftId!==draft?.id){sessionStorage.removeItem('bb-pending-checkout');return;}
+  sessionStorage.removeItem('bb-pending-checkout');
+  const button=document.querySelector(`[data-plan="${CSS.escape(intent.planId)}"]`);
+  if(!button)return;
+  try {await checkout(button);}catch(error){status(error.message,true);}
+}
 async function start() {
   try {await sessionReady;
     const authUrl=new URL(location.href),authError=authUrl.searchParams.get('auth_error'),authSuccess=authUrl.searchParams.get('auth_success');
     if(authError || authSuccess) {
+      if(authError||authSuccess!=='google')sessionStorage.removeItem('bb-pending-checkout');
       authUrl.searchParams.delete('auth_error');authUrl.searchParams.delete('auth_success');history.replaceState(history.state,'',authUrl.pathname+authUrl.search+authUrl.hash);
       if(authError){openAuth();$('#auth-error').textContent=messages[authError]||messages.GOOGLE_LOGIN_FAILED;}
       else status(authSuccess==='linked'?'Google has been linked to your account. Your credits and orders are unchanged.':'Signed in with Google. Your account is ready.');
     }
-    await restoreDraft();if(session?.user&&latestJob&&['running','pending','unknown'].includes(latestJob.status))await pollJob(latestJob.id);await paymentStatus(Boolean(new URL(location.href).searchParams.has('checkout')));
+    await restoreDraft();await continuePendingGoogleCheckout(authSuccess);if(session?.user&&latestJob&&['running','pending','unknown'].includes(latestJob.status))await pollJob(latestJob.id);await paymentStatus(Boolean(new URL(location.href).searchParams.has('checkout')));
   } catch(error) {status(error.message,true);}
 }
 const sessionReady=refresh();
