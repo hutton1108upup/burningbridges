@@ -24,7 +24,8 @@
     "/flying-entrance",
     "/examples/toc-toc-dance",
     "/blog/how-to-make-toc-toc-ai-dance-video",
-    "/bulin-47-ai-video-maker"
+    "/bulin-47-ai-video-maker",
+    "/examples/alors-on-danse-ai-video-generator"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -119,6 +120,15 @@
     "/assets/bulin-47/onest-latin.woff2",
     "/assets/bulin-47/big-shoulders-latin.woff2",
     "/assets/bulin-47/onest-OFL.txt",
-    "/assets/bulin-47/big-shoulders-OFL.txt"
+    "/assets/bulin-47/big-shoulders-OFL.txt",
+    "/alors-on-danse.css",
+    "/alors-on-danse.js",
+    "/assets/alors-on-danse/ZephyraLeigh-2106937499402825728.jpg",
+    "/assets/alors-on-danse/ZephyraLeigh-2106937499402825728.mp4",
+    "/assets/alors-on-danse/deweytn-2107190782008377344.jpg",
+    "/assets/alors-on-danse/deweytn-2107190782008377344.mp4",
+    "/assets/alors-on-danse/0xBerayan-2106409258141229057.jpg",
+    "/assets/alors-on-danse/0xBerayan-2106409258141229057.mp4",
+    "/assets/alors-on-danse/original-performance.jpg"
   ]
 }
