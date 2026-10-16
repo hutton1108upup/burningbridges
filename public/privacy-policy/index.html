@@ -151,7 +151,8 @@
 <p>When you choose Google sign-in, Google authenticates your account and we receive your Google account identifier, verified email, name and profile image. Authentication records and protected tokens are stored in Cloudflare D1 to complete sign-in. Google sign-in does not send your uploaded photo to Google. Existing email accounts require a signed-in linking step before they can use Google sign-in.</p>
 <p>When you create an account, we store your email, a salted password hash and a hashed recovery code. Session cookies keep you signed in. Order references, payment status, credit grants and video-task records connect your purchases to your account and support billing questions. Keep your recovery code private; password recovery uses that code rather than email resets.</p>
 <h3>Photo references</h3>
-<p>Selected photos and video settings are saved in your browser so you can return from checkout without selecting the photo again. Drafts older than seven days are cleared on your next visit; removing a photo or signing out clears the saved draft.</p>
+<p>In the homepage generator, selected photos and video settings are saved in your browser so you can return from checkout without selecting the photo again. Drafts older than seven days are cleared on your next visit; removing a photo or signing out clears the saved draft.</p>
+<p>Selecting a photo for a local preview does not itself submit it for generation. When you submit a generation in the homepage generator, the photo is uploaded to private Cloudflare R2 storage and linked to your account and task. APIMart, our generation API provider, receives access to the photo through a temporary signed link, along with the scene instructions and reference material needed to prepare and generate the video. Intermediate images and completed videos are also stored in R2; account and task records are stored in Cloudflare D1.</p>
 <h3>Website analytics</h3>
 <p>Google Analytics 4 helps us understand visits, traffic sources, devices and engagement. Microsoft Clarity provides heatmaps and masked interaction recordings. These providers receive browser and device information and may use analytics cookies. Our GA4 configuration removes query strings and fragments from supplied URLs and disables Google signals and advertising personalization.</p>
 <p>Clarity uses strict masking, with additional masking on the photo area and input fields. We do not send photo contents, filenames, email addresses, prompts, card details or payment credentials as custom analytics events. Clarity is not loaded on URLs containing query parameters.</p>
@@ -163,10 +164,13 @@
 <p>Report evidence and relevant account or task records may be examined as needed for investigation. Browser-local photos are not accessible to us unless you separately provide evidence. We do not publish reporter identities; disclosure is limited to what is necessary to resolve the matter or comply with legal requirements. Correspondence is retained for handling the report, appeals and necessary recordkeeping; you may request deletion, subject to those needs.</p>
 
 <h2 id="data-storage-and-security">Retention and Security</h2>
+<p>Photo previews on the other scene-planning pages remain in your browser and are not submitted by those pages. Submitted generation files are separate from the local draft: removing a photo or signing out clears the browser draft, but does not by itself delete files already uploaded for a task. Generation files and related records are used for processing, delivery, troubleshooting and applicable recordkeeping. Temporary access links expire; link expiry does not mean the underlying file has been deleted. Contact support to request deletion of information we control, subject to necessary recordkeeping and dispute handling.</p>
 <p>Local photo previews remain in your browser. Correspondence and applicable business records are retained for their purpose and required recordkeeping. Analytics data is processed under the relevant provider's retention practices. Website and analytics connections use HTTPS; no system promises absolute security.</p>
 <h2 id="information-sharing">Service Providers</h2>
 <h3>Support email</h3>
 <p>Email sent to support@burningbridgesaivideo.pro is processed by Cloudflare Email Routing and forwarded to our Gmail support inbox, operated by Google. These providers process email addresses, message content, attachments and delivery information to route and store correspondence. This is separate from Google Analytics. Do not include unnecessary sensitive information in a support message.</p>
+<h3>Video generation</h3>
+<p>Cloudflare R2 hosts submitted reference photos, intermediate images and video outputs. APIMart processes generation inputs to provide the image and video generation stages. These services receive the inputs needed for that processing; previewing a photo locally is separate from submitting it to these services.</p>
 <h3>Payments</h3>
 <p>Waffo Pancake provides hosted checkout, receipts and subscription management. Billing details and card information are entered on Waffo’s checkout, not stored by this website. We receive signed order, payment, subscription and refund events to maintain your credit balance. Test payments and test credits are separate from production payments. See <a href="https://www.waffo.ai/en/privacy">Waffo’s privacy policy</a>.</p>
 <p>Cloudflare delivers and protects the website, processes network and performance information, and hosts account, order, credit and task records in D1. Google processes visit analytics and Microsoft processes masked behavior analytics. Do not enter full card details in support messages.</p>
@@ -181,13 +185,13 @@
 <p>We update this policy when our practices change. The date below identifies the current policy.</p>
 <h2 id="contact">Contact</h2>
 <p>Email <a href="mailto:support@burningbridgesaivideo.pro">support@burningbridgesaivideo.pro</a> with enough information to explain your request, without unnecessary sensitive details.</p>
-<p><em>Last updated: October 13, 2026</em></p>
+<p><em>Last updated: October 16, 2026</em></p>
 
 </div>
       </div>
       <div class="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 text-center">
        <p class="text-muted-foreground text-sm">
-        One portrait, a prepared party performance and settings for your idea.
+        One portrait and a fixed 15-second party performance.
        </p>
        <a class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-sm hover:bg-primary/92 hover:shadow-md has-[&gt;svg]:px-4 h-11 rounded-full px-6" href="/#burning-bridges-ai-generator" target="_self">
         <span>
