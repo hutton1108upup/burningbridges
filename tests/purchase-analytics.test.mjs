@@ -16,10 +16,10 @@ test('order analytics uses authenticated confirmed receipt amount, excludes pend
     const read=async()=>{const response=await worker.fetch(new Request(origin+`/api/orders/${order}`,{headers:{cookie:`__Host-bb_session=${token}`}}),env);assert.equal(response.status,200);return response.json();};
     try {
       assert.equal((await read()).analytics,null);
-      await applyEvent(db,{eventType:'order.completed',eventId:'confirmed-payment',timestamp:new Date(now).toISOString(),mode,storeId:'STO_test',data:{orderId:'ORD_test',orderMerchantExternalId:order,merchantProvidedBuyerIdentity:owner,orderMetadata:{orderId:order,userId:owner,planId:'pack100',draftId:''},productMetadata:{planId:'pack100'},orderStatus:'completed',paymentStatus:'succeeded',paymentId:'PAY_do_not_expose',currency:'USD',chargedAmount:'9.40',listPrice:{subtotal:'9.90'}}},env,now);
+      await applyEvent(db,{eventType:'order.completed',eventId:'confirmed-payment',timestamp:new Date(now).toISOString(),mode,storeId:'STO_test',data:{orderId:'ORD_test',orderMerchantExternalId:order,merchantProvidedBuyerIdentity:owner,orderMetadata:{orderId:order,userId:owner,planId:'pack100',draftId:''},productMetadata:{planId:'pack100'},orderStatus:'completed',paymentStatus:'succeeded',paymentId:'PAY_do_not_expose',currency:'USD',chargedAmount:'5.40',listPrice:{subtotal:'5.90'}}},env,now);
       const data=await read();assert.equal(data.credited,true);
       if(mode==='prod') {
-        assert.deepEqual(data.analytics,{transaction_id:order+':1',currency:'USD',value:9.4,item_id:'pack100',item_name:'100 credits'});
+        assert.deepEqual(data.analytics,{transaction_id:order+':1',currency:'USD',value:5.4,item_id:'pack100',item_name:'100 credits'});
         assert.doesNotMatch(JSON.stringify(data.analytics),/private@|PAY_do_not_expose|buyer|password/);
       } else assert.equal(data.analytics,null);
       db.sqlite.prepare('UPDATE lots SET revoked=1 WHERE order_id=?').run(order);
