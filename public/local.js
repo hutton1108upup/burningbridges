@@ -31,7 +31,7 @@ if (header) {
   }
   const blank = $('span[aria-hidden="true"]', header);
   if (blank) {
-    const theme = document.createElement('button'); theme.className = 'local-theme'; theme.textContent='☾'; theme.setAttribute('aria-label','Toggle theme');
+    const theme = document.createElement('button'); theme.className = 'local-theme'; theme.textContent=document.documentElement.classList.contains('dark')?'☀':'☾'; theme.setAttribute('aria-label','Toggle theme');
     theme.onclick = () => {document.documentElement.classList.toggle('dark');theme.textContent=document.documentElement.classList.contains('dark')?'☀':'☾';};
     blank.replaceWith(theme);
   }
