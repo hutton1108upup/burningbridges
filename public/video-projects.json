@@ -57,6 +57,16 @@
       "label": "Photo preparation"
     },
     {
+      "id": "alors-on-danse",
+      "name": "Alors on Danse AI Video Generator",
+      "category": "dance",
+      "url": "/examples/alors-on-danse-ai-video-generator",
+      "image": "/assets/alors-on-danse/ZephyraLeigh-2106937499402825728.jpg",
+      "imageAlt": "Two performers in the Alors on Danse white-studio duet",
+      "description": "Watch three duet references and preview portraits for the keyboard player and laptop partner on your device.",
+      "label": "Two-person duet"
+    },
+    {
       "id": "toc-toc-dance",
       "name": "Toc Toc Trend · Toc Toc Dance",
       "category": "dance",

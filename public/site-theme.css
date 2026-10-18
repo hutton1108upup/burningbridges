@@ -203,3 +203,15 @@ html.site-refresh:not(.dark),html.site-refresh:not(.dark) body.site-refresh{colo
 
 body.site-refresh .unified-hero h1,body.site-refresh .unified-hero h1 span:not(.text-primary){color:var(--site-ink)!important}
 body.site-refresh .unified-hero :is(.lead,.hero-description,.toc-lead,p.text-muted-foreground,.hero-note,.hero-specs,.hero-specs li,.stats,.stats dt,.stats dd,.toc-facts,.media-footnote,.breadcrumb,.breadcrumb a){color:var(--site-muted)!important}
+
+/* The newer duet page retains both role pickers and its paired portrait preview. */
+body.site-refresh .duet-workspace .photo-panel{padding:26px 28px;margin:0;border:0;background:transparent;box-shadow:none;width:100%;max-width:none}
+body.site-refresh .duet-workspace .portrait-inputs{grid-template-columns:repeat(2,minmax(0,1fr))}
+body.site-refresh.alors-page{--muted:var(--site-muted)!important}
+body.site-refresh.alors-page :is(.duet-feature,.pair-preview,.portrait-slot){background:var(--site-card);border-color:var(--site-line);box-shadow:none}
+body.site-refresh.alors-page :is(.pair-stage img,.photo-result img,.portrait-slot button){background:var(--site-tint);color:var(--site-ink)}
+body.site-refresh.alors-page .duet-feature:nth-child(2){margin-left:0}
+body.site-refresh.alors-page .role-help,body.site-refresh.alors-page .photo-status{color:var(--site-muted)}
+body.site-refresh.alors-page .photo-status.error{color:#ffb1a3}
+@media(max-width:700px){body.site-refresh .duet-workspace .photo-panel{padding:20px}}
+@media(max-width:380px){body.site-refresh .duet-workspace .portrait-inputs{grid-template-columns:1fr}}
