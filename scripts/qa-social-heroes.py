@@ -92,12 +92,12 @@ with sync_playwright() as p:
             checks['pricingLink'] = True
         results.append(checks)
         print('PASS',route,flush=True)
-    # Multi-reference pages keep their original presentations.
+    # Dual-reference pages retain both videos in the shared App presentation.
     for route in ['/bulin-47-ai-video-maker','/examples/alors-on-danse-ai-video-generator','/examples/cheba-man-ai-dance-maker']:
         page.goto(args.base_url+route)
         assert page.locator('.unified-hero video').count()==2
-        assert page.locator('.social-hero').count()==0
+        assert page.locator('.dual-social-hero .phone-screen').count()==2
     assert not errors, errors
     browser.close()
 (out/'results.json').write_text(json.dumps({'routes':results,'pageErrors':errors},indent=2),encoding='utf-8')
-print('PASS: all single-video heroes and untouched multi-reference pages')
+print('PASS: single-video Heroes and dual-reference structure')
