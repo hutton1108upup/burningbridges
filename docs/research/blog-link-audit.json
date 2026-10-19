@@ -1,0 +1,798 @@
+{
+  "checkedAt": "2026-10-19",
+  "scope": "Six blog articles and blog directory. Header/footer navigation and in-page TOCs are kept.",
+  "reason": "Reduce repeated reading interruptions and remove non-project outbound links at user request. This is not a claim that all outbound links harm rankings.",
+  "before": [
+    {
+      "file": "public\\blog\\burning-bridges-ai-free\\index.html",
+      "links": [
+        {
+          "href": "/",
+          "text": "Home",
+          "context": "main\"> Home / Guides BURNING BRIDGES · GUIDE Can Yo"
+        },
+        {
+          "href": "/blog",
+          "text": "Guides",
+          "context": "guide-article\"> Home / Guides BURNING BRIDGES · GUIDE Can You Make a Burning Bridges Vide"
+        },
+        {
+          "href": "#free-answer",
+          "text": "What is free here?",
+          "context": "On this page What is free here? Three ways to start without buying an AI render <a"
+        },
+        {
+          "href": "#free-routes",
+          "text": "Three ways to start without buying an AI render",
+          "context": "\"> On this page What is free here? Three ways to start without buying an AI render Avoid paying before you understand the result <a href=\""
+        },
+        {
+          "href": "#budget",
+          "text": "Avoid paying before you understand the result",
+          "context": "a> Three ways to start without buying an AI render Avoid paying before you understand the result Choose based on your goal <section id=\"free-ans"
+        },
+        {
+          "href": "#choose",
+          "text": "Choose based on your goal",
+          "context": "ender Avoid paying before you understand the result Choose based on your goal What is free here? You can read our guide"
+        },
+        {
+          "href": "/burning-bridges-ai-prompt",
+          "text": "original prompts",
+          "context": "/ul> What is free here? You can read our guides, copy original prompts , prepare a photo preview and watch reference clips without purchasing credi"
+        },
+        {
+          "href": "/examples",
+          "text": "reference clips",
+          "context": ", copy original prompts , prepare a photo preview and watch reference clips without purchasing credits. Those activities do not create a new AI video. We do not advertise free"
+        },
+        {
+          "href": "/pricing",
+          "text": "Read the plan details",
+          "context": "ed one-time packs start at $5.90 and monthly plans at $19. Credits have validity and billing rules. Read the plan details before any purchase; a generated video uses 100 credits at the current fixed 720P, 16:9 specificati"
+        },
+        {
+          "href": "/guides/photo-guide",
+          "text": "clear portrait",
+          "context": "on> Avoid paying before you understand the result Prepare a clear portrait before spending a trial or paid allowance. Use the shortest supported test that can show t"
+        },
+        {
+          "href": "/blog/burning-bridges-ai-tools-compared",
+          "text": "See the full method comparison",
+          "context": "ement guided by footage, compare motion-transfer tools and bring a clip you have permission to use. See the full method comparison . CapCut official site · <a href=\"https://dreamina.cap"
+        },
+        {
+          "href": "https://www.capcut.com/",
+          "text": "CapCut official site",
+          "context": "use. See the full method comparison . CapCut official site · Dreamina official site · <a href=\"https://higgsfield.a"
+        },
+        {
+          "href": "https://dreamina.capcut.com/",
+          "text": "Dreamina official site",
+          "context": "he full method comparison . CapCut official site · Dreamina official site · Higgsfield official site . Reviewed October 13, 2026; no free"
+        },
+        {
+          "href": "https://higgsfield.ai/",
+          "text": "Higgsfield official site",
+          "context": "om/\">CapCut official site · Dreamina official site · Higgsfield official site . Reviewed October 13, 2026; no free-trial or paid-render claim has been tested on these accounts.</"
+        },
+        {
+          "href": "/burning-bridges-ai-prompt",
+          "text": "Burning Bridges AI Prompts: Scene and Motion References",
+          "context": "lass=\"guide-related\" aria-label=\"Related guides\"> Keep exploring Burning Bridges AI Prompts: Scene and Motion References Best Photo for a Burning Bridges Video <a href=\"/blog/how-to-make"
+        },
+        {
+          "href": "/guides/photo-guide",
+          "text": "Best Photo for a Burning Bridges Video",
+          "context": "\"> Burning Bridges AI Prompts: Scene and Motion References Best Photo for a Burning Bridges Video How to Make a Drake Burning Bridges AI Video"
+        },
+        {
+          "href": "/blog/how-to-make-burning-bridges-video",
+          "text": "How to Make a Drake Burning Bridges AI Video",
+          "context": "and Motion References Best Photo for a Burning Bridges Video How to Make a Drake Burning Bridges AI Video Burning Bridges AI Tools Compared: Which Method F"
+        },
+        {
+          "href": "/blog/burning-bridges-ai-tools-compared",
+          "text": "Burning Bridges AI Tools Compared: Which Method Fits?",
+          "context": "How to Make a Drake Burning Bridges AI Video Burning Bridges AI Tools Compared: Which Method Fits? Drake Burning Bridges AI Video References <a href=\"/guides/troubleshooting\""
+        },
+        {
+          "href": "/examples",
+          "text": "Drake Burning Bridges AI Video References",
+          "context": "\"/blog/burning-bridges-ai-tools-compared\">Burning Bridges AI Tools Compared: Which Method Fits? Drake Burning Bridges AI Video References Burning Bridges Troubleshooting: Photo, Task and Result <a hr"
+        },
+        {
+          "href": "/guides/troubleshooting",
+          "text": "Burning Bridges Troubleshooting: Photo, Task and Result",
+          "context": "Compared: Which Method Fits? Drake Burning Bridges AI Video References Burning Bridges Troubleshooting: Photo, Task and Result Burning Bridges Audio and Posting Guide"
+        },
+        {
+          "href": "/burning-bridges-music-video-ai",
+          "text": "Burning Bridges Audio and Posting Guide",
+          "context": "s Burning Bridges Troubleshooting: Photo, Task and Result Burning Bridges Audio and Posting Guide Prepare your next step Choose a portrait, inspec"
+        },
+        {
+          "href": "/pricing",
+          "text": "Open the photo form",
+          "context": "h2> Choose a portrait, inspect references and understand the method before spending credits. Open the photo form · Read pricing {\"@conte"
+        },
+        {
+          "href": "/pricing",
+          "text": "Read pricing",
+          "context": "and understand the method before spending credits. Open the photo form · Read pricing {\"@context\":\"https://schema.org\",\"@type\":\"Arti"
+        }
+      ]
+    },
+    {
+      "file": "public\\blog\\burning-bridges-ai-tools-compared\\index.html",
+      "links": [
+        {
+          "href": "/",
+          "text": "Home",
+          "context": "main\"> Home / Guides BURNING BRIDGES · GUIDE Burnin"
+        },
+        {
+          "href": "/blog",
+          "text": "Guides",
+          "context": "guide-article\"> Home / Guides BURNING BRIDGES · GUIDE Burning Bridges AI Tools Compared:"
+        },
+        {
+          "href": "#pick-method",
+          "text": "Start with what you have",
+          "context": "On this page Start with what you have Which route should you choose? Compar"
+        },
+        {
+          "href": "#decision",
+          "text": "Which route should you choose?",
+          "context": "rong>On this page Start with what you have Which route should you choose? Compare the cost of a usable result Of"
+        },
+        {
+          "href": "#cost",
+          "text": "Compare the cost of a usable result",
+          "context": "with what you have Which route should you choose? Compare the cost of a usable result Official sources and review date <section id=\""
+        },
+        {
+          "href": "#sources",
+          "text": "Official sources and review date",
+          "context": "hould you choose? Compare the cost of a usable result Official sources and review date Start with what you have One portrait can"
+        },
+        {
+          "href": "/guides/photo-guide",
+          "text": "Photo quality",
+          "context": "ontrol without generated-face drift. No single route guarantees an exact performance. Photo quality and result inspection still matter. Compare the cost of a us"
+        },
+        {
+          "href": "/pricing",
+          "text": "the current pricing page",
+          "context": "t at $5.90 and monthly plans at $19. Check each plan’s credits and validity before purchasing. Read the current pricing page and refund terms . Official s"
+        },
+        {
+          "href": "/refund-policy",
+          "text": "refund terms",
+          "context": "’s credits and validity before purchasing. Read the current pricing page and refund terms . Official sources and review date Reviewed Octobe"
+        },
+        {
+          "href": "https://higgsfield.ai/blog/higgsfield-genjutsu",
+          "text": "Higgsfield Genjutsu: motion transfer and object swap workflow",
+          "context": "date Reviewed October 13, 2026 using public pages, without paid render tests. Higgsfield Genjutsu: motion transfer and object swap workflow"
+        },
+        {
+          "href": "https://dreamina.capcut.com/ai-video/drake-burning-bridges-ai-video-generator",
+          "text": "Dreamina: party prompts and continuity review",
+          "context": "g/higgsfield-genjutsu\">Higgsfield Genjutsu: motion transfer and object swap workflow Dreamina: party prompts and continuity review CapCut: inspect the currently available editor and tem"
+        },
+        {
+          "href": "https://www.capcut.com/",
+          "text": "CapCut: inspect the currently available editor and templates",
+          "context": "ke-burning-bridges-ai-video-generator\">Dreamina: party prompts and continuity review CapCut: inspect the currently available editor and templates Availability and settings can change. We do not claim a working Burning Bridges temp"
+        },
+        {
+          "href": "/blog/burning-bridges-ai-free",
+          "text": "Read the free-method guide",
+          "context": "o not claim a working Burning Bridges template merely because an older template has the same title. Read the free-method guide for a cost-conscious starting point. <nav class=\"guide-related\" aria-label=\"Related"
+        },
+        {
+          "href": "/burning-bridges-ai-prompt",
+          "text": "Burning Bridges AI Prompts: Scene and Motion References",
+          "context": "lass=\"guide-related\" aria-label=\"Related guides\"> Keep exploring Burning Bridges AI Prompts: Scene and Motion References Best Photo for a Burning Bridges Video <a href=\"/blog/how-to-make"
+        },
+        {
+          "href": "/guides/photo-guide",
+          "text": "Best Photo for a Burning Bridges Video",
+          "context": "\"> Burning Bridges AI Prompts: Scene and Motion References Best Photo for a Burning Bridges Video How to Make a Drake Burning Bridges AI Video"
+        },
+        {
+          "href": "/blog/how-to-make-burning-bridges-video",
+          "text": "How to Make a Drake Burning Bridges AI Video",
+          "context": "and Motion References Best Photo for a Burning Bridges Video How to Make a Drake Burning Bridges AI Video Drake Burning Bridges AI Video References <a href=\"/guides/troubleshooting\""
+        },
+        {
+          "href": "/examples",
+          "text": "Drake Burning Bridges AI Video References",
+          "context": "How to Make a Drake Burning Bridges AI Video Drake Burning Bridges AI Video References Burning Bridges Troubleshooting: Photo, Task and Result <a hr"
+        },
+        {
+          "href": "/guides/troubleshooting",
+          "text": "Burning Bridges Troubleshooting: Photo, Task and Result",
+          "context": "rake Burning Bridges AI Video Drake Burning Bridges AI Video References Burning Bridges Troubleshooting: Photo, Task and Result Burning Bridges Audio and Posting Guide <a href=\"/blo"
+        },
+        {
+          "href": "/burning-bridges-music-video-ai",
+          "text": "Burning Bridges Audio and Posting Guide",
+          "context": "s Burning Bridges Troubleshooting: Photo, Task and Result Burning Bridges Audio and Posting Guide Can You Make a Burning Bridges Video for Free? <"
+        },
+        {
+          "href": "/blog/burning-bridges-ai-free",
+          "text": "Can You Make a Burning Bridges Video for Free?",
+          "context": "nd Result Burning Bridges Audio and Posting Guide Can You Make a Burning Bridges Video for Free? Prepare your next step Choose a portrait, inspec"
+        },
+        {
+          "href": "/pricing",
+          "text": "Open the photo form",
+          "context": "h2> Choose a portrait, inspect references and understand the method before spending credits. Open the photo form · Read pricing {\"@conte"
+        },
+        {
+          "href": "/pricing",
+          "text": "Read pricing",
+          "context": "and understand the method before spending credits. Open the photo form · Read pricing {\"@context\":\"https://schema.org\",\"@type\":\"Arti"
+        }
+      ]
+    },
+    {
+      "file": "public\\blog\\burning-bridges-trend-explained\\index.html",
+      "links": [
+        {
+          "href": "/blog",
+          "text": "All articles",
+          "context": "gradient-to-b to-transparent\"> All articles <div class=\"bg-primary/10 text-primary mt-8 inline-flex items-center gap-2 rounded-md px-2.5"
+        },
+        {
+          "href": "/blog/burning-bridges-ai-tools-compared",
+          "text": "the creation methods",
+          "context": "ent and camera timing. Neither approach guarantees an exact copy of the source performance. Compare the creation methods before choosing a tool. See <a href=\"https://dreamina.capcut.com/ai-video/drake-burning-bridg"
+        },
+        {
+          "href": "https://dreamina.capcut.com/ai-video/drake-burning-bridges-ai-video-generator",
+          "text": "Dreamina’s party-scene guide",
+          "context": "/blog/burning-bridges-ai-tools-compared\">the creation methods before choosing a tool. See Dreamina’s party-scene guide for an example of scene-directed prompts. This site is independent and is not affiliated with or en"
+        },
+        {
+          "href": "/pricing",
+          "text": "credit plans",
+          "context": "one image under 8MB, review the fixed 15-second, 720P, 16:9 output and 100-credit cost, and compare credit plans . The step-by-step video guide covers photo pr"
+        },
+        {
+          "href": "/blog/how-to-make-burning-bridges-video",
+          "text": "step-by-step video guide",
+          "context": "second, 720P, 16:9 output and 100-credit cost, and compare credit plans . The step-by-step video guide covers photo preparation, credits and result checks. <div class=\"border-border/"
+        },
+        {
+          "href": "/pricing",
+          "text": "View Credit Plans",
+          "context": "erate the Burning Bridges party clip with a clear portrait. View Credit Plans <div class=\"border-"
+        },
+        {
+          "href": "#the-burning-bridges-ai-trend-explained",
+          "text": "A Recognizable Party Performance",
+          "context": "ole=\"none\"> A Recognizable Party Performance"
+        },
+        {
+          "href": "#personal-and-character-ideas",
+          "text": "Personal and Character Ideas",
+          "context": "oreground ps-3\" href=\"#the-burning-bridges-ai-trend-explained\">A Recognizable Party Performance Personal and Character Ideas What"
+        },
+        {
+          "href": "#what-a-photo-contributes",
+          "text": "What a Photo Contributes",
+          "context": "ext-fd-muted-foreground ps-3\" href=\"#personal-and-character-ideas\">Personal and Character Ideas What a Photo Contributes L"
+        },
+        {
+          "href": "#look-beyond-the-first-frame",
+          "text": "Look Beyond the First Frame",
+          "context": "ext-sm text-fd-muted-foreground ps-3\" href=\"#what-a-photo-contributes\">What a Photo Contributes Look Beyond the First Frame Prepare You"
+        },
+        {
+          "href": "#prepare-your-idea",
+          "text": "Prepare Your Idea",
+          "context": "text-fd-muted-foreground ps-3\" href=\"#look-beyond-the-first-frame\">Look Beyond the First Frame Prepare Your Idea </"
+        }
+      ]
+    },
+    {
+      "file": "public\\blog\\how-to-make-babydoll-dance-ai-video\\index.html",
+      "links": [
+        {
+          "href": "/",
+          "text": "Home",
+          "context": "article class=\"guide-article toc-howto\"> Home / Blog / Babydoll Dance AI video tutorial </nav"
+        },
+        {
+          "href": "/blog",
+          "text": "Blog",
+          "context": "ticle toc-howto\"> Home / Blog / Babydoll Dance AI video tutorial B"
+        },
+        {
+          "href": "/examples/babydoll-dance-ai-video",
+          "text": "Babydoll Dance AI video page",
+          "context": ", 2026 Start with the reference: our Babydoll Dance AI video page lets you watch the trio and preview portraits on your device. It does not submit a Babydoll generat"
+        },
+        {
+          "href": "/pricing",
+          "text": "Pricing",
+          "context": "Babydoll generation task. The creation steps in this guide apply to a compatible external tool; our Pricing page covers the Burning Bridges party template. <nav aria-label=\"On this page\" class=\"guide"
+        },
+        {
+          "href": "#target",
+          "text": "Decide what your video needs to match",
+          "context": "ate. In this guide Decide what your video needs to match Prepare the cast and photos Choose a Babydo"
+        },
+        {
+          "href": "#cast",
+          "text": "Prepare the cast and photos",
+          "context": "g>In this guide Decide what your video needs to match Prepare the cast and photos Choose a Babydoll Dance AI workflow Build"
+        },
+        {
+          "href": "#workflow",
+          "text": "Choose a Babydoll Dance AI workflow",
+          "context": "what your video needs to match Prepare the cast and photos Choose a Babydoll Dance AI workflow Build your first dance video Review the dra"
+        },
+        {
+          "href": "#create",
+          "text": "Build your first dance video",
+          "context": "the cast and photos Choose a Babydoll Dance AI workflow Build your first dance video Review the draft and fix one problem Finish"
+        },
+        {
+          "href": "#review",
+          "text": "Review the draft and fix one problem",
+          "context": "a Babydoll Dance AI workflow Build your first dance video Review the draft and fix one problem Finish the sound and export Frequently asked q"
+        },
+        {
+          "href": "#finish",
+          "text": "Finish the sound and export",
+          "context": "ur first dance video Review the draft and fix one problem Finish the sound and export Frequently asked questions Deci"
+        },
+        {
+          "href": "#faq",
+          "text": "Frequently asked questions",
+          "context": "the draft and fix one problem Finish the sound and export Frequently asked questions Decide what your Babydoll Dance AI video needs to match</h"
+        },
+        {
+          "href": "/examples/babydoll-dance-ai-video",
+          "text": "Babydoll trio reference",
+          "context": "> Decide what your Babydoll Dance AI video needs to match Watch the Babydoll trio reference before choosing a tool. This guide concerns the Jamie Miller two-step associated with the sunny-str"
+        },
+        {
+          "href": "/examples/babydoll-dance-ai-video",
+          "text": "Babydoll Dance video page",
+          "context": "\" width=\"480\" height=\"854\" loading=\"lazy\"> A frame from the third-party reference on our Babydoll Dance video page . Use it to inspect the cast and framing; it is not a new video made from your photo. <a href=\"https"
+        },
+        {
+          "href": "https://trendhop.net/babydoll-dance-ai",
+          "text": "Reference source: Trend Hop",
+          "context": "video page . Use it to inspect the cast and framing; it is not a new video made from your photo. Reference source: Trend Hop . Write down the part you care about most. Is it your face in the lead role,"
+        },
+        {
+          "href": "/guides/photo-guide",
+          "text": "photo preparation guide",
+          "context": "ody source, leave room around the hands and shoes and include some ground beneath the feet. See our photo preparation guide for framing checks. Try the cente"
+        },
+        {
+          "href": "/examples/babydoll-dance-ai-video#photo-workspace",
+          "text": "center and side-dancer photo previews",
+          "context": "See our photo preparation guide for framing checks. Try the center and side-dancer photo previews before leaving the site. Each slot accepts JPG, PNG or WebP up to 10 MB. Photos stay in the browser"
+        },
+        {
+          "href": "https://trendhop.net/babydoll-dance-ai",
+          "text": "Trend Hop template page",
+          "context": "ntities it personalizes, what happens to the clothes, and whether supporting dancers are fixed. The Trend Hop template page , for example, presents a center role with optional side portraits. That is a feature of that servic"
+        },
+        {
+          "href": "https://kling.ai/quickstart/motion-control-user-guide",
+          "text": "Kling’s official Motion Control guide",
+          "context": "specific performance Look for a mode with separate character-image and action-video inputs. Kling’s official Motion Control guide describes this kind of workflow. Its multi-person input cautions are a reason to check the selected"
+        },
+        {
+          "href": "/guides/troubleshooting",
+          "text": "video troubleshooting guide",
+          "context": "y a simpler passage with one readable dancer before adding a more complicated cast. The video troubleshooting guide provides more checks for framing, inputs and saved results. A failed draft does not tell you which"
+        },
+        {
+          "href": "/examples/babydoll-dance-ai-video",
+          "text": "Watch the Babydoll Dance reference",
+          "context": "whether the choreography must match, and inspect one draft before committing to more renders. Watch the Babydoll Dance reference , prepare your cast photos , or <a hr"
+        },
+        {
+          "href": "/examples/babydoll-dance-ai-video#photo-workspace",
+          "text": "prepare your cast photos",
+          "context": "renders. Watch the Babydoll Dance reference , prepare your cast photos , or read the Toc Toc photo-to-dance tutorial"
+        },
+        {
+          "href": "/blog/how-to-make-toc-toc-ai-dance-video",
+          "text": "read the Toc Toc photo-to-dance tutorial",
+          "context": "e , prepare your cast photos , or read the Toc Toc photo-to-dance tutorial for another reference-based example. Sources and scope <"
+        },
+        {
+          "href": "https://aiidelist.com/blog/how-to-generate-babydoll-dance-ai-video",
+          "text": "AI IDE List Babydoll guide",
+          "context": ". Sources and scope Reviewed on October 19, 2026. The AI IDE List Babydoll guide informed the topic selection; this article uses a new cast-first structure and an original prompt."
+        },
+        {
+          "href": "https://trendhop.net/babydoll-dance-ai",
+          "text": "Trend Hop page",
+          "context": "he topic selection; this article uses a new cast-first structure and an original prompt. The linked Trend Hop page supplies the scene context, and <a href=\"https://kling.ai/quickstart/motion-control-user-guide\" tar"
+        },
+        {
+          "href": "https://kling.ai/quickstart/motion-control-user-guide",
+          "text": "Kling’s documentation",
+          "context": "ce-ai\" target=\"_blank\" rel=\"noopener noreferrer\">Trend Hop page supplies the scene context, and Kling’s documentation supports the image-plus-action workflow description. We have checked our local portrait controls, n"
+        }
+      ]
+    },
+    {
+      "file": "public\\blog\\how-to-make-burning-bridges-video\\index.html",
+      "links": [
+        {
+          "href": "/",
+          "text": "Home",
+          "context": "main\"> Home / Guides BURNING BRIDGES · GUIDE How to"
+        },
+        {
+          "href": "/blog",
+          "text": "Guides",
+          "context": "guide-article\"> Home / Guides BURNING BRIDGES · GUIDE How to Make a Drake Burning Bridges"
+        },
+        {
+          "href": "#before-start",
+          "text": "Before you make your party-video version",
+          "context": "On this page Before you make your party-video version Make your video on this site <a href=\"#external-rou"
+        },
+        {
+          "href": "#site-steps",
+          "text": "Make your video on this site",
+          "context": "Before you make your party-video version Make your video on this site Optional alternative workflows <a href=\"#result"
+        },
+        {
+          "href": "#external-route",
+          "text": "Optional alternative workflows",
+          "context": "arty-video version Make your video on this site Optional alternative workflows Check the result, not just the first frame </nav"
+        },
+        {
+          "href": "#result-check",
+          "text": "Check the result, not just the first frame",
+          "context": "on this site Optional alternative workflows Check the result, not just the first frame Before you make your party-video version"
+        },
+        {
+          "href": "/blog/burning-bridges-ai-tools-compared",
+          "text": "method comparison",
+          "context": "ve permission to use it. The site uses a fixed party template for clothing, scene and movement; the method comparison is optional background reading. Make your video on thi"
+        },
+        {
+          "href": "/pricing",
+          "text": "the photo form",
+          "context": "nterface captured October 14, 2026, without an uploaded photo. Open the photo form , upload one permitted photo under 8MB and check the visible preview. Sign in and buy credi"
+        },
+        {
+          "href": "/burning-bridges-ai-prompt",
+          "text": "original party prompt",
+          "context": "nt limits and price before submitting. For image to video, attach the portrait, use an original party prompt and choose supported settings. For motion transfer, bring a performance clip you own or ha"
+        },
+        {
+          "href": "https://higgsfield.ai/blog/higgsfield-genjutsu",
+          "text": "Higgsfield’s official workflow",
+          "context": "h the full result, then add permitted audio in the publishing platform or editor. See Higgsfield’s official workflow and Dreamin"
+        },
+        {
+          "href": "https://dreamina.capcut.com/ai-video/drake-burning-bridges-ai-video-generator",
+          "text": "Dreamina’s party-scene guide",
+          "context": "See Higgsfield’s official workflow and Dreamina’s party-scene guide . These are external services with their own accounts and costs. <section id=\"result-"
+        },
+        {
+          "href": "/guides/troubleshooting",
+          "text": "Troubleshoot problems",
+          "context": "tual output dimensions. Listen for missing, duplicated or misaligned audio. Troubleshoot problems and prepare your post before sharing."
+        },
+        {
+          "href": "/burning-bridges-music-video-ai",
+          "text": "prepare your post",
+          "context": "or misaligned audio. Troubleshoot problems and prepare your post before sharing. Keep exp"
+        },
+        {
+          "href": "/burning-bridges-ai-prompt",
+          "text": "Burning Bridges AI Prompts: Scene and Motion References",
+          "context": "lass=\"guide-related\" aria-label=\"Related guides\"> Keep exploring Burning Bridges AI Prompts: Scene and Motion References Best Photo for a Burning Bridges Video <a href=\"/blog/burning-bri"
+        },
+        {
+          "href": "/guides/photo-guide",
+          "text": "Best Photo for a Burning Bridges Video",
+          "context": "\"> Burning Bridges AI Prompts: Scene and Motion References Best Photo for a Burning Bridges Video Burning Bridges AI Tools Compared: Which Method F"
+        },
+        {
+          "href": "/blog/burning-bridges-ai-tools-compared",
+          "text": "Burning Bridges AI Tools Compared: Which Method Fits?",
+          "context": "and Motion References Best Photo for a Burning Bridges Video Burning Bridges AI Tools Compared: Which Method Fits? Drake Burning Bridges AI Video References <a href=\"/guides/troubleshooting\""
+        },
+        {
+          "href": "/examples",
+          "text": "Drake Burning Bridges AI Video References",
+          "context": "\"/blog/burning-bridges-ai-tools-compared\">Burning Bridges AI Tools Compared: Which Method Fits? Drake Burning Bridges AI Video References Burning Bridges Troubleshooting: Photo, Task and Result <a hr"
+        },
+        {
+          "href": "/guides/troubleshooting",
+          "text": "Burning Bridges Troubleshooting: Photo, Task and Result",
+          "context": "Compared: Which Method Fits? Drake Burning Bridges AI Video References Burning Bridges Troubleshooting: Photo, Task and Result Burning Bridges Audio and Posting Guide <a href=\"/blo"
+        },
+        {
+          "href": "/burning-bridges-music-video-ai",
+          "text": "Burning Bridges Audio and Posting Guide",
+          "context": "s Burning Bridges Troubleshooting: Photo, Task and Result Burning Bridges Audio and Posting Guide Can You Make a Burning Bridges Video for Free? <"
+        },
+        {
+          "href": "/blog/burning-bridges-ai-free",
+          "text": "Can You Make a Burning Bridges Video for Free?",
+          "context": "nd Result Burning Bridges Audio and Posting Guide Can You Make a Burning Bridges Video for Free? Follow the four steps Upload one permitted photo"
+        },
+        {
+          "href": "/pricing",
+          "text": "Open the photo form",
+          "context": "if needed, generate with the fixed template, then review picture and audio before downloading. Open the photo form · Read pricing {\"@conte"
+        },
+        {
+          "href": "/pricing",
+          "text": "Read pricing",
+          "context": "then review picture and audio before downloading. Open the photo form · Read pricing {\"@context\":\"https://schema.org\",\"@type\":\"Arti"
+        }
+      ]
+    },
+    {
+      "file": "public\\blog\\how-to-make-toc-toc-ai-dance-video\\index.html",
+      "links": [
+        {
+          "href": "/",
+          "text": "Home",
+          "context": "-article toc-howto\"> Home / Blog / <span aria-current=\"page\""
+        },
+        {
+          "href": "/blog",
+          "text": "Blog",
+          "context": "\"> Home / Blog / Toc Toc AI dance tutorial <"
+        },
+        {
+          "href": "/examples/toc-toc-dance",
+          "text": "Toc Toc dance video generator reference page",
+          "context": "ide class=\"guide-note\"> What you can do here: the Toc Toc dance video generator reference page lets you watch two clips and preview a photo locally. It does not submit a Toc Toc generation"
+        },
+        {
+          "href": "#choose-version",
+          "text": "Choose the Toc Toc dance template you mean",
+          "context": "ass=\"guide-toc\"> In this guide Choose the Toc Toc dance template you mean What you need"
+        },
+        {
+          "href": "#what-you-need",
+          "text": "What you need",
+          "context": "> Choose the Toc Toc dance template you mean What you need Make your video in five steps <"
+        },
+        {
+          "href": "#steps",
+          "text": "Make your video in five steps",
+          "context": "What you need Make your video in five steps An example Toc Toc AI dance prompt"
+        },
+        {
+          "href": "#prompt",
+          "text": "An example Toc Toc AI dance prompt",
+          "context": "href=\"#steps\"> Make your video in five steps An example Toc Toc AI dance prompt Fix motion, face and audio problems"
+        },
+        {
+          "href": "#fixes",
+          "text": "Fix motion, face and audio problems",
+          "context": "#prompt\"> An example Toc Toc AI dance prompt Fix motion, face and audio problems Frequently asked questions"
+        },
+        {
+          "href": "#faq",
+          "text": "Frequently asked questions",
+          "context": "#fixes\"> Fix motion, face and audio problems Frequently asked questions Choose th"
+        },
+        {
+          "href": "/examples/toc-toc-dance#examples",
+          "text": "Toc Toc examples page",
+          "context": "ster.webp\" width=\"540\"/> The living-room reference shown on our Toc Toc examples page . This is a reference frame, not a new result generated from your photo. </figcaptio"
+        },
+        {
+          "href": "https://www.media.io/ai/explore/zone/toc-toc-dance-ai-video-trend",
+          "text": "Media.io's official Toc Toc guide",
+          "context": "three. A prompt-driven dance concept and a reference-guided recreation are different tasks. Media.io's official Toc Toc guide describes using a character image with a dance clip to guide choreography; a text descriptio"
+        },
+        {
+          "href": "/examples/toc-toc-dance",
+          "text": "Toc Toc dance video maker references",
+          "context": "are cuts or overlapping dancers, choose a clearer section before spending credits. Use our Toc Toc dance video maker references to compare the two living-room takes."
+        },
+        {
+          "href": "/examples/toc-toc-dance#prepare",
+          "text": "local portrait preview",
+          "context": "with an outfit you can describe without guessing hidden details. You can inspect it in the local portrait preview ; this only displays your selection in the tab. See the <a href=\"/guides/photo-gu"
+        },
+        {
+          "href": "/guides/photo-guide",
+          "text": "photo preparation guide",
+          "context": "ait preview ; this only displays your selection in the tab. See the photo preparation guide for framing examples. Add the"
+        },
+        {
+          "href": "https://dreamina.capcut.com/ai-video/toc-toc-dance-ai-video-trend",
+          "text": "official dance guide",
+          "context": "or another location makes it harder to judge whether the reference was followed. Dreamina's official dance guide also recommends simple action beats, stable framing and a review of hands, feet and continui"
+        },
+        {
+          "href": "/guides/troubleshooting",
+          "text": "general troubleshooting guide",
+          "context": "annot recover a missing input or a face that is not visible. Fix the material first; use the general troubleshooting guide for more review checks."
+        },
+        {
+          "href": "/examples/toc-toc-dance",
+          "text": "Watch the Toc Toc dance examples",
+          "context": "concrete result to evaluate instead of judging a tool by a trend label. Watch the Toc Toc dance examples or browse more video ideas . To compa"
+        },
+        {
+          "href": "/examples",
+          "text": "browse more video ideas",
+          "context": "ef=\"/examples/toc-toc-dance\"> Watch the Toc Toc dance examples or browse more video ideas . To compare the site's current party-video plans, visit"
+        },
+        {
+          "href": "/pricing",
+          "text": "Pricing",
+          "context": "more video ideas . To compare the site's current party-video plans, visit Pricing . Sources and scope"
+        },
+        {
+          "href": "https://www.media.io/ai/explore/zone/toc-toc-dance-ai-video-trend",
+          "text": "Media.io: Toc Toc photo and motion-reference workflow",
+          "context": "asured success rates or a verified free-generation offer. Media.io: Toc Toc photo and motion-reference workflow <a href=\"https://dreamina.capcut.com/ai-video/toc-toc-dance-ai-vid"
+        },
+        {
+          "href": "https://dreamina.capcut.com/ai-video/toc-toc-dance-ai-video-trend",
+          "text": "Dreamina: prompt-based dance concepts and review checks",
+          "context": "Media.io: Toc Toc photo and motion-reference workflow Dreamina: prompt-based dance concepts and review checks"
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "article": "burning-bridges-ai-free",
+      "internalBefore": 14,
+      "internalAfter": 4,
+      "externalBefore": 3,
+      "externalAfter": 0,
+      "keptLinks": [
+        [
+          "/burning-bridges-ai-prompt",
+          "original prompts"
+        ],
+        [
+          "/blog/burning-bridges-ai-tools-compared",
+          "See the full method comparison"
+        ],
+        [
+          "/blog/how-to-make-burning-bridges-video",
+          "How to Make a Drake Burning Bridges AI Video"
+        ],
+        [
+          "/pricing",
+          "View current credit plans"
+        ]
+      ]
+    },
+    {
+      "article": "burning-bridges-ai-tools-compared",
+      "internalBefore": 13,
+      "internalAfter": 4,
+      "externalBefore": 3,
+      "externalAfter": 0,
+      "keptLinks": [
+        [
+          "/guides/photo-guide",
+          "Photo quality"
+        ],
+        [
+          "/refund-policy",
+          "refund terms"
+        ],
+        [
+          "/blog/burning-bridges-ai-free",
+          "Can You Make a Burning Bridges Video for Free?"
+        ],
+        [
+          "/pricing",
+          "View current credit plans"
+        ]
+      ]
+    },
+    {
+      "article": "burning-bridges-trend-explained",
+      "internalBefore": 4,
+      "internalAfter": 3,
+      "externalBefore": 1,
+      "externalAfter": 0,
+      "keptLinks": [
+        [
+          "/blog/burning-bridges-ai-tools-compared",
+          "the creation methods"
+        ],
+        [
+          "/blog/how-to-make-burning-bridges-video",
+          "step-by-step video guide"
+        ],
+        [
+          "/pricing",
+          "View Credit Plans"
+        ]
+      ]
+    },
+    {
+      "article": "how-to-make-babydoll-dance-ai-video",
+      "internalBefore": 10,
+      "internalAfter": 3,
+      "externalBefore": 6,
+      "externalAfter": 0,
+      "keptLinks": [
+        [
+          "/guides/photo-guide",
+          "photo preparation guide"
+        ],
+        [
+          "/examples/babydoll-dance-ai-video#photo-workspace",
+          "center and side-dancer photo previews"
+        ],
+        [
+          "/examples/babydoll-dance-ai-video",
+          "Watch the Babydoll Dance reference"
+        ]
+      ]
+    },
+    {
+      "article": "how-to-make-burning-bridges-video",
+      "internalBefore": 14,
+      "internalAfter": 4,
+      "externalBefore": 2,
+      "externalAfter": 0,
+      "keptLinks": [
+        [
+          "/#burning-bridges-ai-generator",
+          "the photo form"
+        ],
+        [
+          "/guides/troubleshooting",
+          "Troubleshoot problems"
+        ],
+        [
+          "/guides/photo-guide",
+          "Best Photo for a Burning Bridges Video"
+        ],
+        [
+          "/pricing",
+          "View current credit plans"
+        ]
+      ]
+    },
+    {
+      "article": "how-to-make-toc-toc-ai-dance-video",
+      "internalBefore": 9,
+      "internalAfter": 3,
+      "externalBefore": 4,
+      "externalAfter": 0,
+      "keptLinks": [
+        [
+          "/examples/toc-toc-dance#prepare",
+          "local portrait preview"
+        ],
+        [
+          "/guides/photo-guide",
+          "photo preparation guide"
+        ],
+        [
+          "/examples/toc-toc-dance",
+          "Watch the Toc Toc dance examples"
+        ]
+      ]
+    }
+  ],
+  "blogDirectory": "Retained all article cards; no external anchors found."
+}
