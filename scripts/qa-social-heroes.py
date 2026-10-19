@@ -58,6 +58,9 @@ with sync_playwright() as p:
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'), (route, width, 'overflow')
             box = screen.bounding_box()
             assert abs(box['width']/box['height']-9/16)<.005, (route, width, box)
+            video_box = video.bounding_box()
+            assert abs(video_box['height']-box['height'])<2, (route,width,'video controls do not reach screen bottom')
+            assert abs(video_box['width']-box['width'])<2, (route,width,'video does not fill phone width')
             copy = page.locator('.social-hero-copy').bounding_box()
             workspace = page.locator('.site-operation').first.bounding_box()
             if width < 701:
