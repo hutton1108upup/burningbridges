@@ -27,6 +27,7 @@
     "/bulin-47-ai-video-maker",
     "/examples/alors-on-danse-ai-video-generator",
     "/examples/babydoll-dance-ai-video",
+    "/examples/ai-smalltown-boy",
     "/blog/how-to-make-babydoll-dance-ai-video"
   ],
   "assets": [
@@ -138,6 +139,19 @@
     "/babydoll-dance.css",
     "/assets/babydoll-dance/reference.mp4",
     "/assets/babydoll-dance/reference-poster.webp",
-    "/babydoll-dance.js"
+    "/babydoll-dance.js",
+    "/smalltown-boy.css",
+    "/assets/smalltown-boy/duo.png",
+    "/assets/smalltown-boy/example-1.mp4",
+    "/assets/smalltown-boy/example-2.mp4",
+    "/assets/smalltown-boy/example-3.mp4",
+    "/assets/smalltown-boy/expression.png",
+    "/assets/smalltown-boy/pairings.png",
+    "/assets/smalltown-boy/reference.mp4",
+    "/assets/smalltown-boy/reference.webp",
+    "/assets/smalltown-boy/retro.png",
+    "/assets/smalltown-boy/example-1.png",
+    "/assets/smalltown-boy/example-2.png",
+    "/assets/smalltown-boy/example-3.png"
   ]
 }
