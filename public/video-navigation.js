@@ -28,6 +28,6 @@
     buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
     let count = 0;
     cards.forEach(card => {card.hidden = button.dataset.videoFilter !== 'all' && card.dataset.videoCategory !== button.dataset.videoFilter;if (!card.hidden) count++;});
-    document.querySelector('.video-results').textContent = `${count} ${count === 1 ? 'project' : 'projects'}`;
+    document.querySelector('.video-results').textContent = `${count} ${count === 1 ? 'trend' : 'trends'}`;
   }));
 })();
