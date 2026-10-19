@@ -1,0 +1,61 @@
+{
+  "source": "https://www.aireel.net/ai-effects/ai-smalltown-boy",
+  "retrievedAt": "2026-10-19",
+  "note": "Third-party AIReel reference media, not Burning Bridges generated output. Original files preserved. Local example-1.png, example-2.png and example-3.png posters are decoded frames from the matching videos, captured with browser canvas during playback.",
+  "assets": [
+    {
+      "url": "https://res.aireel.net/prod/resource/875faeb8a8f3.mp4",
+      "file": "public/assets/smalltown-boy/reference.mp4",
+      "bytes": 3018016,
+      "sha256": "bf0aa4beeccd6e27f4c83d11494a6100ee8cde764c6c56ea6c8ec47566b77fd1"
+    },
+    {
+      "url": "https://res.aireel.net/prod/resource/e235f43373a1.webp",
+      "file": "public/assets/smalltown-boy/reference.webp",
+      "bytes": 978242,
+      "sha256": "a974aaa9260cf1ffc52ddb9e01cf70de25eb961f4ec8b5840b822894956fe024"
+    },
+    {
+      "url": "https://res.aireel.net/prod/resource/08b9ef21ae87.mp4",
+      "file": "public/assets/smalltown-boy/example-1.mp4",
+      "bytes": 1579433,
+      "sha256": "d9192654f9fb554673d14adb347d4f70ce6c4351391d3cec35b5e0a90926b886"
+    },
+    {
+      "url": "https://res.aireel.net/prod/resource/2c3acc7c22cf.mp4",
+      "file": "public/assets/smalltown-boy/example-2.mp4",
+      "bytes": 1724764,
+      "sha256": "51c0762b1081564ecaec11ce7188e9fe70ba02e18b6a56faea324f6cadab3fd8"
+    },
+    {
+      "url": "https://res.aireel.net/prod/resource/ca9b40dd2fcd.mp4",
+      "file": "public/assets/smalltown-boy/example-3.mp4",
+      "bytes": 1752582,
+      "sha256": "68929fec37bae93ae9312af6496f4aa865878f2a034eaa36e217988cf55c6e9c"
+    },
+    {
+      "url": "https://res.aireel.net/prod/resource/282336831195.png",
+      "file": "public/assets/smalltown-boy/expression.png",
+      "bytes": 135939,
+      "sha256": "0e4d9f53bb7936ec2368c1add6bf99e5d9c5116f5cbf447d9639cd1a219d429e"
+    },
+    {
+      "url": "https://res.aireel.net/prod/resource/cc9da73e009a.png",
+      "file": "public/assets/smalltown-boy/duo.png",
+      "bytes": 112527,
+      "sha256": "6fd81d49196090838c1513274f0b877b85eceab41d4a3283a9124a78e82c281c"
+    },
+    {
+      "url": "https://res.aireel.net/prod/resource/5a1b5c1cea75.png",
+      "file": "public/assets/smalltown-boy/retro.png",
+      "bytes": 113998,
+      "sha256": "ffc76720590f02b1649bbc9567cab88b1a22dbab100c86e81ca522893765beb0"
+    },
+    {
+      "url": "https://res.aireel.net/prod/resource/66f900c0e67b.png",
+      "file": "public/assets/smalltown-boy/pairings.png",
+      "bytes": 136005,
+      "sha256": "4db54b63220fb593451750c612312f280135552884d7662dca4c287b33686b4c"
+    }
+  ]
+}
