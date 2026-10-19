@@ -4,6 +4,8 @@
 
 本规范记录用户已确认并于 2026-10-18 发布的方案，基准版本为 `1654efa74518e045a9ab871ae6f99d1f0f7b90f6`（PR #34）。后续页面采用同一套设计，不需要重新选择视觉方向。新的重要设计方向需用户确认后再更新规范。
 
+2026-10-19 补充：用户确认以 Smalltown Boy 的手机短视频 App Hero 为单视频页面标准。本轮将该标准推广至其他单视频页面，仅本地修改和预览；发布状态需另行验证。多视频 Hero、文章、目录、价格和政策页面保留各自结构。
+
 ## 1. 配色与字体
 
 默认是中性炭黑底、深灰卡片、柔白文字，鲜橙用于操作和强调。参考站只提供橙色灵感，不作为整套布局或浅色主题的来源。
@@ -47,6 +49,7 @@
 | 文件 | 责任 |
 | --- | --- |
 | [site-theme.css](../public/site-theme.css) | 全站配色、字体、按钮、公共 Hero、独立操作区与响应式协调 |
+| [social-video-hero.css](../public/social-video-hero.css) / [social-video-hero.js](../public/social-video-hero.js) | 单视频 Hero 的手机外观、App 信息层、响应式尺寸与本地点赞、声音、全屏控件；仅在显式接入的页面生效 |
 | [trend-samples.css](../public/trend-samples.css) | 已推广到详情页的公共排版、视频卡片、照片区、步骤、FAQ 与页脚；名称不代表临时文件 |
 | [trend-samples.js](../public/trend-samples.js) | 使用 `data-photo-workspace` 的本地照片预览控件 |
 | [video-navigation.js](../public/video-navigation.js) / [video-navigation.css](../public/video-navigation.css) | 公共分类导航和 Examples 筛选 |
@@ -87,6 +90,30 @@ Hero 左栏包含分类提示、唯一 H1、说明、必要规格和主操作入
 - 操作区使用深灰卡片和细边框。已有 `.workspace-grid`、`.operation-grid` 可在桌面分为照片控件和说明两栏，手机纵向堆叠。双角色照片可以保留各自独立选择器，在窄屏按现有断点堆叠。
 - 用户操作需要清晰的标签、键盘焦点、选择/替换/移除入口、预览和状态/错误反馈。不要通过隐藏溢出来掩盖挤压问题；要检查文案、菜单、网格和输入区实际边界。
 - 页面下半部保留各场景的差异化正文、示例和 FAQ，不为统一视觉而删除内容或把所有详情页改成同一套文案。
+
+### 单视频 Hero 的手机 App 样式
+
+- 已确认参考：[Smalltown Boy](../public/examples/ai-smalltown-boy/index.html)。其他单视频页面共用 `social-video-hero.css` 和 `social-video-hero.js`，不再逐页复制手机样式与交互脚本。Smalltown 专属 CSS 只保留该场景下半页差异。
+- 页面在 `body` 上接入 `.social-video-page`，Hero 接入 `.social-hero`，左右两栏分别接入 `.social-hero-copy` 和 `.social-hero-media`。共享样式在 `site-theme.css` 前加载，并通过显式作用域协调既有规则。
+- 视频展示容器为 `9:16`，保留原视频、poster、原生 controls、ID 和 `data-*` 绑定。素材本身的横竖比例不改，使用 `object-fit: contain` 和当前 poster 的柔化背景填充；横版参考仍须完整显示，真实生成的输出规格不随容器改变。
+- 手机包含圆角边框、顶部镜头、底部横条；内部包含频道提示、来源与话题、右侧本地点赞、声音和全屏按钮。不得伪造播放量、点赞数、评论数或关注关系。原素材署名、能力边界和相关链接保留。
+- 电脑端视频随可用屏高调整，协调左侧标题、说明、规格和操作间距。在 `1280×800`、`1366×768`、`1440×900` 下，首屏底部至少露出下一操作区的部分内容。不同页面可以通过 `--social-hero-chrome` 为面包屑、署名和切换控件预留空间；不裁切或隐藏正文来满足高度。
+- 手机端仍按文案、播放器、操作区排列。App 控件不得遮住原生播放控制，支持键盘聚焦。声音按钮与原生音量保持同步。
+- Toc Toc 保留两条参考的切换按钮、片名、状态播报及 poster 同步。Bulin 47、Cheba Man、Alors on Danse 是双视频 Hero，不套用此单视频布局。当前首页只有一条 Hero 参考视频，因此接入；以后如果改成多视频布局，应重新评估。
+- 本地浏览器验收不提交生成任务或支付。在项目根目录 PowerShell 中先启动预览：
+
+  ```powershell
+  $env:PORT='4196'
+  npm.cmd run dev
+  ```
+
+  看到 `Local commerce website: http://localhost:4196` 后，另开项目根目录 PowerShell 执行：
+
+  ```powershell
+  python scripts/qa-social-heroes.py --base-url http://localhost:4196 --output "$env:TEMP/shared-social-hero-qa"
+  ```
+
+  最后显示 `PASS: all single-video heroes and untouched multi-reference pages` 才算通过，截图与 `results.json` 保存在指定输出目录。
 
 ## 4. 参考实现与功能边界
 

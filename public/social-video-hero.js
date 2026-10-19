@@ -1,12 +1,18 @@
 (() => {
   'use strict';
-  const screen = document.querySelector('.smalltown-page .phone-screen');
+  const screen = document.querySelector('.social-video-page .phone-screen');
   if (!screen) return;
   const video = screen.querySelector('video');
   const like = screen.querySelector('[data-shorts-like]');
   const sound = screen.querySelector('[data-shorts-sound]');
   const fullscreen = screen.querySelector('[data-shorts-fullscreen]');
   const status = screen.querySelector('[data-shorts-status]');
+  // Reference switching keeps the blurred fill aligned with the selected clip.
+  const syncPoster = () => {
+    if (video.poster) screen.style.setProperty('--phone-poster', `url(${JSON.stringify(video.poster)})`);
+  };
+  new MutationObserver(syncPoster).observe(video, {attributes: true, attributeFilter: ['poster']});
+  syncPoster();
 
   like.addEventListener('click', () => {
     const liked = like.getAttribute('aria-pressed') !== 'true';
