@@ -92,7 +92,7 @@ body.site-refresh.social-video-page .social-hero.toc-hero .toc-scene-note strong
   background:linear-gradient(#0005,#0008),var(--phone-poster) center/cover;
   filter:blur(18px);
 }
-body.site-refresh.social-video-page .social-hero .phone-screen video{
+body.site-refresh.social-video-page .social-hero .phone-screen[class] video{
   width:100%!important;
   height:100%!important;
   max-height:none!important;
