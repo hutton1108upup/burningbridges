@@ -1,0 +1,7 @@
+/* Scene-specific cast layout; colors and type come from site-theme.css. */
+.babydoll-page .babydoll-slots{grid-template-columns:repeat(3,minmax(0,1fr))}
+.babydoll-page .hero-copy>.text-link{display:inline-block;margin-top:16px}
+.babydoll-page .workspace-summary .button{width:100%}
+@media(max-width:1000px){.babydoll-page .babydoll-slots{grid-template-columns:1fr}}
+
+.babydoll-theme{border:1px solid var(--site-line);border-radius:8px;background:var(--site-card);color:var(--site-ink);padding:8px 10px;font:inherit;font-size:11px;white-space:nowrap;cursor:pointer}
