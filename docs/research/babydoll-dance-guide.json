@@ -1,0 +1,35 @@
+{
+  "source": "https://aiidelist.com/blog/how-to-generate-babydoll-dance-ai-video",
+  "accessed": "2026-10-19",
+  "accessMethod": "Logged-in browser DOM; defuddle returned empty output.",
+  "coreExtract": [
+    "Choose the dance version before choosing a tool.",
+    "Differentiate template, image-plus-motion and text-guided workflows.",
+    "Match image framing to the input mode.",
+    "Review identities, feet and cast collisions before export.",
+    "Inspect the actual sound and publishing options."
+  ],
+  "newStructure": [
+    "Define the target",
+    "Prepare the cast",
+    "Choose the workflow",
+    "Build one draft",
+    "Review a specific defect",
+    "Finish sound and export",
+    "FAQ and next steps"
+  ],
+  "excluded": [
+    "Unverified release dates and chart positions",
+    "Third-party prices, fixed output limits, best-tool rankings",
+    "Copied prompts and claimed render tests"
+  ],
+  "primaryVerification": {
+    "https://kling.ai/quickstart/motion-control-user-guide": "Character image plus action video; caution with multiple subjects. No limits or prices reproduced.",
+    "https://trendhop.net/babydoll-dance-ai": "Reference context and center/optional side roles."
+  },
+  "links": {
+    "blog": "/blog/how-to-make-babydoll-dance-ai-video",
+    "video": "/examples/babydoll-dance-ai-video",
+    "reciprocal": true
+  }
+}
