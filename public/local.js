@@ -26,7 +26,7 @@ if (header) {
   const loader = $('.lucide-loader-circle', header);
   if (loader) {
     const account = document.createElement('button');
-    account.className = 'local-account'; account.textContent = 'View Pricing'; account.onclick = goToPricing;
+    account.className = 'local-account'; account.textContent = 'Generate video'; account.onclick = goToPricing;
     loader.parentElement.replaceChildren(account);
   }
   const blank = $('span[aria-hidden="true"]', header);
@@ -39,7 +39,7 @@ if (header) {
   if (toggle) {
     const nav=document.createElement('nav');nav.className='local-mobile-nav';nav.hidden=true;nav.setAttribute('aria-label','Mobile navigation');
     const links=[...($('nav',header)?.children || [])];for(const link of links) nav.append(link.cloneNode(true));
-    const pricing=document.createElement('button');pricing.className='local-account';pricing.textContent='View Pricing';pricing.onclick=goToPricing;nav.append(pricing);
+    const pricing=document.createElement('button');pricing.className='local-account';pricing.textContent='Generate video';pricing.onclick=goToPricing;nav.append(pricing);
     header.append(nav);
     toggle.onclick=()=>{nav.hidden=!nav.hidden;toggle.setAttribute('aria-expanded',String(!nav.hidden));};
     $$('a',nav).forEach(a=>a.onclick=()=>{nav.hidden=true;toggle.setAttribute('aria-expanded','false');});
