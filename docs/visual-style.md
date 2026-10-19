@@ -4,7 +4,7 @@
 
 本规范记录用户已确认并于 2026-10-18 发布的方案，基准版本为 `1654efa74518e045a9ab871ae6f99d1f0f7b90f6`（PR #34）。后续页面采用同一套设计，不需要重新选择视觉方向。新的重要设计方向需用户确认后再更新规范。
 
-2026-10-19 补充：用户确认以 Smalltown Boy 的手机短视频 App Hero 为单视频页面标准。本轮将该标准推广至其他单视频页面，仅本地修改和预览；发布状态需另行验证。多视频 Hero、文章、目录、价格和政策页面保留各自结构。
+2026-10-19 补充：用户确认以 Smalltown Boy 的手机短视频 App Hero 为视频页面标准。单视频页面使用共用手机播放器；双视频页面按下述双手机规则保留对照。文章、目录、价格和政策页面保留各自结构。发布状态需按准确版本单独验证，文档与本地预览不代表已经上线。
 
 ## 1. 配色与字体
 
@@ -50,6 +50,7 @@
 | --- | --- |
 | [site-theme.css](../public/site-theme.css) | 全站配色、字体、按钮、公共 Hero、独立操作区与响应式协调 |
 | [social-video-hero.css](../public/social-video-hero.css) / [social-video-hero.js](../public/social-video-hero.js) | 单视频 Hero 的手机外观、App 信息层、响应式尺寸与本地点赞、声音、全屏控件；仅在显式接入的页面生效 |
+| [dual-video-hero.css](../public/dual-video-hero.css) | 双视频 Hero 的并排手机、对照标签、移动端横向滑动与场景差异；复用共用 App 样式和按播放器分别初始化的交互 |
 | [trend-samples.css](../public/trend-samples.css) | 已推广到详情页的公共排版、视频卡片、照片区、步骤、FAQ 与页脚；名称不代表临时文件 |
 | [trend-samples.js](../public/trend-samples.js) | 使用 `data-photo-workspace` 的本地照片预览控件 |
 | [video-navigation.js](../public/video-navigation.js) / [video-navigation.css](../public/video-navigation.css) | 公共分类导航和 Examples 筛选 |
@@ -99,7 +100,7 @@ Hero 左栏包含分类提示、唯一 H1、说明、必要规格和主操作入
 - 手机包含圆角边框、顶部镜头、底部横条；内部包含频道提示、来源与话题、右侧本地点赞、声音和全屏按钮。不得伪造播放量、点赞数、评论数或关注关系。原素材署名、能力边界和相关链接保留。
 - 电脑端视频随可用屏高调整，协调左侧标题、说明、规格和操作间距。在 `1280×800`、`1366×768`、`1440×900` 下，首屏底部至少露出下一操作区的部分内容。不同页面可以通过 `--social-hero-chrome` 为面包屑、署名和切换控件预留空间；不裁切或隐藏正文来满足高度。
 - 手机端仍按文案、播放器、操作区排列。App 控件不得遮住原生播放控制，支持键盘聚焦。声音按钮与原生音量保持同步。
-- Toc Toc 保留两条参考的切换按钮、片名、状态播报及 poster 同步。Bulin 47、Cheba Man、Alors on Danse 是双视频 Hero，不套用此单视频布局。当前首页只有一条 Hero 参考视频，因此接入；以后如果改成多视频布局，应重新评估。
+- Toc Toc 保留两条参考的切换按钮、片名、状态播报及 poster 同步。Bulin 47、Cheba Man、Alors on Danse 按下述双视频规则展示。当前首页只有一条 Hero 参考视频，因此接入单视频布局；以后如果改成多视频布局，应重新评估。
 - 本地浏览器验收不提交生成任务或支付。在项目根目录 PowerShell 中先启动预览：
 
   ```powershell
@@ -113,7 +114,22 @@ Hero 左栏包含分类提示、唯一 H1、说明、必要规格和主操作入
   python scripts/qa-social-heroes.py --base-url http://localhost:4196 --output "$env:TEMP/shared-social-hero-qa"
   ```
 
-  最后显示 `PASS: all single-video heroes and untouched multi-reference pages` 才算通过，截图与 `results.json` 保存在指定输出目录。
+  最后显示 `PASS: single-video Heroes and dual-reference structure` 才算通过，截图与 `results.json` 保存在指定输出目录。
+
+### 双视频 Hero 的手机 App 样式
+
+- Bulin 47 与 Cheba Man 保留原片和 AI 版本的对照，分别标注 `Original`、`AI version`；Alors on Danse 保留两组演出参考，分别标注 `Duet reference 01`、`Duet reference 02`。不把第三方参考标成本站生成结果。
+- 复用 `.social-video-page`、`.social-hero` 和共用播放器，另外接入 `.dual-social-page`、`.dual-social-hero` 与 `dual-video-hero.css`。仅通过这些显式类修改双视频布局，不影响其他单视频页面。
+- 电脑宽屏使用左侧文案、右侧两部手机并排；中等屏宽先展示文案，再展示并排双手机。手机端使用局部横向滚动，显示第一张卡片和第二张卡片的一部分，带滑动提示、焦点和滚动条，不产生整页横向溢出。
+- 两条视频的原素材、poster、原生 controls、署名和来源链接保持不变。竖屏容器内完整展示横版演出，不裁切关键角色、乐器或原片画面。
+- 每部手机的点赞、声音、状态播报和全屏独立绑定。继续沿用原页面一次只播放一条的行为，避免两段音轨叠加。照片控件、双角色配对预览和页内锚点保留。
+- 双视频验收在项目根目录运行：
+
+  ```powershell
+  python scripts/qa-dual-heroes.py --base-url http://localhost:4196 --output "$env:TEMP/dual-social-hero-qa"
+  ```
+
+  预览服务启动方式与上一节相同；最后显示 `PASS: dual-reference layout, independent controls, swipe and photo previews` 才算通过。
 
 ## 4. 参考实现与功能边界
 
