@@ -2,6 +2,10 @@
 
 根据 https://burningbridgesaivideo.pro/ 在 2026-10-11 的公开页面制作。保留原站 HTML、CSS、字体、图片、视频、页面链接与 SEO 信息，提供本地交互层。
 
+## 新增页面前必读
+
+当前网站采用已确认的炭黑＋鲜橙设计。新增页面和样式调整遵循 [网站视觉与视频详情页规范](docs/visual-style.md)，项目 Agent 入口见 [AGENTS.md](AGENTS.md)。视频详情页统一使用“Hero 文案＋参考视频，下方独立照片操作区”，复用公共样式和现有控件；具体色值、文件入口、目录同步及验收步骤以该规范为准。
+
 ## 打开本地网站
 
 1. 把此仓库下载或克隆到电脑，在 VS Code 打开 `burningbridges` 项目文件夹。
@@ -32,7 +36,9 @@
 | 两篇博客 | `public/blog/文章路径/index.html` | 修改正文 |
 | 三个 SEO 落地页 | `public/burning-bridges-*/index.html` | 修改对应页面正文 |
 | 政策页 | `public/privacy-policy/index.html`、`public/terms-of-service/index.html`、`public/refund-policy/index.html` | 修改对应条款 |
-| 新增或覆盖样式 | `public/local.css` | 在文件末尾添加样式，避免直接编辑原站压缩 CSS |
+| 全站视觉与公共布局 | `public/site-theme.css`、`public/trend-samples.css` | 先读视觉规范，复用已有变量与组件；主题 CSS 最后加载，避免直接编辑原站压缩 CSS |
+| 既有基础交互样式 | `public/local.css` | 保留现有导航、账号和生成控件样式，不在这里另建一套页面主题 |
+| 视频项目目录 | `public/video-projects.json` | 新增项目后运行 `npm.cmd run sync:video-projects`，生成导航与 Examples 卡片 |
 | 页面交互 | `public/local.js`、`public/commerce.js` | 照片草稿、账号、付款返回、任务状态和下载 |
 | 订单与积分 | `src/catalog.mjs`、`src/commerce.mjs`、`src/worker.mjs` | 服务器价格、回调核验、积分账本与 API |
 | 账号及数据库 | `src/auth.mjs`、`migrations/` | 会话、密码、恢复码与 D1 表结构 |

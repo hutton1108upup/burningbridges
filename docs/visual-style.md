@@ -1,0 +1,136 @@
+# 网站视觉与视频详情页规范
+
+适用范围：全站公开页面，包括首页、Examples、视频详情、价格、指南、博客、政策和 404。新增视频详情页统一遵循下述结构；指南和政策页保留适合阅读的文章布局。
+
+本规范记录用户已确认并于 2026-10-18 发布的方案，基准版本为 `1654efa74518e045a9ab871ae6f99d1f0f7b90f6`（PR #34）。后续页面采用同一套设计，不需要重新选择视觉方向。新的重要设计方向需用户确认后再更新规范。
+
+## 1. 配色与字体
+
+默认是中性炭黑底、深灰卡片、柔白文字，鲜橙用于操作和强调。参考站只提供橙色灵感，不作为整套布局或浅色主题的来源。
+
+| 用途 | 深色默认值 | 复用变量 |
+| --- | --- | --- |
+| 页面背景 | `#121212` | `--site-paper` |
+| 卡片、独立操作区 | `#1D1D1F` | `--site-card` |
+| 内嵌输入底色 | `#18181A` | `--site-tint` |
+| 主文字 | `#F5F5F7` | `--site-ink` |
+| 辅助文字 | `#AAAAB1` | `--site-muted` |
+| 分隔线、卡片边框 | `#363638` | `--site-line` |
+| 主按钮、选中状态、标题重点 | `#F47A1F` | `--brand-orange`、深色下的 `--site-link` |
+| 悬停、橙色细节 | `#FF9A3C` | `--brand-bright` |
+| 橙色按钮上的文字 | `#17110B` | 已有按钮规则 |
+| 上传区虚线 | `#67676E` | `--site-upload-line` |
+
+实现以 [site-theme.css](../public/site-theme.css) 为准。新样式使用共享变量，不在页面内重写整套色板。旧页的 `--muted` 有文字色和背景色两种历史用法，新代码明确使用 `--site-muted` 或 `--site-tint`。
+
+橙色保持局部使用：主按钮、链接或标题重点、选中状态、聚焦提示。不把整个 Hero 染橙，不叠加橙棕色光晕，不使用复古棕底、奶白页面或独立的红/绿/紫主题。需要状态提示时保留清晰的文字、图标和现有错误样式。
+
+字体复用本地 Onest（`SiteOnest` / `TrendOnest`），通过现有 CSS 加载，不新增外部字体请求。标题、正文、辅助信息沿用共享层级，不把整段标题或正文改成全大写。Hero 标题使用已有响应式规则，桌面上限约 54px，手机约 30–34px；具体取值以最终级联规则为准。
+
+保留已有主题切换：新页默认在 `<html>` 上设置 `site-refresh dark`，浅色模式由同一份主题 CSS 提供，不另写页面色板。
+
+## 2. 样式与脚本的复用方式
+
+视频详情页的基础接入顺序：
+
+```html
+<html lang="en" class="site-refresh dark">
+<!-- head：基础样式、页面必要补充样式、导航样式先加载 -->
+<link rel="stylesheet" href="/trend-samples.css">
+<link rel="stylesheet" href="/site-theme.css">
+<!-- body 的其他场景类可以保留 -->
+<body class="site-refresh video-detail">
+```
+
+以上是接入示意，不是完整可发布页面。必须保留页面所需的 metadata、导航、脚本和正文。`site-theme.css` 应是最后加载的样式表，确保公共配色不被旧页样式覆盖。
+
+| 文件 | 责任 |
+| --- | --- |
+| [site-theme.css](../public/site-theme.css) | 全站配色、字体、按钮、公共 Hero、独立操作区与响应式协调 |
+| [trend-samples.css](../public/trend-samples.css) | 已推广到详情页的公共排版、视频卡片、照片区、步骤、FAQ 与页脚；名称不代表临时文件 |
+| [trend-samples.js](../public/trend-samples.js) | 使用 `data-photo-workspace` 的本地照片预览控件 |
+| [video-navigation.js](../public/video-navigation.js) / [video-navigation.css](../public/video-navigation.css) | 公共分类导航和 Examples 筛选 |
+| [local.js](../public/local.js) / [commerce.js](../public/commerce.js) | 既有导航、账号和真实生成相关流程；按现有入口接入 |
+| 场景专属 CSS / JS | 角色、配对、画幅、参考切换等场景差异，不重建全站视觉系统 |
+
+不要在每个新页面复制一套按钮、字体、背景和响应式规则。需要公共规则时改公共样式，并检查首页、目录、价格和其他详情页是否受影响。
+
+## 3. 视频详情页的固定结构
+
+桌面顺序：公共导航 → 面包屑 → 双栏 Hero → 独立照片操作区 → 该页面自己的内容、示例、说明、FAQ 与页脚。
+
+Hero 左栏包含分类提示、唯一 H1、说明、必要规格和主操作入口；右栏展示参考视频。主操作入口优先滚动到本页操作区，已有其他有效入口继续保留。不要把照片输入、角色选择、生成设置或购买操作面板塞进 Hero。
+
+结构示意：
+
+```html
+<section class="hero unified-hero" aria-labelledby="page-title">
+  <div class="hero-copy">
+    <!-- 本页标题、文案、规格和指向下方操作区的入口 -->
+  </div>
+  <div class="hero-media">
+    <!-- 有来源说明的参考视频，保留原始横竖比例 -->
+  </div>
+</section>
+<section class="site-operation" id="photo-workspace">
+  <!-- 复用匹配场景的完整照片/生成组件，包括其状态和错误提示 -->
+</section>
+<!-- 保留该页面其余内容 -->
+```
+
+布局规则：
+
+- 复用 `.unified-hero`、`.site-operation` 及现有子布局。内容最大宽度为 1180px；窄屏 Hero 和操作区左右通常各留 20px。不要嵌套多个带宽度和左右留白的容器，把内容重复挤窄。
+- 桌面 Hero 约 `1.05fr / .95fr` 双栏；700px 以下按文案、参考视频、独立操作区顺序显示。不要让视频跑到文案之前，也不要用固定高度把文案裁掉。
+- 视频使用播放器原生 controls，保留横竖比例，采用 `object-fit: contain`。不拉伸、不裁掉关键动作；保留出处、字幕说明和原有参考切换。首屏保留合适的 poster，避免为展示而同时下载或播放全部视频。
+- 对照型参考可以保留两条竖版视频；双人表演可以保留多条横版参考。统一的是布局和样式，不是视频数量或比例。
+- 操作区使用深灰卡片和细边框。已有 `.workspace-grid`、`.operation-grid` 可在桌面分为照片控件和说明两栏，手机纵向堆叠。双角色照片可以保留各自独立选择器，在窄屏按现有断点堆叠。
+- 用户操作需要清晰的标签、键盘焦点、选择/替换/移除入口、预览和状态/错误反馈。不要通过隐藏溢出来掩盖挤压问题；要检查文案、菜单、网格和输入区实际边界。
+- 页面下半部保留各场景的差异化正文、示例和 FAQ，不为统一视觉而删除内容或把所有详情页改成同一套文案。
+
+## 4. 参考实现与功能边界
+
+| 页面 | 适合复用的部分 |
+| --- | --- |
+| [Bulin 47](../public/bulin-47-ai-video-maker/index.html) | 已确认的基本视觉、两条竖版参考、单张照片本地预览 |
+| [Flying Entrance](../public/flying-entrance/index.html) | 单条竖版参考、人物和汽车两个独立照片选择器 |
+| [Alors on Danse](../public/examples/alors-on-danse-ai-video-generator/index.html) | 两个角色、配对预览和横版表演参考 |
+| [Gas Station Dance](../public/gas-station-dance-ai/index.html) | 单人/三人角色切换及对应照片槽 |
+| [首页](../public/index.html) / [Drake 详情](../public/burning-bridges-video-ai/index.html) | 已有账号、积分与生成组件接入 |
+
+新增页面优先复制最接近的现有结构，再替换页面内容、SEO、素材及唯一 ID。复用照片组件时连同其 `data-*`、标签关联、状态节点和脚本一起保留；不要只复制一个看起来像上传框的外壳。保留既有输入数量、校验条件、画幅和角色行为。
+
+`trend-samples.js` 的本地预览与真实生成上传不同。并非所有详情页都支持生成对应场景：参考页准确说明本地预览和受支持模板，未接入的场景不展示可直接生成的假入口。不要因视觉调整改动登录、支付、积分、任务恢复或下载逻辑。
+
+照片格式、尺寸、文件大小和数量以该组件的实际校验为准；不要把现有不同组件的 8MB / 10MB 限制统一写成同一个数。参考素材不能标成本站用户生成结果，保留原来源和必要能力说明。
+
+## 5. 新增页面的执行步骤
+
+1. 在项目根目录阅读本规范，选择上表中最接近的页面作为起点。在 `public/<新路径>/index.html` 创建页面；场景专属素材放 `public/assets/<场景>/`。
+2. 保留公共导航和既有交互组件，接入共享 CSS 和匹配的脚本。替换标题、文案、参考素材、标签及唯一 ID；使用本页锚点把 Hero 主入口连到下方操作区。
+3. 配置独立 title、description、canonical、OG 和所需结构化数据；FAQ 的可见答案与 schema 保持一致。公共页面保留有效索引信息，不因使用公共布局而一律 noindex。
+4. 在 [site.config.json](../site.config.json) 注册 route 和资源，在 [sitemap.xml](../public/sitemap.xml) 加入正式 URL。属于 Examples 的视频项目同时添加到 [video-projects.json](../public/video-projects.json)，填写正确的分类、名称、描述、图片和路径。
+5. 在项目根目录 PowerShell 依次执行：
+
+   ```powershell
+   npm.cmd run sync:video-projects
+   npm.cmd run check
+   npm.cmd run build
+   npm.cmd run dev
+   ```
+
+   `sync:video-projects` 依据目录 JSON 生成导航和 Examples 卡片，不要直接手改这些生成块。检查与构建成功后，开发服务应显示 `Local commerce website: http://localhost:3001`；打开该地址下的新页面查看。已有开发服务运行时直接刷新；端口设置见 [README](../README.md)。失败时先修复失败项，再继续下一步。
+6. 按下方清单完成浏览器验收，交付本地预览。提交、推送、合并和部署遵循用户本次授权，不把本地验证称为上线。
+
+## 6. 完成验收清单
+
+- 320、390、768、1280px 四种宽度无整页横向溢出；文字、按钮、视频与照片区未被挤压或裁掉。
+- 样式和字体加载完成后再测布局；远程页面不能在 CSS 尚未加载时直接记录结果。
+- 默认配色正确，Hero 是深色开放背景；主题切换、焦点和选中状态可辨认。
+- Hero 无照片输入，操作区在其下方；手机顺序为文案、参考视频、操作区，固定导航不遮挡标题和锚点目标。
+- 菜单可打开、关闭和滚动；Examples 分类筛选、相关项目入口及本页锚点均正确。
+- 参考视频可播放、暂停和按需开启声音；原有参考切换保留，素材来源可见。
+- 照片选择、替换、移除、无效文件反馈正常；多角色相互独立，角色切换和配对预览未失效。涉及生成组件时检查草稿/任务状态，不为样式验收擅自消耗积分或付款。
+- 原正文、链接、输入控件绑定、SEO、FAQ/schema、目录和 sitemap 已核对；保留有效的页面差异。
+- `npm.cmd run check`、`npm.cmd run build` 通过，查看实际差异并保留代表性的电脑和手机截图。公共样式改动同时检查首页、Examples、价格及受影响的详情页。
+- 若已获授权发布：部署合并后的准确版本，核对正式域名和平台地址的 `release.json`；复查线上页面、关键样式/脚本、链接和手机端。本地或 CI 通过不能代替线上验收。
