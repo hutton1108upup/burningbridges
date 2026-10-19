@@ -134,7 +134,7 @@ function createOffer(trigger = 'exit_top') {
       <h2 class="bb-offer-title" id="bb-offer-title">Wait — credit packs from $9.90</h2>
       <p class="bb-offer-description" id="bb-offer-description">The <strong>$9.90</strong> pack includes <strong>100 credits</strong> for one 720P, 16:9 party video. No subscription required. This pack’s credits are valid for 30 days.</p>
       <div class="bb-offer-actions">
-        <a class="bb-offer-cta" href="/pricing">View credit packs</a>
+        <a class="bb-offer-cta" href="/pricing">Generate video</a>
         <button type="button" class="bb-offer-dismiss">No thanks, close this</button>
       </div>
       <p class="bb-offer-error" role="alert" hidden></p>
