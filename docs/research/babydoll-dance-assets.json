@@ -1,0 +1,19 @@
+{
+  "referencePage": "https://trendhop.net/babydoll-dance-ai",
+  "checkedAt": "2026-10-19",
+  "usage": "Third-party reference, not a Burning Bridges output. Local preview only; generation CTAs lead to /pricing.",
+  "assets": [
+    {
+      "file": "public/assets/babydoll-dance/reference.mp4",
+      "source": "https://static.trendhop.net/trendhop/resources/templates/babydoll-dance-ai/preview/preview.mp4",
+      "bytes": 2280110,
+      "sha256": "97be934ee127a49e246d07bc20a6a8b1c8fd846a18213421467816f3898aab9f"
+    },
+    {
+      "file": "public/assets/babydoll-dance/reference-poster.webp",
+      "source": "https://static.trendhop.net/trendhop/resources/templates/babydoll-dance-ai/preview/preview-poster.webp",
+      "bytes": 26890,
+      "sha256": "ef7265dee2826e775d4ac250f1c8f6209eab28d3b84362729f8962f99d62ccd7"
+    }
+  ]
+}

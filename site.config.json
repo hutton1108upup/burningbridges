@@ -26,6 +26,7 @@
     "/blog/how-to-make-toc-toc-ai-dance-video",
     "/bulin-47-ai-video-maker",
     "/examples/alors-on-danse-ai-video-generator",
+    "/examples/babydoll-dance-ai-video",
     "/examples/ai-smalltown-boy"
   ],
   "assets": [
@@ -134,6 +135,10 @@
     "/assets/alors-on-danse/0xBerayan-2106409258141229057.jpg",
     "/assets/alors-on-danse/0xBerayan-2106409258141229057.mp4",
     "/assets/alors-on-danse/original-performance.jpg",
+    "/babydoll-dance.css",
+    "/assets/babydoll-dance/reference.mp4",
+    "/assets/babydoll-dance/reference-poster.webp",
+    "/babydoll-dance.js",
     "/smalltown-boy.css",
     "/assets/smalltown-boy/duo.png",
     "/assets/smalltown-boy/example-1.mp4",

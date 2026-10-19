@@ -57,6 +57,16 @@
       "label": "Photo preparation"
     },
     {
+      "id": "babydoll-dance",
+      "name": "Babydoll Dance AI Video",
+      "category": "dance",
+      "url": "/examples/babydoll-dance-ai-video",
+      "image": "/assets/babydoll-dance/reference-poster.webp",
+      "imageAlt": "Three suited dancers on a sunny palm-lined street in the Babydoll Dance reference",
+      "description": "Watch the trio two-step reference and prepare a center portrait with two optional friends using local photo previews.",
+      "label": "Trio dance reference"
+    },
+    {
       "id": "alors-on-danse",
       "name": "Alors on Danse AI Video Generator",
       "category": "dance",
