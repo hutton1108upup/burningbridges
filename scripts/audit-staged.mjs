@@ -2,7 +2,7 @@ import {execFileSync} from 'node:child_process';
 const git = args => execFileSync('git',args,{encoding:'utf8',maxBuffer:20*1024*1024});
 const files=git(['diff','--cached','--name-only','--diff-filter=ACMR','-z']).split('\0').filter(Boolean);
 if(!files.length)throw Error('No staged files; audit was not performed');
-  const allowed = file => /^(public\/(?!site-data\.json$|reference-assets\.json$)|src\/|migrations\/|tests\/|docs\/|scripts\/|\.github\/workflows\/|\.gitignore$|\.gitattributes$|package(?:-lock)?\.json$|wrangler(?:\.generation)?\.jsonc$|site\.config\.json$|README\.md$|DEPLOYMENT\.md$|SUBMISSION-AUDIT\.md$|研究与验收\.md$)/.test(file);
+  const allowed = file => /^(public\/(?!site-data\.json$|reference-assets\.json$)|src\/|migrations\/|tests\/|docs\/|scripts\/|\.github\/workflows\/|\.gitignore$|\.gitattributes$|package(?:-lock)?\.json$|wrangler(?:\.generation)?\.jsonc$|site\.config\.json$|AGENTS\.md$|README\.md$|DEPLOYMENT\.md$|SUBMISSION-AUDIT\.md$|研究与验收\.md$)/.test(file);
 const forbidden = /(^|\/)(?:reference|\.local|\.wrangler|node_modules|dist)(\/|$)|(^|\/)\.env|(^|\/)\.dev\.vars|\.(?:pem|key|p12|pfx)$/;
 const patterns = [
   ['private key',/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/],
