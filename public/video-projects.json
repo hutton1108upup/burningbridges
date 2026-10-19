@@ -77,6 +77,16 @@
       "label": "Two-person duet"
     },
     {
+      "id": "smalltown-boy",
+      "name": "AI Smalltown Boy",
+      "category": "dance",
+      "url": "/examples/ai-smalltown-boy",
+      "image": "/assets/smalltown-boy/reference.webp",
+      "imageAlt": "Two characters performing the Smalltown Boy duo dance",
+      "description": "Explore Smalltown Boy AI video references and prepare two portraits with local photo previews.",
+      "label": "Two-character dance"
+    },
+    {
       "id": "toc-toc-dance",
       "name": "Toc Toc Trend · Toc Toc Dance",
       "category": "dance",

@@ -1,0 +1,57 @@
+{
+  "checks": [
+    {
+      "video": 0,
+      "width": 562,
+      "height": 748,
+      "duration": 21.455238,
+      "playing": true
+    },
+    {
+      "video": 1,
+      "width": 562,
+      "height": 748,
+      "duration": 21.455238,
+      "playing": true
+    },
+    {
+      "video": 2,
+      "width": 560,
+      "height": 750,
+      "duration": 21.060499,
+      "playing": true
+    },
+    {
+      "video": 3,
+      "width": 562,
+      "height": 748,
+      "duration": 21.416667,
+      "playing": true
+    },
+    {
+      "viewport": 320,
+      "overflow": false,
+      "order": true
+    },
+    {
+      "viewport": 390,
+      "overflow": false,
+      "order": true
+    },
+    {
+      "viewport": 768,
+      "overflow": false,
+      "order": true
+    },
+    {
+      "viewport": 1280,
+      "overflow": false,
+      "order": true
+    }
+  ],
+  "photoSelectReplaceRemoveInvalid": "passed",
+  "mobileMenu": "passed",
+  "pricingCTA": "passed",
+  "directoryEntry": "passed",
+  "pageErrors": []
+}
