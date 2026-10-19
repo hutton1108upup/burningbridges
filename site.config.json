@@ -28,7 +28,8 @@
     "/examples/alors-on-danse-ai-video-generator",
     "/examples/babydoll-dance-ai-video",
     "/examples/ai-smalltown-boy",
-    "/blog/how-to-make-babydoll-dance-ai-video"
+    "/blog/how-to-make-babydoll-dance-ai-video",
+    "/examples/cheba-man-ai-dance-maker"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -152,6 +153,11 @@
     "/assets/smalltown-boy/retro.png",
     "/assets/smalltown-boy/example-1.png",
     "/assets/smalltown-boy/example-2.png",
-    "/assets/smalltown-boy/example-3.png"
+    "/assets/smalltown-boy/example-3.png",
+    "/assets/cheba-man/original.mp4",
+    "/assets/cheba-man/original.jpg",
+    "/assets/cheba-man/ai-example.mp4",
+    "/assets/cheba-man/ai-example.webp",
+    "/cheba-man.js"
   ]
 }

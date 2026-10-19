@@ -1,0 +1,58 @@
+{
+  "checks": [
+    {
+      "video": 0,
+      "width": 720,
+      "height": 1342,
+      "duration": 15
+    },
+    {
+      "video": 1,
+      "width": 700,
+      "height": 1308,
+      "duration": 15.041667
+    },
+    {
+      "width": 320,
+      "overflow": false,
+      "layoutOrder": "passed"
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "layoutOrder": "passed"
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "layoutOrder": "passed"
+    },
+    {
+      "width": 1280,
+      "overflow": false,
+      "layoutOrder": "passed"
+    },
+    {
+      "buttons": [
+        {
+          "label": "Show video categories",
+          "text": ""
+        },
+        {
+          "label": "Toggle theme",
+          "text": "\u2600"
+        },
+        {
+          "label": "Remove your portrait",
+          "text": "Remove photo"
+        }
+      ]
+    }
+  ],
+  "photoSelectReplaceRemoveInvalidOversize": "passed",
+  "mobileMenu": "passed",
+  "pricingCTA": "passed",
+  "directoryEntry": "passed",
+  "themeToggle": "passed",
+  "errors": []
+}
