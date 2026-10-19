@@ -57,6 +57,16 @@
       "label": "Photo preparation"
     },
     {
+      "id": "cheba-man",
+      "name": "Cheba Man AI Dance Maker",
+      "category": "dance",
+      "url": "/examples/cheba-man-ai-dance-maker",
+      "image": "/assets/cheba-man/original.jpg",
+      "imageAlt": "Cheba Man dancer on a vivid red stage",
+      "description": "Explore the original red-stage dance and an AI face-swap reference, preview your portrait and check video generation plans.",
+      "label": "Red-stage dance"
+    },
+    {
       "id": "babydoll-dance",
       "name": "Babydoll Dance AI Video",
       "category": "dance",
@@ -88,7 +98,7 @@
     },
     {
       "id": "toc-toc-dance",
-      "name": "Toc Toc Trend · Toc Toc Dance",
+      "name": "Toc Toc Trend \u00b7 Toc Toc Dance",
       "category": "dance",
       "url": "/examples/toc-toc-dance",
       "image": "/assets/toc-toc/toc-toc-dance-example-1-poster.webp",
@@ -128,7 +138,7 @@
     },
     {
       "id": "flying-entrance",
-      "name": "Flying Entrance · AI Car Jump Video",
+      "name": "Flying Entrance \u00b7 AI Car Jump Video",
       "category": "cinematic",
       "url": "/flying-entrance",
       "image": "/assets/flying-entrance/result.jpg",
