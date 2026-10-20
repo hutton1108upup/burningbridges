@@ -55,7 +55,7 @@
   mobile.hidden = true;
   mobile.setAttribute('aria-label', 'Mobile navigation');
   toggle.setAttribute('aria-controls', mobile.id);
-  for (const [href, label] of [['/', 'Home'], ['/examples', 'All Examples'], ['#how-it-works', 'The dance'], ['/pricing', 'Pricing'], ['/blog', 'Blog']]) {
+  for (const [href, label] of [['/', 'Home'], ['/examples', 'Trends'], ['#how-it-works', 'The dance'], ['/pricing', 'Pricing'], ['/blog', 'Blog']]) {
     const link = document.createElement('a');
     link.href = href; link.textContent = label; mobile.append(link);
     link.addEventListener('click', () => { mobile.hidden = true; toggle.setAttribute('aria-expanded', 'false'); });
