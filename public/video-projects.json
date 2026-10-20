@@ -34,7 +34,7 @@
       "image": "/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp",
       "imageAlt": "Burning Bridges party performance reference",
       "description": "Explore the party performance, inspect three reference clips and prepare your portrait.",
-      "label": "Party performance"
+      "label": "Supported generation"
     },
     {
       "id": "bulin-47",
@@ -91,7 +91,7 @@
       "name": "AI Smalltown Boy",
       "category": "dance",
       "url": "/examples/ai-smalltown-boy",
-      "image": "/assets/smalltown-boy/reference.webp",
+      "image": "/assets/smalltown-boy/reference-card.webp",
       "imageAlt": "Two characters performing the Smalltown Boy duo dance",
       "description": "Explore Smalltown Boy AI video references and prepare two portraits with local photo previews.",
       "label": "Two-character dance"
