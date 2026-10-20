@@ -241,3 +241,8 @@ body.site-refresh.alors-page .role-help,body.site-refresh.alors-page .photo-stat
 body.site-refresh.alors-page .photo-status.error{color:#ffb1a3}
 @media(max-width:700px){body.site-refresh .duet-workspace .photo-panel{padding:20px}}
 @media(max-width:380px){body.site-refresh .duet-workspace .portrait-inputs{grid-template-columns:1fr}}
+
+/* One-time Duo pack: emphasize the card without changing checkout behavior. */
+body.site-refresh #pricing .pricing-pack-featured{--pricing-highlight:#ffd166;border-color:var(--pricing-highlight)!important;box-shadow:0 0 0 1px var(--pricing-highlight)!important}
+body.site-refresh #pricing .pricing-popular-label{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);padding:5px 18px;border-radius:999px;background:var(--pricing-highlight);color:#17110b;font-size:13px;font-weight:700;line-height:1.5;white-space:nowrap}
+body.site-refresh #pricing .pricing-pack-featured>span.absolute{top:18px;background:var(--site-tint);color:var(--site-muted);border:1px solid var(--site-line)}
