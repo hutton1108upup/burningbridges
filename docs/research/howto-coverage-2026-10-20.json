@@ -1,0 +1,137 @@
+{
+  "checkedAt": "2026-10-20",
+  "scope": "Local implementation only; no deployment",
+  "liveVerification": "Headless Chromium returned HTTP 200 for /examples and /blog. All 12 projects and 3 existing how-to articles matched this checkout. Search-engine cache was older.",
+  "existingCount": 3,
+  "addedCount": 9,
+  "projects": [
+    {
+      "id": "drake-burning-bridges",
+      "project": "/burning-bridges-video-ai",
+      "guide": "/blog/how-to-make-burning-bridges-video",
+      "status": "existing"
+    },
+    {
+      "id": "bulin-47",
+      "project": "/bulin-47-ai-video-maker",
+      "guide": "/blog/how-to-make-bulin-47-ai-video",
+      "status": "added"
+    },
+    {
+      "id": "gas-station-dance",
+      "project": "/gas-station-dance-ai",
+      "guide": "/blog/how-to-make-gas-station-dance-ai-video",
+      "status": "added"
+    },
+    {
+      "id": "cheba-man",
+      "project": "/examples/cheba-man-ai-dance-maker",
+      "guide": "/blog/how-to-make-cheba-man-ai-dance-video",
+      "status": "added"
+    },
+    {
+      "id": "babydoll-dance",
+      "project": "/examples/babydoll-dance-ai-video",
+      "guide": "/blog/how-to-make-babydoll-dance-ai-video",
+      "status": "existing"
+    },
+    {
+      "id": "alors-on-danse",
+      "project": "/examples/alors-on-danse-ai-video-generator",
+      "guide": "/blog/how-to-make-alors-on-danse-ai-video",
+      "status": "added"
+    },
+    {
+      "id": "smalltown-boy",
+      "project": "/examples/ai-smalltown-boy",
+      "guide": "/blog/how-to-make-smalltown-boy-ai-video",
+      "status": "added"
+    },
+    {
+      "id": "toc-toc-dance",
+      "project": "/examples/toc-toc-dance",
+      "guide": "/blog/how-to-make-toc-toc-ai-dance-video",
+      "status": "existing"
+    },
+    {
+      "id": "ozil-goal",
+      "project": "/ozil-goal-ai-video",
+      "guide": "/blog/how-to-make-ozil-goal-ai-video",
+      "status": "added"
+    },
+    {
+      "id": "zombie-pet",
+      "project": "/zombie-pet-ai-video",
+      "guide": "/blog/how-to-make-zombie-pet-ai-video",
+      "status": "added"
+    },
+    {
+      "id": "zombie-love-story",
+      "project": "/zombie-love-story-ai",
+      "guide": "/blog/how-to-make-zombie-love-story-ai-video",
+      "status": "added"
+    },
+    {
+      "id": "flying-entrance",
+      "project": "/flying-entrance",
+      "guide": "/blog/how-to-make-flying-entrance-ai-video",
+      "status": "added"
+    }
+  ],
+  "sources": [
+    {
+      "project": "bulin-47",
+      "url": "https://bulin47ai.com/",
+      "evidence": "Provider describes a one-photo freestyle workflow. Output quality, current price and successful delivery have not been tested for this guide."
+    },
+    {
+      "project": "gas-station-dance",
+      "url": "https://gasstationdance.co/",
+      "evidence": "Provider documents the three role inputs and solo option. This guide does not verify paid rendering or repeat its price and delivery promises."
+    },
+    {
+      "project": "cheba-man",
+      "url": "https://chebamandance.com/",
+      "evidence": "Provider page checked in a browser: Face swap and Character & outfit are separate modes. No render was purchased or tested."
+    },
+    {
+      "project": "alors-on-danse",
+      "url": "https://alorsondanse.video/",
+      "evidence": "Provider documents two role inputs and a silent MP4. This is a workflow reference, not a paid generation test."
+    },
+    {
+      "project": "smalltown-boy",
+      "url": "https://smalltownboy.app/",
+      "evidence": "Provider describes lead order, input options and silent output. No generation quality, delivery time or price was independently tested."
+    },
+    {
+      "project": "ozil-goal",
+      "url": "https://ozil-goal-ai.video/",
+      "evidence": "Provider documents attacker and optional reference inputs and separates contextual match footage from generated examples. No paid render was tested."
+    },
+    {
+      "project": "zombie-pet",
+      "url": "https://aizombie.video/zombie-pet",
+      "evidence": "Provider documents the owner/pet roles and cabin-to-memory sequence. This guide does not verify its output quality or delivery claims."
+    },
+    {
+      "project": "zombie-love-story",
+      "url": "https://aizombie.video/zombie-love-story",
+      "evidence": "Provider describes the two-photo story and reference sequence. No paid task, soundtrack rights or delivery performance was tested."
+    },
+    {
+      "project": "flying-entrance",
+      "url": "https://www.talkpix.ai/trends/flying-entrance",
+      "evidence": "Provider documents two photo inputs and entrance options. Its sample, output settings and claims are separate from Burning Bridges capabilities."
+    }
+  ],
+  "editorial": "English beginner how-to guides; project-specific photo, workflow and review advice; restrained voice, no invented testing, no external price or delivery guarantees. Reuses established blog layout and existing reference images.",
+  "validation": {
+    "check": "PASS: 38 routes, 147 FAQ/schema answers, 79 tests",
+    "build": "PASS",
+    "browser": "PASS: 12 project/tutorial pairs; 100 page/viewport checks at 320, 390, 768 and 1280px; no JavaScript page errors",
+    "visual": "Desktop and mobile article screenshots inspected",
+    "evidence": ".local/howto-qa/results.json",
+    "deployment": "Not performed; local uncommitted changes only"
+  }
+}
