@@ -1,0 +1,52 @@
+{
+  "sourcePage": "https://nowstarring.ai/ghostface-ai",
+  "retrieved": "2026-10-21",
+  "usage": "Third-party reference media; not Burning Bridges generated results.",
+  "assets": [
+    {
+      "file": "reference.mp4",
+      "source": "https://nowstarring.ai/videos/trends/ghostface-ai/our-phone.mp4",
+      "bytes": 2196079
+    },
+    {
+      "file": "example.mp4",
+      "source": "https://nowstarring.ai/videos/trends/ghostface-ai/ex-red-hair.mp4",
+      "bytes": 662243
+    },
+    {
+      "file": "reference.webp",
+      "source": "https://nowstarring.ai/images/trends/ghostface-ai/our-phone.webp",
+      "bytes": 37822
+    },
+    {
+      "file": "example.webp",
+      "source": "https://nowstarring.ai/images/trends/ghostface-ai/ex-red-hair.webp",
+      "bytes": 24098
+    },
+    {
+      "file": "beat-1.webp",
+      "source": "https://nowstarring.ai/images/trends/ghostface-ai/beat-1.webp",
+      "bytes": 28328
+    },
+    {
+      "file": "beat-2.webp",
+      "source": "https://nowstarring.ai/images/trends/ghostface-ai/beat-2.webp",
+      "bytes": 28884
+    },
+    {
+      "file": "beat-3.webp",
+      "source": "https://nowstarring.ai/images/trends/ghostface-ai/beat-3.webp",
+      "bytes": 29208
+    },
+    {
+      "file": "beat-4.webp",
+      "source": "https://nowstarring.ai/images/trends/ghostface-ai/beat-4.webp",
+      "bytes": 29710
+    },
+    {
+      "file": "beat-5.webp",
+      "source": "https://nowstarring.ai/images/trends/ghostface-ai/beat-5.webp",
+      "bytes": 29010
+    }
+  ]
+}

@@ -155,6 +155,16 @@
       "imageAlt": "Witch costume reveal at a Halloween party",
       "description": "Explore two Halloween costume transformation references, preview your photo locally and check video generation plans.",
       "label": "Costume reveal reference"
+    },
+    {
+      "id": "ghostface",
+      "name": "Ghostface AI Video Maker",
+      "category": "cinematic",
+      "url": "/examples/ghostface-ai-video-maker",
+      "image": "/assets/ghostface/reference.webp",
+      "imageAlt": "Ghostface phone-call scene in a retro bedroom",
+      "description": "Explore two horror phone-call references, inspect the scene and preview a portrait on your device.",
+      "label": "Horror scene reference"
     }
   ]
 }

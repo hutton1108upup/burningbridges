@@ -1,0 +1,13 @@
+/* Scene grids only; the shared theme owns the palette and typography. */
+.ghostface-page .hero-copy>.text-link{display:inline-block;margin-top:16px}
+.ghostface-page .workspace-summary .button{width:100%}
+.ghostface-page .ghostface-examples{grid-template-columns:repeat(2,minmax(0,1fr));max-width:720px;margin-inline:auto}
+.ghostface-page .example-card video{aspect-ratio:9/16;object-fit:contain}
+.ghostface-beats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+.ghostface-beats img{display:block;width:100%;height:auto;border-radius:12px;margin-bottom:18px}
+.ghostface-beats h3{font-size:18px;margin-block:8px}
+.ghostface-beats p{font-size:14px;color:var(--site-muted)}
+.ghostface-theme{border:1px solid var(--site-line);border-radius:8px;background:var(--site-card);color:var(--site-ink);padding:8px 10px;font:inherit;font-size:11px;white-space:nowrap;cursor:pointer}
+@media(max-width:900px){.ghostface-beats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.ghostface-beats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:380px){.ghostface-page .ghostface-examples{grid-template-columns:1fr;max-width:250px}}

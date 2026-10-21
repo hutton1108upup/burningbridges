@@ -31,7 +31,9 @@
     "/blog/how-to-make-babydoll-dance-ai-video",
     "/examples/cheba-man-ai-dance-maker",
     "/examples/halloween-costume-ai",
-    "/blog/how-to-make-halloween-costume-ai-video"
+    "/blog/how-to-make-halloween-costume-ai-video",
+    "/examples/ghostface-ai-video-maker",
+    "/blog/how-to-make-ghostface-ai-video"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -177,6 +179,17 @@
     "/assets/halloween-costume/beat-4.webp",
     "/assets/halloween-costume/beat-5.webp",
     "/assets/halloween-costume/our-witch.mp4",
-    "/assets/halloween-costume/ex-reveal.mp4"
+    "/assets/halloween-costume/ex-reveal.mp4",
+    "/ghostface.css",
+    "/ghostface.js",
+    "/assets/ghostface/beat-1.webp",
+    "/assets/ghostface/beat-2.webp",
+    "/assets/ghostface/beat-3.webp",
+    "/assets/ghostface/beat-4.webp",
+    "/assets/ghostface/beat-5.webp",
+    "/assets/ghostface/example.mp4",
+    "/assets/ghostface/example.webp",
+    "/assets/ghostface/reference.mp4",
+    "/assets/ghostface/reference.webp"
   ]
 }
