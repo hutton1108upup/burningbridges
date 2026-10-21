@@ -35,7 +35,9 @@
     "/examples/ghostface-ai-video-maker",
     "/blog/how-to-make-ghostface-ai-video",
     "/examples/thriller-dance-ai-video-maker",
-    "/blog/how-to-make-thriller-dance-ai-video"
+    "/blog/how-to-make-thriller-dance-ai-video",
+    "/examples/rumpelstiltskin-ai-video-maker",
+    "/blog/how-to-make-rumpelstiltskin-ai-video"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -202,6 +204,12 @@
     "/assets/thriller-dance/example.webp",
     "/assets/thriller-dance/in-photo.webp",
     "/assets/thriller-dance/reference.mp4",
-    "/assets/thriller-dance/reference.webp"
+    "/assets/thriller-dance/reference.webp",
+    "/assets/rumpelstiltskin/reference.mp4",
+    "/assets/rumpelstiltskin/reference.webp",
+    "/assets/rumpelstiltskin/glasses.mp4",
+    "/assets/rumpelstiltskin/glasses.webp",
+    "/rumpelstiltskin.css",
+    "/rumpelstiltskin.js"
   ]
 }

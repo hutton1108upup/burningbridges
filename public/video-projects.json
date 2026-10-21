@@ -190,6 +190,17 @@
       "description": "Watch two zombie street-dance references, preview your photo and read the Thriller dance video guide.",
       "label": "Zombie dance reference",
       "publishedAt": "2026-10-21T21:26:07+08:00"
+    },
+    {
+      "id": "rumpelstiltskin",
+      "name": "Rumpelstiltskin AI Video Maker",
+      "category": "dance",
+      "url": "/examples/rumpelstiltskin-ai-video-maker",
+      "image": "/assets/rumpelstiltskin/reference.webp",
+      "imageAlt": "Rumpelstiltskin barn-dance reference with a costumed dancer",
+      "description": "Explore two barn-dance references, preview a portrait and follow the photo-to-video tutorial.",
+      "label": "Barn-dance references",
+      "publishedAt": "2026-10-21T21:32:43+08:00"
     }
   ]
 }
