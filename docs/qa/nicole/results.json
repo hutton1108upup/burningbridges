@@ -1,0 +1,14 @@
+{
+  "widths": [
+    320,
+    390,
+    768,
+    1280
+  ],
+  "interactions": {
+    "copy_prompt": true,
+    "mobile_menu": true,
+    "photo_replace_remove": true,
+    "invalid_file": true
+  }
+}
