@@ -190,6 +190,17 @@
       "description": "Watch two zombie street-dance references, preview your photo and read the Thriller dance video guide.",
       "label": "Zombie dance reference",
       "publishedAt": "2026-10-21T21:26:07+08:00"
+    },
+    {
+      "id": "i-feel-like-nicole",
+      "name": "I Feel Like Nicole AI Video Maker",
+      "category": "dance",
+      "url": "/examples/i-feel-like-nicole-ai-video",
+      "image": "/assets/i-feel-like-nicole/poster.webp",
+      "imageAlt": "Cooler-cam I Feel Like Nicole reference with a performer holding a pink drink can",
+      "description": "Explore the cooler-cam I Feel Like Nicole sequence, watch third-party references and preview one full-body portrait locally.",
+      "label": "Cooler-cam reference",
+      "publishedAt": "2026-10-21T21:34:43+08:00"
     }
   ]
 }
