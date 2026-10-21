@@ -34,7 +34,8 @@
       "image": "/assets/81b43838ff70-burning-bridges-template-16x9-crop-poster.webp",
       "imageAlt": "Burning Bridges party performance reference",
       "description": "Explore the party performance, inspect three reference clips and prepare your portrait.",
-      "label": "Supported generation"
+      "label": "Supported generation",
+      "publishedAt": "2026-10-11T11:37:22+08:00"
     },
     {
       "id": "bulin-47",
@@ -44,7 +45,8 @@
       "image": "/assets/bulin-47/original.jpg",
       "imageAlt": "Bulin 47 freestyle performance beside a street-side speaker",
       "description": "Watch the original and AI freestyle references, check a portrait on your device and explore video plans.",
-      "label": "Freestyle references"
+      "label": "Freestyle references",
+      "publishedAt": "2026-10-16T18:05:03+08:00"
     },
     {
       "id": "gas-station-dance",
@@ -54,7 +56,8 @@
       "image": "/assets/gas-station/hero-template-poster.webp",
       "imageAlt": "Gas Station Dance video preview",
       "description": "Plan a dance, selfie and car-exit sequence with solo or trio casting and local photo previews.",
-      "label": "Photo preparation"
+      "label": "Photo preparation",
+      "publishedAt": "2026-10-14T20:21:34+08:00"
     },
     {
       "id": "cheba-man",
@@ -64,7 +67,8 @@
       "image": "/assets/cheba-man/original.jpg",
       "imageAlt": "Cheba Man dancer on a vivid red stage",
       "description": "Explore the original red-stage dance and an AI face-swap reference, preview your portrait and check video generation plans.",
-      "label": "Red-stage dance"
+      "label": "Red-stage dance",
+      "publishedAt": "2026-10-19T19:23:25+08:00"
     },
     {
       "id": "babydoll-dance",
@@ -74,7 +78,8 @@
       "image": "/assets/babydoll-dance/reference-poster.webp",
       "imageAlt": "Three suited dancers on a sunny palm-lined street in the Babydoll Dance reference",
       "description": "Watch the trio two-step reference and prepare a center portrait with two optional friends using local photo previews.",
-      "label": "Trio dance reference"
+      "label": "Trio dance reference",
+      "publishedAt": "2026-10-19T18:57:40+08:00"
     },
     {
       "id": "alors-on-danse",
@@ -84,7 +89,8 @@
       "image": "/assets/alors-on-danse/ZephyraLeigh-2106937499402825728.jpg",
       "imageAlt": "Two performers in the Alors on Danse white-studio duet",
       "description": "Watch three duet references and preview portraits for the keyboard player and laptop partner on your device.",
-      "label": "Two-person duet"
+      "label": "Two-person duet",
+      "publishedAt": "2026-10-17T07:55:57+08:00"
     },
     {
       "id": "smalltown-boy",
@@ -94,7 +100,8 @@
       "image": "/assets/smalltown-boy/reference-card.webp",
       "imageAlt": "Two characters performing the Smalltown Boy duo dance",
       "description": "Explore Smalltown Boy AI video references and prepare two portraits with local photo previews.",
-      "label": "Two-character dance"
+      "label": "Two-character dance",
+      "publishedAt": "2026-10-19T19:12:33+08:00"
     },
     {
       "id": "toc-toc-dance",
@@ -104,7 +111,8 @@
       "image": "/assets/toc-toc/toc-toc-dance-example-1-poster.webp",
       "imageAlt": "Toc Toc Dance living-room dance reference",
       "description": "Explore the toc toc trend, watch the dance references and prepare one portrait for the living-room scene.",
-      "label": "Toc Toc Dance"
+      "label": "Toc Toc Dance",
+      "publishedAt": "2026-10-16T11:34:33+08:00"
     },
     {
       "id": "ozil-goal",
@@ -114,7 +122,8 @@
       "image": "/assets/ozil-goal-video-card.webp",
       "imageAlt": "Footballer dribbling past a sliding defender in the Ozil Goal reference video",
       "description": "Explore the goalkeeper flick, a pause past the defenders and the finish. Prepare a full-body photo for your football video idea.",
-      "label": "Football scene"
+      "label": "Football scene",
+      "publishedAt": "2026-10-14T20:37:22+08:00"
     },
     {
       "id": "zombie-pet",
@@ -124,7 +133,8 @@
       "image": "/assets/zombie-pet-video-card.webp",
       "imageAlt": "Woman holding her dog in a golden field in the Zombie Pet reference video",
       "description": "A pet in a dark cabin, a leap into open arms and a memory in a golden field. Choose photos for both characters.",
-      "label": "Pet story"
+      "label": "Pet story",
+      "publishedAt": "2026-10-15T09:46:17+08:00"
     },
     {
       "id": "zombie-love-story",
@@ -134,7 +144,8 @@
       "image": "/assets/zombie-love-story-video-card.webp",
       "imageAlt": "Couple embracing in a golden field in the Zombie Love Story reference video",
       "description": "Follow the cabin-to-hug story, preview two cast photos on your device and check video plans.",
-      "label": "Two-person story"
+      "label": "Two-person story",
+      "publishedAt": "2026-10-15T13:23:16+08:00"
     },
     {
       "id": "flying-entrance",
@@ -144,7 +155,8 @@
       "image": "/assets/flying-entrance/result.jpg",
       "imageAlt": "Car airborne behind a seated person in a golden field",
       "description": "Explore the cinematic car-jump reference, compare two source photos and prepare your Flying Entrance idea.",
-      "label": "Car jump effect"
+      "label": "Car jump effect",
+      "publishedAt": "2026-10-15T20:22:58+08:00"
     },
     {
       "id": "halloween-costume",
@@ -154,7 +166,8 @@
       "image": "/assets/halloween-costume/our-witch.webp",
       "imageAlt": "Witch costume reveal at a Halloween party",
       "description": "Explore two Halloween costume transformation references, preview your photo locally and check video generation plans.",
-      "label": "Costume reveal reference"
+      "label": "Costume reveal reference",
+      "publishedAt": "2026-10-21T21:06:59+08:00"
     }
   ]
 }

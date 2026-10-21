@@ -2,6 +2,22 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 
+test('Examples cards and structured data follow publication order, newest first', async () => {
+  const catalog = JSON.parse(await readFile('public/video-projects.json','utf8'));
+  const html = await readFile('public/examples/index.html','utf8');
+  const dates = new Map(catalog.projects.map(project => [project.url, Date.parse(project.publishedAt)]));
+  assert.ok([...dates.values()].every(Number.isFinite), 'Every project needs a publication date');
+  const cards = [...html.matchAll(/<article class="video-project-card"[\s\S]*?<h2><a href="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(cards.length, catalog.projects.length);
+  assert.equal(new Set(cards).size, cards.length);
+  for (let i = 1; i < cards.length; i++) {
+    assert.ok(dates.get(cards[i - 1]) >= dates.get(cards[i]), `${cards[i]} must not follow an older page`);
+  }
+  const schema = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  assert.deepEqual(schema.mainEntity.itemListElement.map(item => new URL(item.url).pathname), cards);
+  assert.deepEqual(schema.mainEntity.itemListElement.map(item => item.position), cards.map((_, i) => i + 1));
+});
+
 test('every catalog project is reachable from the directory and each page menu', async () => {
   const catalog = JSON.parse(await readFile('public/video-projects.json','utf8'));
   const config = JSON.parse(await readFile('site.config.json','utf8'));
