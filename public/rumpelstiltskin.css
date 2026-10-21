@@ -1,0 +1,9 @@
+/* Scene-specific layout; shared styles own the theme and player. */
+.rumpelstiltskin-page .rumpelstiltskin-examples{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rumpelstiltskin-page .example-card video{aspect-ratio:16/9;object-fit:contain}
+.rumpelstiltskin-page .workspace-summary .button{width:100%}
+.rumpelstiltskin-theme{border:1px solid var(--site-line);border-radius:8px;background:var(--site-card);color:var(--site-ink);padding:8px 10px;font:inherit;font-size:11px;white-space:nowrap;cursor:pointer}
+@media(max-width:700px){.rumpelstiltskin-page .rumpelstiltskin-examples{grid-template-columns:1fr}}
+
+.rumpelstiltskin-guide .toc-howto-reference{grid-template-columns:1fr}
+.rumpelstiltskin-guide .toc-howto-reference img{width:100%;height:auto;max-height:none;aspect-ratio:854/480}
