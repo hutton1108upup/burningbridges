@@ -152,7 +152,7 @@ Hero 左栏包含分类提示、唯一 H1、说明、必要规格和主操作入
 1. 在项目根目录阅读本规范，选择上表中最接近的页面作为起点。在 `public/<新路径>/index.html` 创建页面；场景专属素材放 `public/assets/<场景>/`。
 2. 保留公共导航和既有交互组件，接入共享 CSS 和匹配的脚本。替换标题、文案、参考素材、标签及唯一 ID；使用本页锚点把 Hero 主入口连到下方操作区。
 3. 配置独立 title、description、canonical、OG 和所需结构化数据；FAQ 的可见答案与 schema 保持一致。公共页面保留有效索引信息，不因使用公共布局而一律 noindex。
-4. 在 [site.config.json](../site.config.json) 注册 route 和资源，在 [sitemap.xml](../public/sitemap.xml) 加入正式 URL。属于 Examples 的视频项目同时添加到 [video-projects.json](../public/video-projects.json)，填写正确的分类、名称、描述、图片和路径。
+4. 在 [site.config.json](../site.config.json) 注册 route 和资源，在 [sitemap.xml](../public/sitemap.xml) 加入正式 URL。属于 Examples 的视频项目同时添加到 [video-projects.json](../public/video-projects.json)，填写正确的分类、名称、描述、图片和路径。 每个项目必须提供带时区的 `publishedAt` 时间（如 `2026-10-21T21:06:59+08:00`）；Examples 卡片及其 ItemList 按该时间从新到旧排列，分类筛选保留此顺序。旧页面改文案、封面时不更新该值。历史项目以首次进入主分支的提交时间补齐，作为发布顺序依据，不代表精确的生产部署时间。
 5. 在项目根目录 PowerShell 依次执行：
 
    ```powershell
