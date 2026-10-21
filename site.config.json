@@ -29,7 +29,9 @@
     "/examples/babydoll-dance-ai-video",
     "/examples/ai-smalltown-boy",
     "/blog/how-to-make-babydoll-dance-ai-video",
-    "/examples/cheba-man-ai-dance-maker"
+    "/examples/cheba-man-ai-dance-maker",
+    "/examples/halloween-costume-ai",
+    "/blog/how-to-make-halloween-costume-ai-video"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -161,6 +163,17 @@
     "/cheba-man.js",
     "/social-video-hero.css",
     "/social-video-hero.js",
-    "/dual-video-hero.css"
+    "/dual-video-hero.css",
+    "/halloween-costume.css",
+    "/assets/halloween-costume/our-witch.webp",
+    "/assets/halloween-costume/ex-reveal.webp",
+    "/assets/halloween-costume/in-photo.webp",
+    "/assets/halloween-costume/beat-1.webp",
+    "/assets/halloween-costume/beat-2.webp",
+    "/assets/halloween-costume/beat-3.webp",
+    "/assets/halloween-costume/beat-4.webp",
+    "/assets/halloween-costume/beat-5.webp",
+    "/assets/halloween-costume/our-witch.mp4",
+    "/assets/halloween-costume/ex-reveal.mp4"
   ]
 }
