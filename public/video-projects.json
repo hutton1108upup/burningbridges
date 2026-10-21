@@ -168,6 +168,17 @@
       "description": "Explore two Halloween costume transformation references, preview your photo locally and check video generation plans.",
       "label": "Costume reveal reference",
       "publishedAt": "2026-10-21T21:06:59+08:00"
+    },
+    {
+      "id": "ghostface",
+      "name": "Ghostface AI Video Maker",
+      "category": "cinematic",
+      "url": "/examples/ghostface-ai-video-maker",
+      "image": "/assets/ghostface/reference.webp",
+      "imageAlt": "Ghostface phone-call scene in a retro bedroom",
+      "description": "Explore two horror phone-call references, inspect the scene and preview a portrait on your device.",
+      "label": "Horror scene reference",
+      "publishedAt": "2026-10-21T21:15:35+08:00"
     }
   ]
 }
