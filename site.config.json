@@ -33,7 +33,9 @@
     "/examples/halloween-costume-ai",
     "/blog/how-to-make-halloween-costume-ai-video",
     "/examples/ghostface-ai-video-maker",
-    "/blog/how-to-make-ghostface-ai-video"
+    "/blog/how-to-make-ghostface-ai-video",
+    "/examples/thriller-dance-ai-video-maker",
+    "/blog/how-to-make-thriller-dance-ai-video"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -190,6 +192,16 @@
     "/assets/ghostface/example.mp4",
     "/assets/ghostface/example.webp",
     "/assets/ghostface/reference.mp4",
-    "/assets/ghostface/reference.webp"
+    "/assets/ghostface/reference.webp",
+    "/assets/thriller-dance/beat-1.webp",
+    "/assets/thriller-dance/beat-2.webp",
+    "/assets/thriller-dance/beat-3.webp",
+    "/assets/thriller-dance/beat-4.webp",
+    "/assets/thriller-dance/beat-5.webp",
+    "/assets/thriller-dance/example.mp4",
+    "/assets/thriller-dance/example.webp",
+    "/assets/thriller-dance/in-photo.webp",
+    "/assets/thriller-dance/reference.mp4",
+    "/assets/thriller-dance/reference.webp"
   ]
 }
