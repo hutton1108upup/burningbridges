@@ -29,7 +29,9 @@
     "/examples/babydoll-dance-ai-video",
     "/examples/ai-smalltown-boy",
     "/blog/how-to-make-babydoll-dance-ai-video",
-    "/examples/cheba-man-ai-dance-maker"
+    "/examples/cheba-man-ai-dance-maker",
+    "/examples/ghostface-ai-video-maker",
+    "/blog/how-to-make-ghostface-ai-video"
   ],
   "assets": [
     "/_next/static/chunks/0ev4y1zkv8xbi.css",
@@ -161,6 +163,17 @@
     "/cheba-man.js",
     "/social-video-hero.css",
     "/social-video-hero.js",
-    "/dual-video-hero.css"
+    "/dual-video-hero.css",
+    "/ghostface.css",
+    "/ghostface.js",
+    "/assets/ghostface/beat-1.webp",
+    "/assets/ghostface/beat-2.webp",
+    "/assets/ghostface/beat-3.webp",
+    "/assets/ghostface/beat-4.webp",
+    "/assets/ghostface/beat-5.webp",
+    "/assets/ghostface/example.mp4",
+    "/assets/ghostface/example.webp",
+    "/assets/ghostface/reference.mp4",
+    "/assets/ghostface/reference.webp"
   ]
 }

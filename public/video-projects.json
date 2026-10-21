@@ -98,7 +98,7 @@
     },
     {
       "id": "toc-toc-dance",
-      "name": "Toc Toc Trend \u00b7 Toc Toc Dance",
+      "name": "Toc Toc Trend · Toc Toc Dance",
       "category": "dance",
       "url": "/examples/toc-toc-dance",
       "image": "/assets/toc-toc/toc-toc-dance-example-1-poster.webp",
@@ -138,13 +138,23 @@
     },
     {
       "id": "flying-entrance",
-      "name": "Flying Entrance \u00b7 AI Car Jump Video",
+      "name": "Flying Entrance · AI Car Jump Video",
       "category": "cinematic",
       "url": "/flying-entrance",
       "image": "/assets/flying-entrance/result.jpg",
       "imageAlt": "Car airborne behind a seated person in a golden field",
       "description": "Explore the cinematic car-jump reference, compare two source photos and prepare your Flying Entrance idea.",
       "label": "Car jump effect"
+    },
+    {
+      "id": "ghostface",
+      "name": "Ghostface AI Video Maker",
+      "category": "cinematic",
+      "url": "/examples/ghostface-ai-video-maker",
+      "image": "/assets/ghostface/reference.webp",
+      "imageAlt": "Ghostface phone-call scene in a retro bedroom",
+      "description": "Explore two horror phone-call references, inspect the scene and preview a portrait on your device.",
+      "label": "Horror scene reference"
     }
   ]
 }
