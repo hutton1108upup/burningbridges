@@ -179,6 +179,17 @@
       "description": "Explore two horror phone-call references, inspect the scene and preview a portrait on your device.",
       "label": "Horror scene reference",
       "publishedAt": "2026-10-21T21:15:35+08:00"
+    },
+    {
+      "id": "thriller-dance",
+      "name": "Thriller Dance AI Video Maker",
+      "category": "dance",
+      "url": "/examples/thriller-dance-ai-video-maker",
+      "image": "/assets/thriller-dance/reference.webp",
+      "imageAlt": "Lead dancer and zombie crowd on a misty night street",
+      "description": "Watch two zombie street-dance references, preview your photo and read the Thriller dance video guide.",
+      "label": "Zombie dance reference",
+      "publishedAt": "2026-10-21T21:26:07+08:00"
     }
   ]
 }
