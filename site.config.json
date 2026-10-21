@@ -39,7 +39,9 @@
     "/examples/i-feel-like-nicole-ai-video",
     "/blog/how-to-make-i-feel-like-nicole-ai-video",
     "/examples/rumpelstiltskin-ai-video-maker",
-    "/blog/how-to-make-rumpelstiltskin-ai-video"
+    "/blog/how-to-make-rumpelstiltskin-ai-video",
+    "/examples/storm-ii-ai-video",
+    "/blog/how-to-make-storm-ii-ai-video"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -226,6 +228,19 @@
     "/assets/rumpelstiltskin/glasses.mp4",
     "/assets/rumpelstiltskin/glasses.webp",
     "/rumpelstiltskin.css",
-    "/rumpelstiltskin.js"
+    "/rumpelstiltskin.js",
+    "/assets/storm-ii/white-crowd.mp4",
+    "/assets/storm-ii/white-crowd.webp",
+    "/assets/storm-ii/officers.mp4",
+    "/assets/storm-ii/officers.webp",
+    "/assets/storm-ii/shadow-wolves.mp4",
+    "/assets/storm-ii/shadow-wolves.webp",
+    "/assets/storm-ii/masked-guards.mp4",
+    "/assets/storm-ii/masked-guards.webp",
+    "/assets/storm-ii/fashion-crowd.mp4",
+    "/assets/storm-ii/fashion-crowd.webp",
+    "/assets/storm-ii/masked-crowd.mp4",
+    "/assets/storm-ii/masked-crowd.webp",
+    "/storm-ii.css"
   ]
 }

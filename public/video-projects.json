@@ -212,6 +212,17 @@
       "description": "Explore two barn-dance references, preview a portrait and follow the photo-to-video tutorial.",
       "label": "Barn-dance references",
       "publishedAt": "2026-10-21T21:32:43+08:00"
+    },
+    {
+      "id": "storm-ii",
+      "name": "STORM II AI Video Maker",
+      "category": "dance",
+      "url": "/examples/storm-ii-ai-video",
+      "image": "/assets/storm-ii/white-crowd.webp",
+      "imageAlt": "STORM II formation reference with one lead among pale-clothed rows",
+      "description": "Explore six crowd formations, preview a portrait and follow the STORM II video prompt guide.",
+      "label": "Formation references",
+      "publishedAt": "2026-10-21T21:44:17+08:00"
     }
   ]
 }
