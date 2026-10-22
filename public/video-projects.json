@@ -223,6 +223,17 @@
       "description": "Explore six crowd formations, preview a portrait and follow the STORM II video prompt guide.",
       "label": "Formation references",
       "publishedAt": "2026-10-21T21:44:17+08:00"
+    },
+    {
+      "id": "nicole-kidman-dance",
+      "name": "Nicole Kidman Dance AI Video Maker",
+      "category": "dance",
+      "url": "/examples/nicole-kidman-dance-ai-video-maker",
+      "image": "/assets/nicole-kidman-dance/kidman-red.jpg",
+      "imageAlt": "Two dancers in the Nicole Kidman red-room dance reference",
+      "description": "Compare solo and duo dance references, prepare photos locally and read the step-by-step motion guide.",
+      "label": "Solo & duo dance references",
+      "publishedAt": "2026-10-22T12:11:33+08:00"
     }
   ]
 }

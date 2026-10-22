@@ -1,0 +1,11 @@
+/* Scene gallery only; the Hero, palette and photo workspace use shared styles. */
+.kidman-dance-page .sample-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-block: 28px 18px; }
+.kidman-dance-page .sample-card { min-width: 0; margin: 0; padding: 10px; border: 1px solid var(--site-line); border-radius: 18px; background: var(--site-card); }
+.kidman-dance-page .sample-card video { display: block; width: 100%; aspect-ratio: 9 / 16; max-height: 420px; object-fit: contain; border-radius: 10px; background: #121212; }
+.kidman-dance-page .sample-card figcaption { padding: 16px 8px 0; color: var(--site-muted); font-size: 13px; }
+.kidman-dance-page .credit-note { color: var(--site-muted); font-size: 12px; }
+.kidman-dance-page .section { padding-block: 40px; }
+@media (max-width: 600px) {
+  .kidman-dance-page .sample-grid { grid-template-columns: 1fr; }
+  .kidman-dance-page .sample-card { width: 100%; max-width: 360px; justify-self: center; }
+}

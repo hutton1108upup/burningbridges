@@ -41,7 +41,9 @@
     "/examples/rumpelstiltskin-ai-video-maker",
     "/blog/how-to-make-rumpelstiltskin-ai-video",
     "/examples/storm-ii-ai-video",
-    "/blog/how-to-make-storm-ii-ai-video"
+    "/blog/how-to-make-storm-ii-ai-video",
+    "/examples/nicole-kidman-dance-ai-video-maker",
+    "/blog/how-to-make-nicole-kidman-dance-ai-video"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -241,6 +243,13 @@
     "/assets/storm-ii/fashion-crowd.webp",
     "/assets/storm-ii/masked-crowd.mp4",
     "/assets/storm-ii/masked-crowd.webp",
-    "/storm-ii.css"
+    "/storm-ii.css",
+    "/assets/nicole-kidman-dance/kidman-living.jpg",
+    "/assets/nicole-kidman-dance/kidman-living.mp4",
+    "/assets/nicole-kidman-dance/kidman-red.jpg",
+    "/assets/nicole-kidman-dance/kidman-red.mp4",
+    "/assets/nicole-kidman-dance/kidman-subway.jpg",
+    "/assets/nicole-kidman-dance/kidman-subway.mp4",
+    "/nicole-kidman-dance.css"
   ]
 }
