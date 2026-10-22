@@ -1,5 +1,6 @@
 import {readFile, writeFile, access} from 'node:fs/promises';
 import {syncPageSchema} from './sync-page-schema.mjs';
+import {syncTrendGuides} from './sync-trend-guides.mjs';
 const catalog = JSON.parse(await readFile('public/video-projects.json', 'utf8'));
 const config = JSON.parse(await readFile('site.config.json', 'utf8'));
 const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -41,4 +42,5 @@ for (const route of config.routes) {
   await writeFile(file,html);
 }
 await syncPageSchema(catalog, config);
+await syncTrendGuides(catalog, config);
 console.log(`Synced ${catalog.projects.length} projects across ${config.routes.length} page navigation menus, detail breadcrumbs and guide hub schema`);

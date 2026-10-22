@@ -1,0 +1,26 @@
+.trend-related{margin-top:48px;padding-top:24px;border-top:1px solid var(--site-line)}
+.trend-related{max-width:1120px;margin-left:auto;margin-right:auto;margin-bottom:40px}
+main>.trend-related{width:calc(100% - 48px)}
+.guide-main>.trend-related{max-width:960px}
+.guide-filters{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:24px 0}
+.guide-filters[hidden],.guide-hub-card[hidden]{display:none!important}
+.guide-filters [role=group]{display:flex;flex-wrap:wrap;gap:8px}
+.guide-filters button,.guide-filters select{font:inherit;font-size:14px;padding:10px 14px;border:1px solid var(--site-line);border-radius:12px;background:var(--site-card);color:var(--site-ink);cursor:pointer;max-width:100%}
+.guide-filters button[aria-pressed=true]{background:var(--brand-orange);color:#17110B;border-color:var(--brand-orange)}
+.guide-filters label{font-size:14px;margin-left:8px}
+.guide-filters [data-guide-count]{flex-basis:100%;font-size:13px;color:var(--site-muted);margin:0}
+.guide-card-type{display:block;font-size:11px;letter-spacing:.08em;color:var(--site-link);margin-bottom:12px}
+.trend-guide-links a:focus-visible,.guide-filters :is(button,select):focus-visible{outline:2px solid var(--brand-orange);outline-offset:3px}
+.trend-guide-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
+.trend-guide-links a{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--site-line);border-radius:16px;background:var(--site-card);text-decoration:none!important;color:var(--site-ink);overflow-wrap:anywhere}
+.trend-guide-links a:hover{border-color:var(--brand-orange)}
+.trend-guide-links span{font-size:11px;letter-spacing:.08em;color:var(--site-link)}
+.trend-guide-links strong{font-size:17px;line-height:1.5}
+.trend-comparison{max-width:100%;overflow:auto;margin:24px 0;border:1px solid var(--site-line);border-radius:12px}
+.trend-comparison table{width:100%;border-collapse:collapse;font-size:14px}
+.trend-comparison th,.trend-comparison td{padding:14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--site-line);min-width:120px}
+.trend-comparison th{background:var(--site-card);color:var(--site-ink)}
+@media(max-width:600px){.trend-guide-links{grid-template-columns:1fr}.trend-guide-links a{padding:16px}}
+
+/* Long plan labels must fit inside the narrower lower-page plan card. */
+body.site-refresh .toc-plans .toc-button{max-width:100%;white-space:normal;text-align:center;box-sizing:border-box}
