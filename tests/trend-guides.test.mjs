@@ -12,7 +12,7 @@ test('every topic has a how-to guide and distinct indexed articles with reciproc
   for (const project of catalog.projects) {
     assert.ok(project.guides.how, `Missing how-to: ${project.id}`);
     assert.ok(Object.keys(project.guides).every(type => ['free','how','what'].includes(type)));
-    if (project.id !== 'firestarter') assert.deepEqual(Object.keys(project.guides).sort(), ['free','how','what']);
+    assert.deepEqual(Object.keys(project.guides).sort(), ['free','how','what']);
     const group = [project.url, ...Object.values(project.guides)];
     for (const route of group) {
       assert.ok(!routes.has(route), `Route belongs to multiple topics: ${route}`);
