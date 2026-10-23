@@ -10,3 +10,27 @@
   .firestarter-references { grid-template-columns: 1fr; max-width: 360px; }
   .firestarter-photo-guide { grid-template-columns: 1fr; gap: 24px; }
 }
+
+/* Reading aids shared only by the four Firestarter pages. */
+.firestarter-content .firestarter-answer { margin: 28px 0; padding: 22px 24px; border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-card); }
+.firestarter-content .firestarter-answer h2 { margin: 0 0 12px; font-size: 21px; line-height: 1.35; }
+.firestarter-content .firestarter-answer p { margin: 10px 0; }
+.firestarter-content .firestarter-summary-list { padding-left: 22px; }
+.firestarter-content .firestarter-inline-links { line-height: 1.9; }
+.firestarter-content .firestarter-inline-links a { display: inline-block; margin-right: 18px; }
+.firestarter-content .firestarter-source { color: var(--site-muted); font-size: 12px; line-height: 1.7; }
+.firestarter-content .firestarter-checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; padding: 0; margin: 24px 0; list-style: none; }
+.firestarter-content .firestarter-checks > li { padding: 16px; margin: 0; border: 1px solid var(--site-line); border-radius: 12px; background: var(--site-card); }
+.firestarter-content .firestarter-checks strong, .firestarter-content .firestarter-checks span { display: block; }
+.firestarter-content .firestarter-checks span { margin-top: 6px; color: var(--site-muted); }
+.firestarter-content .firestarter-table { max-width: 100%; overflow-x: auto; margin: 24px 0; }
+.firestarter-content .firestarter-table table { width: 100%; min-width: 560px; border-collapse: collapse; }
+.firestarter-content .firestarter-table caption { padding-bottom: 12px; text-align: left; font-size: 13px; color: var(--site-muted); line-height: 1.7; }
+.firestarter-content .firestarter-table :is(th, td) { padding: 14px; vertical-align: top; text-align: left; border-bottom: 1px solid var(--site-line); }
+.firestarter-content .firestarter-table thead { background: var(--site-card); }
+.firestarter-content .firestarter-table:focus-visible { outline: 2px solid var(--brand-orange); outline-offset: 4px; }
+@media (max-width: 600px) {
+  .firestarter-content .firestarter-answer { padding: 18px; }
+  .firestarter-content .firestarter-answer h2 { font-size: 20px; }
+  .firestarter-content .firestarter-checks { grid-template-columns: 1fr; }
+}
