@@ -109,6 +109,7 @@ with sync_playwright() as p:
               slot.dispatchEvent(new DragEvent('drop',{bubbles:true,dataTransfer:transfer}));
             }''', encoded)
             first.evaluate("el => new Promise(resolve=>{const t=setInterval(()=>{if(el.dataset.generationReady==='true'){clearInterval(t);resolve()}},20)})")
+            assert not feedback.inner_text(), 'Drag-and-drop should clear the previous missing-photo message'
         for width in [320, 390, 768, 1280]:
             page.set_viewport_size({'width': width, 'height': 900})
             page.evaluate('new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
