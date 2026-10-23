@@ -8,7 +8,7 @@ const labels = {what:'WHAT IS', how:'HOW TO', free:'FREE OPTIONS', detail:'REFER
 export async function syncTrendGuides(catalog, config) {
   const claimed = new Set();
   for (const project of catalog.projects) {
-    if (!project.guides || ['what','how','free'].some(type => !project.guides[type])) throw Error(`Incomplete guide group: ${project.id}`);
+    if (!project.guides?.how || Object.keys(project.guides).some(type => !['what','how','free'].includes(type)) || Object.values(project.guides).some(route => typeof route !== 'string' || !route)) throw Error(`Invalid guide group: ${project.id}`);
     const entries = Object.entries(project.guides).map(([type, route]) => ({type, route}));
     entries.push({type:'detail', route:project.url});
     for (const entry of entries) {

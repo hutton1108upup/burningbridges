@@ -329,6 +329,20 @@
         "how": "/blog/how-to-make-nicole-kidman-dance-ai-video",
         "free": "/blog/nicole-kidman-dance-ai-video-free"
       }
+    },
+    {
+      "id": "firestarter",
+      "name": "Firestarter AI Dance Maker",
+      "category": "dance",
+      "url": "/examples/firestarter-ai-dance-maker",
+      "image": "/assets/firestarter/firestarter-sample-1-cover.jpg",
+      "imageAlt": "Neon-lit dancer in a Firestarter AI dance reference",
+      "description": "Explore two neon dance references, preview one portrait and plan a short performance with the how-to guide.",
+      "label": "Neon dance references",
+      "publishedAt": "2026-10-23T08:03:49+08:00",
+      "guides": {
+        "how": "/blog/how-to-make-firestarter-ai-dance-video"
+      }
     }
   ]
 }

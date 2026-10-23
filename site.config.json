@@ -88,7 +88,9 @@
     "/blog/storm-ii-ai-trend-explained",
     "/blog/storm-ii-ai-video-free",
     "/blog/nicole-kidman-dance-ai-trend-explained",
-    "/blog/nicole-kidman-dance-ai-video-free"
+    "/blog/nicole-kidman-dance-ai-video-free",
+    "/examples/firestarter-ai-dance-maker",
+    "/blog/how-to-make-firestarter-ai-dance-video"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -297,6 +299,16 @@
     "/assets/nicole-kidman-dance/kidman-subway.mp4",
     "/nicole-kidman-dance.css",
     "/trend-guides.css",
-    "/blog-guides.js"
+    "/blog-guides.js",
+    "/assets/firestarter/firestarter-sample-1-cover.jpg",
+    "/assets/firestarter/firestarter-sample-1-photo.jpg",
+    "/assets/firestarter/firestarter-sample-1.mp4",
+    "/assets/firestarter/firestarter-sample-2-cover.jpg",
+    "/assets/firestarter/firestarter-sample-2.mp4",
+    "/firestarter.css",
+    "/assets/firestarter/tikvid-7698438749994142990.mp4",
+    "/assets/firestarter/tikvid-7698438749994142990.jpg",
+    "/assets/firestarter/tikvid-7698792617592556852.mp4",
+    "/assets/firestarter/tikvid-7698792617592556852.jpg"
   ]
 }
