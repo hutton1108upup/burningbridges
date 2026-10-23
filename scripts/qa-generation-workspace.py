@@ -8,12 +8,16 @@ from playwright.sync_api import sync_playwright
 parser = argparse.ArgumentParser()
 parser.add_argument('--base-url', default='http://127.0.0.1:4197')
 parser.add_argument('--output', required=True)
+parser.add_argument('--topic', action='append', help='Repeat only the specified catalog topic IDs')
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 out = Path(args.output)
 out.mkdir(parents=True, exist_ok=True)
 catalog = json.loads((root / 'public/video-projects.json').read_text(encoding='utf-8'))
 pages = [{'id': 'home', 'url': '/'}] + catalog['projects']
+if args.topic:
+    pages = [page for page in pages if page['id'] in args.topic]
+    assert len(pages) == len(set(args.topic)), 'Unknown topic ID'
 counts = {'babydoll-dance': (3, 2), 'nicole-kidman-dance': (2, 1),
           'alors-on-danse': (2, 0), 'smalltown-boy': (2, 0),
           'flying-entrance': (2, 0), 'zombie-pet': (2, 0),
@@ -47,7 +51,7 @@ with sync_playwright() as p:
         for link in hero.all():
             assert link.get_attribute('href') == '#' + workspace_id, entry['id']
         hero.first.click()
-        page.wait_for_url(args.base_url + entry['url'] + '#' + workspace_id)
+        page.wait_for_url(args.base_url + entry['url'] + '#' + workspace_id, wait_until='domcontentloaded')
         page.wait_for_function("id => {const y=document.getElementById(id).getBoundingClientRect().top;return y>=0&&y<300}", arg=workspace_id)
         action = workspace.locator('[data-generate-video]').first
         assert action.inner_text().strip() == 'Generate video', entry['id']
