@@ -24,3 +24,8 @@ main>.trend-related{width:calc(100% - 48px)}
 
 /* Long plan labels must fit inside the narrower lower-page plan card. */
 body.site-refresh .toc-plans .toc-button{max-width:100%;white-space:normal;text-align:center;box-sizing:border-box}
+
+/* Keep the seasonal cost checklists readable without widening the page. */
+.seasonal-guide .trend-comparison table{min-width:560px}
+.seasonal-guide .trend-comparison caption{padding:14px;text-align:left;color:var(--site-muted);font-size:13px;line-height:1.7}
+.seasonal-guide .trend-comparison:focus-visible{outline:2px solid var(--brand-orange);outline-offset:3px}
