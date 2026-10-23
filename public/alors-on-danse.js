@@ -22,6 +22,7 @@
   const clear = slot => {
     slot.version++;
     slot.ready = false;
+    delete slot.input.dataset.generationReady;
     if (slot.url) URL.revokeObjectURL(slot.url);
     slot.url = null;
     slot.image.removeAttribute('src');
@@ -54,6 +55,7 @@
       if (slot.version !== version) return;
       slot.pair.src = slot.url;
       slot.ready = true;
+      slot.input.dataset.generationReady = 'true';
       slot.result.hidden = false;
       slot.status.textContent = 'Portrait ready. It stays on your device.';
       update();

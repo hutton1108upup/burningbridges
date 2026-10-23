@@ -22,7 +22,8 @@ for (const route of config.routes) {
   for (const match of html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)) {
     const schema = JSON.parse(match[1]);
     if (schema['@type'] === 'FAQPage') for (const item of schema.mainEntity) {
-      assert.ok(visible.includes(item.acceptedAnswer.text), `FAQ/schema mismatch: ${route} ${item.name}`);
+      const normalize = value => value.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+      assert.ok(normalize(visible).includes(normalize(item.acceptedAnswer.text)), `FAQ/schema mismatch: ${route} ${item.name}`);
       faqAnswers++;
     }
     if (schema['@type'] === 'HowTo') assert.equal(schema.totalTime, undefined, 'Unverified fixed task duration');

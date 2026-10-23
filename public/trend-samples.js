@@ -24,6 +24,7 @@
         state.url = null; state.ready = false;
         input.value = ''; preview.removeAttribute('src'); preview.hidden = true; result.hidden = true;
         delete slot.dataset.photoReady;
+        delete input.dataset.generationReady;
       };
       const fail = message => { clear(); status.textContent = message; status.classList.add('error'); };
       input.addEventListener('change', async () => {
@@ -36,7 +37,7 @@
         try {
           await preview.decode();
           if (version !== state.version) return;
-          state.ready = true; preview.hidden = false; slot.dataset.photoReady = 'true'; result.hidden = false; announce();
+          state.ready = true; preview.hidden = false; slot.dataset.photoReady = 'true'; input.dataset.generationReady = 'true'; result.hidden = false; announce();
         } catch {
           if (version !== state.version) return;
           fail(`${name}: this image could not be opened. Try another photo.`);

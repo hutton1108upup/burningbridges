@@ -370,16 +370,18 @@ if(generateButton)generateButton.onclick=async()=>{
   }catch(error){status(error.message,true);}finally{if(ownsSubmission)generationSubmitting=false;updateGenerator();}
 };
 $('#photo-upload')?.addEventListener('change',event=>{
+  delete event.target.dataset.generationReady;
   const file=event.target.files[0];if(!file || !file.type.startsWith('image/') || file.size>8*1024*1024)return;
   photoPreparing=true;
   photoReady=(async()=>{
-    try {const image=await createImageBitmap(file);image.close();pollController?.abort();currentResultJobId=null;$('#commerce-result').hidden=true;photoBlob=file;draft={id:crypto.randomUUID(),blob:file,resolution:$('#resolution').value,format:$('#format').value,updatedAt:Date.now(),userId:session?.user?.id||null};await storage('put',draft);status('');updateGenerator();}
+    try {const image=await createImageBitmap(file);image.close();pollController?.abort();currentResultJobId=null;$('#commerce-result').hidden=true;photoBlob=file;if(event.target.files[0]===file)event.target.dataset.generationReady='true';draft={id:crypto.randomUUID(),blob:file,resolution:$('#resolution').value,format:$('#format').value,updatedAt:Date.now(),userId:session?.user?.id||null};await storage('put',draft);status('');updateGenerator();}
     catch {photoBlob=null;draft=null;$('#remove-photo').click();status('Choose a valid image that your browser can display.',true);throw Error('Choose a valid image before continuing.');}
     finally {photoPreparing=false;}
   })();
   photoReady.catch(()=>{});
 });
 $('#remove-photo')?.addEventListener('click',()=>{
+  delete $('#photo-upload').dataset.generationReady;
   pollController?.abort();currentResultJobId=null;$('#commerce-result').hidden=true;photoBlob=null;draft=null;updateGenerator();storage('delete').catch(()=>status('We could not clear the saved photo. Try again.',true));
 });
 for(const id of ['resolution','format'])$(`#${id}`)?.addEventListener('change',()=>{
@@ -392,6 +394,7 @@ async function restoreDraft() {
   if(!draft?.blob)return;
   photoBlob=draft.blob;
   if($('#photo-preview')) {
+    $('#photo-upload').dataset.generationReady='true';
     $('#photo-preview').src=URL.createObjectURL(photoBlob);$('#photo-preview').hidden=false;$('#upload-button').hidden=true;$('#remove-photo').hidden=false;
     const count=$('#burning-bridges-ai-generator .tabular-nums');if(count)count.textContent='1 / 1';
     $('#resolution').value=draft.resolution;$('#format').value=draft.format;$('#required-credits').textContent=costFor[draft.resolution];

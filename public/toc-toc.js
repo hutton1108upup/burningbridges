@@ -13,6 +13,7 @@
     preview.hidden = true;
     remove.hidden = true;
     photo.value = '';
+    delete photo.dataset.generationReady;
     document.querySelector('#toc-upload-label').hidden = false;
     document.querySelector('#toc-photo-count').textContent = '0 / 1';
   }
@@ -36,6 +37,7 @@
     }
     if (version !== photoVersion) { URL.revokeObjectURL(candidate); return; }
     photoUrl = candidate;
+    photo.dataset.generationReady = 'true';
     preview.src = photoUrl;
     preview.hidden = false;
     remove.hidden = false;
