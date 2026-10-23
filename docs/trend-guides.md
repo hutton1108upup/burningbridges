@@ -8,6 +8,7 @@ New topics may start with a detail page and a `how` guide only. Add `what` and `
 
 1. Find the topic in `public/video-projects.json`. Its `url` identifies the detail page and its `guides` object identifies the three article routes.
 2. Edit the corresponding `public/<route>/index.html` files. Preserve photo input attributes, video sources, source credits and runtime scripts. Keep FAQ schema answers identical to visible answers.
+   Generation detail pages use Hero → in-page workspace → validated photos → Pricing. Load `generation-workspace.js`; mark the workspace and its primary action with `data-generation-workspace` and `data-generate-video`. Each existing photo validator sets `data-generation-ready` on its input only after a successful decode, and clears it on replacement/removal. Keep each scene's required roles and optional slots; disabled mode-specific inputs are excluded. Homepage/Drake retain their existing commerce draft-saving and generation handlers.
 3. Register a new route in `site.config.json` and `public/sitemap.xml` if adding an article. Add its Blog card in `public/blog/index.html` with matching `data-guide-type` (`what`, `how`, `free`) and `data-guide-topic` (catalog project ID).
 4. Run `npm.cmd run check` and `npm.cmd run build` from the repository root. Both run the catalog synchronizer. Do not hand-edit blocks between `TREND GUIDES START` and `TREND GUIDES END`; `scripts/sync-trend-guides.mjs` rebuilds them from the catalog and actual H1 titles.
 

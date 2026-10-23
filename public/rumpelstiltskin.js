@@ -6,4 +6,5 @@
     toggle.setAttribute('aria-pressed', String(dark));
     toggle.textContent = dark ? 'Light mode' : 'Dark mode';
   });
+
 })();

@@ -21,6 +21,7 @@
     urls.delete(index);
     selected.delete(index);
     const slot = slots[index];
+    delete slot.querySelector('input').dataset.generationReady;
     const img = slot.querySelector('img');
     img.removeAttribute('src'); img.hidden = true;
     slot.querySelector('.upload-empty').hidden = false;
@@ -47,6 +48,7 @@
           URL.revokeObjectURL(url); status.textContent = 'Choose a photo at least 512 × 512 pixels.'; return;
         }
         urls.set(index, url); selected.add(index);
+        input.dataset.generationReady = 'true';
         const img = slot.querySelector('img'); img.src = url; img.hidden = false;
         slot.querySelector('.upload-empty').hidden = true;
         slot.querySelector('.remove').hidden = false;
