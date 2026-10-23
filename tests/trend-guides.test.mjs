@@ -41,23 +41,18 @@ test('Blog filter metadata includes every topic article exactly once with its co
   }
 });
 
-test('reference-page generation CTAs explicitly describe the pricing destination and unavailable scene', async () => {
-  for (const project of catalog.projects.filter(project => project.id !== 'drake-burning-bridges')) {
-    const html = await readFile(`public${project.url}/index.html`, 'utf8');
-    const main = html.match(/<main\b[\s\S]*?<\/main>/)?.[0];
-    for (const link of main.matchAll(/<a\b[^>]*href="\/pricing"[^>]*>([\s\S]*?)<\/a>/g)) {
-      const visible = link[1].replace(/<[^>]*>/g, '');
-      if (/generate (?:your )?video/i.test(visible)) {
-        const noteId = link[0].match(/aria-describedby="([^"]+)"/)?.[1];
-        assert.ok(noteId, `${project.id}: generation CTA must describe its destination`);
-        const note = main.match(new RegExp(`<p\\b[^>]*id="${noteId}"[^>]*>([\\s\\S]*?)<\\/p>`))?.[1];
-        assert.match(note || '', /Opens Pricing for the Burning Bridges party template/);
-        assert.match(note || '', /generation is not included/);
+test('topic pages do not turn worktree scope into product restrictions', async () => {
+  const {findWorktreeRestriction} = await import('../scripts/product-copy-policy.mjs');
+  for (const project of catalog.projects) {
+    for (const route of [project.url, ...Object.values(project.guides)]) {
+      const html = await readFile(`public${route}/index.html`, 'utf8');
+      assert.ok(!findWorktreeRestriction(html), route);
+      for (const match of html.matchAll(/aria-describedby="([^"]+)"/g)) {
+        for (const id of match[1].split(/\s+/)) assert.ok(html.includes(`id="${id}"`), `${route}: missing description ${id}`);
       }
     }
   }
 });
-
 
 test('main Nicole pages survive integration and Cheba uses the PR 51 canonical route', () => {
   const nicole = catalog.projects.find(project => project.url === '/examples/nicole-kidman-dance-ai-video-maker');

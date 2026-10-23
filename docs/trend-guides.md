@@ -1,8 +1,8 @@
 # Trend guide groups
 
-All 20 catalog topics, including Firestarter, each have a detail page and three Blog articles: an explainer (`what`), a creation guide (`how`) and a free-method comparison (`free`). Existing URLs are retained. These are content and navigation changes; only the existing Burning Bridges party template has an on-site generation flow.
+All 20 catalog topics, including Firestarter, each have a detail page and three Blog articles: an explainer (`what`), a creation guide (`how`) and a free-method comparison (`free`). Existing URLs are retained. Burning Bridges is a video-generation product; implementation work is split across worktrees. The scope of this content branch is not a statement of product availability.
 
-New topics may start with a detail page and a `how` guide only. Add `what` and `free` entries only when those distinct articles exist; the synchronizer links only the available pages. Generation-labeled Pricing links must describe their destination and the unavailable scene with a visible `aria-describedby` note.
+New topics may start with a detail page and a `how` guide only. Add `what` and `free` entries only when those distinct articles exist; the synchronizer links only the available pages. Do not attach template-exclusion or generation-unavailability disclaimers to CTAs. Follow the product-copy rules in `AGENTS.md` for body copy, FAQ, metadata and generated navigation.
 
 ## Editing a topic
 
@@ -35,7 +35,6 @@ The script checks 77 pages at 320, 390, 768 and 1280px, all 57 topic/type filter
 ## Editorial boundaries
 
 - Keep each scene's roles, photo requirements, shot sequence and failure checks specific. Free filming, photo editing, local file preview and AI rendering are separate outputs.
-- A provider's sample or advertised free allowance is not a tested export. The new articles do not claim external renders were tested or that buying Burning Bridges credits unlocks another scene.
 - Visual descriptions refer to the existing credited references. Where no live external source was available, articles point to the local reference collection instead of inventing origin dates or popularity figures.
 - Use actual source frames already held by the project. Keep the original topic publication timestamps in `video-projects.json`; adding an article must not reorder the Examples catalog.
 
