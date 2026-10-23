@@ -13,6 +13,7 @@
     if (urls.has(index)) URL.revokeObjectURL(urls.get(index));
     urls.delete(index); selected.delete(index);
     const slot = slots[index];
+    delete slot.querySelector('input').dataset.generationReady;
     slot.querySelector('img').removeAttribute('src');
     slot.querySelector('img').hidden = true;
     slot.querySelector('.upload-empty').hidden = false;
@@ -38,6 +39,7 @@
           URL.revokeObjectURL(url); status.textContent = 'Choose a photo at least 300 × 300 pixels.'; return;
         }
         urls.set(index, url); selected.add(index);
+        input.dataset.generationReady = 'true';
         const preview = slot.querySelector('img'); preview.src = url; preview.hidden = false;
         slot.querySelector('.upload-empty').hidden = true;
         slot.querySelector('.remove').hidden = false;
