@@ -41,16 +41,18 @@ test('Blog filter metadata includes every topic article exactly once with its co
   }
 });
 
-test('topic pages do not expose worktree-specific generation restrictions as product copy', async () => {
-  for (const project of catalog.projects.filter(project => project.id !== 'drake-burning-bridges')) {
-    const html = await readFile(`public${project.url}/index.html`, 'utf8');
+test('topic pages do not turn worktree scope into product restrictions', async () => {
+  const {findWorktreeRestriction} = await import('../scripts/product-copy-policy.mjs');
+  for (const project of catalog.projects) {
     for (const route of [project.url, ...Object.values(project.guides)]) {
-      const content = route === project.url ? html : await readFile(`public${route}/index.html`, 'utf8');
-      assert.doesNotMatch(content, /generation is not included|paid plans cover the separate|buying (?:them|those credits) does not unlock|this is a local preview, not a dance generator/i, route);
+      const html = await readFile(`public${route}/index.html`, 'utf8');
+      assert.ok(!findWorktreeRestriction(html), route);
+      for (const match of html.matchAll(/aria-describedby="([^"]+)"/g)) {
+        for (const id of match[1].split(/\s+/)) assert.ok(html.includes(`id="${id}"`), `${route}: missing description ${id}`);
+      }
     }
   }
 });
-
 
 test('main Nicole pages survive integration and Cheba uses the PR 51 canonical route', () => {
   const nicole = catalog.projects.find(project => project.url === '/examples/nicole-kidman-dance-ai-video-maker');
