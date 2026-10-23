@@ -43,6 +43,7 @@
     }));
     const clearFeedback = () => { feedback.textContent = ''; feedback.classList.remove('error'); };
     workspace.addEventListener('change', clearFeedback);
+    workspace.addEventListener('drop', clearFeedback);
     workspace.addEventListener('click', event => {
       if (event.target.closest('[data-photo-remove], [data-remove], .remove, .remove-photo, #remove-photo, #toc-photo-remove')) clearFeedback();
     });
