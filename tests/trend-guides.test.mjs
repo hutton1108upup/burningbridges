@@ -41,19 +41,12 @@ test('Blog filter metadata includes every topic article exactly once with its co
   }
 });
 
-test('reference-page generation CTAs explicitly describe the pricing destination and unavailable scene', async () => {
+test('topic pages do not expose worktree-specific generation restrictions as product copy', async () => {
   for (const project of catalog.projects.filter(project => project.id !== 'drake-burning-bridges')) {
     const html = await readFile(`public${project.url}/index.html`, 'utf8');
-    const main = html.match(/<main\b[\s\S]*?<\/main>/)?.[0];
-    for (const link of main.matchAll(/<a\b[^>]*href="\/pricing"[^>]*>([\s\S]*?)<\/a>/g)) {
-      const visible = link[1].replace(/<[^>]*>/g, '');
-      if (/generate (?:your )?video/i.test(visible)) {
-        const noteId = link[0].match(/aria-describedby="([^"]+)"/)?.[1];
-        assert.ok(noteId, `${project.id}: generation CTA must describe its destination`);
-        const note = main.match(new RegExp(`<p\\b[^>]*id="${noteId}"[^>]*>([\\s\\S]*?)<\\/p>`))?.[1];
-        assert.match(note || '', /Opens Pricing for the Burning Bridges party template/);
-        assert.match(note || '', /generation is not included/);
-      }
+    for (const route of [project.url, ...Object.values(project.guides)]) {
+      const content = route === project.url ? html : await readFile(`public${route}/index.html`, 'utf8');
+      assert.doesNotMatch(content, /generation is not included|paid plans cover the separate|buying (?:them|those credits) does not unlock|this is a local preview, not a dance generator/i, route);
     }
   }
 });

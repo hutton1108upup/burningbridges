@@ -10,6 +10,7 @@ for (const route of config.routes) {
   const file = path.join('public', route, 'index.html');
   const html = await readFile(file, 'utf8');
   assert.ok(!developmentCopy.test(html), `Development copy: ${route}`);
+  assert.ok(!/generation is not included|not currently available for generation|paid plans cover the separate|buying credits does not (?:select or generate|give you)|not this scene.s generation|this is a local preview, not a dance generator/i.test(html), `Worktree status presented as product restriction: ${route}`);
   assert.ok(!/\bnot yet\b|\bcoming soon\b/i.test(html), `Staged rollout copy: ${route}`);
   assert.ok(!retiredPlans.test(html), `Removed plan reappeared: ${route}`);
   assert.ok(html.includes('Prepare a Burning Bridges party-video idea with one portrait, a reference performance and a credit plan.'), `Brand copy mismatch: ${route}`);
@@ -20,7 +21,8 @@ for (const route of config.routes) {
   for (const match of html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)) {
     const schema = JSON.parse(match[1]);
     if (schema['@type'] === 'FAQPage') for (const item of schema.mainEntity) {
-      assert.ok(visible.includes(item.acceptedAnswer.text), `FAQ/schema mismatch: ${route} ${item.name}`);
+      const normalize = value => value.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+      assert.ok(normalize(visible).includes(normalize(item.acceptedAnswer.text)), `FAQ/schema mismatch: ${route} ${item.name}`);
       faqAnswers++;
     }
     if (schema['@type'] === 'HowTo') assert.equal(schema.totalTime, undefined, 'Unverified fixed task duration');
