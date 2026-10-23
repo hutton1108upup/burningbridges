@@ -8,9 +8,11 @@ const sitemap = await readFile('public/sitemap.xml', 'utf8');
 const hub = await readFile('public/blog/index.html', 'utf8');
 const routes = new Set();
 
-test('every topic has three distinct indexed articles and reciprocal links to its own detail page', async () => {
+test('every topic has a how-to guide and distinct indexed articles with reciprocal detail links', async () => {
   for (const project of catalog.projects) {
-    assert.deepEqual(Object.keys(project.guides).sort(), ['free','how','what']);
+    assert.ok(project.guides.how, `Missing how-to: ${project.id}`);
+    assert.ok(Object.keys(project.guides).every(type => ['free','how','what'].includes(type)));
+    if (project.id !== 'firestarter') assert.deepEqual(Object.keys(project.guides).sort(), ['free','how','what']);
     const group = [project.url, ...Object.values(project.guides)];
     for (const route of group) {
       assert.ok(!routes.has(route), `Route belongs to multiple topics: ${route}`);
@@ -39,13 +41,19 @@ test('Blog filter metadata includes every topic article exactly once with its co
   }
 });
 
-test('reference-page pricing links do not claim to generate an unsupported scene', async () => {
+test('reference-page generation CTAs explicitly describe the pricing destination and unavailable scene', async () => {
   for (const project of catalog.projects.filter(project => project.id !== 'drake-burning-bridges')) {
     const html = await readFile(`public${project.url}/index.html`, 'utf8');
     const main = html.match(/<main\b[\s\S]*?<\/main>/)?.[0];
     for (const link of main.matchAll(/<a\b[^>]*href="\/pricing"[^>]*>([\s\S]*?)<\/a>/g)) {
       const visible = link[1].replace(/<[^>]*>/g, '');
-      assert.ok(!/generate (?:your )?video/i.test(visible), `${project.id}: ${visible}`);
+      if (/generate (?:your )?video/i.test(visible)) {
+        const noteId = link[0].match(/aria-describedby="([^"]+)"/)?.[1];
+        assert.ok(noteId, `${project.id}: generation CTA must describe its destination`);
+        const note = main.match(new RegExp(`<p\\b[^>]*id="${noteId}"[^>]*>([\\s\\S]*?)<\\/p>`))?.[1];
+        assert.match(note || '', /Opens Pricing for the Burning Bridges party template/);
+        assert.match(note || '', /generation is not included/);
+      }
     }
   }
 });

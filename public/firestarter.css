@@ -1,0 +1,12 @@
+/* Firestarter-specific media layout; shared styles own the palette and components. */
+.firestarter-page .section { padding-block: 40px; }
+.firestarter-references { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: 1000px; margin: 28px auto 18px; }
+.firestarter-page .firestarter-references video { max-height: 480px; }
+.firestarter-page figcaption, .firestarter-page .credit-note { color: var(--site-muted); font-size: 12px; }
+.firestarter-photo-guide { display: grid; grid-template-columns: minmax(0, .65fr) minmax(0, 1fr); align-items: center; gap: 48px; }
+.firestarter-photo-guide figure { margin: 0; }
+.firestarter-photo-guide img { width: 100%; height: auto; max-height: 420px; object-fit: contain; border-radius: 16px; background: var(--site-card); }
+@media (max-width: 600px) {
+  .firestarter-references { grid-template-columns: 1fr; max-width: 360px; }
+  .firestarter-photo-guide { grid-template-columns: 1fr; gap: 24px; }
+}
