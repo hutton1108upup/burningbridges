@@ -92,7 +92,11 @@
     "/examples/firestarter-ai-dance-maker",
     "/blog/how-to-make-firestarter-ai-dance-video",
     "/blog/firestarter-ai-trend-explained",
-    "/blog/firestarter-ai-video-free"
+    "/blog/firestarter-ai-video-free",
+    "/examples/bby-wow-guy-ai-video-maker",
+    "/blog/bby-wow-guy-ai-video-explained",
+    "/blog/how-to-make-bby-wow-guy-ai-video",
+    "/blog/bby-wow-guy-ai-video-free"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -312,6 +316,19 @@
     "/assets/firestarter/tikvid-7698438749994142990.jpg",
     "/assets/firestarter/tikvid-7698792617592556852.mp4",
     "/assets/firestarter/tikvid-7698792617592556852.jpg",
-    "/generation-workspace.js"
+    "/generation-workspace.js",
+    "/bby-wow-guy.css",
+    "/assets/bby-wow-guy/original-quince-audio-ae973d139e5c.mp4",
+    "/assets/bby-wow-guy/original-first-frame-1399dd753b.jpg",
+    "/assets/bby-wow-guy/ai-remix-969be66722a3.mp4",
+    "/assets/bby-wow-guy/ai-remix-first-frame-5b66d94310d9.jpg",
+    "/assets/bby-wow-guy/gus-fring-input-d73ca613c5c3.webp",
+    "/assets/bby-wow-guy/gus-fring-output-c74830f0a058.mp4",
+    "/assets/bby-wow-guy/gus-fring-poster-cae64c7d81ec.jpg",
+    "/assets/bby-wow-guy/input-011dee02b1aa.png",
+    "/assets/bby-wow-guy/grandmother-input-9c9ea7a19f59.png",
+    "/assets/bby-wow-guy/grandmother-output-8d7954bdc147.mp4",
+    "/assets/bby-wow-guy/grandmother-poster-8b6f2af483f3.jpg",
+    "/assets/bby-wow-guy/original-quince-b5b69867ca.mp4"
   ]
 }

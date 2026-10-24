@@ -1,0 +1,12 @@
+/* Scene-specific comparison cards; shared styles own the palette and Hero. */
+:is(.bby-wow-guy-page,.bby-wow-guy-guide)>.skip-link{position:absolute;left:16px;top:8px;transform:translateY(-200%);z-index:1000;padding:10px;background:var(--site-card);color:var(--site-ink)}
+:is(.bby-wow-guy-page,.bby-wow-guy-guide)>.skip-link:focus{transform:translateY(0)}
+.bby-wow-guy-page .bby-case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:28px}
+.bby-wow-guy-page .bby-case{position:relative;min-width:0}
+.bby-wow-guy-page .bby-case video{width:100%;max-height:480px;object-fit:contain;background:var(--site-card);border-radius:16px}
+.bby-wow-guy-page .bby-input{width:76px;height:92px;object-fit:contain;background:var(--site-card);border:2px solid var(--site-line);border-radius:12px;margin-bottom:12px}
+.bby-wow-guy-page figcaption{font-size:13px;color:var(--site-muted)}
+.bby-wow-guy-page .hero-meta{display:flex;flex-wrap:wrap;gap:8px 16px;padding:0;list-style:none;color:var(--site-muted);font-size:13px}
+.bby-wow-guy-guide .faq{padding:0;margin-top:40px;width:100%}
+.bby-wow-guy-guide .guide-figure video{max-height:480px;object-fit:contain}
+@media(max-width:700px){.bby-wow-guy-page .bby-case-grid{grid-template-columns:1fr;max-width:360px;margin-inline:auto}}
