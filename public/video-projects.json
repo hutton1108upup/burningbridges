@@ -140,7 +140,7 @@
     },
     {
       "id": "toc-toc-dance",
-      "name": "Toc Toc Trend \u8def Toc Toc Dance",
+      "name": "Toc Toc Trend 路 Toc Toc Dance",
       "category": "dance",
       "url": "/examples/toc-toc-dance",
       "image": "/assets/toc-toc/toc-toc-dance-example-1-poster.webp",
@@ -204,7 +204,7 @@
     },
     {
       "id": "flying-entrance",
-      "name": "Flying Entrance \u8def AI Car Jump Video",
+      "name": "Flying Entrance 路 AI Car Jump Video",
       "category": "cinematic",
       "url": "/flying-entrance",
       "image": "/assets/flying-entrance/result.jpg",
@@ -376,6 +376,22 @@
         "what": "/blog/window-peeper-ai-trend-explained",
         "how": "/blog/how-to-make-window-peeper-ai-video",
         "free": "/blog/window-peeper-ai-video-free"
+      }
+    },
+    {
+      "id": "danca-ai-retro",
+      "name": "Dança AI retrô · Baile charme IA",
+      "category": "dance",
+      "url": "/examples/danca-ai-retro",
+      "image": "/assets/danca-ai-retro/boss-15s-poster.jpg",
+      "imageAlt": "Pessoa de terno em uma referência de baile charme com IA",
+      "label": "Uma foto · Baile charme",
+      "description": "Crie sua versão de dança AI retrô com uma foto e o clima de um baile de rua.",
+      "publishedAt": "2026-10-24T00:00:00Z",
+      "guides": {
+        "what": "/blog/o-que-e-danca-ai-retro",
+        "how": "/blog/como-fazer-danca-ai-retro",
+        "free": "/blog/danca-ai-retro-gratis"
       }
     }
   ]

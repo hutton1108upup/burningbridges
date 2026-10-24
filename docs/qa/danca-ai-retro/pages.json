@@ -1,0 +1,105 @@
+{
+  "viewports": [
+    {
+      "route": "/examples/danca-ai-retro",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "route": "/examples/danca-ai-retro",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/examples/danca-ai-retro",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/examples/danca-ai-retro",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "route": "/blog/o-que-e-danca-ai-retro",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "route": "/blog/o-que-e-danca-ai-retro",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/blog/o-que-e-danca-ai-retro",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/blog/o-que-e-danca-ai-retro",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "route": "/blog/como-fazer-danca-ai-retro",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "route": "/blog/como-fazer-danca-ai-retro",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/blog/como-fazer-danca-ai-retro",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/blog/como-fazer-danca-ai-retro",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "route": "/blog/danca-ai-retro-gratis",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "route": "/blog/danca-ai-retro-gratis",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/blog/danca-ai-retro-gratis",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/blog/danca-ai-retro-gratis",
+      "width": 1280,
+      "overflow": false
+    }
+  ],
+  "media": [
+    {
+      "width": 720,
+      "height": 1280,
+      "duration": 15,
+      "time": 0.110933
+    },
+    {
+      "width": 720,
+      "height": 1280,
+      "duration": 15,
+      "time": 0.11135
+    },
+    {
+      "width": 720,
+      "height": 1280,
+      "duration": 15,
+      "time": 0.12321
+    }
+  ],
+  "errors": []
+}

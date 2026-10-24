@@ -54,7 +54,8 @@ with sync_playwright() as p:
         page.wait_for_url(args.base_url + entry['url'] + '#' + workspace_id, wait_until='domcontentloaded')
         page.wait_for_function("id => {const y=document.getElementById(id).getBoundingClientRect().top;return y>=0&&y<300}", arg=workspace_id)
         action = workspace.locator('[data-generate-video]').first
-        assert action.inner_text().strip() == 'Generate video', entry['id']
+        expected_label = 'Gerar vídeo' if page.locator('html').get_attribute('lang') == 'pt-BR' else 'Generate video'
+        assert action.inner_text().strip() == expected_label, entry['id']
         inputs = workspace.locator('input[type=file]')
         expected_count, optional_count = counts.get(entry['id'], (1, 0))
         assert inputs.count() == expected_count, entry['id']

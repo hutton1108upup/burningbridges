@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  const pt = document.documentElement.lang.toLowerCase().startsWith('pt');
   document.querySelectorAll('.social-video-page .phone-screen').forEach(screen => {
     const video = screen.querySelector('video');
     const like = screen.querySelector('[data-shorts-like]');
@@ -16,14 +17,14 @@
     like.addEventListener('click', () => {
       const liked = like.getAttribute('aria-pressed') !== 'true';
       like.setAttribute('aria-pressed', String(liked));
-      like.setAttribute('aria-label', liked ? 'Unlike this reference' : 'Like this reference');
-      like.querySelector('span').textContent = liked ? 'Liked' : 'Like';
+      like.setAttribute('aria-label', pt ? (liked ? 'Descurtir este exemplo' : 'Curtir este exemplo') : (liked ? 'Unlike this reference' : 'Like this reference'));
+      like.querySelector('span').textContent = pt ? (liked ? 'Curtido' : 'Curtir') : (liked ? 'Liked' : 'Like');
     });
     const syncSound = () => {
       const audible = !video.muted && video.volume > 0;
       sound.setAttribute('aria-pressed', String(audible));
-      sound.setAttribute('aria-label', audible ? 'Mute video' : 'Turn on sound');
-      sound.querySelector('span').textContent = audible ? 'Mute' : 'Sound';
+      sound.setAttribute('aria-label', pt ? (audible ? 'Silenciar vídeo' : 'Ativar som') : (audible ? 'Mute video' : 'Turn on sound'));
+      sound.querySelector('span').textContent = pt ? (audible ? 'Silenciar' : 'Som') : (audible ? 'Mute' : 'Sound');
     };
     sound.addEventListener('click', () => {
       const audible = !video.muted && video.volume > 0;
@@ -38,9 +39,9 @@
       try {
         if (video.requestFullscreen) await video.requestFullscreen();
         else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
-        else status.textContent = 'Use the video player menu to open fullscreen.';
+        else status.textContent = pt ? 'Use o menu do vídeo para abrir em tela cheia.' : 'Use the video player menu to open fullscreen.';
       } catch {
-        status.textContent = 'Fullscreen could not open. Try the video player controls.';
+        status.textContent = pt ? 'Não foi possível abrir a tela cheia. Use os controles do vídeo.' : 'Fullscreen could not open. Try the video player controls.';
       }
     });
   });

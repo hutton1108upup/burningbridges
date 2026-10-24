@@ -21,8 +21,10 @@ export async function syncTrendGuides(catalog, config) {
       entry.title = title.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
     }
     for (const entry of entries) {
-      const detailLabel = project.id === 'drake-burning-bridges' ? 'MAKE A PARTY VIDEO' : labels.detail;
-      const group = `<section class="trend-related" aria-label="${escape(project.name)} guides"><h2>Explore this topic</h2><div class="trend-guide-links">${entries.filter(other => other !== entry).map(other => `<a href="${escape(other.route)}"><span>${other.type === 'detail' ? detailLabel : labels[other.type]}</span><strong>${escape(other.title)}</strong></a>`).join('')}</div></section>`;
+      const pt = /<html[^>]*lang="pt-BR"/.test(entry.html);
+      const localLabels = pt ? {what:'O QUE É',how:'COMO FAZER',free:'OPÇÕES GRÁTIS',detail:'GERAR VÍDEO'} : labels;
+      const detailLabel = pt ? localLabels.detail : project.id === 'drake-burning-bridges' ? 'MAKE A PARTY VIDEO' : labels.detail;
+      const group = `<section class="trend-related" aria-label="${escape(project.name)} ${pt ? 'guias' : 'guides'}"><h2>${pt ? 'Explore este tema' : 'Explore this topic'}</h2><div class="trend-guide-links">${entries.filter(other => other !== entry).map(other => `<a href="${escape(other.route)}"><span>${other.type === 'detail' ? detailLabel : localLabels[other.type]}</span><strong>${escape(other.title)}</strong></a>`).join('')}</div></section>`;
       const block = `<!-- TREND GUIDES START -->${group}<!-- TREND GUIDES END -->`;
       let html = entry.html;
       html = html.replace(marker, '');

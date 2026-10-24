@@ -100,7 +100,11 @@
     "/examples/window-peeper-ai-video-maker",
     "/blog/window-peeper-ai-trend-explained",
     "/blog/how-to-make-window-peeper-ai-video",
-    "/blog/window-peeper-ai-video-free"
+    "/blog/window-peeper-ai-video-free",
+    "/examples/danca-ai-retro",
+    "/blog/como-fazer-danca-ai-retro",
+    "/blog/o-que-e-danca-ai-retro",
+    "/blog/danca-ai-retro-gratis"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -341,6 +345,11 @@
     "/assets/window-peeper/sample-scene-2.jpg",
     "/assets/window-peeper/sample-scene-3.jpg",
     "/assets/window-peeper/sample-scene-4.jpg",
-    "/assets/window-peeper/sample-video.mp4"
+    "/assets/window-peeper/sample-video.mp4",
+    "/danca-ai-retro.js",
+    "/assets/danca-ai-retro/boss-15s-poster.jpg",
+    "/assets/danca-ai-retro/boss-15s.mp4",
+    "/assets/danca-ai-retro/dad-15s-poster.jpg",
+    "/assets/danca-ai-retro/dad-15s.mp4"
   ]
 }

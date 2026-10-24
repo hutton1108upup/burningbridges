@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  const pt = document.documentElement.lang.toLowerCase().startsWith('pt');
   document.querySelectorAll('[data-generation-workspace]').forEach(workspace => {
     const inputs = [...workspace.querySelectorAll('input[type="file"]')];
     const feedback = workspace.querySelector('[data-generation-feedback]');
@@ -13,7 +14,7 @@
     });
     const showMissing = missing => {
       const names = missing.map(input => input.dataset.photoLabel || input.getAttribute('aria-label') || 'your photo');
-      feedback.textContent = `Choose a valid photo for ${names.join(' and ')} before generating your video.`;
+      feedback.textContent = pt ? 'Escolha uma foto válida antes de gerar seu vídeo.' : `Choose a valid photo for ${names.join(' and ')} before generating your video.`;
       feedback.classList.add('error');
       const first = missing[0];
       if (first.hidden) workspace.querySelector('#upload-button')?.focus();
@@ -35,7 +36,7 @@
         if (currentMissing.length) { showMissing(currentMissing); return; }
         window.location.assign(action.href);
       } catch {
-        feedback.textContent = 'Your photo could not be saved. Please keep this page open and try again.';
+        feedback.textContent = pt ? 'Não foi possível salvar sua foto. Mantenha a página aberta e tente novamente.' : 'Your photo could not be saved. Please keep this page open and try again.';
         feedback.classList.add('error');
       } finally {
         action.removeAttribute('aria-busy');
