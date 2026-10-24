@@ -140,7 +140,7 @@
     },
     {
       "id": "toc-toc-dance",
-      "name": "Toc Toc Trend · Toc Toc Dance",
+      "name": "Toc Toc Trend \u8def Toc Toc Dance",
       "category": "dance",
       "url": "/examples/toc-toc-dance",
       "image": "/assets/toc-toc/toc-toc-dance-example-1-poster.webp",
@@ -204,7 +204,7 @@
     },
     {
       "id": "flying-entrance",
-      "name": "Flying Entrance · AI Car Jump Video",
+      "name": "Flying Entrance \u8def AI Car Jump Video",
       "category": "cinematic",
       "url": "/flying-entrance",
       "image": "/assets/flying-entrance/result.jpg",
@@ -360,6 +360,22 @@
         "what": "/blog/bby-wow-guy-ai-video-explained",
         "how": "/blog/how-to-make-bby-wow-guy-ai-video",
         "free": "/blog/bby-wow-guy-ai-video-free"
+      }
+    },
+    {
+      "id": "window-peeper",
+      "name": "Window Peeper AI Video Maker",
+      "category": "cinematic",
+      "url": "/examples/window-peeper-ai-video-maker",
+      "image": "/assets/window-peeper/sample-poster.jpg",
+      "imageAlt": "A person seen through a lit window in the Window Peeper reference",
+      "description": "Explore the caught-at-the-window scene, prepare one portrait and follow the curtain-reaction guide.",
+      "label": "Caught at the Window",
+      "publishedAt": "2026-10-24T12:00:00+08:00",
+      "guides": {
+        "what": "/blog/window-peeper-ai-trend-explained",
+        "how": "/blog/how-to-make-window-peeper-ai-video",
+        "free": "/blog/window-peeper-ai-video-free"
       }
     }
   ]
