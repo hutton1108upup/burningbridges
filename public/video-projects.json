@@ -345,6 +345,22 @@
         "how": "/blog/how-to-make-firestarter-ai-dance-video",
         "free": "/blog/firestarter-ai-video-free"
       }
+    },
+    {
+      "id": "bby-wow-guy",
+      "name": "Bby Wow Guy AI Video Maker",
+      "category": "dance",
+      "url": "/examples/bby-wow-guy-ai-video-maker",
+      "image": "/assets/bby-wow-guy/ai-remix-first-frame-5b66d94310d9.jpg",
+      "imageAlt": "Bby Wow Guy AI remix with a brown-shirt performer leaning forward at a party",
+      "description": "Compare the party performance and AI remixes, prepare a portrait and follow the photo-to-video guide.",
+      "label": "Party-dance remix",
+      "publishedAt": "2026-10-23T14:00:00+08:00",
+      "guides": {
+        "what": "/blog/bby-wow-guy-ai-video-explained",
+        "how": "/blog/how-to-make-bby-wow-guy-ai-video",
+        "free": "/blog/bby-wow-guy-ai-video-free"
+      }
     }
   ]
 }
