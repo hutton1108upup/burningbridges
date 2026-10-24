@@ -23,10 +23,11 @@ for (const route of config.routes) {
   let html=await readFile(file,'utf8');
   if (!html.includes('src="/video-navigation.js"')) html=html.replace('</body>','<script defer src="/video-navigation.js"></script>\n</body>');
   if (!html.includes('href="/video-navigation.css"')) html=html.replace('</head>','<link rel="stylesheet" href="/video-navigation.css">\n</head>');
+  const localDropdown = /<html[^>]*lang="pt-BR"/.test(html) ? dropdown.replace('>Trends<', '>Tendências<').replace('Show video categories', 'Mostrar categorias de vídeo').replace('Explore all trends →', 'Explorar todas as tendências →').replace('Music &amp; Performance','Música e performance').replace('Dance &amp; Memes','Dança e memes').replace('Sports &amp; Football','Esportes e futebol').replace('Pets &amp; Stories','Animais e histórias').replace('Stories &amp; Romance','Histórias e romance').replace('Cinematic &amp; Cars','Cinema e carros') : dropdown;
   html=html.replace(/<header\b[\s\S]*?<\/header>/,header=>{
-    if (header.includes('<!-- VIDEO NAV START -->')) return header.replace(/<!-- VIDEO NAV START -->[\s\S]*?<!-- VIDEO NAV END -->/g,'<!-- VIDEO NAV START -->'+dropdown+'<!-- VIDEO NAV END -->');
+    if (header.includes('<!-- VIDEO NAV START -->')) return header.replace(/<!-- VIDEO NAV START -->[\s\S]*?<!-- VIDEO NAV END -->/g,'<!-- VIDEO NAV START -->'+localDropdown+'<!-- VIDEO NAV END -->');
     const old=/<a\b[^>]*href="\/examples"[^>]*>[\s\S]*?<\/a>/g;
-    const entry='<!-- VIDEO NAV START -->'+dropdown+'<!-- VIDEO NAV END -->';
+    const entry='<!-- VIDEO NAV START -->'+localDropdown+'<!-- VIDEO NAV END -->';
     return old.test(header)?header.replaceAll(old,entry):header.replace(/<nav\b[^>]*>/,match=>match+entry);
   });
   if(route==='/examples') {

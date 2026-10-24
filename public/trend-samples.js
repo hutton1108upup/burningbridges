@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  const pt = document.documentElement.lang.toLowerCase().startsWith('pt');
   document.querySelectorAll('[data-photo-workspace]').forEach(workspace => {
     const status = workspace.querySelector('[data-photo-status]');
     const slots = [...workspace.querySelectorAll('[data-photo-slot]')];
@@ -8,7 +9,7 @@
       const count = states.filter(state => state.ready).length;
       status.classList.remove('error');
       status.textContent = slots.length === 1
-        ? (count ? 'Photo selected. It stays on this device.' : 'Choose a photo to preview it here. It stays on this device.')
+        ? (pt ? (count ? 'Foto selecionada. Ela fica neste dispositivo.' : 'Escolha uma foto para conferir aqui. Ela fica neste dispositivo.') : (count ? 'Photo selected. It stays on this device.' : 'Choose a photo to preview it here. It stays on this device.'))
         : (count ? `${count} of ${slots.length} photos selected. Your photos stay on this device.` : 'Choose your photos to preview them here. They stay on this device.');
     };
     slots.forEach((slot, index) => {
@@ -30,8 +31,8 @@
       input.addEventListener('change', async () => {
         const file = input.files?.[0]; if (!file) return;
         clear();
-        if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) { fail(`${name}: choose a JPG, PNG or WebP photo.`); return; }
-        if (!file.size || file.size > 10 * 1024 * 1024) { fail(`${name}: choose a non-empty photo up to 10 MB.`); return; }
+        if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) { fail(pt ? `${name}: escolha uma foto JPG, PNG ou WebP.` : `${name}: choose a JPG, PNG or WebP photo.`); return; }
+        if (!file.size || file.size > 10 * 1024 * 1024) { fail(pt ? `${name}: escolha uma foto não vazia de até 10 MB.` : `${name}: choose a non-empty photo up to 10 MB.`); return; }
         const version = state.version;
         state.url = URL.createObjectURL(file); preview.src = state.url;
         try {
@@ -40,7 +41,7 @@
           state.ready = true; preview.hidden = false; slot.dataset.photoReady = 'true'; input.dataset.generationReady = 'true'; result.hidden = false; announce();
         } catch {
           if (version !== state.version) return;
-          fail(`${name}: this image could not be opened. Try another photo.`);
+          fail(pt ? `${name}: não foi possível abrir a imagem. Tente outra foto.` : `${name}: this image could not be opened. Try another photo.`);
         }
       });
       remove.addEventListener('click', () => { clear(); announce(); input.focus(); });
@@ -60,8 +61,8 @@
     video.addEventListener('play', () => document.querySelectorAll('video').forEach(other => { if (other !== video) other.pause(); }));
     video.addEventListener('error', () => {
       const figure = video.closest('figure'); if (!figure || figure.querySelector('.video-error')) return;
-      const message = document.createElement('p'); message.className = 'video-error credit-note'; message.setAttribute('role', 'status'); message.textContent = 'This clip could not be played. ';
-      const link = document.createElement('a'); link.href = video.currentSrc || video.dataset.src || video.querySelector('source')?.src || '/examples'; link.textContent = 'Open the video file'; message.append(link); figure.append(message);
+      const message = document.createElement('p'); message.className = 'video-error credit-note'; message.setAttribute('role', 'status'); message.textContent = pt ? 'Não foi possível reproduzir este vídeo. ' : 'This clip could not be played. ';
+      const link = document.createElement('a'); link.href = video.currentSrc || video.dataset.src || video.querySelector('source')?.src || '/examples'; link.textContent = pt ? 'Abrir o arquivo de vídeo' : 'Open the video file'; message.append(link); figure.append(message);
     });
   });
 })();

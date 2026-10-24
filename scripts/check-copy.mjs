@@ -14,7 +14,7 @@ for (const route of config.routes) {
   assert.ok(!developmentCopy.test(html), `Development copy: ${route}`);
   assert.ok(!/\bnot yet\b|\bcoming soon\b/i.test(html), `Staged rollout copy: ${route}`);
   assert.ok(!retiredPlans.test(html), `Removed plan reappeared: ${route}`);
-  assert.ok(html.includes('Prepare a Burning Bridges party-video idea with one portrait, a reference performance and a credit plan.'), `Brand copy mismatch: ${route}`);
+  assert.ok(html.includes(/<html[^>]*lang="pt-BR"/.test(html) ? 'Crie sua ideia de vídeo com a Burning Bridges: escolha uma foto, explore os exemplos e confira os planos.' : 'Prepare a Burning Bridges party-video idea with one portrait, a reference performance and a credit plan.'), `Brand copy mismatch: ${route}`);
   const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '');
   for (const link of html.matchAll(/href="#([^"]+)"/g)) {
     assert.ok(html.includes(`id="${link[1]}"`), `Broken anchor ${route}#${link[1]}`);

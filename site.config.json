@@ -96,7 +96,11 @@
     "/examples/bby-wow-guy-ai-video-maker",
     "/blog/bby-wow-guy-ai-video-explained",
     "/blog/how-to-make-bby-wow-guy-ai-video",
-    "/blog/bby-wow-guy-ai-video-free"
+    "/blog/bby-wow-guy-ai-video-free",
+    "/examples/danca-ai-retro",
+    "/blog/como-fazer-danca-ai-retro",
+    "/blog/o-que-e-danca-ai-retro",
+    "/blog/danca-ai-retro-gratis"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -329,6 +333,11 @@
     "/assets/bby-wow-guy/grandmother-input-9c9ea7a19f59.png",
     "/assets/bby-wow-guy/grandmother-output-8d7954bdc147.mp4",
     "/assets/bby-wow-guy/grandmother-poster-8b6f2af483f3.jpg",
-    "/assets/bby-wow-guy/original-quince-b5b69867ca.mp4"
+    "/assets/bby-wow-guy/original-quince-b5b69867ca.mp4",
+    "/danca-ai-retro.js",
+    "/assets/danca-ai-retro/boss-15s-poster.jpg",
+    "/assets/danca-ai-retro/boss-15s.mp4",
+    "/assets/danca-ai-retro/dad-15s-poster.jpg",
+    "/assets/danca-ai-retro/dad-15s.mp4"
   ]
 }

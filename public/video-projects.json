@@ -361,6 +361,22 @@
         "how": "/blog/how-to-make-bby-wow-guy-ai-video",
         "free": "/blog/bby-wow-guy-ai-video-free"
       }
+    },
+    {
+      "id": "danca-ai-retro",
+      "name": "Dança AI retrô · Baile charme IA",
+      "category": "dance",
+      "url": "/examples/danca-ai-retro",
+      "image": "/assets/danca-ai-retro/boss-15s-poster.jpg",
+      "imageAlt": "Pessoa de terno em uma referência de baile charme com IA",
+      "label": "Uma foto · Baile charme",
+      "description": "Crie sua versão de dança AI retrô com uma foto e o clima de um baile de rua.",
+      "publishedAt": "2026-10-24T00:00:00Z",
+      "guides": {
+        "what": "/blog/o-que-e-danca-ai-retro",
+        "how": "/blog/como-fazer-danca-ai-retro",
+        "free": "/blog/danca-ai-retro-gratis"
+      }
     }
   ]
 }
