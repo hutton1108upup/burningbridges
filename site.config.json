@@ -104,7 +104,11 @@
     "/examples/danca-ai-retro",
     "/blog/como-fazer-danca-ai-retro",
     "/blog/o-que-e-danca-ai-retro",
-    "/blog/danca-ai-retro-gratis"
+    "/blog/danca-ai-retro-gratis",
+    "/examples/outstanding-tiny-desk-ai-video-maker",
+    "/blog/outstanding-tiny-desk-ai-explained",
+    "/blog/how-to-make-outstanding-tiny-desk-ai-video",
+    "/blog/outstanding-tiny-desk-ai-free"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -350,6 +354,21 @@
     "/assets/danca-ai-retro/boss-15s-poster.jpg",
     "/assets/danca-ai-retro/boss-15s.mp4",
     "/assets/danca-ai-retro/dad-15s-poster.jpg",
-    "/assets/danca-ai-retro/dad-15s.mp4"
+    "/assets/danca-ai-retro/dad-15s.mp4",
+    "/outstanding-tiny-desk.css",
+    "/outstanding-tiny-desk.js",
+    "/assets/outstanding-tiny-desk/reference.jpg",
+    "/assets/outstanding-tiny-desk/lawsnation.mp4",
+    "/assets/outstanding-tiny-desk/lawsnation.jpg",
+    "/assets/outstanding-tiny-desk/reference.mp4",
+    "/assets/outstanding-tiny-desk/cover.webp",
+    "/assets/outstanding-tiny-desk/whyfantasy.jpg",
+    "/assets/outstanding-tiny-desk/beat-1.webp",
+    "/assets/outstanding-tiny-desk/whyfantasy.mp4",
+    "/assets/outstanding-tiny-desk/beat-2.webp",
+    "/assets/outstanding-tiny-desk/scene.webp",
+    "/assets/outstanding-tiny-desk/beat-4.webp",
+    "/assets/outstanding-tiny-desk/beat-3.webp",
+    "/assets/outstanding-tiny-desk/photo-example.webp"
   ]
 }

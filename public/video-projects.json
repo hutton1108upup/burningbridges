@@ -273,7 +273,7 @@
       "url": "/examples/i-feel-like-nicole-ai-video",
       "image": "/assets/i-feel-like-nicole/poster.webp",
       "imageAlt": "Cooler-cam I Feel Like Nicole reference with a performer holding a pink drink can",
-      "description": "Explore the cooler-cam I Feel Like Nicole sequence, watch third-party references and preview one full-body portrait locally.",
+      "description": "Explore the cooler-cam I Feel Like Nicole sequence, watch references and preview one full-body portrait locally.",
       "label": "Cooler-cam reference",
       "publishedAt": "2026-10-21T21:34:43+08:00",
       "guides": {
@@ -392,6 +392,22 @@
         "what": "/blog/o-que-e-danca-ai-retro",
         "how": "/blog/como-fazer-danca-ai-retro",
         "free": "/blog/danca-ai-retro-gratis"
+      }
+    },
+    {
+      "id": "outstanding-tiny-desk-ai",
+      "name": "Outstanding Tiny Desk AI Video Maker",
+      "category": "music",
+      "url": "/examples/outstanding-tiny-desk-ai-video-maker",
+      "image": "/assets/outstanding-tiny-desk/cover.webp",
+      "imageAlt": "AI band-remix collage with a lead, keyboard, saxophone and two backing singers around a desk",
+      "description": "Plan your band with a group image or role portraits, compare the performance references and prepare your Tiny Desk AI remix.",
+      "label": "Band-performance remix",
+      "publishedAt": "2026-10-26T11:04:38+08:00",
+      "guides": {
+        "what": "/blog/outstanding-tiny-desk-ai-explained",
+        "how": "/blog/how-to-make-outstanding-tiny-desk-ai-video",
+        "free": "/blog/outstanding-tiny-desk-ai-free"
       }
     }
   ]

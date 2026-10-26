@@ -1,0 +1,25 @@
+/* Only scene-specific layouts; colors, typography and controls use the shared theme. */
+:is(.tiny-desk-page,.tiny-desk-guide)>.skip-link{position:absolute;left:16px;top:8px;transform:translateY(-200%);z-index:1000;padding:10px;background:var(--site-card);color:var(--site-ink)}
+:is(.tiny-desk-page,.tiny-desk-guide)>.skip-link:focus{transform:translateY(0)}
+.tiny-desk-page .desk-mode-buttons{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px;padding:24px 28px 0}
+.tiny-desk-page .desk-mode-buttons button{padding:12px 18px;border:1px solid var(--site-line);border-radius:12px;background:var(--site-tint);color:var(--site-ink)}
+.tiny-desk-page .desk-mode-buttons button[aria-pressed=true]{background:var(--brand-orange);color:#17110b;border-color:var(--brand-orange)}
+.tiny-desk-page .desk-role-slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.tiny-desk-page .desk-role-slots .upload-box{height:180px}
+.tiny-desk-page .desk-role-slots .slot-title{min-height:44px}
+.tiny-desk-page .desk-role-slots .slot-title small{display:block;margin-top:4px;color:var(--site-muted);font-size:11px;line-height:1.5;font-weight:400}
+.tiny-desk-page [data-desk-panel=individual]{padding:0 28px 24px}
+.tiny-desk-page .desk-action-row{padding:24px 28px;border-top:1px solid var(--site-line)}
+.tiny-desk-page .desk-storyboard{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:28px}
+.tiny-desk-page .desk-storyboard figure,.tiny-desk-page .desk-example-grid figure{min-width:0;margin:0}
+.tiny-desk-page .desk-storyboard img{width:100%;height:240px;object-fit:contain;background:var(--site-card);border-radius:14px}
+.tiny-desk-page figcaption{color:var(--site-muted);font-size:13px;margin-top:12px}
+.tiny-desk-page .desk-example-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:850px;margin:28px auto}
+.tiny-desk-page .desk-example-grid video{width:100%;max-height:480px;object-fit:contain;background:var(--site-card);border-radius:16px}
+.tiny-desk-page .desk-photo-guide{display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1fr);gap:40px;align-items:center}
+.tiny-desk-page .desk-photo-guide img{width:100%;max-height:380px;object-fit:contain;background:var(--site-card);border-radius:16px}
+.tiny-desk-guide .faq{padding:0;margin-top:40px;width:100%}
+.tiny-desk-guide .guide-figure video{max-height:480px;object-fit:contain}
+@media(max-width:900px){.tiny-desk-page .desk-role-slots{grid-template-columns:repeat(3,minmax(0,1fr))}.tiny-desk-page .desk-storyboard{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.tiny-desk-page .desk-role-slots{grid-template-columns:repeat(2,minmax(0,1fr))}.tiny-desk-page .desk-example-grid,.tiny-desk-page .desk-photo-guide{grid-template-columns:1fr}.tiny-desk-page .desk-storyboard img{height:200px}.tiny-desk-page .desk-mode-buttons{padding-inline:20px}.tiny-desk-page [data-desk-panel=individual],.tiny-desk-page .desk-action-row{padding-inline:20px}}
+@media(max-width:380px){.tiny-desk-page .desk-role-slots,.tiny-desk-page .desk-storyboard{grid-template-columns:1fr}}

@@ -2,6 +2,7 @@ import {readFile, access} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import {findWorktreeRestriction} from './product-copy-policy.mjs';
+import {findVisibleMediaAttribution} from './media-label-policy.mjs';
 
 const config = JSON.parse(await readFile('site.config.json', 'utf8'));
 const developmentCopy = /preview version|not connected|not yet available|unavailable|unverified|illustrative|demo balance|sample credit|preview info|this preview|before paid generation launches|before checkout becomes available|currently paused|being connected|future generation service|flow test result|simulated flow tests|current test workflow|before (?:real )?generation is enabled|before enabling real AI generation|Test checkout/i;
@@ -10,6 +11,7 @@ let faqAnswers = 0;
 for (const route of config.routes) {
   const file = path.join('public', route, 'index.html');
   const html = await readFile(file, 'utf8');
+  assert.ok(!findVisibleMediaAttribution(html), `Material-source label leaked into public copy: ${route}`);
   assert.ok(!findWorktreeRestriction(html), `Worktree restriction leaked into product copy: ${route}`);
   assert.ok(!developmentCopy.test(html), `Development copy: ${route}`);
   assert.ok(!/\bnot yet\b|\bcoming soon\b/i.test(html), `Staged rollout copy: ${route}`);
