@@ -1,0 +1,5 @@
+.closed-sunday-page .choir-video video{width:100%;max-height:none;aspect-ratio:1280/730;object-fit:contain}
+.closed-sunday-page .choir-cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.closed-sunday-page .choir-cases figcaption{font-size:13px;line-height:1.5}
+.closed-sunday-page .choir-cases figcaption p{margin:6px 0 0}
+@media(max-width:700px){.closed-sunday-page .choir-cases{grid-template-columns:1fr;gap:16px}}

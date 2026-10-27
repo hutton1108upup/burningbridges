@@ -112,7 +112,11 @@
     "/examples/you-can-make-it-cap-ai-video-maker",
     "/blog/you-can-make-it-cap-ai-explained",
     "/blog/how-to-make-you-can-make-it-cap-ai-video",
-    "/blog/you-can-make-it-cap-ai-free"
+    "/blog/you-can-make-it-cap-ai-free",
+    "/examples/closed-on-sunday-ai-video-maker",
+    "/blog/closed-on-sunday-ai-video-explained",
+    "/blog/how-to-make-closed-on-sunday-ai-video",
+    "/blog/closed-on-sunday-ai-video-free"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -377,6 +381,13 @@
     "/assets/you-can-make-it-cap/reference.mp4",
     "/assets/you-can-make-it-cap/poster.jpg",
     "/assets/you-can-make-it-cap/tiktok-viral-poster.jpg",
-    "/assets/you-can-make-it-cap/tiktok-viral.mp4"
+    "/assets/you-can-make-it-cap/tiktok-viral.mp4",
+    "/closed-on-sunday.css",
+    "/assets/closed-on-sunday/sample-1.mp4",
+    "/assets/closed-on-sunday/sample-1.jpg",
+    "/assets/closed-on-sunday/sample-2.mp4",
+    "/assets/closed-on-sunday/sample-2.jpg",
+    "/assets/closed-on-sunday/sample-6.mp4",
+    "/assets/closed-on-sunday/sample-6.jpg"
   ]
 }
