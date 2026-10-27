@@ -7,4 +7,4 @@
 - 未照搬参考站的定价、音频授权、出片时间、分辨率或免费额度。
 - 已获授权提交、合并和部署；实际发布状态以 PR 和线上版本校验为准。
 
-- 热门片段：`/assets/you-can-make-it-cap/tiktok-viral.mp4`，参考页嵌入的 TikTok 视频 ID 7413044093502098720；取回地址由 TikWM 提供，SHA-256 `5b172ee58a3c9c22152fa0944ac66f1984addd25a9b7a237b5ed51f093e7d382`。海报为视频首帧。
+- 热门片段：`/assets/you-can-make-it-cap/tiktok-viral.mp4`，参考页最右侧 TikTok 视频 ID 7700296301585419533；取回地址由 TikWM 提供，SHA-256 `314bbfc94ddef8fb247e8d7b80b18840a79f510eaba4aae8f48e623883b7ebc6`。海报为视频首帧。
