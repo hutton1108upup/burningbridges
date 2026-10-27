@@ -425,6 +425,22 @@
         "how": "/blog/how-to-make-you-can-make-it-cap-ai-video",
         "free": "/blog/you-can-make-it-cap-ai-free"
       }
+    },
+    {
+      "id": "closed-on-sunday-ai",
+      "name": "Closed on Sunday AI Video Maker",
+      "category": "music",
+      "url": "/examples/closed-on-sunday-ai-video-maker",
+      "image": "/assets/closed-on-sunday/sample-1.jpg",
+      "imageAlt": "A central person among a moving choir",
+      "description": "Explore the choir scene and prepare one person or pet photo for your video.",
+      "label": "One photo · Choir scene",
+      "publishedAt": "2026-10-27T15:00:00+08:00",
+      "guides": {
+        "what": "/blog/closed-on-sunday-ai-video-explained",
+        "how": "/blog/how-to-make-closed-on-sunday-ai-video",
+        "free": "/blog/closed-on-sunday-ai-video-free"
+      }
     }
   ]
 }
