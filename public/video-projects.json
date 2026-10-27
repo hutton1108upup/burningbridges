@@ -409,6 +409,22 @@
         "how": "/blog/how-to-make-outstanding-tiny-desk-ai-video",
         "free": "/blog/outstanding-tiny-desk-ai-free"
       }
+    },
+    {
+      "id": "you-can-make-it-cap",
+      "name": "You Can Make It Cap AI Video Maker",
+      "category": "dance",
+      "url": "/examples/you-can-make-it-cap-ai-video-maker",
+      "image": "/assets/you-can-make-it-cap/poster.jpg",
+      "imageAlt": "White studio reaction scene from You Can Make It Cap",
+      "description": "Watch the studio reaction, choose one portrait and prepare your Make It Clap AI video.",
+      "label": "One photo · Studio reaction",
+      "publishedAt": "2026-10-27T12:00:00+08:00",
+      "guides": {
+        "what": "/blog/you-can-make-it-cap-ai-explained",
+        "how": "/blog/how-to-make-you-can-make-it-cap-ai-video",
+        "free": "/blog/you-can-make-it-cap-ai-free"
+      }
     }
   ]
 }
