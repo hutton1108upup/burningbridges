@@ -108,7 +108,11 @@
     "/examples/outstanding-tiny-desk-ai-video-maker",
     "/blog/outstanding-tiny-desk-ai-explained",
     "/blog/how-to-make-outstanding-tiny-desk-ai-video",
-    "/blog/outstanding-tiny-desk-ai-free"
+    "/blog/outstanding-tiny-desk-ai-free",
+    "/examples/you-can-make-it-cap-ai-video-maker",
+    "/blog/you-can-make-it-cap-ai-explained",
+    "/blog/how-to-make-you-can-make-it-cap-ai-video",
+    "/blog/you-can-make-it-cap-ai-free"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -369,6 +373,10 @@
     "/assets/outstanding-tiny-desk/scene.webp",
     "/assets/outstanding-tiny-desk/beat-4.webp",
     "/assets/outstanding-tiny-desk/beat-3.webp",
-    "/assets/outstanding-tiny-desk/photo-example.webp"
+    "/assets/outstanding-tiny-desk/photo-example.webp",
+    "/assets/you-can-make-it-cap/reference.mp4",
+    "/assets/you-can-make-it-cap/poster.jpg",
+    "/assets/you-can-make-it-cap/tiktok-viral-poster.jpg",
+    "/assets/you-can-make-it-cap/tiktok-viral.mp4"
   ]
 }
