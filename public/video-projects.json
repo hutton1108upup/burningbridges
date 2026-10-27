@@ -441,6 +441,22 @@
         "how": "/blog/how-to-make-closed-on-sunday-ai-video",
         "free": "/blog/closed-on-sunday-ai-video-free"
       }
+    },
+    {
+      "id": "missed-train-dance-ai",
+      "name": "Missed Train Dance AI Video Maker",
+      "category": "dance",
+      "url": "/examples/missed-train-dance-ai-video-maker",
+      "image": "/assets/missed-train-dance/poster.jpg",
+      "imageAlt": "A commuter dancing on a station platform",
+      "description": "Watch the missed-train scene and prepare a photo for your platform dance.",
+      "label": "One photo · Platform dance",
+      "publishedAt": "2026-10-27T18:00:00+08:00",
+      "guides": {
+        "what": "/blog/missed-train-dance-ai-video-explained",
+        "how": "/blog/how-to-make-missed-train-dance-ai-video",
+        "free": "/blog/missed-train-dance-ai-video-free"
+      }
     }
   ]
 }

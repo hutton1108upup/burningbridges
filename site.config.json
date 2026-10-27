@@ -116,7 +116,11 @@
     "/examples/closed-on-sunday-ai-video-maker",
     "/blog/closed-on-sunday-ai-video-explained",
     "/blog/how-to-make-closed-on-sunday-ai-video",
-    "/blog/closed-on-sunday-ai-video-free"
+    "/blog/closed-on-sunday-ai-video-free",
+    "/examples/missed-train-dance-ai-video-maker",
+    "/blog/missed-train-dance-ai-video-explained",
+    "/blog/how-to-make-missed-train-dance-ai-video",
+    "/blog/missed-train-dance-ai-video-free"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -388,6 +392,10 @@
     "/assets/closed-on-sunday/sample-2.mp4",
     "/assets/closed-on-sunday/sample-2.jpg",
     "/assets/closed-on-sunday/sample-6.mp4",
-    "/assets/closed-on-sunday/sample-6.jpg"
+    "/assets/closed-on-sunday/sample-6.jpg",
+    "/assets/missed-train-dance/reference.mp4",
+    "/assets/missed-train-dance/poster.jpg",
+    "/assets/missed-train-dance/original.mp4",
+    "/assets/missed-train-dance/original-poster.jpg"
   ]
 }
