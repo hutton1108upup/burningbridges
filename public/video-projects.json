@@ -457,6 +457,22 @@
         "how": "/blog/how-to-make-missed-train-dance-ai-video",
         "free": "/blog/missed-train-dance-ai-video-free"
       }
+    },
+    {
+      "id": "the-jawn-ai-dance",
+      "name": "The Jawn AI Dance Video Maker",
+      "category": "dance",
+      "url": "/examples/the-jawn-ai-dance-video-maker",
+      "image": "/assets/the-jawn/pet-reference.jpg",
+      "imageAlt": "A cat waits with a drink before the Jawn dance",
+      "description": "Watch the wait-for-the-drop dance and prepare a photo of a person or pet.",
+      "label": "Person or pet · One photo",
+      "publishedAt": "2026-11-02T21:13:50+08:00",
+      "guides": {
+        "what": "/blog/the-jawn-ai-dance-video-explained",
+        "how": "/blog/how-to-make-the-jawn-ai-dance-video",
+        "free": "/blog/the-jawn-ai-dance-video-free"
+      }
     }
   ]
 }
