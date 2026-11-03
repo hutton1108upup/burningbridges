@@ -1,0 +1,5 @@
+/* Scene-specific sizing; shared styles provide the theme and page layout. */
+.jawn-page .jawn-example{max-width:320px;margin-inline:auto}
+.jawn-page .jawn-example video{display:block;width:100%;aspect-ratio:9/16;object-fit:contain;background:#111}
+.jawn-page .jawn-example figcaption{padding:14px;font-size:14px}
+.jawn-page .jawn-example figcaption p{margin:6px 0 0}

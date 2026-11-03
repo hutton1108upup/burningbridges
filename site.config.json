@@ -120,7 +120,11 @@
     "/examples/missed-train-dance-ai-video-maker",
     "/blog/missed-train-dance-ai-video-explained",
     "/blog/how-to-make-missed-train-dance-ai-video",
-    "/blog/missed-train-dance-ai-video-free"
+    "/blog/missed-train-dance-ai-video-free",
+    "/examples/the-jawn-ai-dance-video-maker",
+    "/blog/how-to-make-the-jawn-ai-dance-video",
+    "/blog/the-jawn-ai-dance-video-explained",
+    "/blog/the-jawn-ai-dance-video-free"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -396,6 +400,9 @@
     "/assets/missed-train-dance/reference.mp4",
     "/assets/missed-train-dance/poster.jpg",
     "/assets/missed-train-dance/original.mp4",
-    "/assets/missed-train-dance/original-poster.jpg"
+    "/assets/missed-train-dance/original-poster.jpg",
+    "/assets/the-jawn/pet-reference.jpg",
+    "/assets/the-jawn/pet-reference.mp4",
+    "/the-jawn.css"
   ]
 }
