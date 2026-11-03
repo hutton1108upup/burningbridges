@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" role="img" aria-labelledby="title desc">
+  <title id="title">Burning Bridges AI Video</title>
+  <desc id="desc">White play mark on a violet tile</desc>
+  <defs><linearGradient id="violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B5A9FF"/><stop offset="1" stop-color="#6755D7"/></linearGradient></defs>
+  <rect width="88" height="88" rx="22" fill="url(#violet)"/>
+  <path d="M36 28.5 62.5 44 36 59.5Z" fill="#fff" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+</svg>
