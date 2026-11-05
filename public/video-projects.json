@@ -473,6 +473,22 @@
         "how": "/blog/how-to-make-the-jawn-ai-dance-video",
         "free": "/blog/the-jawn-ai-dance-video-free"
       }
+    },
+    {
+      "id": "first-time-fancy-cafe",
+      "name": "First Time in a Fancy Cafe AI Video Maker",
+      "category": "dance",
+      "url": "/examples/first-time-in-a-fancy-cafe-ai-video-maker",
+      "image": "/assets/fancy-cafe/poster.webp",
+      "imageAlt": "First-timer and regular in the fancy cafe POV",
+      "description": "Explore the tiny-table cafe POV and choose one or two photos for the scene.",
+      "label": "First-timer · Optional regular",
+      "publishedAt": "2026-11-05T14:00:00+08:00",
+      "guides": {
+        "what": "/blog/first-time-in-a-fancy-cafe-ai-explained",
+        "how": "/blog/how-to-make-first-time-in-a-fancy-cafe-ai-video",
+        "free": "/blog/first-time-in-a-fancy-cafe-ai-free"
+      }
     }
   ]
 }
