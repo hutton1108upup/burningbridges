@@ -124,7 +124,11 @@
     "/examples/the-jawn-ai-dance-video-maker",
     "/blog/how-to-make-the-jawn-ai-dance-video",
     "/blog/the-jawn-ai-dance-video-explained",
-    "/blog/the-jawn-ai-dance-video-free"
+    "/blog/the-jawn-ai-dance-video-free",
+    "/examples/first-time-in-a-fancy-cafe-ai-video-maker",
+    "/blog/how-to-make-first-time-in-a-fancy-cafe-ai-video",
+    "/blog/first-time-in-a-fancy-cafe-ai-explained",
+    "/blog/first-time-in-a-fancy-cafe-ai-free"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -403,6 +407,8 @@
     "/assets/missed-train-dance/original-poster.jpg",
     "/assets/the-jawn/pet-reference.jpg",
     "/assets/the-jawn/pet-reference.mp4",
-    "/the-jawn.css"
+    "/the-jawn.css",
+    "/assets/fancy-cafe/poster.webp",
+    "/assets/fancy-cafe/reference.mp4"
   ]
 }
