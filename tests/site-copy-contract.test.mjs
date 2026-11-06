@@ -17,6 +17,19 @@ test('pricing cards show catalog credits without promising a universal video cou
   assert.match(html, /credit cost of each generation/i);
 });
 
+test('pricing FAQ is visible without a scroll animation and matches its structured data', async () => {
+  const html = await readFile('public/pricing/index.html', 'utf8');
+  const section = html.match(/<section\b[^>]*id="faq"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(section, 'Missing pricing FAQ');
+  assert.doesNotMatch(section, /(?:opacity\s*:\s*0(?:[;"\s]|$)|visibility\s*:\s*hidden)/i);
+  const questions = [...section.matchAll(/data-slot="accordion-trigger"[^>]*>\s*([^<]+?)\s*<svg/gs)].map(match => match[1].trim());
+  const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+  const faq = schemas.find(item => item['@type'] === 'FAQPage');
+  assert.ok(faq);
+  assert.deepEqual(questions, faq.mainEntity.map(item => item.name));
+  assert.ok(questions.some(question => /viral video generator/i.test(question)));
+});
+
 test('Flying Entrance related-scene cards lead to those scenes, not generic pricing', async () => {
   const html = await readFile('public/flying-entrance/index.html', 'utf8');
   const related = html.match(/<div class="related">(.*?)<\/div>/s)?.[1];
