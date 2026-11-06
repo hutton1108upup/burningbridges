@@ -132,7 +132,11 @@
     "/examples/angel-of-my-dreams-ai-video-maker",
     "/blog/how-to-make-angel-of-my-dreams-ai-video",
     "/blog/angel-of-my-dreams-ai-video-explained",
-    "/blog/angel-of-my-dreams-ai-video-free"
+    "/blog/angel-of-my-dreams-ai-video-free",
+    "/examples/its-my-life-dog-ai-video-maker",
+    "/blog/its-my-life-dog-ai-explained",
+    "/blog/how-to-make-its-my-life-dog-ai-video",
+    "/blog/its-my-life-dog-ai-video-free"
   ],
   "assets": [
     "/assets/ozil-goal-video-card.webp",
@@ -417,6 +421,13 @@
     "/assets/angel-of-my-dreams/door.webp",
     "/assets/angel-of-my-dreams/door.mp4",
     "/assets/angel-of-my-dreams/living-room.webp",
-    "/assets/angel-of-my-dreams/living-room.mp4"
+    "/assets/angel-of-my-dreams/living-room.mp4",
+    "/singing-car-dog.css",
+    "/assets/its-my-life-dog/pug.jpg",
+    "/assets/its-my-life-dog/pug.mp4",
+    "/assets/its-my-life-dog/shepherd.jpg",
+    "/assets/its-my-life-dog/shepherd.mp4",
+    "/assets/its-my-life-dog/tuxedo-cat.jpg",
+    "/assets/its-my-life-dog/tuxedo-cat.mp4"
   ]
 }
