@@ -16,7 +16,8 @@ for (const route of config.routes) {
   assert.ok(!developmentCopy.test(html), `Development copy: ${route}`);
   assert.ok(!/\bnot yet\b|\bcoming soon\b/i.test(html), `Staged rollout copy: ${route}`);
   assert.ok(!retiredPlans.test(html), `Removed plan reappeared: ${route}`);
-  const footerCopy = route === '/pricing' ? 'Explore AI video trends, choose a scene and compare credit plans.' : /<html[^>]*lang="pt-BR"/.test(html) ? 'Crie sua ideia de vídeo com a Burning Bridges: escolha uma foto, explore os exemplos e confira os planos.' : 'Prepare a Burning Bridges party-video idea with one portrait, a reference performance and a credit plan.';
+  const generalFooterRoutes = ['/pricing', '/examples/angel-of-my-dreams-ai-video-maker', '/blog/how-to-make-angel-of-my-dreams-ai-video', '/blog/angel-of-my-dreams-ai-video-explained', '/blog/angel-of-my-dreams-ai-video-free'];
+  const footerCopy = generalFooterRoutes.includes(route) ? 'Explore AI video trends, choose a scene and compare credit plans.' : /<html[^>]*lang="pt-BR"/.test(html) ? 'Crie sua ideia de vídeo com a Burning Bridges: escolha uma foto, explore os exemplos e confira os planos.' : 'Prepare a Burning Bridges party-video idea with one portrait, a reference performance and a credit plan.';
   assert.ok(html.includes(footerCopy), `Brand copy mismatch: ${route}`);
   const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '');
   for (const link of html.matchAll(/href="#([^"]+)"/g)) {
