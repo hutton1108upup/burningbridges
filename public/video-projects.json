@@ -489,6 +489,22 @@
         "how": "/blog/how-to-make-first-time-in-a-fancy-cafe-ai-video",
         "free": "/blog/first-time-in-a-fancy-cafe-ai-free"
       }
+    },
+    {
+      "id": "angel-of-my-dreams",
+      "name": "Angel of My Dreams AI Video Maker",
+      "category": "cinematic",
+      "url": "/examples/angel-of-my-dreams-ai-video-maker",
+      "image": "/assets/angel-of-my-dreams/door.webp",
+      "imageAlt": "Angel wings costume reveal at a doorway",
+      "description": "Watch angel-wings reveals and prepare a portrait for your video idea.",
+      "label": "One photo · Angel wings",
+      "publishedAt": "2026-11-06T12:00:00+08:00",
+      "guides": {
+        "what": "/blog/angel-of-my-dreams-ai-video-explained",
+        "how": "/blog/how-to-make-angel-of-my-dreams-ai-video",
+        "free": "/blog/angel-of-my-dreams-ai-video-free"
+      }
     }
   ]
 }
