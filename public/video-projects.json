@@ -505,6 +505,22 @@
         "how": "/blog/how-to-make-angel-of-my-dreams-ai-video",
         "free": "/blog/angel-of-my-dreams-ai-video-free"
       }
+    },
+    {
+      "id": "its-my-life-dog",
+      "name": "It's My Life Dog AI Video Maker",
+      "category": "pets",
+      "url": "/examples/its-my-life-dog-ai-video-maker",
+      "image": "/assets/its-my-life-dog/shepherd.jpg",
+      "imageAlt": "German shepherd in the passenger seat below a highway view",
+      "description": "Watch the singing car dog pause, put on sunglasses and join the chorus again. Compare dog and cat clips, then choose a pet photo for the passenger seat.",
+      "label": "Singing pet · One photo",
+      "publishedAt": "2026-11-06T12:00:00+08:00",
+      "guides": {
+        "what": "/blog/its-my-life-dog-ai-explained",
+        "how": "/blog/how-to-make-its-my-life-dog-ai-video",
+        "free": "/blog/its-my-life-dog-ai-video-free"
+      }
     }
   ]
 }
